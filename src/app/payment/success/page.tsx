@@ -1,0 +1,30 @@
+import { Header } from "../../components/header"; 
+import Link from "next/link";
+import SecondHeader  from "../../components/secondHeader";
+
+
+const Success = () => {
+  
+  return (
+      <>
+      <div className="flex">
+        <SecondHeader/>
+
+        <div className="flex min-h-screen flex-col place-items-center  w-[90vw] md:w-[80vw] justify-start">
+          <Header/>
+            <h1 className="text-slate-800">Payment Complete!</h1>
+            <p className="text-muted-foreground">Congrats on your subscription, please check your email for further instructions.</p>
+        <div>
+            <button>
+                <Link href='/dashboard'>Go back to Dashboard</Link>
+            </button>
+        </div>
+        </div>
+
+            
+        </div>
+      </>
+    );
+  };
+  
+  export default Success;
