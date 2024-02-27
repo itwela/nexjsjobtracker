@@ -2,9 +2,7 @@ import { auth, currentUser } from '@clerk/nextjs';
 import { ReactNode } from 'react';
 import prisma from '../libs/db';
 import { getFirstData } from '@/actions/databaseAc';
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
-import { redirect } from 'next/navigation';
-import { stripe } from '../libs/stripe';
+// import { stripe } from '../libs/stripe';
 
 // export async function getData({ id, name, email }: { id: string ; name: string | null | undefined; email: string }) {
 //   try {
@@ -41,75 +39,43 @@ import { stripe } from '../libs/stripe';
 //   }
 // }
 
-async function getData({
-  email,
-  id,
-  firstName,
-  lastName,
-  profileImage,
-}: {
-  email: string;
-  id: string;
-  firstName: string | undefined | null;
-  lastName: string | undefined | null;
-  profileImage: string | undefined | null;
-}) {
-  noStore();
-  const user = await prisma.user.findUnique({
-    where: {
-      id: id,
-    },
-    select: {
-      id: true,
-      stripeCustomerId: true,
-    },
-  });
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
+  const sessionId  = auth();
+  const user = await sessionId 
+  console.log(user)
+
+
+  if (user) {
+    const userData = {
+      email: user.user?.emailAddresses[0]?.emailAddress as string,
+      firstName: user.user?.firstName as string,
+      name: user.user?.username as string,
+      id: user.user?.id as string,
+      lastName: user.user?.lastName as string,
+      profileImage: user.user?.imageUrl,
+        // email: 'email'
+    };
+
+    try {
+      await getFirstData(userData);
+      // Continue rendering the dashboard layout
+    } catch (error) {
+      console.error('Error while fetching user data:', error);
+      // Handle the error appropriately
+    }
+  }
 
   if (!user) {
-    const name = `${firstName ?? ""} ${lastName ?? ""}`;
-    await prisma.user.create({
-      data: {
-        id: id,
-        email: email,
-        name: name,
-      },
-    });
+    return (
+      <>
+        <div className='flex place-items-center w-[100vw] h-[100vh] bg-backback-col'>
+            <p>
+              no user
+            </p>
+        </div>
+      </>
+    )
   }
-
-  if (!user?.stripeCustomerId) {
-    const data = await stripe.customers.create({
-      email: email,
-    });
-
-    await prisma.user.update({
-      where: {
-        id: id,
-      },
-      data: {
-        stripeCustomerId: data.id,
-      },
-    });
-  }
-}
-
-export default async function DashboardLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const getUser  = auth();
-  const user = await getUser;
-  if (!user) {
-    return redirect("/");
-  }
-  await getData({
-    email: user.user?.emailAddresses[0]?.emailAddress as string,
-    firstName: user.user?.firstName as string,
-    id: user.user?.id as string,
-    lastName: user.user?.lastName as string,
-    profileImage: user.user?.imageUrl,
-  });
-  console.log(getData)
 
   return (
     <div className="flex">
