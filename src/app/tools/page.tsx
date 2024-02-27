@@ -1,12 +1,11 @@
-import { Header } from "../components/header"; 
-import  SecondHeader  from "../components/secondHeader";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { unstable_noStore as noStore } from "next/cache";
+} from "@/components/ui/accordion";
+import { Header } from "../components/header";
+import SecondHeader from "../components/secondHeader";
 
 const Tools = () => {
   

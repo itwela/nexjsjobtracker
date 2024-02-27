@@ -1,12 +1,9 @@
 // "use client"; // This is a client component 👈🏽
 
-import React from 'react';
-import Link from 'next/link';
 import { UserButton, auth } from '@clerk/nextjs';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { unstable_noStore as noStore } from "next/cache";
-import { FaRegCompass } from "react-icons/fa";
+import Link from 'next/link';
+import React from 'react';
 
 
 interface DropdownProps {
@@ -55,13 +52,13 @@ export const Header = () => {
                   <>
                     <Link
                       href='/sign-in'
-                      className='text-main-w hover:text-main-w/60 mr-4'
+                      className='text-main-w outline p-3 outline-[1px] rounded-lg outline-main-w hover:text-main-w/60 mr-4'
                     >
                       Sign In
                     </Link>
                     <Link
                       href='/sign-up'
-                      className='text-main-w hover:text-main-w/60 mr-4'
+                      className='text-dprimary bg-main-w outline p-3 outline-[1px] rounded-lg outline-main-w hover:text-dprimary/60 mr-4'
                     >
                       Sign Up
                     </Link>

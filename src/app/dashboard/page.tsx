@@ -1,20 +1,18 @@
 
-import { AddJobs } from "../components/addJobs";
-import Clock from "../components/clock";
-import { Header } from "../components/header";
-import JobsTable from "../components/jobsTableRender";
-import SecondHeader from "../components/secondHeader";
-import TopboxOne from "../components/topbox1";
-import TopboxTwo from "../components/topbox2";
-import { useState } from "react";
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
-import { auth, currentUser } from "@clerk/nextjs";
 import prisma from "@/app/libs/db";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable"
+} from "@/components/ui/resizable";
+import { currentUser } from "@clerk/nextjs";
+import { unstable_noStore as noStore } from "next/cache";
+import { AddJobs } from "../components/addJobs";
+import { Header } from "../components/header";
+import JobsTable from "../components/jobsTableRender";
+import SecondHeader from "../components/secondHeader";
+import TopboxOne from "../components/topbox1";
+import TopboxTwo from "../components/topbox2";
 
 async function getUserData(userId: string) {
   noStore();
@@ -151,17 +149,17 @@ export default async function Dashboard() {
           
           <ResizablePanelGroup
             direction="horizontal"
-            className="h-full"
+            className="bg-dprimary"
           >
             <ResizablePanel  defaultSize={20}>
-              <div className="flex flex-col h-screen justify-start gap-5 pb-5">
+            <div className="w-[20vw] bg-dprimary relative">
                 <SecondHeader  />
               </div>
             </ResizablePanel>
 
             <ResizableHandle  withHandle />
 
-            <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
+            <ResizablePanel className="min-w-[80vw] bg-backback-col" defaultSize={80}>
               <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
 
                 <Header />
@@ -172,14 +170,16 @@ export default async function Dashboard() {
                   <TopboxTwo />
                 </div>
 
-                <div className="relative flex  justify-between place-items-center place-content-center">
+                <div className="relative flex   justify-between place-items-center">
+                  <AddJobs />
+                </div>
+
+                <div className="relative flex pb-9  justify-between place-items-center place-content-center">
                   <JobsTable jobdata={jobdata} />
                 </div>
 
 
-                <div className="relative flex  justify-between place-items-center">
-                  <AddJobs />
-                </div>
+                
 
               </div>
             </ResizablePanel>

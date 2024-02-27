@@ -1,5 +1,5 @@
 import { SignIn } from '@clerk/nextjs';
-import { Header } from "../../components/header"; 
+import { Header } from "../../components/header";
 
 
 const SignInPage = () => {

@@ -7,21 +7,9 @@ import { format } from "date-fns"
 import { toast } from "sonner";
 import { z } from "zod";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
+import { getJobData } from "@/actions/databaseAc";
 
 
-export async function getData(userId: string) {
-  noStore();
-  const data = prisma.job.findMany({
-    where: {
-      userId: userId
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
-  
-  return data;
-}
 
 // Define a submit handler.
 export async function POST(request: any) {
@@ -30,7 +18,7 @@ export async function POST(request: any) {
   console.log(requestBody)
 
   const user = await currentUser()
-  const data = await getData(user?.id as string)
+  const data = await getJobData(user?.id as string)
   
   
   if(!user) {

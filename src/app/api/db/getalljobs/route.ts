@@ -3,31 +3,10 @@
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import { auth, currentUser } from "@clerk/nextjs";
 import prisma from "@/app/libs/db";
+import { getUserData } from "@/actions/databaseAc";
+import { getJobData } from "@/actions/databaseAc";
 
-async function getUserData(userId: string) {
-    noStore();
-    const data = prisma.user.findUnique({
-      where: {
-        id: userId
-      },
-    });
-    
-    return data;
-  }
 
-async function getJobData(userId: string) {
-    noStore();
-    const data = prisma.job.findMany({
-      where: {
-        userId: userId
-      },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
-    
-    return data;
-  }
 
 export async function POST(request: any) {
     const requestBody = await request.json();

@@ -1,4 +1,4 @@
-import Stripe from 'stripe'
+import Stripe from 'stripe';
 
 const sk = process.env.STRIPE_S_KEY as string
 

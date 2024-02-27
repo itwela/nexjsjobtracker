@@ -4,39 +4,18 @@ import { coverletterInst } from "@/app/prompts";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import prisma from '../../../libs/db';
 import { auth, currentUser } from "@clerk/nextjs";
+import { getUserData } from "@/actions/databaseAc";
+import { getJobData } from "@/actions/databaseAc";
 
 
-async function getUserData(userId: string) {
-    noStore();
-    const data = prisma.user.findMany({
-      where: {
-        id: userId
-      },
-    });
-    
-    return data;
-  }
 
-async function getJobData(userId: string) {
-    noStore();
-    const data = prisma.job.findMany({
-      where: {
-        userId: userId
-      },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
-    
-    return data;
-  }
 
-const openai = new OpenAI({
-    apiKey: process.env.OPEN_AI_K,
-});
-
+  
 export async function POST(request: any) {
     
+    const openai = new OpenAI({
+        apiKey: process.env.OPEN_AI_K,
+    });
 
     const requestBody = await request.json();
     noStore();  
@@ -44,7 +23,7 @@ export async function POST(request: any) {
     const user = await currentUser()
     const userdata = await getUserData(user?.id as string)
     const jobdata = await getJobData(user?.id as string)
-    const myname = userdata?.[0].name;
+    const myname = userdata?.name;
     const thejobDate = jobdata?.[0].DateApplied;
 
     const thePrompt = `

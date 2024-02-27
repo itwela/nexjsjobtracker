@@ -8,12 +8,12 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { unstable_noStore as noStore } from "next/cache";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 
 
@@ -60,7 +60,7 @@ const dbUser = await prisma.user.findUnique({
 
     const subscriptionUrl = await getStripeSession({
       customerId: dbUser.stripeCustomerId,
-      domainUrl: 'http://localhost:3000',
+      domainUrl: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_URL as string : 'http://localhost:3000',
       priceId: process.env.STRIPE_P_ID as string,
     })
 
@@ -71,7 +71,7 @@ const dbUser = await prisma.user.findUnique({
     'use server'
     const session = await stripe.billingPortal.sessions.create({
       customer: data?.user.stripeCustomerId as string,
-      return_url: 'http://localhost:3000/dashboard'
+      return_url: process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_URL as string : 'http://localhost:3000/dashboard'
     })
     return redirect(session.url)
   }
@@ -133,16 +133,24 @@ const dbUser = await prisma.user.findUnique({
                 <h1 className="text-4xl font-bold">Billing</h1>
                   <div className="flex flex-col w-[100%] place-items-center place-content-center h-[80vh]">
 
-                  <Card className="w-[80%]">
+                  <Card className="w-[80%] border-main-w/20 bg-dprimary">
                         <CardHeader>
                           <CardTitle>Subscribe to JobKompass</CardTitle>
-                          <CardDescription>Subscription comes with....</CardDescription>
+                          <CardDescription>Looking to upgrade?</CardDescription>
                         </CardHeader>
                         <CardContent>
-                       
-                      <form action={createSubscription}>
-                        <Button className="bg-main-w hover:bg-main-w/80 text-mprimary"> Create Subscription</Button>
-                      </form>
+                          <div className="p-3 rounded-lg  w-full h-full flex place-items-start flex-col">
+                              
+                              <div className="w-full pb-3 h-full flex-col flex place-items-center">
+                                <span className="  flex gap-2 w-full justify-start"><FaRegCheckCircle/> Unlimited cover letters</span>
+                                <span className="flex  gap-2 w-full  justify-start"><FaRegCheckCircle/> Unlimited generated introductions</span>
+                                <span className="flex  gap-2 w-full  justify-start"><FaRegCheckCircle/> Track an unlimited amount of jobs</span>
+                              </div>
+
+                              <form action={createSubscription}>
+                                <Button className="bg-main-w hover:bg-main-w/80 text-mprimary"> Create Subscription</Button>
+                              </form>
+                            </div>
 
                         </CardContent>
        

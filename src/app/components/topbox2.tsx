@@ -1,8 +1,7 @@
 'use client'
 
 import { DateTime } from 'luxon';
-import { unstable_noStore as noStore } from "next/cache";
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const datenumber = DateTime.local().day //=> 25
     const datemonth = DateTime.local().monthShort //=> 25

@@ -1,11 +1,10 @@
 'use client'
 
-import { EvervaultCard, Icon } from "../../components/ui/evervault-card";
 import { useEffect, useState } from 'react';
-import { RiArrowGoBackFill } from "react-icons/ri";
 import { FaRegCopy } from "react-icons/fa";
-import { toast } from "sonner"
-import { trusted } from "mongoose";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { toast } from "sonner";
+import { EvervaultCard } from "../../components/ui/evervault-card";
 
 
 
@@ -70,14 +69,8 @@ export default function TopboxOne() {
   };
 
   // Attach event listeners only on the client-side
-  useEffect(() => {
     const handleCopy = () => copyText();
     document.getElementById("copy-button")?.addEventListener("mouseup", handleCopy);
-
-    return () => {
-      document.getElementById("copy-button")?.removeEventListener("mouseup", handleCopy);
-    };
-  }, []);
 
 
 
@@ -89,7 +82,7 @@ export default function TopboxOne() {
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-lg">{data}</span>
         <RiArrowGoBackFill size={40} onClick={() => setIsGen(false)} className="absolute bottom-0 left-3 cursor-pointer bg-mprimary text-main-w hover:text-main-w/70 font-black p-2" />
         {/* Add an id to the copy button */}
-        <FaRegCopy id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
+        <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
       </span>
 
     </>

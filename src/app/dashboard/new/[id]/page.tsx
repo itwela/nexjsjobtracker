@@ -1,34 +1,21 @@
 
 'use client'
 
-import { Header } from "../../../components/header"; 
-import  SecondHeader  from "../../../components/secondHeader";
+import { Button } from "@/components/ui/button";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
-import { auth, currentUser } from "@clerk/nextjs";
-import prisma from "@/app/libs/db";
-import { getStripeSession, stripe } from "@/app/libs/stripe";
-import { redirect, useRouter } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { revalidatePath } from "next/cache";
 import Link from "next/link";
-import { RiArrowGoBackFill } from "react-icons/ri";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaRightLong } from "react-icons/fa6";
+import { toast } from "sonner";
 
 
 

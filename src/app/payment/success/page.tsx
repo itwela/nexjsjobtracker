@@ -1,6 +1,6 @@
-import { Header } from "../../components/header"; 
 import Link from "next/link";
-import SecondHeader  from "../../components/secondHeader";
+import { Header } from "../../components/header";
+import SecondHeader from "../../components/secondHeader";
 
 
 const Success = () => {

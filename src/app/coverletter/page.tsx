@@ -1,6 +1,6 @@
 import CoverLetterGen from "../components/coverLetterComp";
-import { Header } from "../components/header"; 
-import  SecondHeader  from "../components/secondHeader";
+import { Header } from "../components/header";
+import SecondHeader from "../components/secondHeader";
 
 
 const CoverLetter = () => {

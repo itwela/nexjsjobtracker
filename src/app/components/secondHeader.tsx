@@ -1,25 +1,14 @@
 
 
-import React from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { auth, currentUser } from "@clerk/nextjs";
+import { unstable_noStore as noStore } from "next/cache";
+import Link from 'next/link';
+import { FaRegCompass } from "react-icons/fa";
+import { IoSettingsOutline } from "react-icons/io5";
 import { LuNewspaper } from "react-icons/lu";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 import { PiToolboxBold } from "react-icons/pi";
-import { IoSettingsOutline } from "react-icons/io5";
-import { FaRegCreditCard } from "react-icons/fa";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-import prisma from '../libs/db'
-import DashboardLayout from '../dashboard/layout';
-import Link from 'next/link'
-import { string } from 'zod';
-import { auth, currentUser } from "@clerk/nextjs";
-import { unstable_noStore as noStore } from "next/cache";
-import { FaRegCompass } from "react-icons/fa";
+import prisma from '../libs/db';
 
 // interface UserTable {
 //   id: string   
@@ -114,7 +103,7 @@ export default async function Secondspan ()  {
           <span className='coverl flex justify-between  '>
                     <Link href='/coverletter'>
                     <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between hover:text-main-w/70 px-6 '>
-                            <p className=' truncate'>Cove Letterr</p>
+                            <p className=' truncate'>Cover Letter</p>
                           <span className=''><LuNewspaper className=''/></span>
                       </span>
                     </Link>

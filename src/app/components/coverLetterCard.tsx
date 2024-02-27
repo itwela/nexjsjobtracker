@@ -1,15 +1,13 @@
 'use client'
 
 
-import axios from 'axios';
 
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
-import { toast } from "sonner"
-import { NextApiRequest } from 'next';
 import { FaRegCopy } from "react-icons/fa";
+import { toast } from "sonner";
 
 
 

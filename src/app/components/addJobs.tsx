@@ -1,52 +1,14 @@
 'use client'
 
 import React, { useEffect, useState, useRef }  from 'react';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// calender imports
-import { format, formatDate } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-// select imports
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
 // checkbox
-import { Checkbox } from "@/components/ui/checkbox"
-import { IoMdAddCircleOutline } from "react-icons/io";
-// popup
-import { toast } from "sonner"
-// userId
-import prisma from "../libs/db";
-import { auth, currentUser } from "@clerk/nextjs";
 // submit data
-import { addJob } from '@/actions/addJob';
+import { addJob } from '@/actions/databaseAc';
 // 
 import { FaPlus, FaPlusCircle } from 'react-icons/fa';
-import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import {
   Carousel,
   CarouselContent,
@@ -54,7 +16,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card"
+
 
 interface CaroselForm {
 
@@ -206,86 +168,7 @@ export function AddJobs() {
   });
 
 
-                // <div className="  overflow-scroll  bottom-10  space-y-4 bg-backback-col px-6 py-2  w-[80vw]  flex flex-col rounded-[0.5em] shadow place-items-center place-content-start">
-                //   <form action={addJob} className='w-[100%] flex flex-col gap-2'>
-                    
-                //     {/* job title */}
-                //     <div className=''>
-                //       {/* <label htmlFor="JobTitle" className='font-bold'>Add Job Title</label> */}
-                //       <Input onChange={handleInputChange} className='border-lprimary' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
-                //     </div>
-    
-                //   {/* company */}
-                //     <div className='mb-2'>
-                //       {/* <label className='font-bold' htmlFor="Company">Add Company</label> */}
-                //       <Input onChange={handleInputChange} className='border-lprimary' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
-                //     </div>
-    
-                //     {/* <label className='font-bold' htmlFor="DateApplied">Date Applied</label> */}
-                //     <div className='mb-2  outline outline-[1px] outline-lprimary py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                //       <input onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' required />
-                //     </div>
-    
-                //     {/* <label className='font-bold' htmlFor="status">Status</label> */}
-                //     <div className='mb-2 outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center'>
-                //       <select onChange={handleStatusChange} id="status" className='rounded-[0.2em] px-2 bg-lprimary' name="status" required>
-                //         <option value="">Select a Status</option>
-                //         <option value="Applied">Applied</option>
-                //         <option value="Interviewing">Interviewing</option>
-                //         <option value="Offer">Offer</option>
-                //         <option value="Rejected">Rejected</option>
-                //         <option value="Ghosted">Ghosted</option>
-                //       </select>
-                //     </div>
-    
-                //     <div>
-                //       {/* <label  className='font-bold' htmlFor="Link">Add Link</label> */}
-                //       <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
-                //     </div>
-    
-                //     <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
-                //       <label className='font-bold' htmlFor="referral">Referral?</label>
-                //       <p onMouseUp={handleReferralCheckboxChange} className='text-muted-foreground hover:text-mprimary text-sm'><em>CLick me to add more information about the referral!</em> </p>
-                //     </div>
-                //     <div className='mb-2 bg-lprimary outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                //       <select onChange={handleRefStatusChange} className='rounded-[0.2em] px-2 bg-lprimary' id="referral" name="referral">
-                //         <option value="">Yes or No?</option>
-                //         <option value="Yes" >Yes</option>
-                //         <option value="No">No</option>
-                //       </select>
-                //     </div>
-    
-    
-                //     {showReferralDetails && (
-                //       <>
-                //         <div>
-                //           {/* <label className='font-bold' htmlFor="ReferralName">Add Referral Name</label> */}
-                //           <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
-                //         </div>
-    
-                //         <div>
-                //           {/* <label className='font-bold' htmlFor="ReferralContact">Add Referral Contact</label> */}
-                //           <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
-                //         </div>
-                //       </>
-                //     )}
-    
-                // <div>
-                //   <label className='font-bold' htmlFor="ResumeUsed">Add Resume</label>
-                //   <Input className='border-lprimary cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
-                // </div>
-    
-                // <div className='mb-2'>
-                //   <label className='font-bold' htmlFor="Keywords">Add Keywords</label>
-                //   <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
-                // </div>
-    
-                // <div className='w-[100%] flex place-items-center place-content-center justify-between'>
-                //   <Button className='bg-mprimary hover:bg-mprimary/80' type="submit">Submit</Button>
-                //   <Button className='bg-[#fd3330] hover:bg-[#fd3330]/80' onMouseUp={handleShowForm}>Close</Button>
-                // </div>
-                //   </form>
-                // </div>
+            
 
   return (
     <>
@@ -313,6 +196,9 @@ export function AddJobs() {
 
         <div className='flex flex-col place-items-center'>
           
+        <p className='text-sm text-main-w/50'>*Tip: Pressing the left or right keys will move you along!</p>
+
+
           <Carousel
               opts={{
                 align: "start",
@@ -444,13 +330,12 @@ export function AddJobs() {
           </Carousel>
 
 
-              <p className='text-sm text-main-w/50'>*Tip: Pressing the left or right keys will move you along!</p>
 
               <div className="flex text-main-w/30 hover:text-main-w/80   flex-col w-[100%] place-items-center place-content-center  gap-4">
            </div>
 
            </div>
-            <div onMouseUp={handleShowForm} className='cursor-pointer fixed translate-x-[70%] translate-y-[-20%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
+            <div onMouseUp={handleShowForm} className='cursor-pointer absolute z-10 translate-x-[50vw] translate-y-[-10%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
               <button className='flex gap-2 place-items-center' 
               
               >

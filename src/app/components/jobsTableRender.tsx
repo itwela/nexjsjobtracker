@@ -1,15 +1,6 @@
 'use client'
 
-import { File } from "lucide-react";
-import prisma from "../libs/db";
-import { auth, currentUser } from "@clerk/nextjs";
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table"
+import { deleteJobData } from "@/actions/databaseAc";
 import {
   Table,
   TableBody,
@@ -18,21 +9,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { FaRegTrashCan } from "react-icons/fa6";
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
-import { toast } from "sonner"
-import { FaRegEdit } from "react-icons/fa";
-import Link from "next/link";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu"
-import { ChangeEvent, useEffect, useState } from "react";
-import { deleteJobData } from "@/actions/addJob";
+} from "@/components/ui/table";
+import { File } from "lucide-react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { FaRegEdit } from "react-icons/fa";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 // Define the type for formData
 interface Job {
@@ -53,71 +35,14 @@ interface JobsTableProps {
 }
 
 
-
-// const deleteJobData = async (formData: FormData) => {
-//   noStore();
-
-//   const jobId = formData.get('jobId') as string
-
-//   await prisma.job.delete({
-//     where: {
-//       id: jobId
-//     },
-//   });
-
-//   revalidatePath('/dashbard')
-// }
-
-
-
  function JobsTable(
   { jobdata }: JobsTableProps) {
-
-
-  // const handleDelete = async (formData: FormData) => {
-
-  //   const jobId = formData.get('jobId') as string
-  //   console.log(jobId, '<< yooooooooooooo')
-
-  //   try {
-  //     const response = await fetch('/api/db/deletejobs', {
-  //         method: 'POST',
-  //         next: {
-  //           revalidate: 5
-  //         },
-  //         headers: {
-  //             'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify({
-  //             input: jobId
-  //         })
-  //     });
-
-  //     if (!response.ok) {
-  //         throw new Error('Failed to fetch data');
-  //     }
-
-
-  // } catch (error) {
-  //     // Handle error
-  // }
-
-  //     toast("Job Deleted", {
-  //       description: "",
-  //   });
-
-  //   // revalidatePath('/dashboard/[slug]', 'page')
-
-
-  //   // getJobStuff();
-
-  // }
 
 
 
   return (
     <>
-      <div className=" mt-[2em] space-y-1 bg-backback-col py-6 w-[100%] flex flex-col rounded-[0.5em] shadow">
+      <div className="  bg-backback-col w-[100%] flex flex-col rounded-[0.5em] shadow">
         <div className='w-[100%]'>
           {/* <h2 className="font-black">Your Jobs:</h2> */}
         </div>
@@ -134,8 +59,8 @@ interface JobsTableProps {
             </div>
           </div>
         ) : (
-          <div className="jtable space-y-4 bg-backback-col p-6 py-6  min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
-            <div className=" w-[95%] flex flex-col place-items-center place-content-center ">
+          <div className="jtable  bg-backback-col px-6   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-start">
+            <div className=" w-[95%] flex flex-col place-items-center place-content-start ">
               <div className="py-9">Your Jobs</div>
               <Table className=" relative bg-red-30 place-items-center place-contnet-center">
                 <TableCaption className="pb-4">A list of your recent Job Applications.</TableCaption>

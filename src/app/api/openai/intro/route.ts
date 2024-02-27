@@ -4,44 +4,21 @@ import { introInst } from "@/app/prompts";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import prisma from '../../../libs/db';
 import { auth, currentUser } from "@clerk/nextjs";
-
-async function getUserData(userId: string) {
-    noStore();
-    const data = prisma.user.findMany({
-      where: {
-        id: userId
-      },
-    });
-    
-    return data;
-  }
-
-async function getJobData(userId: string) {
-    noStore();
-    const data = prisma.job.findMany({
-      where: {
-        userId: userId
-      },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
-    
-    return data;
-  }
+import { getUserData } from "@/actions/databaseAc";
+import { getJobData } from "@/actions/databaseAc";
 
 
-const openai = new OpenAI({
-    apiKey: process.env.OPEN_AI_K,
-});
 
 export async function POST(request: any) {
-    noStore();  
-    auth();
+  noStore();  
+  auth();
+  const openai = new OpenAI({
+      apiKey: process.env.OPEN_AI_K,
+  });
     const user = await currentUser()
     const userdata = await getUserData(user?.id as string)
     const jobdata = await getJobData(user?.id as string)
-    const myname = userdata?.[0].name;
+    const myname = userdata?.name;
     const jobtitle = jobdata?.[0].JobTitle;
     const companyname = jobdata?.[0].Company;
     const keywords = jobdata?.[0].Keywords;    

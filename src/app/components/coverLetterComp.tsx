@@ -1,19 +1,11 @@
-import { UserProfile } from '@clerk/nextjs';
-import { Header } from "../components/header"; 
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { unstable_noStore as noStore } from "next/cache";
-import { Textarea } from '@/components/ui/textarea';
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 import CoverLetterCard from './coverLetterCard';
-import NextCors from 'nextjs-cors';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 
 

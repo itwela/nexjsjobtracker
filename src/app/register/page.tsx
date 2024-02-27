@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
 import { useSignUp } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const RegisterPage = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
