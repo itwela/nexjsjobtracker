@@ -1,16 +1,37 @@
+'use client'
+
 import { DateTime } from 'luxon';
 import { unstable_noStore as noStore } from "next/cache";
+import { useEffect, useState } from 'react';
 
-const hour = DateTime.local().hour //=> 25
-const minute = DateTime.local().minute //=> 25
-const goodtime = DateTime.fromObject({ hour, minute }).toLocaleString(DateTime.TIME_SIMPLE)
-
-
+const datenumber = DateTime.local().day //=> 25
+    const datemonth = DateTime.local().monthShort //=> 25
+    const dayday = DateTime.local().day //=> 25
+    const dateyear = DateTime.local().year //=> 25
+    const weekday = DateTime.local().weekdayShort //=> 25
+    const hour = DateTime.local().hour //=> 25
+    const minute = DateTime.local().minute //=> 25
 export default function TopboxTwo() {
+    const [time, setTime] = useState('');
+    
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        const { hour, minute } = DateTime.local();
+        const goodTime = DateTime.fromObject({ hour, minute }).toLocaleString(DateTime.TIME_SIMPLE);
+        setTime(goodTime);
+      }, 63000); // 1 minute and 3 seconds in milliseconds
+    
+      return () => clearTimeout(timeout); // Cleanup timeout on component unmount
+    }, []); // Empty dependency array ensures the effect runs only once
+    
     return(
         <> 
-            <div className="flex bg-dprimary shadow relative flex-col gap-2 w-[25%] h-[95%] py-6 px-5 justify-between rounded-[0.5em]">
-                <h2 className="text-main-w flex flex-col text-center text-2xl">{goodtime}</h2>
+            <div className="flex z-10 place-content-center bg-dprimary rounded-[2em] py-2 m-4 relative gap-2 w-full h-[10vh]">
+                <h2 className="text-main-w flex  text-center ">{weekday},</h2>
+                <h2 className="text-main-w flex  text-center ">{datemonth}</h2>
+                <h2 className="text-main-w flex  text-center ">{dayday}</h2>
+                <h2 className="text-main-w flex  text-center ">{time}</h2>
+                {/* <h2 className="text-main-w flex  text-center ">{time}</h2> */}
             </div>
 
         </>

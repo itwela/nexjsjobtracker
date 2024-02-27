@@ -4,6 +4,13 @@ import { File } from "lucide-react";
 import prisma from "../libs/db";
 import { auth, currentUser } from "@clerk/nextjs";
 import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+import {
   Table,
   TableBody,
   TableCaption,
@@ -63,101 +70,55 @@ interface JobsTableProps {
          
 
 
-export default function JobsTable({ jobdata }: JobsTableProps) {
+export default function JobsTable(
+  { jobdata }: JobsTableProps)  
+  {
   
-  // const [jobdata, setjobdata] = useState<JobData[]>([]);
   
-    // useEffect(() => {
+    // const handleDelete = async (formData: FormData) => {
+    
+    //   const jobId = formData.get('jobId') as string
+    //   console.log(jobId, '<< yooooooooooooo')
+    
+    //   try {
+    //     const response = await fetch('/api/db/deletejobs', {
+    //         method: 'POST',
+    //         next: {
+    //           revalidate: 5
+    //         },
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             input: jobId
+    //         })
+    //     });
+    
+    //     if (!response.ok) {
+    //         throw new Error('Failed to fetch data');
+    //     }
+    
+    
+    // } catch (error) {
+    //     // Handle error
+    // }
+    
+    //     toast("Job Deleted", {
+    //       description: "",
+    //   });
 
-    //   const getJobStuff = async () => {
-          
-    //     const hello = 'hi all jobs endpoint'
-        
-    //     try {
-    //               const response = await fetch('/api/db/getjobdata', {
-    //                   method: 'POST',
-    //                   next: {
-    //                     revalidate: 0
-    //                   },
-    //                   headers: {
-    //                       'Content-Type': 'application/json'
-    //                   },
-    //                   body: JSON.stringify({
-    //                       input: hello
-    //                   })
-    //                 });
-                    
-    //                 if (!response.ok) {
-    //                   throw new Error('Failed to fetch data');
-    //               }
-              
-    //             const data = await response.json();
-    //             setjobdata(data.jobdata); // Set the form data in state                     // console.log(data)
+    //   // revalidatePath('/dashboard/[slug]', 'page')
 
-                
-    //             toast("Jobs Found",{
-    //                 description: "Use this page to update Status, Contact information and much more!",
-    //               })
-                  
-            
-    //             } catch (error) {
-    //             // Handle error
-    //         }
+    
+    //   // getJobStuff();
+
     // }
 
-
-    //   getJobStuff();
-
-    //   // Get the full path of the current URL
-
-
-      
-    // }, [])
-
-    
-    const handleDelete = async (formData: FormData) => {
-    
-      const jobId = formData.get('jobId') as string
-      console.log(jobId, '<< yooooooooooooo')
-    
-      try {
-        const response = await fetch('/api/db/deletejobs', {
-            method: 'POST',
-            next: {
-              revalidate: 5
-            },
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                input: jobId
-            })
-        });
-    
-        if (!response.ok) {
-            throw new Error('Failed to fetch data');
-        }
-    
-    
-    } catch (error) {
-        // Handle error
-    }
-    
-        toast("Job Deleted", {
-          description: "",
-      });
-
-      // revalidatePath('/dashboard/[slug]', 'page')
-
-    
-      // getJobStuff();
-
-    }
-
+  
 
     return (
     <>
-        <div className=" space-y-4 bg-backback-col py-6 w-[100%] flex flex-col rounded-[0.5em] shadow">
+        <div className=" mt-[2em] space-y-1 bg-backback-col py-6 w-[100%] flex flex-col rounded-[0.5em] shadow">
              <div className='w-[100%]'>
                 {/* <h2 className="font-black">Your Jobs:</h2> */}
              </div>
@@ -175,9 +136,10 @@ export default function JobsTable({ jobdata }: JobsTableProps) {
             </div>
             ) : (
                 <div className="jtable space-y-4 bg-backback-col p-6 py-6  min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
-                  <div className=" w-[95%] flex place-items-center place-content-center ">
+                  <div className=" w-[95%] flex flex-col place-items-center place-content-center ">
+                    <div className="py-9">Your Jobs</div>
                     <Table className=" relative bg-red-30 place-items-center place-contnet-center">
-                      <TableCaption className="">A list of your recent Job Applications.</TableCaption>
+                      <TableCaption className="pb-4">A list of your recent Job Applications.</TableCaption>
                         <TableHeader className="w-[100%] flex text-main-w justify-start gap-1">
                             <TableHead className="w-[6.5vw] truncate hover:text-clip">
                               Job Tttle
@@ -217,7 +179,7 @@ export default function JobsTable({ jobdata }: JobsTableProps) {
                         {/* pop up */}
 
                               {jobdata.map((item: any) => (                                          
-                              <TableRow key={item.id} className="flex nosb items-center gap-1 text-main-w/60 hover:text-main-w">
+                              <TableRow key={item.id} className="flex nosb items-center gap-1 hover:bg-lprimary text-main-w/60 hover:text-main-w border-transparent">
                                   <TableCell className="font-medium  whitespace-nowrap overflow-auto w-[6.5vw]">
                                     {item.JobTitle}
                                   </TableCell>                              
@@ -229,11 +191,11 @@ export default function JobsTable({ jobdata }: JobsTableProps) {
                                   </TableCell>
                                   <TableCell className={`font-medium whitespace-nowrap overflow-auto w-[6.5vw] 
                                   ${
-                                    item.Status.includes("Applied") ? "" : 
-                                    item.Status.includes("Inter") ? "" : 
-                                    item.Status.includes("Offer") ? "" : 
-                                    item.Status.includes("Rej") ? "" : 
-                                    item.Status.includes("Ghosted") ? "text-muted-foreground" : ""
+                                    item.Status.includes("Applied") ? "bg-blue-500/10" : 
+                                    item.Status.includes("Inter") ? "bg-yellow-500/10" : 
+                                    item.Status.includes("Offer") ? "bg-green-500/10" : 
+                                    item.Status.includes("Rej") ? "bg-red-500/10" : 
+                                    item.Status.includes("Ghosted") ? "bg-gray-500/10 text-muted-foreground" : ""
                                     }`}>
                                       <div className="">
                                     {item.Status}

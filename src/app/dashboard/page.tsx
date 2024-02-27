@@ -41,6 +41,7 @@ async function getJobData(userId: string) {
     return data;
   }
 
+  
 
   
   
@@ -60,38 +61,56 @@ async function getJobData(userId: string) {
     const user = await currentUser()
     const userdata = await getUserData(user?.id as string)
     const jobdata = await getJobData(user?.id as string)
-  
+    const dbUser = await prisma.user.findUnique({
+      where: {
+        id: user?.id
+      },
+      select: {
+        stripeCustomerId: true
+      }
+    })
+    if (!dbUser?.stripeCustomerId){
+      throw new Error('Cant get customer id')
+    }
+
+
     return (
       <>
       <div className="dashwrapper flex bg-backback-col text-main-w">
 
-        <div className="flex min-h-screen   w-[100vw] min-h-screen">
+        <div className="flex min-h-screen   w-[100vw] ">
           <ResizablePanelGroup
                 direction="horizontal"
                 className="h-full"
               >
                 <ResizablePanel defaultSize={20}>
                       <div className="flex flex-col min-h-[92vh] justify-start gap-5 pb-5">
-                          <SecondHeader/>   
+                          <SecondHeader subscription={dbUser}/>   
                       </div>
                 </ResizablePanel>
 
                 <ResizableHandle withHandle />
                
                 <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
-                    <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-center  gap-5 pb-5">
+                    <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
                         
                         <Header/>
 
-                        <div className="relative w-full flex  justify-between place-items-center">    
+                        <div className="relative h-[10vh]  px-4 min-w-[80vw] bg-red-   h-[34vh] flex flex-col place-items-center gap-4">    
+                          {/* <Clock/> */}
+                          <TopboxOne/>
+                          <TopboxTwo/>
+                        </div>      
+
+                        <div className="relative flex  justify-between place-items-center place-content-center">    
                           <JobsTable jobdata={jobdata}/>
                         </div>   
                       
-                        <div className="relative full px-4   h-[34vh] flex place-items-center gap-4">    
+                        {/* <div className="relative full px-4   h-[34vh] flex place-items-center gap-4">    
                           <Clock/>
                           <TopboxOne/>
                           <TopboxTwo/>
-                        </div>        
+                        </div>         */}
                         
                             
 

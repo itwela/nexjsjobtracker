@@ -9,9 +9,10 @@ const ProfilePage = () => {
       <div className="flex">
         {/* <SecondHeader/> */}
 
-        <div className="flex min-h-screen flex-col place-items-center  w-[100vw]  pb-5 px-5 justify-start">
+        <div className=" bg-backback-col flex min-h-screen flex-col place-content-center  w-[100vw]  pb-5 px-5 ">
           <Header/>
-          <div className='w-[100%]'>
+          
+          <div className='w-[100vw] flex place-content-center'>
           <UserProfile />
           </div>
         </div>

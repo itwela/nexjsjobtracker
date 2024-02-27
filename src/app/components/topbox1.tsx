@@ -82,11 +82,11 @@ export default function TopboxOne() {
     <>
     {isGen && !isLoading && (
       <>
-      <div className="border  text-ellipsis relative   overflow-hidden bg-mprimary text-main-w font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-content-center  nosb  max-w-sm mx-auto rounded-[0.5em] relative w-[50%] h-[95%] ">
+      <div className="border w-[80%]   relative   overflow-hidden bg-mprimary text-main-w font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-content-center  nosb   mx-auto rounded-[0.5em] relative  h-[95%] ">
         
         {/* Display response data */}
-        <p id="gen-text" className="nosb text-clip py-[0.6em] h-[80%] px-[2em] w-full overflow-ellipsis overflow-y-scroll text-lg">{data}</p>
-        <RiArrowGoBackFill size={40} onClick={backhandle} className="absolute bottom-0 left-0 cursor-pointer bg-mprimary text-main-w hover:bg-lprimary hover:text-mprimary/70 font-black p-2" />
+        <p id="gen-text" className="nosb text-ellipsis  py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-lg">{data}</p>
+        <RiArrowGoBackFill size={40} onClick={backhandle} className="absolute bottom-0 left-3 cursor-pointer bg-mprimary text-main-w hover:bg-lprimary hover:text-mprimary/70 font-black p-2" />
         <FaRegCopy size={36} onMouseUp={copyText} className="absolute top-2 right-3 p-1 cursor-pointer text-main-w bg-mprimary rounded-[0.5em] hover:text-lprimary/70 font-black p-2" />
       </div>
 
@@ -94,12 +94,12 @@ export default function TopboxOne() {
       )}
 
       {!isGen && (
-        <div className="border px-2 py-2 border-main-w/[0.2] dark:border-white/[0.2] flex flex-col items-start max-w-sm mx-auto rounded-[0.5em] relative w-[50%] h-[95%] ">
+        <div className="border w-[100%]  px-2 py-2 border-main-w/[0.2] dark:border-white/[0.2] flex flex-col items-start  mx-auto rounded-[0.5em] relative  h-[95%] ">
           <GoStarFill className="absolute animate-spin-slow h-6 w-6 -top-3 -right-3 text-main-w" />
           
           <EvervaultCard text="Struggling to craft the perfect follow-up message?" text2=" Simply add a job and then click the compass for a tailored message ready to send to a recruiter!" className="text-center text-main-w" />
-          <div className='w-[100%] absolute bottom-2 left-2 flex place-items-end place-content-start'>
-            <FaRegCompass size={40} onClick={handlestate} className="text-main-w hover:text-main-w/60 font-black p-2 cursor-pointer"/>
+          <div className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
+            <FaRegCompass size={40} className="text-main-w hover:text-main-w/60 font-black p-2 cursor-pointer"/>
           </div>
         </div>
       )}

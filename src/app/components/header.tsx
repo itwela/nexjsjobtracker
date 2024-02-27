@@ -6,6 +6,8 @@ import { UserButton, auth } from '@clerk/nextjs';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { unstable_noStore as noStore } from "next/cache";
+import { FaRegCompass } from "react-icons/fa";
+
 
 interface DropdownProps {
   title: string; // Specify the type of the 'title' prop

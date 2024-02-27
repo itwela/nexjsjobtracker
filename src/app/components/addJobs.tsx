@@ -212,22 +212,22 @@ export function AddJobs() {
                 //     {/* job title */}
                 //     <div className=''>
                 //       {/* <label htmlFor="JobTitle" className='font-bold'>Add Job Title</label> */}
-                //       <Input onChange={handleInputChange} className='border-main-w/30' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
+                //       <Input onChange={handleInputChange} className='border-lprimary' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
                 //     </div>
     
                 //   {/* company */}
                 //     <div className='mb-2'>
                 //       {/* <label className='font-bold' htmlFor="Company">Add Company</label> */}
-                //       <Input onChange={handleInputChange} className='border-main-w/30' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
+                //       <Input onChange={handleInputChange} className='border-lprimary' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
                 //     </div>
     
                 //     {/* <label className='font-bold' htmlFor="DateApplied">Date Applied</label> */}
-                //     <div className='mb-2  outline outline-[1px] outline-main-w/30 py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
+                //     <div className='mb-2  outline outline-[1px] outline-lprimary py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
                 //       <input onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' required />
                 //     </div>
     
                 //     {/* <label className='font-bold' htmlFor="status">Status</label> */}
-                //     <div className='mb-2 outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center'>
+                //     <div className='mb-2 outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center'>
                 //       <select onChange={handleStatusChange} id="status" className='rounded-[0.2em] px-2 bg-lprimary' name="status" required>
                 //         <option value="">Select a Status</option>
                 //         <option value="Applied">Applied</option>
@@ -240,14 +240,14 @@ export function AddJobs() {
     
                 //     <div>
                 //       {/* <label  className='font-bold' htmlFor="Link">Add Link</label> */}
-                //       <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
+                //       <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
                 //     </div>
     
                 //     <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
                 //       <label className='font-bold' htmlFor="referral">Referral?</label>
                 //       <p onMouseUp={handleReferralCheckboxChange} className='text-muted-foreground hover:text-mprimary text-sm'><em>CLick me to add more information about the referral!</em> </p>
                 //     </div>
-                //     <div className='mb-2 bg-lprimary outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
+                //     <div className='mb-2 bg-lprimary outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
                 //       <select onChange={handleRefStatusChange} className='rounded-[0.2em] px-2 bg-lprimary' id="referral" name="referral">
                 //         <option value="">Yes or No?</option>
                 //         <option value="Yes" >Yes</option>
@@ -260,24 +260,24 @@ export function AddJobs() {
                 //       <>
                 //         <div>
                 //           {/* <label className='font-bold' htmlFor="ReferralName">Add Referral Name</label> */}
-                //           <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
+                //           <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
                 //         </div>
     
                 //         <div>
                 //           {/* <label className='font-bold' htmlFor="ReferralContact">Add Referral Contact</label> */}
-                //           <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
+                //           <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
                 //         </div>
                 //       </>
                 //     )}
     
                 // <div>
                 //   <label className='font-bold' htmlFor="ResumeUsed">Add Resume</label>
-                //   <Input className='border-main-w/30 cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
+                //   <Input className='border-lprimary cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
                 // </div>
     
                 // <div className='mb-2'>
                 //   <label className='font-bold' htmlFor="Keywords">Add Keywords</label>
-                //   <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
+                //   <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
                 // </div>
     
                 // <div className='w-[100%] flex place-items-center place-content-center justify-between'>
@@ -312,52 +312,53 @@ export function AddJobs() {
         {showForm && (
           <>
 
-        
+        <div className='flex flex-col place-items-center'>
           
           <Carousel
               opts={{
                 align: "start",
               }}
               orientation="horizontal"
-              className="w-[30vw]  place-items-center place-content-center"
+              className="w-full flex  place-items-center place-content-center"
             >
                 <CarouselPrevious />        
                       <form action={addJob} className=''>
-                      <CarouselContent className="-mt-1 h-[12vh] flex w-full place-items-center  ">
+                      <CarouselContent className=" w-[40vw] flex  place-items-center place-content-start  z-5">
                             
-                           
-                            {/* job title */}
-                            <CarouselItem>
+                            
+{/* job title */}
+                            <CarouselItem className='w-full'>
 
                             <div className=''>
                               {/* <label htmlFor="JobTitle" className='font-bold'>Add Job Title</label> */}
-                              <Input onChange={handleInputChange} className='border-main-w/30' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
+                              <Input onChange={handleInputChange} className='border-lprimary' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
                             </div>
 
                             </CarouselItem>
             
-                          {/* company */}
-                            <CarouselItem>
+{/* company */}
+                            <CarouselItem className='w-full'>
 
                             <div className='mb-2'>
                               {/* <label className='font-bold' htmlFor="Company">Add Company</label> */}
-                              <Input onChange={handleInputChange} className='border-main-w/30' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
+                              <Input onChange={handleInputChange} className='border-lprimary' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
                             </div>
 
                             </CarouselItem>
 
+{/* date */}
                             {/* <label className='font-bold' htmlFor="DateApplied">Date Applied</label> */}
                             <CarouselItem>
             
-                            <div className='mb-2  outline outline-[1px] outline-main-w/30 py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
+                            <div className='mb-2  outline outline-[1px] outline-lprimary py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
                               <input onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' required />
                             </div>
                             </CarouselItem>
-          
+{/* job status */}
                             {/* <label className='font-bold' htmlFor="status">Status</label> */}
                             <CarouselItem>
-                            <div className='mb-2 outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center'>
-                              <select onChange={handleStatusChange} id="status" className='rounded-[0.2em] px-2 bg-lprimary' name="status" required>
+                            <div className='mb-2 outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center w-full'>
+                              <select onChange={handleStatusChange} id="status" className='rounded-[0.2em] px-2 bg-lprimary w-full' name="status" required>
                                 <option value="">Select a Status</option>
                                 <option value="Applied">Applied</option>
                                 <option value="Interviewing">Interviewing</option>
@@ -368,55 +369,71 @@ export function AddJobs() {
                             </div>
                             </CarouselItem>
 
-                          {/* <label  className='font-bold' htmlFor="Link">Add Link</label> */}
-                            <CarouselItem>
-
+{/* job link? */}            <CarouselItem>
                             <div>
-                              <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
+                              <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
                             </div>
                             </CarouselItem>
-       
-                            <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
-                              <label className='font-bold' htmlFor="referral">Referral?</label>
-                              <p onMouseUp={handleReferralCheckboxChange} className='text-muted-foreground hover:text-mprimary text-sm'><em>CLick me to add more information about the referral!</em> </p>
-                            </div>
-                            <div className='mb-2 bg-lprimary outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
+
+ {/* refferal? */}         <CarouselItem>
+                            <div className='cursor-pointer flex flex-col place-items-center gap-3 justify-between'>
+                              <label onMouseUp={handleReferralCheckboxChange} className='font-bold text-main-w/50' htmlFor="referral">Referral?</label>
+                            <div className='mb-2 bg-lprimary outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
                               <select onChange={handleRefStatusChange} className='rounded-[0.2em] px-2 bg-lprimary' id="referral" name="referral">
                                 <option value="">Yes or No?</option>
                                 <option value="Yes" >Yes</option>
                                 <option value="No">No</option>
                               </select>
                             </div>
+                            </div>
+                            </CarouselItem>
+
             
             
-                            {showReferralDetails && (
-                              <>
+{/* referral name */}          <CarouselItem>
                                 <div>
                                   {/* <label className='font-bold' htmlFor="ReferralName">Add Referral Name</label> */}
-                                  <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
+                                  <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
                                 </div>
-            
+                                </CarouselItem>
+
+{/* referral contact */}      <CarouselItem>
                                 <div>
                                   {/* <label className='font-bold' htmlFor="ReferralContact">Add Referral Contact</label> */}
-                                  <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
+                                  <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
                                 </div>
-                              </>
-                            )}
+                                </CarouselItem>
+
+                           
             
-                        <div>
-                          <label className='font-bold' htmlFor="ResumeUsed">Add Resume</label>
-                          <Input className='border-main-w/30 cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
+{/* add resume */}
+                       <CarouselItem>
+
+                        <div className='flex flex-col gap-2'>
+                          <label className='font-bold text-main-w/50' htmlFor="ResumeUsed">Add Resume</label>
+                          <Input className='border-lprimary cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
                         </div>
-            
+                        </CarouselItem>
+
+{/* keywords */}
+                        <CarouselItem>
+
                         <div className='mb-2'>
                           <label className='font-bold' htmlFor="Keywords">Add Keywords</label>
-                          <Input className='border-main-w/30' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
+                          <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
                         </div>
+                        </CarouselItem>
+
             
-                        <div className='w-[100%] flex place-items-center place-content-center justify-between'>
-                          <Button className='bg-mprimary hover:bg-mprimary/80' type="submit">Submit</Button>
-                          <Button className='bg-[#fd3330] hover:bg-[#fd3330]/80' onMouseUp={handleShowForm}>Close</Button>
+                          {/* Submit */}
+                        <CarouselItem>
+
+                        <div className='w-[100%] flex flex-col place-items-center place-content-center justify-between'>
+                          <Button className='bg-main-w hover:bg-main-w/80 text-mprimary' type="submit">Submit</Button>
+                          {/* <Button className='bg-[#fd3330] hover:bg-[#fd3330]/80' onMouseUp={handleShowForm}>Close</Button> */}
                         </div>
+                        </CarouselItem>
+
 
                   
                   </CarouselContent>
@@ -428,8 +445,13 @@ export function AddJobs() {
           </Carousel>
 
 
-          <div className="flex text-main-w/30 hover:text-main-w/80   flex-col w-[100%] place-items-center place-content-center  gap-4">
-            <div className='fixed translate-x-[70%] translate-y-[-50%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between'>
+              <p className='text-sm text-main-w/50'>*Tip: Pressing the left or right keys will move you along!</p>
+
+              <div className="flex text-main-w/30 hover:text-main-w/80   flex-col w-[100%] place-items-center place-content-center  gap-4">
+           </div>
+
+           </div>
+            <div className='fixed translate-x-[70%] translate-y-[-20%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
               <button className='flex gap-2 place-items-center' 
               onMouseUp={handleShowForm}
               >
@@ -438,7 +460,6 @@ export function AddJobs() {
               </button>
 
             </div>
-           </div>
             
           </>
           )} 
