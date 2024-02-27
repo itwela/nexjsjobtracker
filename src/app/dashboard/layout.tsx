@@ -42,16 +42,16 @@ async function getJobData(userId: string) {
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const { sessionId } = auth();
   const user = await currentUser() as { id: string; username: string; emailAddresses?: { emailAddress: string }[] } | null;
+  console.log(user)
 
 
   if (user) {
     const userData = {
       id: user.id,
       name: user.username, // Adjust this according to the actual property name
-      // email: user.emailAddresses?.[0].emailAddress as string
-      email: 'email'
+      email: user.emailAddresses?.[0].emailAddress as string
+      // email: 'email'
     };
-    console.log(userData)
 
     try {
       await getFirstData(userData);
@@ -60,6 +60,18 @@ export default async function DashboardLayout({ children }: { children: ReactNod
       console.error('Error while fetching user data:', error);
       // Handle the error appropriately
     }
+  }
+
+  if (!user) {
+    return (
+      <>
+        <div className='flex place-items-center place-content-center w-[100vw] h-[100vh] bg-backback-col'>
+            <p>
+              no user
+            </p>
+        </div>
+      </>
+    )
   }
 
   return (
