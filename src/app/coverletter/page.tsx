@@ -8,7 +8,7 @@ const CoverLetter = () => {
   return (
       <>
       <div className="flex ">
-             <div className="w-[20vw] bg-dprimary">
+             <div className="w-[20vw] bg-dprimary relative">
               <SecondHeader/>
               </div>
 
@@ -16,7 +16,7 @@ const CoverLetter = () => {
 
               <Header/>
               <div className="flex w-[100%] px-4 py-5">
-                <h1 className="text-4xl font-bold text-main-w/70">Create A Cover Letter</h1>
+                <h1 className="text-4xl font-bold text-main-w">Create A Cover Letter</h1>
               </div>
               <div className="px-9 w-[100%]">
               <CoverLetterGen/>

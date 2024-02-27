@@ -294,9 +294,8 @@ export function AddJobs() {
           <>
 
           <div className="flex text-main-w/30 hover:text-main-w/80   flex-col max-w-[80vw] place-items-center place-content-center  gap-4">
-            <div className=' bg-backback-col p-6  w-full rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between'>
+            <div  onMouseUp={handleShowForm} className='cursor-pointer bg-backback-col p-6  w-full rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between'>
               <button className='flex gap-2 place-items-center' 
-              onMouseUp={handleShowForm}
               >
                 <h2><FaPlus className=' font-black' size={18}/></h2>
                 <h2 className='font-black '>Add Job</h2>
@@ -451,9 +450,9 @@ export function AddJobs() {
            </div>
 
            </div>
-            <div className='fixed translate-x-[70%] translate-y-[-20%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
+            <div onMouseUp={handleShowForm} className='cursor-pointer fixed translate-x-[70%] translate-y-[-20%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
               <button className='flex gap-2 place-items-center' 
-              onMouseUp={handleShowForm}
+              
               >
                 {/* <h2><FaPlus className=' font-black' size={18}/></h2> */}
                 <h2 className='font-black '>Back</h2>

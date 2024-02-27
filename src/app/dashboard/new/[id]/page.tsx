@@ -220,12 +220,12 @@ return (
 
         <div className="pagewrapper flex place-content-center w-[100vw] pt-[6em]">
 
-                <Card className="mb-7 w-[70%]">
+                <Card className="mb-7 w-[70%] border-lprimary">
                     <CardHeader>
                         <div className="flex py-3 justify-between place-items-start ">
                                 <div>
                                     <CardTitle>Edit Job</CardTitle>
-                                    <CardDescription className="w-[70%] pt-2">Customize job status, keywords, company details, and more to suit your needs.</CardDescription>                       
+                                    <CardDescription className="w-[70%] pt-2 text-main-w/60">Customize job status, keywords, company details, and more to suit your needs.</CardDescription>                       
                                 </div>
                                 <Link href="/dashboard">
                                 <FaRightLong size={25} className='scale-x-[-100%] text-main-w hover:text-mprimary/70'/>
@@ -239,24 +239,24 @@ return (
             
                                 {/* job title */}
                                 <div className=''>
-                                <label htmlFor="JobTitle" className='font-bold'>Edit Job Title</label>
-                                <Input className="border-main-w/30" type="text" id="JobTitle" onChange={handleInputChange} name="JobTitle" defaultValue={formData?.jobdata.JobTitle} />
+                                <label htmlFor="JobTitle" className='font-bold text-main-w/70'>Edit Job Title</label>
+                                <Input className="border-main-w/30 " type="text" id="JobTitle" onChange={handleInputChange} name="JobTitle" defaultValue={formData?.jobdata.JobTitle} />
                                 </div>
 
                             {/* company */}
                                 <div className='mb-2'>
-                                <label className='font-bold' htmlFor="Company">Edit Company</label>
+                                <label className='font-bold text-main-w/70' htmlFor="Company">Edit Company</label>
                                 <Input className="border-main-w/30" type="text" id="Company" onChange={handleInputChange} name="Company" defaultValue={formData?.jobdata.Company} />
                                 </div>
 
-                                <label className='font-bold' htmlFor="DateApplied">Date Applied</label>
-                                <div className='mb-2  outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                                <input  type="date" id="DateApplied" onChange={handleInputChange} name="DateApplied" className='rounded-[0.2em] px-2'   />
+                                <label className='font-bold text-main-w/70' htmlFor="DateApplied">Date Applied</label>
+                                <div className='mb-2  outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center bg-lprimary'>
+                                <input  type="date" id="DateApplied" onChange={handleInputChange} name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-full'   />
                                 </div>
 
-                                <label className='font-bold' htmlFor="status">Status</label>
-                                <div className='mb-2 outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                                <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2' name="status" >
+                                <label className='font-bold text-main-w/70' htmlFor="status">Status</label>
+                                <div className='mb-2 outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center'>
+                                <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2 bg-lprimary w-full' name="status" >
                                     <option value="">Select a Status</option>
                                     <option value="Applied">Applied</option>
                                     <option value="Interviewing">Interviewing</option>
@@ -267,16 +267,16 @@ return (
                                 </div>
 
                                 <div>
-                                <label  className='font-bold' htmlFor="Link">Edit Link</label>
+                                <label  className='font-bold text-main-w/70' htmlFor="Link">Edit Link</label>
                                 <Input type="text" className="border-main-w/30" onChange={handleInputChange} id="Link" name="Link" defaultValue={formData?.jobdata.Link}  />
                                 </div>
 
                                 <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
-                                <label className='font-bold' htmlFor="referral">Referral?</label>
+                                <label className='font-bold text-main-w/70' htmlFor="referral">Referral?</label>
                                 </div>
 
-                                <div className='mb-2 outline outline-[1px] outline-main-w/30 py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                                <select onChange={handleRefStatusChange} className='rounded-[0.2em] px-2' id="referral" name="referral">
+                                <div className='mb-2 outline outline-[1px] outline-main-w/30 bg-lprimary py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
+                                <select onChange={handleRefStatusChange} className='rounded-[0.2em] bg-lprimary px-2 w-full' id="referral" name="referral">
                                     <option value="">Yes or No?</option>
                                     <option value="Yes" >Yes</option>
                                     <option value="No">No</option>
@@ -285,23 +285,23 @@ return (
 
 
                                     <div>
-                                    <label className='font-bold' htmlFor="ReferralName">Edit Referral Name</label>
+                                    <label className='font-bold text-main-w/70' htmlFor="ReferralName">Edit Referral Name</label>
                                     <Input className="border-main-w/30" type="text" onChange={handleInputChange} id="ReferralName" name="ReferralName" defaultValue={formData?.jobdata.ReferralName ? formData?.jobdata.ReferralName : ''} />
                                     </div>
 
                                     <div>
-                                    <label className='font-bold' htmlFor="ReferralContact">Edit Referral Contact</label>
+                                    <label className='font-bold text-main-w/70' htmlFor="ReferralContact">Edit Referral Contact</label>
                                     <Input className="border-main-w/30" type="text" onChange={handleInputChange} id="ReferralContact" name="ReferralContact"  defaultValue={formData?.jobdata.ReferralContact ? formData?.jobdata.ReferralContact : ''} />
                                     </div>
 
 
                             <div>
-                            <label className='font-bold' htmlFor="ResumeUsed">Edit Resume</label>
+                            <label className='font-bold text-main-w/70' htmlFor="ResumeUsed">Edit Resume</label>
                             <Input className='cursor-pointer border-main-w/30' onChange={handleInputChange} type="file" id="ResumeUsed" name="ResumeUsed" />
                             </div>
 
                             <div className='mb-2'>
-                            <label className='font-bold' htmlFor="Keywords">Edit Keywords</label>
+                            <label className='font-bold text-main-w/70' htmlFor="Keywords">Edit Keywords</label>
                             <Input className="border-main-w/30"  type="text" id="Keywords" name="Keywords" onChange={handleInputChange}  defaultValue={formData?.jobdata.Keywords ? formData?.jobdata.Keywords : ''} />
                             </div>
 
@@ -309,7 +309,7 @@ return (
                                 <Link href="/dashboard">
                                     <Button className='bg-[#fd3330] hover:bg-[#fd3330]/80'>Back</Button>  
                                 </Link>
-                                <Button className='bg-mprimary hover:bg-mprimary/80' type="submit">Update</Button>
+                                <Button className='bg-main-w hover:bg-main-w/80 text-dprimary' type="submit">Update</Button>
                             </div>
                         </form>
 

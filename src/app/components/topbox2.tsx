@@ -2,7 +2,7 @@
 
 import { DateTime } from 'luxon';
 import { unstable_noStore as noStore } from "next/cache";
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const datenumber = DateTime.local().day //=> 25
     const datemonth = DateTime.local().monthShort //=> 25
@@ -14,7 +14,7 @@ const datenumber = DateTime.local().day //=> 25
 export default function TopboxTwo() {
     const [time, setTime] = useState('');
     
-    useEffect(() => {
+    useMemo(() => {
       const timeout = setTimeout(() => {
         const { hour, minute } = DateTime.local();
         const goodTime = DateTime.fromObject({ hour, minute }).toLocaleString(DateTime.TIME_SIMPLE);
@@ -26,7 +26,7 @@ export default function TopboxTwo() {
     
     return(
         <> 
-            <div className="flex z-10 place-content-center bg-dprimary rounded-[2em] py-2 m-4 relative gap-2 w-full h-[10vh]">
+            <div className="flex z-10 place-content-center place-items-center bg-dprimary rounded-[0.5em] py-2 m-4 relative gap-2 w-[80%] h-[5vh]">
                 <h2 className="text-main-w flex  text-center ">{weekday},</h2>
                 <h2 className="text-main-w flex  text-center ">{datemonth}</h2>
                 <h2 className="text-main-w flex  text-center ">{dayday}</h2>

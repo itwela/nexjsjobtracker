@@ -7,12 +7,12 @@ const Success = () => {
   
   return (
       <>
-      <div className="flex">
+      <div className="flex bg-backback-col text-main-w/60">
         <SecondHeader/>
 
         <div className="flex min-h-screen flex-col place-items-center  w-[90vw] md:w-[80vw] justify-start">
           <Header/>
-            <h1 className="text-slate-800">Payment Complete!</h1>
+            <h1 className="text-main-w">Payment Complete!</h1>
             <p className="text-muted-foreground">Congrats on your subscription, please check your email for further instructions.</p>
         <div>
             <button>

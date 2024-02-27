@@ -1,7 +1,7 @@
 
 import { AddJobs } from "../components/addJobs";
 import Clock from "../components/clock";
-import { Header } from "../components/header"; 
+import { Header } from "../components/header";
 import JobsTable from "../components/jobsTableRender";
 import SecondHeader from "../components/secondHeader";
 import TopboxOne from "../components/topbox1";
@@ -17,117 +17,181 @@ import {
 } from "@/components/ui/resizable"
 
 async function getUserData(userId: string) {
-    noStore();
-    const data = prisma.user.findUnique({
-      where: {
-        id: userId
-      },
-    });
-    
-    return data;
-  }
+  noStore();
+  const data = prisma.user.findUnique({
+    where: {
+      id: userId
+    },
+  });
+
+  return data;
+}
 
 async function getJobData(userId: string) {
-    noStore();
-    const data = prisma.job.findMany({
-      where: {
-        userId: userId
-      },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
-    
-    return data;
-  }
+  noStore();
+  const data = prisma.job.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
 
-  
+  return data;
+}
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- export default async function Dashboard()  {
-    
-    const user = await currentUser()
-    const userdata = await getUserData(user?.id as string)
-    const jobdata = await getJobData(user?.id as string)
-    const dbUser = await prisma.user.findUnique({
-      where: {
-        id: user?.id
-      },
-      select: {
-        stripeCustomerId: true
+async function getSubscriptionData(userId: string) {
+  noStore();
+  const data = await prisma.subscription.findUnique({
+    where: {
+      userId: userId
+    },
+    select: {
+      status: true,
+      user: {
+        select: {
+          stripeCustomerId: true,
+        }
       }
-    })
-    if (!dbUser?.stripeCustomerId){
-      throw new Error('Cant get customer id')
     }
 
+  })
+  return data;
+}
 
-    return (
-      <>
+
+
+
+
+
+
+
+
+
+
+
+export default async function Dashboard() {
+
+  const user = await currentUser()
+  const userdata = await getUserData(user?.id as string)
+  const jobdata = await getJobData(user?.id as string)
+  const subscriptiondata = await getSubscriptionData(user?.id as string)
+
+  // if(subscriptiondata?.status != 'active') {
+  //   console.log('yooo')
+  // }
+
+  // if (!dbUser?.stripeCustomerId){
+  //   return (
+  //     <>
+  //     <div className="dashwrapper flex bg-backback-col text-main-w">
+
+  //       <div className="flex min-h-screen   w-[100vw] ">
+  //         <ResizablePanelGroup
+  //               direction="horizontal"
+  //               className="h-full"
+  //             >
+  //               <ResizablePanel defaultSize={20}>
+  //                     <div className="flex flex-col min-h-[92vh] justify-start gap-5 pb-5">
+  //                         <SecondHeader subscription={dbUser}/>   
+  //                     </div>
+  //               </ResizablePanel>
+
+  //               <ResizableHandle withHandle />
+
+  //               <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
+  //                   <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
+
+  //                       <Header/>
+
+  //                       <div className="relative h-[10vh]  px-4 min-w-[80vw] bg-red-   h-[34vh] flex flex-col place-items-center gap-4">    
+  //                         {/* <Clock/> */}
+  //                         <TopboxOne/>
+  //                         <TopboxTwo/>
+  //                       </div>      
+
+  //                       <div className="relative flex  justify-between place-items-center place-content-center">    
+  //                         <JobsTable jobdata={jobdata}/>
+  //                       </div>   
+
+  //                       {/* <div className="relative full px-4   h-[34vh] flex place-items-center gap-4">    
+  //                         <Clock/>
+  //                         <TopboxOne/>
+  //                         <TopboxTwo/>
+  //                       </div>         */}
+
+
+
+  //                       <div className="relative flex  justify-between place-items-center">    
+  //                         <AddJobs/>
+  //                       </div> 
+
+  //                     </div>
+  //               </ResizablePanel>
+  //             </ResizablePanelGroup>
+
+
+
+
+  //       </div>
+  //     </div>
+  //     </>
+  //   );
+  // }
+
+  // jkPRO
+
+  return (
+    <>
       <div className="dashwrapper flex bg-backback-col text-main-w">
 
         <div className="flex min-h-screen   w-[100vw] ">
+          
+          
           <ResizablePanelGroup
-                direction="horizontal"
-                className="h-full"
-              >
-                <ResizablePanel defaultSize={20}>
-                      <div className="flex flex-col min-h-[92vh] justify-start gap-5 pb-5">
-                          <SecondHeader subscription={dbUser}/>   
-                      </div>
-                </ResizablePanel>
+            direction="horizontal"
+            className="h-full"
+          >
+            <ResizablePanel  defaultSize={20}>
+              <div className="flex flex-col h-screen justify-start gap-5 pb-5">
+                <SecondHeader  />
+              </div>
+            </ResizablePanel>
 
-                <ResizableHandle withHandle />
-               
-                <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
-                    <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
-                        
-                        <Header/>
+            <ResizableHandle  withHandle />
 
-                        <div className="relative h-[10vh]  px-4 min-w-[80vw] bg-red-   h-[34vh] flex flex-col place-items-center gap-4">    
-                          {/* <Clock/> */}
-                          <TopboxOne/>
-                          <TopboxTwo/>
-                        </div>      
+            <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
+              <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
 
-                        <div className="relative flex  justify-between place-items-center place-content-center">    
-                          <JobsTable jobdata={jobdata}/>
-                        </div>   
-                      
-                        {/* <div className="relative full px-4   h-[34vh] flex place-items-center gap-4">    
-                          <Clock/>
-                          <TopboxOne/>
-                          <TopboxTwo/>
-                        </div>         */}
-                        
-                            
+                <Header />
 
-                        <div className="relative flex  justify-between place-items-center">    
-                          <AddJobs/>
-                        </div> 
+                  
+                <div className="relative   px-4 min-w-[80vw] bg-red-   h-full flex flex-col place-items-center gap-2">
+                  <TopboxOne />
+                  <TopboxTwo />
+                </div>
 
-                      </div>
-                </ResizablePanel>
-              </ResizablePanelGroup>
+                <div className="relative flex  justify-between place-items-center place-content-center">
+                  <JobsTable jobdata={jobdata} />
+                </div>
 
-           
-            
-           
+
+                <div className="relative flex  justify-between place-items-center">
+                  <AddJobs />
+                </div>
+
+              </div>
+            </ResizablePanel>
+
+          </ResizablePanelGroup>
+
+
+
+
         </div>
-        </div>
-      </>
-    );
-  };
-  
+      </div>
+    </>
+  );
+};
+

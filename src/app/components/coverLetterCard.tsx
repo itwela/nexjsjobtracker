@@ -98,7 +98,7 @@ export default function CoverLetterCard() {
 
                 
                 <div className='relative my-8 w-[100%] nosb'>
-                <FaRegCopy size={36} onMouseUp={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer hover:text-dprimary/70 font-black p-2" />
+                <FaRegCopy size={36} onMouseUp={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer hover:text-main-w/70 font-black p-2" />
 
                   <h1 className='text-2xl font-semibold leading-none tracking-tight my-4'>
                     Your Cover Letter:

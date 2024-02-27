@@ -95,7 +95,7 @@ export default function Clock() {
                     </div>        
                 </div>
 
-                <div className="bg-lprimary shadow rounded-[10em] h-[45%] flex place-items-center px-2">
+                {/* <div className="bg-lprimary shadow rounded-[10em] h-[45%] flex place-items-center px-2">
                     <div className="flex place-items-center justify-evenly w-[100%]">
                         <div className="w-[0.7em] h-[0.1em] bg-dprimary"></div>
                         <h2 className="text-dprimary font-bold text-4xl">{datenumber}</h2>
@@ -104,7 +104,7 @@ export default function Clock() {
                             <h2 className="text-main-w text-muted-foreground text-xl uppercase ">{datemonth}</h2>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </>

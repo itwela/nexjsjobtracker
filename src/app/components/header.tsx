@@ -44,24 +44,24 @@ export const Header = () => {
 
 
         <header className='flex   relative h-[8vh] place-content-center'>
-          <nav className='flex fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-items-center'>
+          <nav className='flex fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
           
-          <div className='flex place-items-center place-content-center justify-items-center justify-content-center px-5'>
+          <div className='flex justify-between w-[100%] place-items-center place-content-center'>
             <Link href='/'>
-              <h1 className='text-3xl text-main-w hover:text-main-w/80'>JobKompass</h1>
+              <h1 className='text-3xl pl-5 text-main-w hover:text-main-w/80'>JobKompass</h1>
             </Link>
-            <div className='flex px-5 pt-2'>
+            <div className='flex  '>
                 {!userId && (
                   <>
                     <Link
                       href='/sign-in'
-                      className='text-main-w hover:text-main-w/80 mr-4'
+                      className='text-main-w hover:text-main-w/60 mr-4'
                     >
                       Sign In
                     </Link>
                     <Link
                       href='/sign-up'
-                      className='text-main-w hover:text-main-w/80 mr-4'
+                      className='text-main-w hover:text-main-w/60 mr-4'
                     >
                       Sign Up
                     </Link>

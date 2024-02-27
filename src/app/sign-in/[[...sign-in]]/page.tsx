@@ -1,9 +1,15 @@
 import { SignIn } from '@clerk/nextjs';
+import { Header } from "../../components/header"; 
+
 
 const SignInPage = () => {
   return (
     <>
-      <div className='flex place-items-center w-full h-screen'>
+      <div className='bg-dprimary'>
+        <Header/>
+      </div>
+
+      <div className='flex bg-dprimary place-items-center place-content-center w-[100vw] h-screen'>
         <SignIn />
       </div>
 

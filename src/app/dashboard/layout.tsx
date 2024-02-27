@@ -1,89 +1,70 @@
 import { ReactNode } from 'react';
-import prisma from '../libs/db'
-import { currentUser } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
+import prisma from '../libs/db';
+import { auth, currentUser } from '@clerk/nextjs';
 import { stripe } from '../libs/stripe';
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
+import { redirect } from 'next/navigation';
 
-
-
-
-export async function getData(
-  {id, firstName, lastName, email }
-  : 
-  {id: string; firstName: string | undefined | null; lastName: string | undefined | null; email: string}
-  ) { 
-    noStore();
-  const user = await prisma.user.findUnique({
-    where: {
-      id: id,
-    },
-    select: {
-      id: true,
-      stripeCustomerId: true
-    }
-  });
-
-  if(!user) {
-    const name = `${firstName ?? ''} ${lastName ?? ''}`
-    await prisma.user.create({
-      data: {
-        id: id,
-        name: name,
-        email: email,
-      }
-    })
-  }
-
-  if(!user?.stripeCustomerId) {
-    const data = await stripe.customers.create({
-      email: email,
+export async function getData({ id, name, email }: { id: string; name: string | null | undefined; email: string }) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id },
+      select: { id: true, stripeCustomerId: true }
     });
 
-    await prisma.user.update({
-      where: {
-        id: id
-      },
-      data: {
-        stripeCustomerId: data.id
-      }
-    })
+    if (!user) {
+      await prisma.user.create({ data: { id, name, email } });
+    }
+
+    if (!user?.stripeCustomerId) {
+      const customer = await stripe.customers.create({ email });
+      await prisma.user.update({ where: { id }, data: { stripeCustomerId: customer.id } });
+    }
+  } catch (error) {
+    console.error('Error in getData:', error);
+    throw error;
   }
 }
 
 async function getJobData(userId: string) {
-  noStore();
-  const data = prisma.job.findMany({
-    where: {
-      userId: userId
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
-  
-  return data;
+  try {
+    const data = await prisma.job.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' }
+    });
+    return data;
+  } catch (error) {
+    console.error('Error in getJobData:', error);
+    throw error;
+  }
 }
 
-
-
-export default async function DashboardLayout({ children}: { children: ReactNode }) {
-  noStore();
-  // const { getUser } = currentUser();
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
+  const { sessionId } = auth();
   const user = await currentUser();
-  if (!user) {
-    return redirect('/')
+
+
+  if (user) {
+    const userData = {
+      id: user.id,
+      name: user.username, // Adjust this according to the actual property name
+      email: user.emailAddresses?.[0].emailAddress as string
+    };
+
+    try {
+      await getData(userData);
+      // Continue rendering the dashboard layout
+    } catch (error) {
+      console.error('Error while fetching user data:', error);
+      // Handle the error appropriately
+    }
   }
-  
 
   return (
-    <>
-            <div className="flex">
-                <div className="flex">
-                    <main >{children}</main>
-                    <h1></h1>
-                </div>
-            </div>
-        </>
-    )
+    <div className="flex">
+      <div className="flex">
+        <main>{children}</main>
+        <h1></h1>
+      </div>
+    </div>
+  );
 }
