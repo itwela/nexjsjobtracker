@@ -2,7 +2,9 @@ import { auth, currentUser } from '@clerk/nextjs';
 import { ReactNode } from 'react';
 import prisma from '../libs/db';
 import { getFirstData } from '@/actions/databaseAc';
-// import { stripe } from '../libs/stripe';
+import { unstable_noStore as noStore, revalidatePath } from "next/cache";
+import { redirect } from 'next/navigation';
+import { stripe } from '../libs/stripe';
 
 // export async function getData({ id, name, email }: { id: string ; name: string | null | undefined; email: string }) {
 //   try {
@@ -26,53 +28,87 @@ import { getFirstData } from '@/actions/databaseAc';
 // }
 
 
-async function getJobData(userId: string) {
-  try {
-    const data = await prisma.job.findMany({
-      where: { userId },
-      orderBy: { createdAt: 'desc' }
+// async function getJobData(userId: string) {
+//   try {
+//     const data = await prisma.job.findMany({
+//       where: { userId },
+//       orderBy: { createdAt: 'desc' }
+//     });
+//     return data;
+//   } catch (error) {
+//     console.error('Error in getJobData:', error);
+//     throw error;
+//   }
+// }
+
+async function getData({
+  email,
+  id,
+  firstName,
+  lastName,
+  profileImage,
+}: {
+  email: string;
+  id: string;
+  firstName: string | undefined | null;
+  lastName: string | undefined | null;
+  profileImage: string | undefined | null;
+}) {
+  noStore();
+  const user = await prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+    select: {
+      id: true,
+      stripeCustomerId: true,
+    },
+  });
+
+  if (!user) {
+    const name = `${firstName ?? ""} ${lastName ?? ""}`;
+    await prisma.user.create({
+      data: {
+        id: id,
+        email: email,
+        name: name,
+      },
     });
-    return data;
-  } catch (error) {
-    console.error('Error in getJobData:', error);
-    throw error;
+  }
+
+  if (!user?.stripeCustomerId) {
+    const data = await stripe.customers.create({
+      email: email,
+    });
+
+    await prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        stripeCustomerId: data.id,
+      },
+    });
   }
 }
 
-export default async function DashboardLayout({ children }: { children: ReactNode }) {
-  const { sessionId } = auth();
-  const user = await currentUser() as { id: string; username: string; emailAddresses?: { emailAddress: string }[] } | null;
-  console.log(user)
-
-
-  if (user) {
-    const userData = {
-      id: user.id,
-      name: user.username, // Adjust this according to the actual property name
-      email: user.emailAddresses?.[0].emailAddress as string
-      // email: 'email'
-    };
-
-    try {
-      await getFirstData(userData);
-      // Continue rendering the dashboard layout
-    } catch (error) {
-      console.error('Error while fetching user data:', error);
-      // Handle the error appropriately
-    }
-  }
-
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const getUser  = auth();
+  const user = await getUser;
   if (!user) {
-    return (
-      <>
-        <div className='flex place-items-center place-content-center w-[100vw] h-[100vh] bg-backback-col'>
-            <p>
-              no user
-            </p>
-        </div>
-      </>
-    )
+    return redirect("/");
   }
+  await getData({
+    email: user.user?.emailAddresses[0]?.emailAddress as string,
+    firstName: user.user?.firstName as string,
+    id: user.user?.id as string,
+    lastName: user.user?.lastName as string,
+    profileImage: user.user?.imageUrl,
+  });
 
   return (
     <div className="flex">
