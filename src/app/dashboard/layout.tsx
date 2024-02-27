@@ -109,6 +109,7 @@ export default async function DashboardLayout({
     lastName: user.user?.lastName as string,
     profileImage: user.user?.imageUrl,
   });
+  console.log(getData)
 
   return (
     <div className="flex">
