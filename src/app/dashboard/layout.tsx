@@ -41,18 +41,19 @@ import { getFirstData } from '@/actions/databaseAc';
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const sessionId  = auth();
-  const user = await sessionId 
+  const userDa = currentUser()
+  const user = await userDa 
   console.log(user)
 
 
   if (user) {
     const userData = {
-      email: user.user?.emailAddresses[0]?.emailAddress as string,
-      firstName: user.user?.firstName as string,
-      name: user.user?.username as string,
-      id: user.user?.id as string,
-      lastName: user.user?.lastName as string,
-      profileImage: user.user?.imageUrl,
+      email: user?.emailAddresses[0]?.emailAddress as string,
+      firstName: user?.firstName as string,
+      name: user?.username as string,
+      id: user?.id as string,
+      lastName: user?.lastName as string,
+      profileImage: user?.imageUrl,
         // email: 'email'
     };
 
