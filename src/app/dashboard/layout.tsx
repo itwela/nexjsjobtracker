@@ -48,8 +48,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     const userData = {
       id: user.id,
       name: user.username, // Adjust this according to the actual property name
-      email: user.emailAddresses?.[0].emailAddress as string
+      // email: user.emailAddresses?.[0].emailAddress as string
+      email: 'email'
     };
+    console.log(userData)
 
     try {
       await getFirstData(userData);
