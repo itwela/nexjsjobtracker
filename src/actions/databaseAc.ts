@@ -189,8 +189,10 @@ export async function getFirstData({ id, name, email }: { id: string ; name: str
       const customer = await stripe.customers.create({ email });
       await prisma.user.update({ where: { id }, data: { stripeCustomerId: customer.id } });
     }
+
   } catch (error) {
-    console.error('Error in getData:', error);
+    console.error('Error in getData action:', error);
+    console.log('the email is:',email)
     throw error;
   }
 }
