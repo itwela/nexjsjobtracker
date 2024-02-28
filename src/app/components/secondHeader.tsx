@@ -28,7 +28,7 @@ async function getData(userId: string) {
       id: userId
     },
     select: {
-      name: true
+      username: true
     }
 
   })
