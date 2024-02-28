@@ -133,6 +133,6 @@ html {
 .homeimg {
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url(',,/assets/jobkhome.png');
+  background-image: url('../../public/jobkhome.png');
 }
 

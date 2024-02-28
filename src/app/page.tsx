@@ -10,8 +10,6 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { LuMessagesSquare } from "react-icons/lu";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { Header } from "./components/header";
-import { useGSAP } from  '@gsap/react'
-
 
 
 export default async function Home() {
@@ -135,7 +133,7 @@ export default async function Home() {
                             <CardContent>
                           
                                 
-                            <div className="homeimg w-full h-full absolute top-0 left-0" >
+                            <div  className="homeimg w-full h-full absolute top-0 left-0" >
                             </div>
 
 
