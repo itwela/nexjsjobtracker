@@ -59,8 +59,8 @@ interface JobsTableProps {
             </div>
           </div>
         ) : (
-          <div className="jtable px-6 w-[80vw]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
-            <div className=" px-5 w-[80vw] flex flex-col place-items-center place-content-center ">
+          <div className="jtable mt-4 px-6 w-[80vw]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
+            <div className=" bg-gradient-to-b from-dprimary/50  via-transparent to-transparent backdrop-blur-lg bg-opacity-75 rounded-[2em] px-5 w-[70vw] flex flex-col place-items-center place-content-center ">
               <span className="py-9">Your Jobs</span>
               <Table className="">
                 <TableHeader className="flex text-main-w justify-start gap-1">

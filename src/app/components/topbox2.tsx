@@ -25,7 +25,7 @@ export default function TopboxTwo() {
     
     return(
         <> 
-            <div className="flex z-10 place-content-center border  border-transparent hover:border-main-w/30 place-items-center bg-dprimary rounded-[0.5em] py-2 m-4 relative gap-2 w-[80%] h-[5vh]">
+            <div className="flex z-10 place-content-center border  border-transparent  place-items-center bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 rounded-[0.5em] py-2 m-4 relative gap-2 w-[80%] h-[5vh]">
                 <h2 className="text-main-w flex  text-center ">{weekday},</h2>
                 <h2 className="text-main-w flex  text-center ">{datemonth}</h2>
                 <h2 className="text-main-w flex  text-center ">{dayday}</h2>

@@ -133,7 +133,7 @@ const dbUser = await prisma.user.findUnique({
                 <h1 className="text-4xl font-bold">Billing</h1>
                   <div className="flex flex-col w-[100%] place-items-center place-content-center h-[80vh]">
 
-                  <Card className="w-[80%] border-main-w/20 bg-dprimary">
+                  <Card className="w-[80%] border-main-w/20 hover:border-main-w/40 bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                         <CardHeader>
                           <CardTitle>Subscribe to JobKompass</CardTitle>
                           <CardDescription>Looking to upgrade?</CardDescription>
@@ -148,7 +148,7 @@ const dbUser = await prisma.user.findUnique({
                               </div>
 
                               <form action={createSubscription}>
-                                <Button className="bg-main-w hover:bg-main-w/80 text-mprimary"> Create Subscription</Button>
+                                <Button className="bg-gradient-to-t from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80"> Create Subscription</Button>
                               </form>
                             </div>
 

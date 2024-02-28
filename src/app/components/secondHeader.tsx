@@ -78,7 +78,7 @@ export default async function Secondspan ()  {
           {/* subscribe */}
           <Link href='/billing'>
             <span className=" pb-3 w-[20vw] flex place-content-center">
-            <span className="w-[15vw] place-content-center bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+            <span className="w-[15vw] place-content-center bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>Subscribe</span>
               </span>
             </span>
@@ -91,12 +91,10 @@ export default async function Secondspan ()  {
           <span className='dashb  '>
                 
                     <Link href='/dashboard'>
-                    <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
+                        <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
                               <p className='truncate'>Dashoard</p>
-                              
-                                            
-                          <span className=''><MdOutlineLibraryAdd/></span>
-                        </span>
+                              <span className=''><MdOutlineLibraryAdd/></span>
+                        </span>     
                     </Link>
           </span>
 
@@ -109,9 +107,9 @@ export default async function Secondspan ()  {
                     </Link>
           </span>
 
-          <span className='tools flex justify-between  '>
+          <span className='tools   '>
               <Link href='/tools'>
-                <span className='flex  w-[20vw]  hover:bg-mprimary/70 p-5 text-main-w/60 hover:text-main-w  px-6 justify-between gap-4 '>
+                <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
                     <p className=''>Tools</p>
                     <span className=''><PiToolboxBold className=''/>
                     </span>
