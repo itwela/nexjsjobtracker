@@ -62,6 +62,15 @@ export async function POST(request: any) {
 
         const theResponse = completion.choices[0].message.content;
 
+        const apiAdd = await prisma?.coverLetter.create({
+            data: {
+                userId: user?.id,
+                text: theResponse as string,
+
+            }
+            
+          })
+
         return Response.json({ text: `${theResponse}` })
 
     }
@@ -79,6 +88,15 @@ export async function POST(request: any) {
 
         const theResponse = completion.choices[0].message.content;
 
+        
+        const apiAdd = await prisma?.coverLetter.create({
+            data: {
+                userId: user?.id,
+                text: theResponse as string,
+            }
+            
+          })
+          
         return Response.json({ text: `${theResponse}` })
 
     }

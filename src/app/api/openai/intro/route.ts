@@ -60,6 +60,14 @@ export async function POST(request: any) {
 
         const theResponse = completion.choices[0].message.content;
 
+        const apiAdd = await prisma?.introduction.create({
+            data: {
+                userId: user?.id,
+                text: theResponse as string,
+            }
+            
+          })
+
         return Response.json({ text: `${theResponse}` })
     }
 
@@ -75,12 +83,23 @@ export async function POST(request: any) {
 
         const theResponse = completion.choices[0].message.content;
 
+        const apiAdd = await prisma?.introduction.create({
+            data: {
+                userId: user?.id,
+                text: theResponse as string,
+            }
+            
+          })
+
         return Response.json({ text: `${theResponse}` })
 
     }
 
     if(introduction.length > 2 && sub?.status != 'active') {  
+        revalidatePath("/")
+        console.log('please subscribe')
+        return Response.json({ text: `Please Subscribe.` })
     }
-    
+
 };
 
