@@ -11,6 +11,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "react-day-picker";
 import { CheckCircle2 } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 
 
@@ -247,7 +248,7 @@ export default async function Home() {
                           Pricing
                         </h1>
                         <div className="flex flex-col sm:flex-row w-full gap-4 h-[60vh] sm:h-[50vh]">
-                          <Card className="h-full border-main-w/40 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                          <Card className="h-full border-main-w/40 hover:border-main-w/70  justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                 <span className="flex w-[100%] justify-between">   
                                   <CardHeader className="text-3xl p-0 text-main-w/60">Basic</CardHeader>
                                     <span className="w-[20%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
@@ -283,7 +284,7 @@ export default async function Home() {
                           </Card>
                               
 
-                          <Card className="h-full border-main-w/40 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                          <Card className="h-full border-main-w/40 hover:border-main-w/70 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                               <span className="flex w-[100%] justify-between">   
                                 <CardHeader className="text-3xl p-0 text-main-w/60">Pro</CardHeader>
                                   <span className="opacity-0 w-[30%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
@@ -332,7 +333,7 @@ export default async function Home() {
           {/* section 5 - faq */} 
           <section className="w-[100vw] bg-gradient-to-b from-dprimary to-mprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] ">
 
-              <div className="h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
+              <div className="min-h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
                   
                   <div className="flex flex-col w-[70%] place-items-center gap-7">
 
@@ -340,10 +341,63 @@ export default async function Home() {
                           Frequently Asked Questions
                         </h1>
                         <div className="flex w-full gap-4 h-[50vh]">
-                          <Card className="h-full border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                                                <CardHeader></CardHeader>
-                                                <CardDescription></CardDescription>
-                                                <CardContent></CardContent>
+                          <Card className="h-full flex place-items-center border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                              <CardHeader></CardHeader>
+                              <CardDescription></CardDescription>
+                              <CardContent className="w-[90%]">
+                                <Accordion type="single" collapsible className="w-[100%] px-3 text-left">
+                                  
+                                  <AccordionItem value="item-1">
+                                    <AccordionTrigger>What is a JobKompass?</AccordionTrigger>
+                                    
+                                    <AccordionContent className="text-main-w/40">
+                                    <span className="hover:text-main-w/80">
+                                      JobKompass is a software application designed to help
+                                      individuals manage and streamline their job search process. I
+                                      t includes features such as job listing aggregation,
+                                       application tracking, cover letter and introductino generation.
+                                    </span>
+                                    </AccordionContent>
+
+                                  </AccordionItem>
+
+                                  <AccordionItem value="item-2">
+                                    <AccordionTrigger>How can a JobKompass benefit me?</AccordionTrigger>
+                                    <AccordionContent className="text-main-w/40">
+                                        <span className="hover:text-main-w/80">It helps you keep track of job applications, deadlines, and application statuses in one centralized location.</span> <br />
+                                        {/* <span className="hover:text-main-w/80">It streamlines the job search process by providing easy access to job listings from various sources.</span> <br /> */}
+                                        <span className="hover:text-main-w/80">It saves time by automating repetitive tasks, such as finding the right words to say to a recruiter and generating cover letters.</span> <br />
+                                        <span className="hover:text-main-w/80">It provides insights and analytics to help you assess your job search progress and optimize your strategy.</span> <br />
+                                    </AccordionContent>
+                                  </AccordionItem>
+
+                                  <AccordionItem value="item-3">
+                                    <AccordionTrigger>How does the AI cover letter generation feature work?</AccordionTrigger>
+                                    <AccordionContent className="text-main-w/40">
+                                        <span className="hover:text-main-w/80">
+                                        The AI cover letter generation feature utilizes artificial intelligence 
+                                        algorithms to analyze job descriptions and user-provided information.
+                                        It then generates personalized cover letters tailored to each 
+                                        job application, highlighting relevant skills, experiences, 
+                                        and achievements.      
+                                        </span> <br />
+                                    </AccordionContent>
+                                  </AccordionItem>
+
+                                  <AccordionItem value="item-4">
+                                    <AccordionTrigger>Can I customize the cover letters generated by the AI?</AccordionTrigger>
+                                    <AccordionContent className="text-main-w/40">
+                                        <span className="hover:text-main-w/80">
+                                        Yes, you have the option to customize the cover letters generated 
+                                        by the AI. You can edit the content and  format to better 
+                                        reflect your personality and preferences. The AI serves as a starting point, 
+                                        providing a foundation that you can modify as needed.
+                                        </span> <br />
+                                    </AccordionContent>
+                                  </AccordionItem>
+
+                                </Accordion>
+                              </CardContent>
                           </Card>
                         </div>
 
