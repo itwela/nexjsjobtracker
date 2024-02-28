@@ -5,6 +5,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { toast } from "sonner";
 import { EvervaultCard } from "../../components/ui/evervault-card";
+import { error } from 'console';
 
 
 
@@ -36,6 +37,7 @@ export default function TopboxOne() {
       toast("No jobs added!", {
         description: "You must add a job to use this feature.",
       });
+      console.error('Heres where you messed up:', error);
     }
 
     const responseData = await response.json();

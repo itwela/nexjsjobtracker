@@ -106,7 +106,9 @@ export async function POST(request: any) {
         console.log('please subscribe')
         return Response.json({ text: `Please Subscribe.` })
       }
-
+        
+      // If none of the conditions are met, return an empty response
+        return Response.json({ text: '' });
 
 };
 
