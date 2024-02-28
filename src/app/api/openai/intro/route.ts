@@ -18,7 +18,9 @@ export async function POST(request: any) {
     const user = await currentUser()
     const userdata = await getUserData(user?.id as string)
     const jobdata = await getJobData(user?.id as string)
-    const myname = userdata?.name;
+    const firstName = userdata?.firstName;
+    const lastName = userdata?.lastName;
+    const myname = `${firstName} ${lastName}`
     const jobtitle = jobdata?.[0].JobTitle;
     const companyname = jobdata?.[0].Company;
     const keywords = jobdata?.[0].Keywords;    
