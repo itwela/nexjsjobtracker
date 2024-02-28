@@ -91,14 +91,14 @@ export default function CoverLetterCard() {
                         <Textarea onChange={handleInputChange} name="" id="input" className='min-h-[30vh] border-transparent'>
 
                         </Textarea>
-                    <Button className='bg-main-w hover:bg-main-w/80 text-mprimary'>Submit</Button>
+                    <Button className='bg-main-w/80 hover:bg-main-w text-mprimary'>Submit</Button>
                 </form>
 
                 
                 <div className='relative my-8 w-[100%] nosb'>
-                <FaRegCopy size={36} onMouseUp={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer hover:text-main-w/70 font-black p-2" />
+                <FaRegCopy size={36} onMouseUp={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer text-main-w/70 hover:text-main-w font-black p-2" />
 
-                  <h1 className='text-2xl font-semibold leading-none tracking-tight my-4'>
+                  <h1 className='text-2xl font-semibold text-main-w/70 hover:text-main-w leading-none tracking-tight my-4'>
                     Your Cover Letter:
                   </h1>
                     <span id='cov-text'>{coverText}</span>
