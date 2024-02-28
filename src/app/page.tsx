@@ -1,19 +1,16 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { currentUser } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import { Header } from "./components/header";
-import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BsStars } from "react-icons/bs";
-import { SlEnvolopeLetter } from "react-icons/sl";
-import { LuMessagesSquare } from "react-icons/lu";
-import { FaRegCheckCircle } from "react-icons/fa";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Button } from "react-day-picker";
 import { CheckCircle2 } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
-
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { BsStars } from "react-icons/bs";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { LuMessagesSquare } from "react-icons/lu";
+import { SlEnvolopeLetter } from "react-icons/sl";
+import { Header } from "./components/header";
+import { useGSAP } from  '@gsap/react'
 
 
 
@@ -27,6 +24,7 @@ export default async function Home() {
     return redirect('/dashboard')
 
   }
+
 
 
 
@@ -44,7 +42,7 @@ export default async function Home() {
                     
                     <div className="w-[100vw] h-[100vh] place-items-center place-content-center flex flex-col text-center gap-2">
                           
-                          <span className="scale-[70%] sm:scale-[100%] mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                          <span id='pbai' className="scale-[70%] sm:scale-[100%] mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                               <span>
                                 <BsStars/>
                               </span>
@@ -53,15 +51,15 @@ export default async function Home() {
                               </span>
                           </span>
 
-                          <h1 className="text-5xl sm:text-7xl">
+                          <h1 id="jkomp" className="text-5xl sm:text-7xl">
                             JobKompass
                           </h1>
-                          <h2 className="text-main-w/50 hover:text-main-w text-lg">
+                          <h2 id="optimize" className="text-main-w/50 hover:text-main-w text-lg">
                             optimize your job search today
                           </h2>
                           <Link
                           href='/sign-up'>
-                        <button className="mt-4 text-dprimary bg-main-w p-3 rounded-full hover:text-dprimary/60 shadow-outline-white">
+                        <button id="herogsb" className="mt-4 text-dprimary bg-main-w p-3 rounded-full hover:text-dprimary/60 shadow-outline-white">
                           Get Started
                         </button>
 
@@ -129,17 +127,17 @@ export default async function Home() {
                   </div>
 
                   <div className="h-[50vh] relative flex place-content-start place-items-center flex-col">
-                      <h1 className="hidden sm:flex w-[70%] text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+                      <h1 className="flex w-[70%] text-3xl pt-9 sm:pt-0  sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
                           Track all your applications in one place
                       </h1>
 
-                      <Card className="absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                      <Card className="hidden sm:flex absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                             <CardContent>
                           
                                 
-                                    <div className="">
-                                      
-                                    </div>
+                            <div className="homeimg w-full h-full absolute top-0 left-0" >
+                            </div>
+
 
                             </CardContent>
                       </Card>
@@ -150,7 +148,7 @@ export default async function Home() {
           </section>
 
           {/* section 3 - features */} 
-          <section className="w-[100vw] bg-gradient-to-b from-dprimary to-blue-500 gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] ">
+          {/* <section className="w-[100vw] bg-gradient-to-b from-dprimary to-blue-500 gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] ">
 
               <div className="h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
                   
@@ -174,7 +172,7 @@ export default async function Home() {
                                                               
                                         <CarouselItem className='w-[80vw] flex gap-2  h-full'>
                                              
-                                           <Card className="h-full border-main-w/40 w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                           <Card  className="h-full border-main-w/40 w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                               <CardHeader></CardHeader>
                                               <CardDescription></CardDescription>
                                               <CardContent></CardContent>
@@ -231,24 +229,27 @@ export default async function Home() {
               </div>
 
 
-          </section>
+          </section> */}
 
           {/* section 4 - pricing */} 
-          <section className="w-[100vw] bg-gradient-to-b from-blue-500 to-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] ">
 
-              <div className="h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
+           <section className="  w-[100vw] bg-gradient-to-b from-dprimary to-blue-500 gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] sm:py-[10vh] ">
+
+          {/* <section className="w-[100vw] bg-gradient-to-b from-blue-500 to-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] "> */}
+
+              <div className="h-[100vh] translate-y-[-20vh] sm:translate-y-[-0vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
                   
                   <div className="flex flex-col w-[70%] gap-5 place-items-start">
 
-                      <h1 className="text-left text-5xl text-main-w">
+                      <h1 className="text-left text-5xl text-main-w pb-5">
                           Pricing
                         </h1>
                         <div className="flex flex-col sm:flex-row w-full gap-4 h-[60vh] sm:h-[50vh]">
                           <Card className="h-full border-main-w/40 hover:border-main-w/70  justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                 <span className="flex w-[100%] justify-between">   
-                                  <CardHeader className="text-3xl p-0 text-main-w/60">Basic</CardHeader>
-                                    <span className="w-[20%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
-                                            <span>
+                                  <CardHeader className="text-xl sm:text-3xl p-0 text-main-w/60">Basic</CardHeader>
+                                    <span className="w-[40%] sm:w-[20%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
+                                            <span className="text-sm sm:text-md">
                                               Popular
                                             </span>
                                     </span>
@@ -257,10 +258,10 @@ export default async function Home() {
                                 <CardDescription className="text-main-w/70">Get started today for free</CardDescription>
                                 <span className="w-[100%] h-[0.5%] bg-main-w/30"></span>
                                 <CardContent className="p-0">
-                                  <span className="flex flex-col py-2 gap-5">
-                                      <span className="flex gap-2"> <CheckCircle2/>Track up to 3 jobs</span>
-                                      <span className="flex gap-2"> <CheckCircle2/>Generate up to 3 cover letters</span>
-                                      <span className="flex gap-2"> <CheckCircle2/>Generate  up to 3 job introduction messages</span>
+                                  <span className="flex flex-col py-2 gap-5 text-[0.6em] sm:text-md">
+                                      <span className="flex gap-2 place-items-center"> <CheckCircle2/>Track up to 3 jobs</span>
+                                      <span className="flex gap-2  place-items-center"> <CheckCircle2/>Generate up to 3 cover letters</span>
+                                      <span className="flex gap-2  place-items-center"> <CheckCircle2/>Generate  up to 3 job introduction messages</span>
                                   </span>
                                 </CardContent>
                                 <span className="w-[100%] mb-2 h-[0.5%] bg-main-w/30"></span>
@@ -282,7 +283,7 @@ export default async function Home() {
 
                           <Card className="h-full border-main-w/40 hover:border-main-w/70 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                               <span className="flex w-[100%] justify-between">   
-                                <CardHeader className="text-3xl p-0 text-main-w/60">Pro</CardHeader>
+                                <CardHeader className="text-xl sm:text-3xl p-0 text-main-w/60">Pro</CardHeader>
                                   <span className="opacity-0 w-[30%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
                                           <span>
                                             Recommended
@@ -327,21 +328,26 @@ export default async function Home() {
           </section>
 
           {/* section 5 - faq */} 
-          <section className="w-[100vw] bg-gradient-to-b from-dprimary to-mprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] ">
+           <section className="hidden sm:flex w-[100vw] bg-gradient-to-b from-blue-500 to-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center sm:place-content-center h-[100vh] py-[10vh] ">
+          {/* <section className="w-[100vw] bg-gradient-to-b from-dprimary to-mprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] "> */}
 
-              <div className="min-h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
+              <div className="h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
                   
-                  <div className="flex flex-col w-[70%] place-items-center gap-7">
+                  <div className="flex flex-col w-[70%] place-content-center h-full  gap-7">
 
-                      <h1 className="text-center text-4xl text-main-w">
+                      <h1 className="pt-9 sm-pt-0 text-center sm:text-4xl text-main-w">
                           Frequently Asked Questions
                         </h1>
+
+                       
+
+                        
                         <div className="flex w-full gap-4 h-[50vh]">
-                          <Card className="h-full flex place-items-center border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                          <Card className="hidden h-full sm:flex place-items-center border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                               <CardHeader></CardHeader>
                               <CardDescription></CardDescription>
                               <CardContent className="w-[90%]">
-                                <Accordion type="single" collapsible className="w-[100%] px-3 text-left">
+                                <Accordion type="single" collapsible className="w-[100%] sm:px-3 text-left text-[0.5em] sm:text-lg">
                                   
                                   <AccordionItem value="item-1">
                                     <AccordionTrigger>What is a JobKompass?</AccordionTrigger>

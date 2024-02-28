@@ -5,7 +5,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Bricolage_Grotesque, Darker_Grotesque, Familjen_Grotesk, Inter } from 'next/font/google';
 import { useEffect } from 'react'; // Remove useState import
 import './globals.css';
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 // const bricol = Bricolage_Grotesque({ subsets: ['latin'] });
 // const bricol = Darker_Grotesque({ subsets: ['latin'] });
@@ -15,6 +16,28 @@ const bricol = Familjen_Grotesk({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
+  useGSAP(()  => {
+
+    let tl = gsap.timeline({defaults: {ease: 'power2.out', duration: 2}})
+    
+    tl.from(['#header-name', '#signin', '#signup'], {
+      y: '-3000px',
+      opacity: 0,
+        stagger: 0.5,
+    }).from(['#pbai', '#jkomp'], {
+      y: '20px',
+      opacity: 0,
+      stagger: 0.5
+    }).from('#optimize', {
+      y: '-20px',
+      opacity: 0,
+    }).from('#herogsb', {
+      y: '25px',
+      opacity: 0,
+      duration: 3,
+    })
+    
+  }, [])
 
 
   return (

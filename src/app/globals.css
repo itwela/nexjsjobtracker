@@ -128,3 +128,11 @@ html {
   transition: 3s ease;
 }
 
+
+/* bg-images */
+.homeimg {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('./assets/jobkhome.png');
+}
+

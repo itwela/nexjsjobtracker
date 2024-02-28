@@ -43,22 +43,24 @@ export const Header = () => {
         <header className='flex     relative h-[8vh] place-content-center'>
           <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
           
-          <div className='flex justify-between w-[100%] place-items-center place-content-center'>
+          <div className='flex justify-between gap-7 w-[100%] place-items-center place-content-center'>
             <Link href='/'>
-              <h1 className='text-1xl pl-5 text-main-w/60 hover:text-main-w'>JobKompass</h1>
+              <h1 id='header-name' className='text-sm sm:text-1xl pl-5 text-main-w/60 hover:text-main-w'>JobKompass</h1>
             </Link>
             <div className='flex  '>
                 {!userId && (
                   <>
                     <Link
+                    id='signin'
                       href='/sign-in'
-                      className='text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover:text-main-w/60 mr-4'
+                      className=' text-sm text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover:text-main-w/60 mr-4'
                     >
                       Sign In
                     </Link>
                     <Link
+                    id='signup'
                       href='/sign-up'
-                      className='text-dprimary bg-main-w outline px-3 p-2 outline-[1px] rounded-full outline-main-w hover:text-dprimary/60 mr-4'
+                      className='text-sm text-dprimary bg-main-w outline px-3 p-2 outline-[1px] rounded-full outline-main-w hover:text-dprimary/60 mr-4'
                     >
                       Sign Up
                     </Link>
