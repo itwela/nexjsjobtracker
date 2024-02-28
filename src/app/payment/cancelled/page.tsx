@@ -16,7 +16,7 @@ const Cancelled = () => {
           <div className="h-[90vh] text-center flex flex-col place-content-center">
             <h1 className="text-main-w text-xl">Payment Failed</h1>
             <p className="text-muted-foreground pb-5">No worries, you won't be charged. Please try again.</p>
-            <button className="bg-main-w text-dprimary py-3 rounded-lg">
+            <button className="bg-main-w/70 hover:bg-main-w text-dprimary py-3 rounded-lg">
                 <Link href='/dashboard'>Go back to Dashboard</Link>
             </button>
         </div>

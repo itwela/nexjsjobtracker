@@ -148,7 +148,7 @@ const dbUser = await prisma.user.findUnique({
                               </div>
 
                               <form action={createSubscription}>
-                                <Button className="bg-gradient-to-t from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80"> Create Subscription</Button>
+                                <Button className="bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80"> Create Subscription</Button>
                               </form>
                             </div>
 

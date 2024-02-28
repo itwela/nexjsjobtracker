@@ -15,7 +15,7 @@ const Success = () => {
             <h1 className="text-main-w">Payment Complete!</h1>
             <p className="text-muted-foreground">Congrats on your subscription, please check your email for further instructions.</p>
         <div>
-            <button>
+            <button className="bg-main-w/70 hover:bg-main-wtext-dprimary py-3 rounded-lg">
                 <Link href='/dashboard'>Go back to Dashboard</Link>
             </button>
         </div>
