@@ -4,12 +4,12 @@ import { Header } from "../../components/header";
 const SignUpPage = () => {
   return (
     <>
-      <div className='bg-dprimary'>
+    
+      <div className="gradi h-[100vh] justify-between bg-gradient-to-b from-dprimary to-blue-500 w-[100vw] flex place-items-center flex-col">
       <Header/>
-      </div>
-    <div className='flex place-items-center place-content-center w-[100vw] bg-dprimary h-screen'>
-
+      <div className='h-[80vh]'>
       <SignUp />
+      </div>
     </div>
     </>
   );

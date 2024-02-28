@@ -79,7 +79,7 @@ export default function TopboxOne() {
 
   // Attach event listeners only on the client-side
     const handleCopy = () => copyText();
-    document.getElementById("copy-button")?.addEventListener("mouseup", handleCopy);
+    // document.getElementById("copy-button")?.addEventListener("mouseup", handleCopy);
 
 
 

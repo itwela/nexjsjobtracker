@@ -142,14 +142,15 @@ export default async function Dashboard() {
 
   return (
     <>
-      <div className="dashwrapper flex bg-backback-col text-main-w">
+      <div className="dashwrapper flex  text-main-w">
+              {/* <div className="gradi  w-[100vw] flex place-items-center flex-col"> */}
 
         <div className="flex min-h-screen   w-[100vw] ">
           
           
           <ResizablePanelGroup
             direction="horizontal"
-            className="bg-dprimary"
+            className="bg-gradient-to-b from-dprimary to-backback-col/90"
           >
             <ResizablePanel  defaultSize={20}>
             <div className="w-[20vw] bg-dprimary relative">
@@ -159,13 +160,13 @@ export default async function Dashboard() {
 
             <ResizableHandle  withHandle />
 
-            <ResizablePanel className="min-w-[80vw] bg-backback-col" defaultSize={80}>
+            <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
               <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
 
                 <Header />
 
                   
-                <div className="relative   px-4 min-w-[80vw] bg-red-   h-full flex flex-col place-items-center gap-2">
+                <div className="relative   px-4 min-w-[80vw]   h-full flex flex-col place-items-center gap-2">
                   <TopboxOne />
                   <TopboxTwo />
                 </div>

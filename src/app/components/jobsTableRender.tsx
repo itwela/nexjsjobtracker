@@ -42,13 +42,13 @@ interface JobsTableProps {
 
   return (
     <>
-      <div className="  bg-backback-col w-[100%] flex flex-col rounded-[0.5em] shadow">
+      <div className="   w-[100%] flex flex-col rounded-[0.5em] shadow">
         <div className='w-[100%]'>
           {/* <h2 className="font-black">Your Jobs:</h2> */}
         </div>
 
         {jobdata?.length < 1 ? (
-          <div className="space-y-4 bg-backback-col p-6 py-6 w-[100%] min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
+          <div className="space-y-4  p-6 py-6 w-[100%] min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
             <div className="flex h-20 w-20 rounded-full items-center justify-center bg-dprimary/40">
               <File className="w-10 h-10 text-muted-foreground" />
             </div>
@@ -59,7 +59,7 @@ interface JobsTableProps {
             </div>
           </div>
         ) : (
-          <div className="jtable  bg-backback-col px-6   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-start">
+          <div className="jtable px-6   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-start">
             <div className=" w-[95%] flex flex-col place-items-center place-content-start ">
               <div className="py-9">Your Jobs</div>
               <Table className=" relative bg-red-30 place-items-center place-contnet-center">

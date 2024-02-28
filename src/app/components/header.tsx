@@ -40,25 +40,25 @@ export const Header = () => {
       <div className="w-[100%]  ">
 
 
-        <header className='flex   relative h-[8vh] place-content-center'>
-          <nav className='flex fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
+        <header className='flex     relative h-[8vh] place-content-center'>
+          <nav className='flex z-10 fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
           
           <div className='flex justify-between w-[100%] place-items-center place-content-center'>
             <Link href='/'>
-              <h1 className='text-3xl pl-5 text-main-w hover:text-main-w/80'>JobKompass</h1>
+              <h1 className='text-1xl pl-5 text-main-w/60 hover:text-main-w'>JobKompass</h1>
             </Link>
             <div className='flex  '>
                 {!userId && (
                   <>
                     <Link
                       href='/sign-in'
-                      className='text-main-w outline p-3 outline-[1px] rounded-lg outline-main-w hover:text-main-w/60 mr-4'
+                      className='text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover:text-main-w/60 mr-4'
                     >
                       Sign In
                     </Link>
                     <Link
                       href='/sign-up'
-                      className='text-dprimary bg-main-w outline p-3 outline-[1px] rounded-lg outline-main-w hover:text-dprimary/60 mr-4'
+                      className='text-dprimary bg-main-w outline px-3 p-2 outline-[1px] rounded-full outline-main-w hover:text-dprimary/60 mr-4'
                     >
                       Sign Up
                     </Link>
@@ -67,7 +67,7 @@ export const Header = () => {
                 {userId && (
                   <>
                
-                  <Link href='/dashboard' className='text-main-w hover:text-main-w/80 mr-4 '>
+                  <Link href='/dashboard' className='text-main-w/60 hover:text-main-w text-sm mr-4 '>
                     Dashboard
                   </Link>
                
@@ -80,7 +80,7 @@ export const Header = () => {
           {userId && (
           <div className='flex place-items-center gap-2 px-5'>
 
-            <Link href='/profile' className='text-main-w hover:text-main-w/80 mr-4'>
+            <Link href='/profile' className='text-main-w/60 hover:text-main-w text-sm mr-4'>
               Profile
             </Link>
             <div className='ml-auto'>

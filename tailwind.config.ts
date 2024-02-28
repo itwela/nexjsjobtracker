@@ -89,6 +89,13 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         'spin-slow': 'spin 5s linear infinite',
       },
+      fontFamily: {
+        'main': ['main'],
+        'second': ['second'],
+        'third': ['third'],
+        'fourth': ['fourth'],
+        'fifth': ['fifth'],
+      },
     },
   },
   plugins:

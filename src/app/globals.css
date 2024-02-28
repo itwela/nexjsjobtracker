@@ -83,6 +83,11 @@ html {
   background-color: #161A1D;
 }
 
+@font-face {
+  font-family: main;
+  src: url('./fonts/ccolvetica/coolvetica-rg.otf');
+}
+
 .it-center{
   display: flex;
   place-items: center;

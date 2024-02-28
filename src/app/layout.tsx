@@ -2,24 +2,20 @@
 
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from '@clerk/nextjs';
-import { Inter } from 'next/font/google';
+import { Bricolage_Grotesque, Darker_Grotesque, Familjen_Grotesk, Inter } from 'next/font/google';
 import { useEffect } from 'react'; // Remove useState import
 import './globals.css';
 
 
-const inter = Inter({ subsets: ['latin'] });
+// const bricol = Bricolage_Grotesque({ subsets: ['latin'] });
+// const bricol = Darker_Grotesque({ subsets: ['latin'] });
+const bricol = Familjen_Grotesk({ subsets: ['latin'] });
 
 
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
 
-  useEffect(() => {
-    // Your useEffect logic here
-    return () => {
-      // Cleanup logic if necessary
-    };
-  }, []);
 
   return (
     <ClerkProvider
@@ -30,7 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <html lang="en">
         {/* <body className={inter.className}> */}
-        <body className='bg-main-w text-slate-800'>
+        <body className={`bg-main-w text-slate-800 font-main tracking-[0.9px]`}>
           <main className="container mx-auto">
             <div className="flex items-start justify-center min-h-screen">
               <Toaster position="bottom-left" toastOptions={{ duration: 5000 }} />

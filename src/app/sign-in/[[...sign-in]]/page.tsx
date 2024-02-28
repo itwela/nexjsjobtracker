@@ -5,12 +5,12 @@ import { Header } from "../../components/header";
 const SignInPage = () => {
   return (
     <>
-      <div className='bg-dprimary'>
-        <Header/>
-      </div>
 
-      <div className='flex bg-dprimary place-items-center place-content-center w-[100vw] h-screen'>
+        <div className="gradi h-[100vh] justify-between bg-gradient-to-b from-dprimary to-blue-500 w-[100vw] flex place-items-center flex-col">
+        <Header/>
+        <div className='h-[70vh]'>
         <SignIn />
+        </div>
       </div>
 
     </>
