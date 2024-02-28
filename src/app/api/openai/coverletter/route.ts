@@ -76,7 +76,7 @@ export async function POST(request: any) {
     }
 
 
-    if(sub?.status === 'active' && coverletter.length < 3) {  
+    if(sub?.status != 'active' && coverletter.length < 3) {  
 
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -107,8 +107,8 @@ export async function POST(request: any) {
         return Response.json({ text: `Please Subscribe.` })
       }
         
-      // If none of the conditions are met, return an empty response
-        return Response.json({ text: '' });
+    // If none of the conditions are met, return an empty response
+    return Response.json({ text: '' });
 
 };
 
