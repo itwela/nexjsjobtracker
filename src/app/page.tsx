@@ -10,6 +10,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "react-day-picker";
+import { CheckCircle2 } from "lucide-react";
 
 
 
@@ -42,7 +43,7 @@ export default async function Home() {
                     
                     <div className="w-[100vw] h-[100vh] place-items-center place-content-center flex flex-col text-center gap-2">
                           
-                          <span className="bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                          <span className="scale-[70%] sm:scale-[100%] mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                               <span>
                                 <BsStars/>
                               </span>
@@ -51,7 +52,7 @@ export default async function Home() {
                               </span>
                           </span>
 
-                          <h1 className="text-7xl">
+                          <h1 className="text-5xl sm:text-7xl">
                             JobKompass
                           </h1>
                           <h2 className="text-main-w/50 hover:text-main-w text-lg">
@@ -78,15 +79,15 @@ export default async function Home() {
                   
                   <div className="flex flex-col gap-5 place-items-center h-[50vh]">
 
-                      <h1 className="text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
-                        Made <em className="hover:text-main-w">by</em> Job Seekers, <br />
-                        <em className="hover:text-main-w">For</em> Job Seekers
+                      <h1 className="text-left sm:text-center text-3xl sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+                        Made <em className="text-main-w pr-3">by </em> job seekers, <br />
+                        <em className="text-main-w pr-3">for </em> job seekers
                       </h1>
 
                       {/* button group */}
-                      <div className="w-[70%] flex gap-4">
+                      <div className="w-[90%] sm:w-[70%] flex flex-col sm:flex-row place-items-start sm:place-items-center place-content-center gap-4">
 
-                          <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-1 place-items-center">
+                          <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                               <span>
                                 <SlEnvolopeLetter/>
                               </span>
@@ -95,7 +96,7 @@ export default async function Home() {
                               </span>
                           </span>
 
-                          <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-1 place-items-center">
+                          <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                               <span>
                                 <LuMessagesSquare/>
                               </span>
@@ -104,7 +105,7 @@ export default async function Home() {
                               </span>
                           </span>
 
-                          <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-1 place-items-center">
+                          <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                               <span>
                                 <FaRegCheckCircle/>
                               </span>
@@ -116,8 +117,8 @@ export default async function Home() {
                       </div>
 
                       {/* tired of ..... */}
-                      <span className="pt-5 w-[70%]">
-                          <h2 className="hover:text-main-w text-main-w/60">
+                      <span className="pt-5 w-[90%] sm:w-[70%]">
+                          <h2 className="text-sm sm:text-md text-left sm:text-center hover:text-main-w text-main-w/60">
                               Tired of rewriting cover letters? What about crafting messages to 
                               follow up on applications? Cant keep track of the 
                               job you applied to 3 weeks ago?
@@ -127,11 +128,11 @@ export default async function Home() {
                   </div>
 
                   <div className="h-[50vh] relative flex place-content-start place-items-center flex-col">
-                      <h1 className="w-[70%] text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+                      <h1 className="hidden sm:flex w-[70%] text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
                           Save every application in one place
                       </h1>
 
-                      <Card className="absolute top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                      <Card className="absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                         <CardHeader>
                               <CardTitle>Track your job applications</CardTitle>
                               <CardDescription>Use ai to streamline your application process</CardDescription>
@@ -158,9 +159,8 @@ export default async function Home() {
                   
                   <div className="flex flex-col w-[70%] gap-5 place-items-start">
 
-                      <h1 className="text-left text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
-                        Made <em className="hover:text-main-w">by</em> Job Seekers, <br />
-                        <em className="hover:text-main-w">For</em> Job Seekers
+                      <h1 className="text-left text-5xl text-main-w">
+                        Features
                       </h1>
 
                       <Carousel
@@ -168,7 +168,7 @@ export default async function Home() {
                             align: "start",
                           }}
                           orientation="horizontal"
-                          className="w-full mt-5 h-[50vh] flex   place-items-center place-content-center"
+                          className="w-full mt-5 h-[70vh] flex   place-items-center place-content-center"
                         >
                                 <CarouselPrevious />        
                                 <CarouselNext />
@@ -177,7 +177,7 @@ export default async function Home() {
                                                               
                                         <CarouselItem className='w-[80vw] flex gap-2  h-full'>
                                              
-                                           <Card className="h-full w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                           <Card className="h-full border-main-w/40 w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                               <CardHeader></CardHeader>
                                               <CardDescription></CardDescription>
                                               <CardContent></CardContent>
@@ -186,13 +186,13 @@ export default async function Home() {
 
                                               <span className="flex flex-col h-full gap-2 w-[50%]">
                                                 
-                                              <Card className="h-full w-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                              <Card className="h-full border-main-w/40 w-full bg-gradient-to-r from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                                   <CardHeader></CardHeader>
                                                   <CardDescription></CardDescription>
                                                   <CardContent></CardContent>
                                                 </Card>
 
-                                                <Card className="h-full w-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                                <Card className="h-full border-main-w/40 w-full bg-gradient-to-l from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                                   <CardHeader></CardHeader>
                                                   <CardDescription></CardDescription>
                                                   <CardContent></CardContent>
@@ -202,7 +202,7 @@ export default async function Home() {
 
                                         <CarouselItem className='w-[80vw] flex flex-col gap-2  h-full'>
                                              
-                                              <Card className="h-[50%] w-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
+                                              <Card className="h-[50%] border-main-w/40 w-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
                                                 <CardHeader></CardHeader>
                                                 <CardDescription></CardDescription>
                                                 <CardContent></CardContent>
@@ -210,13 +210,13 @@ export default async function Home() {
 
                                               <span className="flex h-[50%] gap-2 w-full">
                                                 
-                                                <Card className="w-full h-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
+                                                <Card className="w-full border-main-w/40 h-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
                                                   <CardHeader></CardHeader>
                                                   <CardDescription></CardDescription>
                                                   <CardContent></CardContent>
                                                 </Card>
 
-                                                <Card className="w-full h-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
+                                                <Card className="w-full border-main-w/40 h-full bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
                                                   <CardHeader></CardHeader>
                                                   <CardDescription></CardDescription>
                                                   <CardContent></CardContent>
@@ -246,17 +246,79 @@ export default async function Home() {
                       <h1 className="text-left text-5xl text-main-w">
                           Pricing
                         </h1>
-                        <div className="flex w-full gap-4 h-[50vh]">
-                          <Card className="h-full w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                                                <CardHeader></CardHeader>
-                                                <CardDescription></CardDescription>
-                                                <CardContent></CardContent>
-                          </Card>
+                        <div className="flex flex-col sm:flex-row w-full gap-4 h-[60vh] sm:h-[50vh]">
+                          <Card className="h-full border-main-w/40 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                <span className="flex w-[100%] justify-between">   
+                                  <CardHeader className="text-3xl p-0 text-main-w/60">Basic</CardHeader>
+                                    <span className="w-[20%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
+                                            <span>
+                                              Popular
+                                            </span>
+                                    </span>
+                                  </span>
+                                <CardHeader className="text-5xl p-0 text-main-w">Free</CardHeader>
+                                <CardDescription className="text-main-w/70">Get started today for free</CardDescription>
+                                <span className="w-[100%] h-[0.5%] bg-main-w/30"></span>
+                                <CardContent className="p-0">
+                                  <span className="flex flex-col py-2 gap-5">
+                                      <span className="flex gap-2"> <CheckCircle2/>Track up to 3 jobs</span>
+                                      <span className="flex gap-2"> <CheckCircle2/>Generate up to 3 cover letters</span>
+                                      <span className="flex gap-2"> <CheckCircle2/>Generate  up to 3 job introduction messages</span>
+                                  </span>
+                                </CardContent>
+                                <span className="w-[100%] mb-2 h-[0.5%] bg-main-w/30"></span>
+{/* get started */}
+                                <CardContent className="p-0 mt-2 w-[100%] flex place-content-center">
+                                <Link
+                                  href='/sign-up'>
 
-                          <Card className="h-full w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                                                <CardHeader></CardHeader>
-                                                <CardDescription></CardDescription>
-                                                <CardContent></CardContent>
+                                  <span className="w-full mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
+          
+                                      <span>
+                                        Get Started
+                                      </span>
+                                  </span>
+                                  </Link>
+                                </CardContent>
+                          </Card>
+                              
+
+                          <Card className="h-full border-main-w/40 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                              <span className="flex w-[100%] justify-between">   
+                                <CardHeader className="text-3xl p-0 text-main-w/60">Pro</CardHeader>
+                                  <span className="opacity-0 w-[30%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
+                                          <span>
+                                            Recommended
+                                          </span>
+                                  </span>
+                                </span>
+                                <span className="flex gap-4">   
+                                    <CardHeader className="text-5xl p-0 text-main-w">$15.00</CardHeader>
+                                    <span className="text-main-w/70"> / month</span>
+                                </span>
+                              <CardDescription className="text-main-w/70">For the serial job hunters</CardDescription>
+                              <span className="w-[100%] h-[0.5%] bg-main-w/30"></span>
+                              <CardContent className="p-0">
+                                <span className="flex flex-col py-2 gap-5">
+                                    <span className="flex gap-2"> <CheckCircle2/>Track an unlimited amount of jobs</span>
+                                    <span className="flex gap-2"> <CheckCircle2/>Generate unlimited cover letters</span>
+                                    <span className="flex gap-2"> <CheckCircle2/>Generate unlimited job introduction messages</span>
+                                </span>
+                              </CardContent>
+                              <span className="w-[100%] mb-2 h-[0.5%] bg-main-w/30"></span>
+    {/* get started */}
+                              <CardContent className="p-0 mt-2 w-[100%] flex place-content-center">
+                              <Link
+                                  href='/sign-up'>
+
+                                  <span className="w-full mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
+          
+                                      <span>
+                                        Subscribe
+                                      </span>
+                                  </span>
+                                  </Link>
+                              </CardContent>
                           </Card>
                         </div>
 
@@ -278,7 +340,7 @@ export default async function Home() {
                           Frequently Asked Questions
                         </h1>
                         <div className="flex w-full gap-4 h-[50vh]">
-                          <Card className="h-full w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                          <Card className="h-full border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                                                 <CardHeader></CardHeader>
                                                 <CardDescription></CardDescription>
                                                 <CardContent></CardContent>
