@@ -174,17 +174,30 @@ export const deleteJobData = async (formData: FormData) => {
 }
 
 
-export async function getFirstData({ id, name, email }: { id: string ; name: string | null | undefined; email: string }) {
+export async function getFirstData({ 
+  id, username, email, profileImage, firstName, lastName }: 
+  { 
+    id: string ; 
+    username: string | null | undefined; 
+    email: string, 
+    firstName: string | null | undefined,
+    lastName: string | null | undefined,
+    profileImage: string | null | undefined,
+  }) {
   try {
+
+    // 1
     const user = await prisma.user.findUnique({
       where: { id },
       select: { id: true, stripeCustomerId: true }
     });
 
+    // 2
     if (!user) {
-      await prisma.user.create({ data: { id, name, email } });
+      await prisma.user.create({ data: { id, email, firstName, lastName, profileImage, username,  } });
     }
 
+    // 3
     if (!user?.stripeCustomerId) {
       const customer = await stripe.customers.create({ email });
       await prisma.user.update({ where: { id }, data: { stripeCustomerId: customer.id } });
