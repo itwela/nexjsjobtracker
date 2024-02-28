@@ -86,12 +86,12 @@ export default function TopboxOne() {
   if(isGen == true && !isLoading ) {
     return (
     <>
-      <span className="border w-[80%] relative overflow-hidden bg-mprimary text-main-w font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[15vh] ">
+      <span className="border  hover:border-main-w/40 w-[80%] relative overflow-hidden bg-mprimary text-main-w font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[15vh] ">
 
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-lg">{data}</span>
-        <RiArrowGoBackFill size={40} onClick={() => setIsGen(false)} className="absolute bottom-0 left-3 cursor-pointer bg-mprimary text-main-w hover:text-main-w/70 font-black p-2" />
+        <RiArrowGoBackFill size={40} onClick={handlestate} className="absolute bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
         {/* Add an id to the copy button */}
-        <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
+        <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
       </span>
 
     </>
@@ -101,20 +101,14 @@ export default function TopboxOne() {
     if(isLoading == true) {
       return (
         <>
-        <span className="border text-ellipsis relative overflow-hidden bg-mprimary text-lprimary font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative w-[80%] h-[15vh] ">
+        <span className="border hover:border-main-w/40 text-ellipsis relative overflow-hidden bg-mprimary text-lprimary font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative w-[80%] h-[15vh] ">
 
-          <span className="animate-pulse flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center">
-            <span className="nosb text-clip h-[20%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-            <span className="nosb text-clip h-[10%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-            <span className="nosb text-clip h-[10%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-            <span className="nosb text-clip h-[10%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-
-            <span className="nosb text-clip h-[20%] w-[70%] overflow-ellipsis bg-transparent overflow-y-scroll text-lg" />
-
-            <span className="nosb text-clip h-[20%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-            <span className="nosb text-clip h-[10%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-            <span className="nosb text-clip h-[10%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
-            <span className="nosb text-clip h-[10%] w-[70%] overflow-ellipsis bg-main-w/40 overflow-y-scroll text-lg" />
+          <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
+           
+          <RiArrowGoBackFill size={40} onClick={handlestate} className="absolute bottom-0 left-0 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
+           <span className="animate-pulse nosb place-content-center flex text-clip h-[80%] w-[70%] placd-content-center overflow-ellipsis text-blue-500/40 overflow-y-scroll text-lg">
+                Intro Loading.....
+            </span>
 
           </span>
         </span>
@@ -127,9 +121,9 @@ export default function TopboxOne() {
 
 
       <>
-        <span onMouseUp={handlestate} className="border w-[80%] px-2 py-2 border-main-w/[0.2] dark:border-white/[0.2] flex flex-col items-start mx-auto rounded-[0.5em] relative h-[15vh] ">
+        <span onMouseUp={handlestate} className="border w-[80%] px-2 py-2 hover:border-main-w/80  border-main-w/[0.2] flex flex-col items-start mx-auto rounded-[0.5em] relative h-[15vh] ">
 
-          <EvervaultCard text="Struggling to craft the perfect follow-up message?" text2=" Simply add a job and then click this box for a tailored message ready to send to a recruiter!" className="text-center text-main-w" />
+          <EvervaultCard text="Struggling to craft the perfect follow-up message?" text2=" Simply add a job and then click this box for a tailored message ready to send to a recruiter!" className="text-center text-main-w/70 hover:text-main-w" />
           <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
           </span>
         </span>

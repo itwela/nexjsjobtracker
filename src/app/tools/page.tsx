@@ -17,7 +17,7 @@ const Tools = () => {
         <SecondHeader/>
         </div>
 
-        <div className="flex bg-backback-col min-h-screen flex-col place-items-center  w-[90vw] md:w-[80vw] px-6 justify-items-start">
+        <div className="flex bg-gradient-to-b from-dprimary to-mprimary min-h-screen flex-col place-items-center  w-[90vw] md:w-[80vw] px-6 justify-items-start">
           <Header/>
 
           <div className="pagewrapper  px-4 text-main-w  w-[80vw]">

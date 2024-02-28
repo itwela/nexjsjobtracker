@@ -150,7 +150,7 @@ export default async function Dashboard() {
           
           <ResizablePanelGroup
             direction="horizontal"
-            className="bg-gradient-to-b from-dprimary to-backback-col/90"
+            className="bg-gradient-to-b from-dprimary to-mprimary"
           >
             <ResizablePanel  defaultSize={20}>
             <div className="w-[20vw] bg-dprimary relative">

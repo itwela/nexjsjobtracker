@@ -121,7 +121,7 @@ export default async function Secondspan ()  {
 
           <span className='settings   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
               <Link href='/billing'>
-                <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  justify-between px-6  '>
+                <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Settings</p>
                     <span className=''><IoSettingsOutline  className=''/>
                     </span>
@@ -194,7 +194,7 @@ export default async function Secondspan ()  {
 
             <span className='settings   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4  h-[5%]'>
                 <Link href='/billing'>
-                  <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  justify-between px-6  '>
+                  <span className='flex w-[20vw] place-items-center  p-5 text-main-w/60 hover:text-main-w  justify-between px-6  '>
                           <span className='70%] truncate'>Settings</span>
                       <span className=''><IoSettingsOutline  className=''/>
                       </span>

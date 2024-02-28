@@ -176,8 +176,8 @@ export function AddJobs() {
       {!showForm && (
           <>
 
-          <div className="flex text-main-w/30 hover:text-main-w/80   flex-col max-w-[80vw] place-items-center place-content-center  gap-4">
-            <div  onMouseUp={handleShowForm} className='cursor-pointer bg-backback-col p-6  w-full rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between'>
+          <div className="flex text-main-w  flex-col max-w-[80vw] place-items-center place-content-center  gap-4">
+            <div  onMouseUp={handleShowForm} className='cursor-pointer  p-4 px-6  w-full rounded-[2.5em] bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40  place-items-center flex justify-between'>
               <button className='flex gap-2 place-items-center' 
               >
                 <h2><FaPlus className=' font-black' size={18}/></h2>
