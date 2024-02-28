@@ -81,8 +81,8 @@ export default async function Home() {
                   <div className="flex flex-col gap-5 place-items-center h-[50vh]">
 
                       <h1 className="text-left sm:text-center text-3xl sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
-                        Made <em className="text-main-w pr-3">by </em> job seekers, <br />
-                        <em className="text-main-w pr-3">for </em> job seekers
+                        Made <em className="text-blue-500 pr-3">by </em> job seekers, <br />
+                        <em className="text-blue-500 pr-3">for </em> job seekers
                       </h1>
 
                       {/* button group */}
@@ -130,19 +130,15 @@ export default async function Home() {
 
                   <div className="h-[50vh] relative flex place-content-start place-items-center flex-col">
                       <h1 className="hidden sm:flex w-[70%] text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
-                          Save every application in one place
+                          Track all your applications in one place
                       </h1>
 
                       <Card className="absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                        <CardHeader>
-                              <CardTitle>Track your job applications</CardTitle>
-                              <CardDescription>Use ai to streamline your application process</CardDescription>
-                            </CardHeader>
                             <CardContent>
                           
                                 
                                     <div className="">
-                                      img
+                                      
                                     </div>
 
                             </CardContent>

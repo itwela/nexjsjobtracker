@@ -15,7 +15,7 @@ const CoverLetter = () => {
         <div className="flex bg-gradient-to-b from-dprimary to-mprimary flex-col min-h-screen w-[80vw] place-items-center justify-items-center text-main-w">
 
               <Header/>
-              <div className="flex w-[80%] py-5">
+              <div className="flex px-[3.5em] w-[100%] py-5">
                 <h1 className="text-4xl font-bold text-main-w">Create A Cover Letter</h1>
               </div>
               <div className="px-9 w-[100%]">
