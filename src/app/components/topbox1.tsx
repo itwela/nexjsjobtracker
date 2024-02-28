@@ -5,7 +5,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { toast } from "sonner";
 import { EvervaultCard } from "../../components/ui/evervault-card";
-import { error } from 'console';
+// import { error } from 'console';
 
 
 
@@ -23,29 +23,36 @@ export default function TopboxOne() {
     setIsGen(true);
     setData(null);
     const thanks = 'thank you!';
-    const response = await fetch('/api/openai/intro', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        input: thanks
-      })
-    });
-
-    if (!response.ok) {
-      toast("No jobs added!", {
-        description: "You must add a job to use this feature.",
+    try {
+      
+      const response = await fetch('/api/openai/intro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          input: thanks
+        })
       });
-      console.error('Heres where you messed up:', error);
-    }
 
-    const responseData = await response.json();
-    setIsLoading(false);
-    setData(responseData.text);
-    toast("Success!: Introduction Generated!", {
-      description: "Congratulations, you're one step closer to your next job!",
-    });
+      if(!response.ok) {
+        
+        toast("No jobs added!", {
+          description: "You must add a job to use this feature.",
+        });
+        
+      }
+
+      const responseData = await response.json();
+      setIsLoading(false);
+      setData(responseData.text);
+      toast("Success!: Introduction Generated!", {
+        description: "Congratulations, you're one step closer to your next job!",
+      });
+      
+    } catch(error) {
+        console.error('Heres where you messed up:', error);
+    }
   };
 
   // Define the copyText function outside the component
