@@ -65,6 +65,37 @@ export async function getSubscriptionData(userId: string) {
     return data;
 }
 
+  // this get subscription data from user
+export async function getCoverLetterData(userId: string) {
+  noStore(); 
+  const data = prisma.coverLetter.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
+  
+  return data;
+}
+
+  // this get subscription data from user
+export async function getIntroductionData(userId: string) {
+  noStore(); 
+  const data = prisma.introduction.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
+  
+  return data;
+}
+
+
 // this is the function to add jobs to the database based on user
 export const addJob = async (formData: FormData) => {
     noStore();

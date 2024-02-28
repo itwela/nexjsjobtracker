@@ -21,6 +21,8 @@ model User {
   profileImg              String?
   Subscription            Subscription?
   Jobs                    Job[]
+  CoverLetters            CoverLetter[]
+  Introductions           Introduction[]
 }
 
 model Subscription {
@@ -35,6 +37,28 @@ model Subscription {
   user                 User          @relation(fields: [userId], references: [id])
   userId               String        @unique
 }
+
+model CoverLetter {
+  id                   String        @id @default(uuid())
+  text                 String  
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  User                 User?          @relation(fields: [userId], references: [id])
+  userId               String  
+}
+
+model Introduction {
+  id                   String        @id @default(uuid())
+  text                 String  
+  
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  User                 User?          @relation(fields: [userId], references: [id])
+  userId               String  
+}
+
 
 model Job {
   id                   String        @id @default(uuid())
