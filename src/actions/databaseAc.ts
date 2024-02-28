@@ -175,14 +175,14 @@ export const deleteJobData = async (formData: FormData) => {
 
 
 export async function getFirstData({ 
-  id, username, email, profileImage, firstName, lastName }: 
+  id, username, email, profileImg, firstName, lastName }: 
   { 
     id: string ; 
     username: string | null | undefined; 
     email: string, 
     firstName: string | null | undefined,
     lastName: string | null | undefined,
-    profileImage: string | null | undefined,
+    profileImg: string | null | undefined,
   }) {
   try {
 
@@ -194,7 +194,7 @@ export async function getFirstData({
 
     // 2
     if (!user) {
-      await prisma.user.create({ data: { id, email, firstName, lastName, profileImage, username,  } });
+      await prisma.user.create({ data: { id, email, firstName, lastName, profileImg, username,  } });
     }
 
     // 3

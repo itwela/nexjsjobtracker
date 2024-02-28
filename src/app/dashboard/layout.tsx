@@ -53,7 +53,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
       username: user?.username as string,
       id: user?.id as string,
       lastName: user?.lastName as string,
-      profileImage: user?.imageUrl,
+      profileImg: user?.imageUrl,
         // email: 'email'
     };
 
