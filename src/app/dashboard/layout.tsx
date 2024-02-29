@@ -43,14 +43,14 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   const sessionId  = auth();
   const userfunc = currentUser()
   const user = await userfunc 
-  const userDa = await getUserData(user?.id as string)
+  // const userDa = await getUserData(user?.id as string)
   console.log(user)
 
     try {
 
           const find = await prisma.user.findUnique({
             where:  {
-              id: userDa?.id
+              id: user?.id
             } ,
             select: { 
               id: true, 
