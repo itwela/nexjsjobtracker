@@ -25,6 +25,7 @@ import {
     return (
         <>
         <div className="flex bg-gradient-to-b from-dprimary to-mprimary">
+          {/* drift */}
   
           <div className="w-[0vw] md:w-[20vw] sm:flex">
           <SecondHeader/>
