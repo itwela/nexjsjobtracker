@@ -11,107 +11,145 @@ import { toast } from "sonner";
 import gsap from "gsap";
 import { Link } from "@nextui-org/react";
 
+interface UserData {
+  username: string;
+}
+
+interface JobData {
+  id: string;
+  JobTitle: string;
+  Company: string;
+  DateApplied: string;
+  Status: string;
+  // Define other properties
+}
+
+interface IntroData {
+  id: string;
+  text: string;
+  // Define other properties
+}
+
+interface CoverLetterData {
+  id: string;
+  text: string;
+  // Define other properties
+}
+
+interface SubscriptionData {
+  subscriptiondata: string | null | undefined;
+}
+
 export default function Secondheader() {
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [jobData, setJobData] = useState<JobData[]>([]);
+  const [introData, setIntroData] = useState<IntroData[]>([]);
+  const [coverLetterData, setCoverLetterData] = useState<CoverLetterData[]>([]);
+  const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null >(null);
+  
   useEffect(() => {
  
     setIsOpen(false)
     gsap.set('#nacbar',{
-      xPercent: '-9000'
+      yPercent: '-900'
     })
-
-    const getTheUser = async () => {
-      const hello = 'hi api for header'
-
-      try {
-        const response = await fetch('/api/db/getusername', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            input: hello
-          })
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        const data = await response.json();
-        // Accessing user data
-        const user = data.user;
-        console.log("User:", user);
-
-        // Accessing job data
-        const jobData = data.jobdata;
-        console.log("Job Data:", jobData);
-
-        // Accessing intro data
-        const introData = data.introdata;
-        console.log("Intro Data:", introData);
-
-        // Accessing cover letter data
-        const coverLetterData = data.coverletterdata;
-        console.log("Cover Letter Data:", coverLetterData);
-
-        // Accessing specific properties of user data
-        const username = user.username;
-        const firstName = user.firstName;
-        const lastName = user.lastName;
-        console.log("Username:", username);
-        console.log("First Name:", firstName);
-        console.log("Last Name:", lastName);
-        console.log('thiss is user data:', data)
-
-        setAllData(data)
-
-
-      } catch {
-
-      }
-
-    }
-
     getTheUser();
+
+
 
   }, [])
 
   const handleButtonClick = async (e: any) => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
-    toast('yo', {
-      description: 'its working'
-    })
   };
 
-  const [subscriptionText, setSubscriptionText] = useState('');
-  const [coverText, setCoverText] = useState('');
-  const [coverLength, setCoverLength] = useState();
-  const [introLength, setIntroLength] = useState();
+  const getTheUser = async () => {
+    const hello = 'hi api for header'
+
+    try {
+      const response = await fetch('/api/db/getusername', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          input: hello
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      // // Accessing user data
+      const user = data.user;
+      // console.log("User:", user);
+
+      // // Accessing job data
+      // const jobData = data.jobdata;
+      // console.log("Job Data:", jobData);
+
+      // // Accessing intro data
+      // const introData = data.introdata;
+      // console.log("Intro Data:", introData);
+
+      // // Accessing cover letter data
+      // const coverLetterData = data.coverletterdata;
+      // console.log("Cover Letter Data:", coverLetterData);
+
+      // Accessing specific properties of user data
+      // const username = user.username;
+      // const firstName = user.firstName;
+      // const lastName = user.lastName;
+      // console.log("Username:", username);
+      // console.log("First Name:", firstName);
+      // console.log("Last Name:", lastName);
+      // console.log('thiss is user data:', data)
+      setUserData(data.user)
+      setCoverLetterData(data.coverletterdata)
+      setIntroData(data.introdata)
+      setSubscriptionData(data.subscriptiondata)
+      setAllData(data)
+    } catch {
+
+    }
+
+  }
+
+
+  // const [subscriptionText, setSubscriptionText] = useState<SubscriptionData>({subscriptiondata: ''} );
+  // const [jobDataa, setJobDataa] = useState<JobIntroData>({introdata: []});
+  // const [coverText, setCoverText] = useState<CoverletterData>({coverletterdata: []});
   const [allData, setAllData] = useState();
   const [isOpen, setIsOpen] = useState(false);
 
 
   if(isOpen != false) {
     gsap.to('#nacbar',{
-      xPercent: '0',
-      opacity: 1
+      yPercent: '0',
+      opacity: 1,
+      ease: 'power4.inOut'
     })
 
   }  
 
   if(isOpen != true) {
     gsap.to('#nacbar',{
-      xPercent: '-800',
-      opacity: 0
+      yPercent: '-800',
+      opacity: 0,
     })
 
   }  
 
   
+  // console.log('You have successfully logged the user data to frontend',userData)
+  // console.log('You have successfully logged the jobdata to the frontend', jobData)
+  // console.log('You have successfully logged the cover letter dat to the frontend',  coverLetterData)
+  // console.log('You have successfully logged the subscription status data to the frontend',  subscriptionData)
 
-
-  if (subscriptionText != 'active') {
+  // if (subscriptionText != 'active') {
+  if ( subscriptionData?.subscriptiondata != 'active') {
 
     return (
       <>
@@ -187,19 +225,19 @@ export default function Secondheader() {
                 
                 <span className='flex w-[20vw] text-[0.8em]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Cover Letters</p>
-                    <span className=''> / 3
+                    <span className=''>{coverLetterData.length} / 3
                     </span>
                 </span>
 
                 <span className='flex w-[20vw] text-[0.8em]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Introductions</p>
-                    <span className=''> / 3
+                    <span className=''> {introData.length} / 3
                     </span>
                 </span>
 
                 <span className='flex w-[20vw] text-[0.8em]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Tracked Jobs</p>
-                    <span className=''> / 3
+                    <span className=''>{jobData.length} / 3
                     </span>
                 </span>
           </span>
@@ -211,14 +249,14 @@ export default function Secondheader() {
       </span>
 
         {/* mobile */}
-      <span id='hamburger' onMouseUp={handleButtonClick} className='absolute md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+      <span id='hamburger' onMouseUp={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
 
         <span className="">
 
           <span className=''>
-            <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col absolute top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
-            <span id='hamburger' onMouseUp={handleButtonClick} className='absolute top-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
-
+            <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
+            <span id='hamburger' onMouseUp={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+            <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center">JobKompass</span>
 
               <Link href='/dashboard'>
                 <span className='dashb  '>
@@ -268,19 +306,19 @@ export default function Secondheader() {
                     
                     <span className='flex  p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                             <p className='70%] truncate'>Cover Letters</p>
-                        <span className=''> / 3
+                        <span className=''>{coverLetterData.length} / 3
                         </span>
                     </span>
 
                     <span className='flex  p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6 gap-2  '>
                             <p className='70%] truncate'>Introductions</p>
-                        <span className=''> / 3
+                        <span className=''>{introData.length} / 3
                         </span>
                     </span>
 
                     <span className='flex   p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                             <p className='70%] truncate'>Tracked Jobs</p>
-                        <span className=''> / 3
+                        <span className=''>{jobData.length} / 3
                         </span>
                     </span>
               </span> 
@@ -303,57 +341,147 @@ export default function Secondheader() {
 
   return (
     <>
-  
-      <span className="">
-  
-  
-        <span className='hidden sm:flex bg-dprimary h-screen '>
-       
-         <span className='py-7  flex flex-col place-items-start place-content-start  min-w-[20vw]   h-screen fixed justify-start bg-dprimary relative text-main-w'>
-            <span className='pt-3 p-5 px-6 bg-primary rounded-[0.5em] pb-3'><FaRegCompass/></span>  
-            
-            <span className='main  flex flex-col gap-4  min-h-[15vh]'>
-  
-            <span className='dashb  '>
-                  
-                      <Link href='/dashboard'>
-                      <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w  w-[20vw] '>
-                                <span className='truncate'>Dashoard</span>
-                                
-                                             
-                            <span className=''><MdOutlineLibraryAdd/></span>
-                          </span>
-                      </Link>
+    
+    <span className="">
+
+
+    <span className=''>
+      <span  className='hidden md:flex nav-wrapper pt-8 pb-8 bg-dprimary md:flex flex-col justify-between w-full h-screen '>
+      
+      <nav className='  flex-col place-items-start place-content-start hidden md:flex  min-w-[20vw]    fixed justify-start  relative text-main-w'>
+     
+        {/* Pro */}
+        <Link href='/billing'>
+          <span className=" pb-3 w-[20vw] flex place-content-center">
+          <span className="w-[15vw] place-content-center bg-gradient-to-b from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+              <span>Pro</span>
             </span>
-  
-            <span className='coverl flex justify-between  '>
+          </span>
+        </Link>
+        
+        {/* <span className='pt-3 p-5 px-6 bg-primary rounded-[0.5em] pb-3'><FaRegCompass/></span>   */}
+        
+        <span className='main  flex flex-col gap-4  min-h-[15vh]'>
+
+        <span className='dashb  '>
+              
+                  <Link href='/dashboard'>
+                      <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
+                            <p className='truncate'>Dashoard</p>
+                            <span className=''><MdOutlineLibraryAdd/></span>
+                      </span>     
+                  </Link>
+        </span>
+
+        <span className='coverl flex justify-between  '>
+                  <Link href='/coverletter'>
+                  <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                          <p className=' truncate'>Cover Letter</p>
+                        <span className=''><LuNewspaper className=''/></span>
+                    </span>
+                  </Link>
+        </span>
+
+        
+        <span className='mydoc   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+            <Link href='/mydocs'>
+              <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
+                      <p className='70%] truncate'>My Docs</p>
+                  <span className=''><IoDocumentTextOutline  className=''/>
+                  </span>
+              </span>
+            </Link>
+        </span>
+
+        <span className='settings   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+            <Link href='/billing'>
+              <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
+                      <p className='70%] truncate'>Settings</p>
+                  <span className=''><IoSettingsOutline  className=''/>
+                  </span>
+              </span>
+            </Link>
+        </span>
+
+        </span>
+
+
+
+      </nav>
+
+
+      </span>
+
+    </span>
+
+    </span>
+
+      {/* mobile */}
+    <span id='hamburger' onMouseUp={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+
+      <span className="">
+
+        <span className=''>
+          <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
+          <span id='hamburger' onMouseUp={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+          <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center">JobKompass</span>
+
+            <Link href='/dashboard'>
+              <span className='dashb  '>
+                    
+              <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                                  <p    className=''>Dashoard</p>
+                                  <button   className=''><MdOutlineLibraryAdd/></button>
+                            </span>     
+              </span>
+            </Link> 
+
+            <span className='coverl  flex justify-between  '>
                       <Link href='/coverletter'>
-                      <span className='flex  w-[20vw]  justify-between gap-4 text-main-w/60 hover:text-main-w  p-5 justify-between px-6 '>
-                              <span className=' truncate'>Cover Letter</span>
+                      <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                              <p className=' truncate'>Cover Letter</p>
                             <span className=''><LuNewspaper className=''/></span>
                         </span>
                       </Link>
             </span>
-  
             
-  
-            <span className='settings   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4  h-[5%]'>
+                <Link href='/mydocs'>
+                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                          <p className='70%] truncate'>My Docs</p>
+                      <span className=''><IoDocumentTextOutline  className=''/>
+                      </span>
+                  </span>
+                </Link>
+
                 <Link href='/billing'>
-                  <span className='flex w-[20vw] place-items-center  p-5 text-main-w/60 hover:text-main-w  justify-between px-6  '>
-                          <span className='70%] truncate'>Settings</span>
+                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                          <p className='70%] truncate'>Settings</p>
                       <span className=''><IoSettingsOutline  className=''/>
                       </span>
                   </span>
                 </Link>
-            </span>
-  
-            </span>
+
+                    {/* subscribe */}
+            <Link href='/billing' className="p-5">
+              <span className=" pb-3 w-[20vw] flex place-content-center">
+              <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                  <span>Subscribe</span>
+                </span>
+              </span>
+            </Link>
+
+            
+
+
           </span>
-  
-  
+
         </span>
-  
+
       </span>
+
+   
+  
+    
     </>
   );
 

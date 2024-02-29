@@ -3,7 +3,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from '@clerk/nextjs';
 import { Bricolage_Grotesque, Darker_Grotesque, Familjen_Grotesk, Inter } from 'next/font/google';
-import { use, useEffect, useState } from 'react'; // Remove useState import
+import { use, useEffect, useRef, useState } from 'react'; // Remove useState import
 import './globals.css';
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -22,21 +22,29 @@ const bricol = Familjen_Grotesk({ subsets: ['latin'] });
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
   
-  // const [isClicked, setIsCLicked] = useState(null)
-  // useGSAP(() => {
+  useGSAP(()  => {
 
-  // const handleClick = (e: MouseEvent) => {
-  //     console.log('YOOOOOOOO Button clicked!');
-  //     setIsCLicked(!isClicked);
-  //     console.log(isClicked)
-  //   };
+    let tl = gsap.timeline({defaults: {ease: 'power2.out', duration: 2}})
+    
+    tl.from(['#header-name', '#signin', '#signup'], {
+      y: '-3000px',
+      opacity: 0,
+        stagger: 0.5,
+    }).from(['#pbai', '#jkomp'], {
+      y: '20px',
+      opacity: 0,
+      stagger: 0.5
+    }).from('#optimize', {
+      y: '-20px',
+      opacity: 0,
+    }).from('#herogsb', {
+      y: '25px',
+      opacity: 0,
+      duration: 3,
+    })
+    
+  }, [])
 
-  //   const button = document.getElementById('hamburger');
-  //   if (button) {
-  //     button.addEventListener('click', handleClick);
-  //   }
-
-  // }, []); // Empty dependency array ensures this effect runs only once after initial render  
 
   return (
     <ClerkProvider

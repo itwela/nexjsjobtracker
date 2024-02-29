@@ -81,11 +81,11 @@ const dbUser = await prisma.user.findUnique({
       <>
 
       <div className="flex">
-        <div className="w-[20vw]">
+        <div className="md:w-[20vw]">
           <SecondHeader/>
           </div>
 
-      <div className="flex bg-gradient-to-b from-dprimary to-mprimary min-h-screen flex-col place-items-center w-[80vw] pb-5  justify-start">
+      <div className="flex bg-gradient-to-b from-dprimary to-mprimary min-h-screen flex-col place-items-center w-[100vw] md:w-[80vw] pb-5  justify-start">
         <Header/>
         <div className="grid w-[100%]">
           <div className="flex">
@@ -123,11 +123,11 @@ const dbUser = await prisma.user.findUnique({
   return (
       <>
       <div className="flex">
-      <div className="w-[20vw]">
+      <div className="md:w-[20vw]">
           <SecondHeader/>
           </div>
 
-        <div className="flex bg-gradient-to-b from-dprimary to-mprimary text-main-w min-h-screen flex-col place-items-center  w-[80vw] pb-5 px-5 justify-start">
+        <div className="flex bg-gradient-to-b from-dprimary to-mprimary text-main-w min-h-screen flex-col place-items-center w-[100vw] md:w-[80vw] pb-5 px-5 justify-start">
           <Header/>
             <div className="w-[100%] pt-5">
                 <h1 className="text-4xl font-bold">Billing</h1>
