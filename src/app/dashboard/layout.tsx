@@ -1,7 +1,7 @@
 import { auth, currentUser } from '@clerk/nextjs';
 import { ReactNode } from 'react';
 import prisma from '../libs/db';
-import { getFirstData } from '@/actions/databaseAc';
+import { getFirstData, getUserData } from '@/actions/databaseAc';
 import { stripe } from '../libs/stripe';
 
 // export async function getData({ id, name, email }: { id: string ; name: string | null | undefined; email: string }) {
@@ -41,15 +41,16 @@ import { stripe } from '../libs/stripe';
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const sessionId  = auth();
-  const userDa = currentUser()
-  const user = await userDa 
+  const userfunc = currentUser()
+  const user = await userfunc 
+  const userDa = await getUserData(user?.id as string)
   console.log(user)
 
     try {
 
           const find = await prisma.user.findUnique({
             where:  {
-              id: user?.id
+              id: userDa?.id
             } ,
             select: { 
               id: true, 

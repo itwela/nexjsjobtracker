@@ -94,7 +94,7 @@ export default function Clock() {
                             
                             <h3 className='font-black text-2x;'>
                                 {/* so basically this say if the usere didnt submit a first and last name to display their username instead so the app will always be personalized! */}
-                                { theUser?.userdata.firstName  ? theUser?.userdata.firstName : theUser?.userdata.username}.
+                                { theUser?.userdata.firstName ? theUser?.userdata.firstName : theUser?.userdata.username}.
                             </h3>
                     </div>        
                 </div>
