@@ -14,7 +14,7 @@ const Success = () => {
           <Header/>
           <div className="flex flex-col place-items-center text-center w-[80vw] pt-[40vh]">
             <h1 className="text-main-w">Payment Complete!</h1>
-            <p className="text-muted-foreground hover:text-main-w">Congrats on becoming a JobKompass pro!, please check your email for further instructions.</p>
+            <p className="text-muted-foreground w-[80%] hover:text-main-w">Congrats on becoming a JobKompass pro! You now have access to all JobKompass pro features!</p>
             </div>
         <div>
             <button className="mt-3 bg-main-w/70 hover:bg-main-w text-dprimary py-3 px-4 rounded-lg">

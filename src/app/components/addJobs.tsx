@@ -335,7 +335,7 @@ export function AddJobs() {
            </div>
 
            </div>
-            <div onMouseUp={handleShowForm} className='cursor-pointer absolute z-10 sm:translate-x-[50vw] translate-x-[60vw]  translate-y-[-70%] sm:translate-y-[-10%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
+            <div onMouseUp={handleShowForm} className='cursor-pointer absolute z-10 sm:translate-x-[50vw] translate-x-[60vw]  translate-y-[-70%] sm:translate-y-[-40vh] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
               <button className='flex gap-2 place-items-center' 
               
               >

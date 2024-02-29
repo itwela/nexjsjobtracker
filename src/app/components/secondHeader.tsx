@@ -217,19 +217,19 @@ export default function Secondheader() {
 
           <span className='count absolute bottom-10   gap-4 cursor-pointer flex flex-col gap-4'>
                 
-                <span className='flex w-[20vw] text-[0.8em]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
+                <span className='text-[0.5em] flex gap-3 w-[20vw]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Cover Letters</p>
                     <span className=''>{coverLetterData.length} / 3
                     </span>
                 </span>
 
-                <span className='flex w-[20vw] text-[0.8em]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
+                <span className='flex w-[20vw] text-[0.5em] gap-3   p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Introductions</p>
                     <span className=''> {introData.length} / 3
                     </span>
                 </span>
 
-                <span className='flex w-[20vw] text-[0.8em]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
+                <span className='flex w-[20vw] text-[0.5em] gap-3    p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Tracked Jobs</p>
                     <span className=''>{jobData.length} / 3
                     </span>

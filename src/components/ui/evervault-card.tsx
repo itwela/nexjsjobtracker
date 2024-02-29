@@ -48,12 +48,12 @@ export const EvervaultCard = ({
           mouseY={mouseY}
           randomString={randomString}
         />
-        <div className="relative w-full z-10 flex items-center justify-center">
-          <div className="relative w-full  rounded-[0.5em] flex items-center justify-center font-bold text-sm">
-            <div className="absolute w-full  bg-mprimary/[0.8] dark:bg-black/[0.8] blur-sm rounded-[0.5em]" />
-              <div className="flex flex-col p-3 gap-2">
-              <span className="z-20">{text}</span>
-              <span className="z-20">{text2}</span>
+        <div className="relative w-full z-10  h-full flex place-content-center justify-center">
+          <div className="relative w-full  rounded-[0.5em] flex place-items-center place-content-center justify-center font-bold">
+            <div className="absolute w-full    bg-mprimary/[0.8] dark:bg-black/[0.8] blur-sm rounded-[0.5em]" />
+              <div className="flex w-[80%] flex-col place-items-center p-3 gap-1">
+              <span className="z-20 text-[0.6em] sm:text-[1em]">{text}</span>
+              <span className="z-20 text-[0.6em] sm:text-[1em]">{text2}</span>
               </div>
           </div>
         </div>
