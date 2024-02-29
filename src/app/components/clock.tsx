@@ -8,9 +8,9 @@ import { toast } from "sonner"
 interface UserData {
     userdata: {
         id: string;
-        username: string | null;
-        firstName: string | null
-        lastName: string | null
+        username: string | null | undefined;
+        firstName: string | null | undefined;
+        lastName: string | null | undefined;
         email: string;
         stripeCustomerId: string | null;
     }
