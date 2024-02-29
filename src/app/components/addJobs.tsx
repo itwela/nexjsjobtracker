@@ -111,6 +111,7 @@ export function AddJobs() {
   // }
 
   const handleShowForm = (e: any) => {
+    setShowForm(!showForm)
   };  
 
       // Handle changes in input fields

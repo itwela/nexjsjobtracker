@@ -55,6 +55,11 @@ export default function TopboxOne() {
     }
   };
 
+  const handleBack = async () =>{
+    setIsGen(false)
+    setData(null);
+  }
+
   // Define the copyText function outside the component
   const copyText = () => {
     const element = document.getElementById("gen-text");
@@ -89,7 +94,7 @@ export default function TopboxOne() {
       <span className="border  hover:border-main-w/40 w-[80%] relative overflow-hidden bg-mprimary text-main-w font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[15vh] ">
 
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-lg">{data}</span>
-        <RiArrowGoBackFill size={40} onClick={handlestate} className="absolute bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
+        <RiArrowGoBackFill size={40} onClick={handleBack} className="absolute bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
         {/* Add an id to the copy button */}
         <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
       </span>

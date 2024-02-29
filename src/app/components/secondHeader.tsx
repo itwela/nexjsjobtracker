@@ -37,7 +37,7 @@ interface CoverLetterData {
 }
 
 interface SubscriptionData {
-  subscriptiondata: string | null | undefined;
+  status: string | null | undefined;
 }
 
 export default function Secondheader() {
@@ -143,7 +143,7 @@ export default function Secondheader() {
   // console.log('You have successfully logged the subscription status data to the frontend',  subscriptionData)
 
   // if (subscriptionText != 'active') {
-  if ( subscriptionData?.subscriptiondata != 'active') {
+  if ( subscriptionData?.status != 'active') {
 
     return (
       <>
@@ -333,10 +333,11 @@ export default function Secondheader() {
   }
 
 
+  // pro
   return (
     <>
     
-    <span className="">
+    <span className="bg-dprimary">
 
 
     <span className=''>
@@ -347,7 +348,7 @@ export default function Secondheader() {
         {/* Pro */}
         <Link href='/billing'>
           <span className=" pb-3 w-[20vw] flex place-content-center">
-          <span className="w-[15vw] place-content-center bg-gradient-to-b from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-b from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
               <span>Pro</span>
             </span>
           </span>
@@ -455,11 +456,11 @@ export default function Secondheader() {
                   </span>
                 </Link>
 
-                    {/* subscribe */}
+                    {/* pro */}
             <Link href='/billing' className="p-5">
               <span className=" pb-3 w-[20vw] flex place-content-center">
-              <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
-                  <span>Subscribe</span>
+              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-b from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                  <span>Pro</span>
                 </span>
               </span>
             </Link>

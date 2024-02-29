@@ -153,7 +153,7 @@ export default async function Dashboard() {
             direction="horizontal"
             className="bg-gradient-to-b from-dprimary to-mprimary"
           >
-            <ResizablePanel  defaultSize={20}>
+            <ResizablePanel className="bg-dprimary"  defaultSize={20}>
               <div className="hidden md:flex md:w-[20vw] bg-dprimary relative">
                 <SecondHeader  />
               </div>
