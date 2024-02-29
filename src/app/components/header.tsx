@@ -1,10 +1,10 @@
 // "use client"; // This is a client component 👈🏽
 
 import { UserButton, auth } from '@clerk/nextjs';
+import { MenuIcon } from 'lucide-react';
 import { unstable_noStore as noStore } from "next/cache";
 import Link from 'next/link';
 import React from 'react';
-
 
 interface DropdownProps {
   title: string; // Specify the type of the 'title' prop
@@ -44,9 +44,12 @@ export const Header = () => {
           <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
           
           <div className='flex justify-between gap-7 w-[100%] place-items-center place-content-center'>
+            
+            <span className='flex place-items-center gap-1'>
             <Link href='/'>
               <h1 id='header-name' className='text-sm sm:text-1xl pl-5 text-main-w/60 hover:text-main-w'>JobKompass</h1>
             </Link>
+            </span>
             <div className='flex  '>
                 {!userId && (
                   <>
@@ -69,7 +72,7 @@ export const Header = () => {
                 {userId && (
                   <>
                
-                  <Link href='/dashboard' className='text-main-w/60 hover:text-main-w text-sm mr-4 '>
+                  <Link href='/dashboard' className='hidden md:flex text-main-w/60 hover:text-main-w text-sm mr-4 '>
                     Dashboard
                   </Link>
                

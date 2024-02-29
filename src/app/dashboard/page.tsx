@@ -13,6 +13,7 @@ import JobsTable from "../components/jobsTableRender";
 import SecondHeader from "../components/secondHeader";
 import TopboxOne from "../components/topbox1";
 import TopboxTwo from "../components/topbox2";
+import Clock from "../components/clock";
 
 async function getUserData(userId: string) {
   noStore();
@@ -145,7 +146,7 @@ export default async function Dashboard() {
       <div className="dashwrapper flex  text-main-w">
               {/* <div className="gradi  w-[100vw] flex place-items-center flex-col"> */}
 
-        <div className="flex min-h-screen   w-[100vw] ">
+        <div className="hidden md:flex min-h-screen   w-[100vw] ">
           
           
           <ResizablePanelGroup
@@ -153,7 +154,7 @@ export default async function Dashboard() {
             className="bg-gradient-to-b from-dprimary to-mprimary"
           >
             <ResizablePanel  defaultSize={20}>
-            <div className="w-[20vw] bg-dprimary relative">
+              <div className="hidden md:flex md:w-[20vw] bg-dprimary relative">
                 <SecondHeader  />
               </div>
             </ResizablePanel>
@@ -167,6 +168,7 @@ export default async function Dashboard() {
 
                   
                 <div className="relative   px-4 min-w-[80vw]   h-full flex flex-col place-items-center gap-2">
+                 <Clock/> 
                   <TopboxOne />
                   <TopboxTwo />
                 </div>
@@ -191,6 +193,56 @@ export default async function Dashboard() {
 
 
         </div>
+
+        {/* mobile */}
+        <div className="md:hidden  min-h-screen   w-[100vw] ">
+          
+          
+          <ResizablePanelGroup
+            direction="horizontal"
+            className="bg-gradient-to-b from-dprimary to-mprimary"
+          >
+            <SecondHeader  />
+            <ResizablePanel  defaultSize={0}>
+              {/* <div className="hidden md:w-[20vw] bg-dprimary relative">
+              </div> */}
+            </ResizablePanel>
+
+            <ResizableHandle  withHandle />
+
+            <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
+              <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
+
+                <Header />
+
+                  
+                <div className="relative   px-4 min-w-[80vw]   h-full flex flex-col place-items-center gap-2">
+                 <Clock/> 
+                  <TopboxOne />
+                  <TopboxTwo />
+                </div>
+
+                <div className="relative flex   justify-between place-items-center">
+                  <AddJobs />
+                </div>
+
+                <div className="relative flex pb-9  justify-between place-items-center place-content-center">
+                  <JobsTable jobdata={jobdata} />
+                </div>
+
+
+                
+
+              </div>
+            </ResizablePanel>
+
+          </ResizablePanelGroup>
+
+
+
+
+        </div>
+
       </div>
     </>
   );

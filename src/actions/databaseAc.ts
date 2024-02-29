@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from "@/app/libs/db";
-import { currentUser } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import { stripe } from "@/app/libs/stripe";
 
@@ -240,6 +240,22 @@ export async function getFirstData({
     throw error;
   }
 }
+
+export async function getUsername(userId: string) {
+  noStore();
+  const data = await prisma.user.findUnique({
+    where: {
+      id: userId
+    },
+    select: {
+      username: true
+    }
+
+  })
+  return data;
+}
+
+
 
   
 

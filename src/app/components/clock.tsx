@@ -8,7 +8,9 @@ import { toast } from "sonner"
 interface UserData {
     userdata: {
         id: string;
-        name: string | null;
+        username: string | null;
+        firstName: string | null
+        lastName: string | null
         email: string;
         stripeCustomerId: string | null;
     }
@@ -16,7 +18,7 @@ interface UserData {
 
 export default function Clock() {
 
-    const [theUser, setTheUser] = useState<UserData>({ userdata: { id: "", name: "", email: '', stripeCustomerId: ""} });
+    const [theUser, setTheUser] = useState<UserData>({ userdata: { id: "", username: "", email: '', stripeCustomerId: "", firstName: '', lastName: ''} });
 
     useEffect(() => {
 
@@ -87,8 +89,13 @@ export default function Clock() {
             <div className="flex relative flex-col gap-2 w-[25%] h-[95%] py-6 justify-between">
                 
                 <div className="shadow rounded-[10em] h-[45%] flex place-items-center px-10">        
-                    <div className="flex place-items-center justify-evenly w-[100%] text-center ">
-                            <div className="">Hi, <h3 className='font-black text-2x;'>{theUser?.userdata.name}</h3></div>
+                    <div className="flex place-items-center place-content-center gap-3 w-[100%] text-center ">
+                            <span className="">Greetings, </span>
+                            
+                            <h3 className='font-black text-2x;'>
+                                {/* so basically this say if the usere didnt submit a first and last name to display their username instead so the app will always be personalized! */}
+                                { theUser?.userdata.firstName  ? theUser?.userdata.firstName : theUser?.userdata.username}.
+                            </h3>
                     </div>        
                 </div>
 

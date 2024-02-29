@@ -22,7 +22,7 @@ const CoverLetterGen = () => {
                   <CardDescription className='text-main-w/50'>Start generationg your Cover Letter by first adding a relevant job description</CardDescription>
                 </CardHeader>
 
-                <CardContent>
+                <CardContent className="">
 
                   <CoverLetterCard/>
 

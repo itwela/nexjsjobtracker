@@ -13,7 +13,7 @@ import { toast } from "sonner";
 
 export default function CoverLetterCard() {
     const [isLoading, setIsLoading] = useState(false)
-    const [coverText, setCoverText] = useState('')
+    const [coverText, setCoverText] = useState()
     const [inputText, setInputText] = useState('')
     
     const handleInputChange = (event: any) => {
@@ -78,7 +78,7 @@ export default function CoverLetterCard() {
           navigator.clipboard.writeText(textToCopy)
         }
 
-          toast("Success!: Introduction Copied", {
+          toast("Success!: Cover Letter Copied", {
             description: "Congratulations, you're one step closer to your next job!",
         });        
 
@@ -95,7 +95,7 @@ export default function CoverLetterCard() {
                 </form>
 
                 
-                <div className='relative my-8 w-[100%] nosb'>
+                <div className='relative my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 p-5 rounded-[1em]'>
                 <FaRegCopy size={36} onMouseUp={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer text-main-w/70 hover:text-main-w font-black p-2" />
 
                   <h1 className='text-2xl font-semibold text-main-w/70 hover:text-main-w leading-none tracking-tight my-4'>

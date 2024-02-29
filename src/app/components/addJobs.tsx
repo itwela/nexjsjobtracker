@@ -111,7 +111,6 @@ export function AddJobs() {
   // }
 
   const handleShowForm = (e: any) => {
-    setShowForm(!showForm);
   };  
 
       // Handle changes in input fields
@@ -196,7 +195,7 @@ export function AddJobs() {
 
         <div className='flex flex-col place-items-center'>
           
-        <p className='text-sm text-main-w/50'>*Tip: Pressing the left or right keys will move you along!</p>
+        <p className='text-[0.5em] mb-7 sm:mb-0 sm:text-sm text-main-w/50'>*Tip: Pressing the left or right keys will move you along!</p>
 
 
           <Carousel
@@ -335,7 +334,7 @@ export function AddJobs() {
            </div>
 
            </div>
-            <div onMouseUp={handleShowForm} className='cursor-pointer absolute z-10 translate-x-[50vw] translate-y-[-10%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
+            <div onMouseUp={handleShowForm} className='cursor-pointer absolute z-10 sm:translate-x-[50vw] translate-x-[60vw]  translate-y-[-70%] sm:translate-y-[-10%] bg-backback-col p-6  w-[75%] rounded-[2.5em] outline outline-lprimary  place-items-center flex justify-between text-main-w/50 hover:text-main-w'>
               <button className='flex gap-2 place-items-center' 
               
               >
