@@ -82,44 +82,44 @@ export default async function Home() {
           {/* section 4 - pricing */} 
 
           <HomeSectionFour/>
-          <section className="  w-[100vw] bg-gradient-to-b from-dprimary to-blue-500 gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] sm:py-[10vh] ">
+          <section className="  w-[100vw] bg-gradient-to-b from-dprimary to-blue-500 gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center min-h-[100vh] sm:py-[10vh] ">
 
 {/* <section className="w-[100vw] bg-gradient-to-b from-blue-500 to-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] "> */}
 
-    <div className="h-[100vh] translate-y-[-20vh] sm:translate-y-[-0vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
+    <div className="min-h-[100vh] translate-y-[-5vh] sm:translate-y-[-0vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
         
         <div className="flex flex-col w-[70%] gap-5 place-items-start">
 
             <h1 className="text-left text-5xl text-main-w pb-5">
                 Pricing
               </h1>
-              <div className="flex flex-col sm:flex-row w-full gap-4 h-[60vh] sm:h-[50vh]">
-                <Card className="h-full border-main-w/40 hover:border-main-w/70  justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+              <div className="flex flex-col sm:flex-row w-full gap-4 min-h-[30vh] sm:min-h-[50vh]">
+                <Card className=" border-main-w/40 hover:border-main-w/70  justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                       <span className="flex w-[100%] justify-between">   
-                        <CardHeader className="text-xl sm:text-3xl p-0 text-main-w/60">Basic</CardHeader>
+                        <CardHeader className="sm:text-3xl p-0 text-main-w/60">Basic</CardHeader>
                           <span className="w-[40%] sm:w-[20%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
                                   <span className="text-sm sm:text-md">
                                     Popular
                                   </span>
                           </span>
                         </span>
-                      <CardHeader className="text-5xl p-0 text-main-w">Free</CardHeader>
+                      <CardHeader className="sm:text-5xl p-0 text-main-w">Free</CardHeader>
                       <CardDescription className="text-main-w/70">Get started today for free</CardDescription>
-                      <span className="w-[100%] h-[0.5%] bg-main-w/30"></span>
+                      <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
                       <CardContent className="p-0">
-                        <span className="flex flex-col py-2 gap-5 text-[0.6em] sm:text-md">
-                            <span className="flex gap-2 place-items-center"> <CheckCircle2/>Track up to 3 jobs</span>
-                            <span className="flex gap-2  place-items-center"> <CheckCircle2/>Generate up to 3 cover letters</span>
-                            <span className="flex gap-2  place-items-center"> <CheckCircle2/>Generate  up to 3 job introduction messages</span>
+                        <span className="flex flex-col py-2 gap-2 sm:gap-5 ">
+                            <span className="flex gap-2 place-items-center"> <CheckCircle2 size={23}/>Track up to 3 jobs</span>
+                            <span className="flex gap-2  place-items-center"> <CheckCircle2 size={25}/>Generate up to 3 cover letters</span>
+                            <span className="flex gap-2  place-items-center"> <CheckCircle2 size={35}/>Generate  up to 3 job introduction messages</span>
                         </span>
                       </CardContent>
-                      <span className="w-[100%] mb-2 h-[0.5%] bg-main-w/30"></span>
+                      <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
 {/* get started */}
                       <CardContent className="p-0 mt-2 w-[100%] flex place-content-center">
                       <Link
                         href='/sign-up'>
 
-                        <span className="w-full mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
+                        <span className="w-full mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 flex gap-2 place-content-center">
 
                             <span>
                               Get Started
@@ -130,7 +130,7 @@ export default async function Home() {
                 </Card>
                     
 
-                <Card className="h-full border-main-w/40 hover:border-main-w/70 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                <Card className=" border-main-w/40 hover:border-main-w/70 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                     <span className="flex w-[100%] justify-between">   
                       <CardHeader className="text-xl sm:text-3xl p-0 text-main-w/60">Pro</CardHeader>
                         <span className="opacity-0 w-[30%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
@@ -140,19 +140,19 @@ export default async function Home() {
                         </span>
                       </span>
                       <span className="flex gap-4">   
-                          <CardHeader className="text-5xl p-0 text-main-w">$15.00</CardHeader>
+                          <CardHeader className="sm:text-5xl p-0 text-main-w">$15.00</CardHeader>
                           <span className="text-main-w/70"> / month</span>
                       </span>
                     <CardDescription className="text-main-w/70">For the serial job hunters</CardDescription>
-                    <span className="w-[100%] h-[0.5%] bg-main-w/30"></span>
+                    <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
                     <CardContent className="p-0">
-                      <span className="flex flex-col py-2 gap-5">
-                          <span className="flex gap-2"> <CheckCircle2/>Track an unlimited amount of jobs</span>
-                          <span className="flex gap-2"> <CheckCircle2/>Generate unlimited cover letters</span>
-                          <span className="flex gap-2"> <CheckCircle2/>Generate unlimited job introduction messages</span>
+                      <span className="flex flex-col py-2 gap-2 sm:gap-5">
+                          <span className="flex gap-2"> <CheckCircle2 size={25}/>Track an unlimited amount of jobs</span>
+                          <span className="flex gap-2"> <CheckCircle2 size={25}/>Generate unlimited cover letters</span>
+                          <span className="flex gap-2"> <CheckCircle2 size={35}/>Generate unlimited job introduction messages</span>
                       </span>
                     </CardContent>
-                    <span className="w-[100%] mb-2 h-[0.5%] bg-main-w/30"></span>
+                    <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
 {/* get started */}
                     <CardContent className="p-0 mt-2 w-[100%] flex place-content-center">
                     <Link

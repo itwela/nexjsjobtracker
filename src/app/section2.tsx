@@ -94,7 +94,7 @@ export default function HeroSectionTwo() {
     </div>
 
     <div className="h-[50vh] relative flex place-content-start place-items-center flex-col">
-        <h1 className="flex w-[70%] text-3xl pt-9 sm:pt-0  sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+        <h1 className="flex w-[70%] text-3xl pt-[3em] sm:pt-[0em]  sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
             Track all your applications in one place
         </h1>
 
