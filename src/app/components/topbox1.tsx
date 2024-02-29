@@ -57,6 +57,7 @@ export default function TopboxOne() {
 
   const handleBack = async () =>{
     setIsGen(false)
+    setIsLoading(false)
     setData(null);
   }
 
@@ -110,8 +111,8 @@ export default function TopboxOne() {
 
           <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
            
-          <RiArrowGoBackFill size={40} onClick={handlestate} className="absolute bottom-0 left-0 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
-           <span className="animate-pulse nosb place-content-center flex text-clip h-[80%] w-[70%] placd-content-center overflow-ellipsis text-blue-500/40 overflow-y-scroll text-lg">
+          <RiArrowGoBackFill size={40} onClick={handleBack} className="absolute bottom-0 left-0 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
+           <span className="animate-pulse nosb place-content-center flex text-clip h-[80%] w-[70%] place-content-center overflow-ellipsis text-blue-500/40 overflow-y-scroll">
                 Intro Loading.....
             </span>
 
