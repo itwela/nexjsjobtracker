@@ -48,17 +48,13 @@ export default function Secondheader() {
   const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null >(null);
   
   useEffect(() => {
- 
-    setIsOpen(false)
-    gsap.set('#nacbar',{
-      yPercent: '-900'
-    })
+    setIsOpen(false); // Set isOpen to false initially
     getTheUser();
-
-
-
-  }, [])
-
+    gsap.set('#nacbar', {
+      yPercent: '-900'
+    });
+  }, []);
+  
   const handleButtonClick = async (e: any) => {
     setIsOpen(!isOpen);
   };
@@ -125,22 +121,20 @@ export default function Secondheader() {
   const [isOpen, setIsOpen] = useState(false);
 
 
-  if(isOpen != false) {
-    gsap.to('#nacbar',{
-      yPercent: '0',
-      opacity: 1,
-      ease: 'power4.inOut'
-    })
-
-  }  
-
-  if(isOpen != true) {
-    gsap.to('#nacbar',{
-      yPercent: '-800',
-      opacity: 0,
-    })
-
-  }  
+  useEffect(() => {
+    if (isOpen) {
+      gsap.to('#nacbar', {
+        yPercent: '0',
+        opacity: 1,
+        ease: 'power4.inOut'
+      });
+    } else {
+      gsap.to('#nacbar', {
+        yPercent: '-800',
+        opacity: 0,
+      });
+    }
+  }, [isOpen]);
 
   
   // console.log('You have successfully logged the user data to frontend',userData)
