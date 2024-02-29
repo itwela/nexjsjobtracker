@@ -33,7 +33,7 @@ export default async function Home() {
   return (
     <>
     <div className="flex text-main-w  w-[100vw] place-content-center place-items-center">
-      <div className="flex min-h-screen  flex-col place-content-center  place-items-center w-[100vw]">
+      <div className="flex min-h-screen  flex-col place-content-center  place-items-start w-[100vw]">
           <span className="md:hidden">
           <Secondheader/>
           </span>

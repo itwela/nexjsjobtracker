@@ -143,7 +143,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <div className="dashwrapper inset-0 flex  text-main-w">
+      <div className="dashwrapper  flex  text-main-w">
               {/* <div className="gradi  w-[100vw] flex place-items-center flex-col"> */}
 
         <div className="hidden md:flex min-h-screen   w-[100vw] ">

@@ -84,7 +84,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   if (!user) {
     return (
       <>
-        <div className='flex place-items-center w-[100vw] h-[100vh] '>
+        <div className='flex place-items-center w-[100vw] h-[100svh] h-screen '>
             <p>
               no user
             </p>
