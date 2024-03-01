@@ -16,7 +16,7 @@ const CoverLetter = () => {
 
               <Header/>
               <div className="flex px-[3.5em] w-[100%] py-5">
-                <h1 className="text-4xl font-bold text-main-w">Create A Cover Letter</h1>
+                <h1 className="text-4xl font-bold text-main-w/70">Create A Cover Letter</h1>
               </div>
               <div className="px-9 w-[100%]">
               <CoverLetterGen/>

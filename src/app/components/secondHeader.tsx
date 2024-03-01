@@ -137,7 +137,7 @@ export default function Secondheader() {
           {/* subscribe */}
           <Link href='/billing'>
             <span className=" pb-3 w-[20vw] flex place-content-center">
-            <span className="w-[15vw] place-content-center bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+            <span className="w-[15vw] place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>Subscribe</span>
               </span>
             </span>
@@ -268,7 +268,7 @@ export default function Secondheader() {
                       {/* subscribe */}
               <Link href='/billing' className="p-5">
                 <span className=" pb-3 w-[20vw] flex place-content-center">
-                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                     <span>Subscribe</span>
                   </span>
                 </span>
@@ -326,7 +326,7 @@ export default function Secondheader() {
         {/* Pro */}
         <Link href='/billing'>
           <span className=" pb-3 w-[20vw] flex place-content-center">
-          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-b from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
               <span>Pro</span>
             </span>
           </span>
@@ -437,7 +437,7 @@ export default function Secondheader() {
                     {/* pro */}
             <Link href='/billing' className="p-5">
               <span className=" pb-3 w-[20vw] flex place-content-center">
-              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-b from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                   <span>Pro</span>
                 </span>
               </span>

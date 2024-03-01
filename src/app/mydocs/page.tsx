@@ -11,7 +11,9 @@ import {
   import { unstable_noStore as noStore } from "next/cache";
   import { getCoverLetterData } from "@/actions/databaseAc";  
   import { getIntroductionData } from "@/actions/databaseAc";
-  
+//   import { toast } from "sonner";
+// import { FaRegCopy } from "react-icons/fa";
+
   export default async function Mydocs ()  {
     noStore();
     auth();
@@ -19,7 +21,26 @@ import {
     const coverlData = await getCoverLetterData(user?.id as string)
     const introData = await getIntroductionData(user?.id as string)
 
-    
+    // const copyText = () => {
+    //   const element = document.getElementById("gen-text");
+  
+    //   if (element instanceof HTMLSpanElement) {
+    //     const textToCopy = element.innerText;
+  
+    //     navigator.clipboard.writeText(textToCopy)
+    //       .then(() => {
+    //         toast("Success!: Introduction Copied", {
+    //           description: "Congratulations, you're one step closer to your next job!",
+    //         });
+    //       })
+    //       .catch(error => {
+    //         console.error('Unable to copy text: ', error);
+    //         toast("Error: Copying Failed", {
+    //           description: "An error occurred while copying the introduction.",
+    //         });
+    //       });
+    //   }
+    // };
   
     
     return (
@@ -47,13 +68,14 @@ import {
                           <AccordionContent className="rounded-[1em] overflow-hidden">
                               <div className="flex gap-5 justify-start w-[100%] h-[25vh] ">    
                                 {coverlData.map((item: any) => (
-                                    <div key={item.id} className="w-[100%] sm:w-[30%] h-[100%] p-5 border-main-w/40 hover:border-main-w/70   text-left  bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                    <div key={item.id} className="w-[100%] sm:w-[30%] h-[100%] p-5  text-left  bg-mprimary">
                                             <p>
                                                 {item.text}
                                             </p>
                                     </div>
 
                                 ))}
+                                  {/* <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" /> */}
                                 </div>
                           </AccordionContent>
                         </AccordionItem>
@@ -61,7 +83,7 @@ import {
                           <AccordionTrigger>My Introductions</AccordionTrigger>
                           <AccordionContent className="flex flex-col gap-3">
                           {introData.map((item: any) => (
-                                    <div key={item.id} className="w-[100%] h-[10%] p-5 border-main-w/40 hover:border-main-w/70   text-left  bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                                    <div key={item.id} className="w-[100%] h-[10%] p-5 text-left  bg-mprimary">
                                             <p>
                                                 {item.text}
                                             </p>

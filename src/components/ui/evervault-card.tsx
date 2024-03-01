@@ -35,23 +35,23 @@ export const EvervaultCard = ({
   return (
     <div
       className={cn(
-        " bg-transparent w-full  flex place-items-center place-content-center justify-center  h-full relative",
+        " bg-transparent w-full  flex place-items-center place-content-center justify-center relative",
         className
       )}
     >
       <div
         onMouseMove={onMouseMove}
-        className="group/card rounded-3xl w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full my-2"
+        className="group/card  rounded-3xl w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full my-1"
       >
         <CardPattern
           mouseX={mouseX}
           mouseY={mouseY}
           randomString={randomString}
         />
-        <div className="relative w-full z-10 flex place-content-center justify-center">
-          <div className="relative w-full  rounded-[0.5em] flex place-items-center place-content-center justify-center font-bold ">
-            <div className="absolute w-full    bg-mprimary/[0.8] dark:bg-black/[0.8] blur-sm rounded-[0.5em]" />
-              <div className="flex w-[80%] flex-col place-items-center p-3 gap-1">
+        <div className="relative w-full min-h-[8em] sm:min-h-[15vh] z-10 flex place-content-center place-items-center justify-center">
+          <div className="relative w-full h-full rounded-[0.5em] flex place-items-center place-content-center justify-center font-bold ">
+            <div className="absolute w-full bg-mprimary/[0.8] dark:bg-black/[0.8] blur-sm rounded-[0.5em]" />
+              <div className="flex w-[80%] h-full flex-col place-items-center p-3 gap-1">
               <span className="z-20 text-[0.6em] sm:text-[1em]">{text}</span>
               <span className="z-20 text-[0.6em] sm:text-[1em]">{text2}</span>
               </div>
@@ -67,7 +67,7 @@ export function CardPattern({ mouseX, mouseY, randomString }: any) {
   let style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
-    <div className="pointer-events-none">
+    <div className="pointer-events-none ">
       <div className="absolute inset-0 rounded-2xl  [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
       <motion.div
         className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-blue-700 opacity-0  group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"

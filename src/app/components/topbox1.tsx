@@ -92,7 +92,7 @@ export default function TopboxOne() {
   if(isGen == true && !isLoading ) {
     return (
     <>
-      <span className="border  hover:border-main-w/40 w-[80%] relative overflow-hidden bg-mprimary text-main-w font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[15vh] ">
+      <span className="w-[80%] relative overflow-hidden bg-mprimary text-main-w font-black  flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[15vh] ">
 
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-lg">{data}</span>
         <RiArrowGoBackFill size={40} onClick={handleBack} className="absolute bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
@@ -107,7 +107,7 @@ export default function TopboxOne() {
     if(isLoading == true) {
       return (
         <>
-        <span className="border hover:border-main-w/40 text-ellipsis relative overflow-hidden bg-mprimary text-lprimary font-black border-mprimary/[0.2] dark:border-white/[0.2] flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative w-[80%] h-[15vh] ">
+        <span className=" text-ellipsis relative overflow-hidden bg-mprimary text-lprimary font-black flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative w-[80%] h-[15vh] ">
 
           <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
            
@@ -127,7 +127,7 @@ export default function TopboxOne() {
 
 
       <>
-        <span onMouseUp={handlestate} className="border w-[80%] px-2 hover:border-main-w/60  border-main-w/[0.2] flex flex-col place-content-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[15vh] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75 ">
+        <span onMouseUp={handlestate} className=" w-[80%] px-1  flex flex-col place-content-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[15vh] bg-mprimary ">
 
           <EvervaultCard text="Struggling to craft the perfect follow-up message?" text2=" Simply add a job and then click this box for a tailored message ready to send to a recruiter!" className="text-center text-main-w/70 hover:text-main-w" />
           <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>

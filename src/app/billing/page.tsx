@@ -80,30 +80,37 @@ const dbUser = await prisma.user.findUnique({
     return(
       <>
 
-      <div className="flex">
+      <div className="flex bg-dprimary">
         <div className="md:w-[20vw]">
           <SecondHeader/>
           </div>
 
       <div className="flex bg-gradient-to-b from-dprimary to-mprimary min-h-screen flex-col place-items-center w-[100vw] md:w-[80vw] pb-5  justify-start">
         <Header/>
-        <div className="grid w-[100%]">
+        <div className="grid grid-cols-1 grid-rows-2 gap-4 text-main-w/70 w-[80%] h-[65vh] ">
           <div className="flex">
 
-            <div className="w-[100%] py-5">
-              <h1 className="text-4xl font-bold">Subscription</h1>
+            <div className="w-[80%] py-5">
+              <h1 className="text-4xl text-main-w font-bold">Subscription</h1>
               <h1 className="">Settings regarding your subscription</h1>
             </div>
           </div>
 
-          <Card className="w-[100%]">
+          <Card className="w-[100%] place-self-start">
             <CardHeader>
-              <CardTitle>Manage Billing</CardTitle>
-              <CardDescription>Here you can mange billing and payment information</CardDescription>
+              <CardTitle className="text-main-w">Manage Billing</CardTitle>
+              <CardDescription>
+                <span className="flex flex-col gap-2">
+                    <span >Here you can</span>
+                  <span className="">Mange billing and payment information</span>
+                  <span className="">Update billing and payment information</span>
+                  <span className="">Cancel subscription</span>
+                </span>
+                </CardDescription>
             </CardHeader>
             <CardContent>
               <form action={createCustomerPortal}>
-                <Button className='bg-mprimary'>Launch portal</Button>
+                <Button className='bg-main-w/70 hover:bg-main-w text-dprimary'>Launch portal</Button>
               </form>
             </CardContent>
             {/* <CardFooter>
@@ -133,7 +140,7 @@ const dbUser = await prisma.user.findUnique({
                 <h1 className="text-4xl font-bold">Billing</h1>
                   <div className="flex flex-col w-[100%] place-items-center place-content-center h-[80vh]">
 
-                  <Card className="w-[80%] border-main-w/20 hover:border-main-w/40 bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                  <Card className="w-[80%]  hover:border-main-w/20 bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
                         <CardHeader>
                           <CardTitle>Subscribe to JobKompass</CardTitle>
                           <CardDescription>Looking to upgrade?</CardDescription>
