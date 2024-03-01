@@ -25,10 +25,12 @@ export default function TopboxTwo() {
     
     return(
         <> 
-            <div className="flex   z-10 place-content-center  place-items-center bg-mprimary rounded-[0.5em] py-2 m-4 relative gap-2 w-[80%] h-[5vh]">
-                <h2 className="text-main-w flex  text-center ">{weekday},</h2>
-                <h2 className="text-main-w flex  text-center ">{datemonth}</h2>
-                <h2 className="text-main-w flex  text-center ">{dayday}</h2>
+            <div className="flex   z-10 justify-around place-content-center  place-items-center bg-mprimary rounded-[0.5em] py-2 m-4 relative gap-2 w-[80%] h-[5vh]">
+                <span className='flex gap-1'>
+                    <h2 className="text-main-w flex  text-center ">{weekday},</h2>
+                    <h2 className="text-main-w flex  text-center ">{datemonth}</h2>
+                    <h2 className="text-main-w flex  text-center ">{dayday}</h2>
+                </span>
                 <h2 className="text-main-w flex  text-center ">{time}</h2>
                 {/* <h2 className="text-main-w flex  text-center ">{time}</h2> */}
             </div>
