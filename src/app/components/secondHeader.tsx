@@ -84,7 +84,8 @@ export default function Secondheader() {
       setCoverLetterData(data.coverletterdata)
       setIntroData(data.introdata)
       setSubscriptionData(data.subscriptiondata)
-      setJobData(data.jobdata)
+      setJobData('the user data', data.jobdata)
+      console.log('the user data', data)
     } catch {
 
     }
@@ -454,7 +455,7 @@ export default function Secondheader() {
       
       </>
     );
-    
+
   }
 
 
