@@ -86,10 +86,9 @@ export default function Clock() {
 
     return (
         <>
-            <div className="flex relative flex-col gap-2 w-[25%] h-[95%] py-6 justify-between">
                 
-                <div className="shadow rounded-[10em] h-[45%] flex place-items-center px-10">        
-                    <div className="flex place-items-center place-content-center gap-3 w-[100%] text-center ">
+                <div className="w-full  rounded-[10em] h-[45%] flex place-items-center px-10 my-5">        
+                    <div className="flex place-items-start place-content-start gap-3 ">
                             <span className="">Greetings, </span>
                             
                             <h3 className='font-black text-2x;'>
@@ -99,18 +98,6 @@ export default function Clock() {
                     </div>        
                 </div>
 
-                {/* <div className="bg-lprimary shadow rounded-[10em] h-[45%] flex place-items-center px-2">
-                    <div className="flex place-items-center justify-evenly w-[100%]">
-                        <div className="w-[0.7em] h-[0.1em] bg-dprimary"></div>
-                        <h2 className="text-dprimary font-bold text-4xl">{datenumber}</h2>
-                        <div className="flex flex-col ">
-                            <h2 className="text-main-w text-xl uppercase">{weekday}</h2>
-                            <h2 className="text-main-w text-muted-foreground text-xl uppercase ">{datemonth}</h2>
-                        </div>
-                    </div>
-                </div> */}
-
-            </div>
         </>
     )
 }
