@@ -64,6 +64,10 @@ interface JobsTableProps {
               <span className="py-9">Your Jobs</span>
               <Table className="w-[70vw]">
                 <TableHeader className="flex text-main-w justify-evenly gap-1">
+                  
+                  <TableHead className="w-[5em] text-main-w/70 truncate hover:text-clip">
+                    Edit
+                  </TableHead>
                   <TableHead className="w-[7em] truncate hover:text-clip">
                     Job Tttle
                   </TableHead>
@@ -94,9 +98,8 @@ interface JobsTableProps {
                   <TableHead className="w-[7em] truncate hover:text-clip">
                     Keywords
                   </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
-                    Edit
-                  </TableHead>
+           
+
                 </TableHeader>
 
 
@@ -106,6 +109,25 @@ interface JobsTableProps {
 
                   {jobdata.map((item: any) => (
                     <TableRow key={item.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
+                      
+                      <TableCell className="w-[5em]">
+                        <div className="flex gap-2">
+
+                          <form action={deleteJobData}>
+                            <input type="hidden" name="jobId" value={item.id} />
+                            <button className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
+                          </form>
+
+                          <Link href={`/dashboard/new/${item.id}`}>
+                            <input type="hidden" name="jobId" value={item.id} />
+                            <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
+                          </Link>
+
+
+                        </div>
+
+                      </TableCell> {/* Add action button cell */}
+
                       <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
                         {item.JobTitle}
                       </TableCell>
@@ -146,22 +168,6 @@ interface JobsTableProps {
                         {item.Keywords}
                       </TableCell>
 
-                      <TableCell className="w-[7em]">
-                        <div className="flex gap-2">
-
-                          <Link href={`/dashboard/new/${item.id}`}>
-                            <input type="hidden" name="jobId" value={item.id} />
-                            <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
-                          </Link>
-
-                          <form action={deleteJobData}>
-                            <input type="hidden" name="jobId" value={item.id} />
-                            <button className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
-                          </form>
-
-                        </div>
-
-                      </TableCell> {/* Add action button cell */}
 
                     </TableRow>
                   ))}
