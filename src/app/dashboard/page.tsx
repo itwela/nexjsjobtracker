@@ -114,7 +114,7 @@ export default async function Dashboard() {
                   <AddJobs />
                 </div>
 
-                <div className="relative flex pb-9  justify-between place-items-center place-content-center">
+                <div className="relative flex pb-9 w-[80vw]  justify-between place-items-center place-content-center">
                   <JobsTable jobdata={jobdata} />
                 </div>
 
@@ -153,7 +153,7 @@ export default async function Dashboard() {
                 <Header />
 
                   
-                <div className="relative   px-4 min-w-[80vw]   h-full flex flex-col place-items-center gap-2">
+                <div className="relative   px-4 w-[80vw]   h-full flex flex-col place-items-center gap-2">
                  <Clock/> 
                   <TopboxTwo />
                   <TopboxOne />
@@ -163,7 +163,7 @@ export default async function Dashboard() {
                   <AddJobs />
                 </div>
 
-                <div className="relative flex pb-9  justify-between place-items-center place-content-center">
+                <div className="relative flex pb-9 w-[80vw] px-4  justify-between place-items-center place-content-center">
                   <JobsTable jobdata={jobdata} />
                 </div>
 

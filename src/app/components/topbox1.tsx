@@ -127,7 +127,7 @@ export default function TopboxOne() {
 
 
       <>
-        <span onMouseUp={handlestate} className=" w-[80%] px-1  flex flex-col place-content-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[15vh] bg-mprimary ">
+        <span onMouseUp={handlestate} className=" w-full px-1  flex flex-col place-content-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[15vh] bg-mprimary ">
 
           <EvervaultCard text="Struggling to craft the perfect follow-up message?" text2=" Simply add a job and then click this box for a tailored message ready to send to a recruiter!" className="text-[0.8em] text-main-w/70 hover:text-main-w" />
           <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
