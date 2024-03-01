@@ -65,10 +65,10 @@ import {
                       <Accordion type="single" collapsible className="w-[100%] px-3">
                         <AccordionItem value="item-1" className="">
                           <AccordionTrigger>My Cover Letters</AccordionTrigger>
-                          <AccordionContent className="rounded-[1em] overflow-hidden">
-                              <div className="flex gap-5 justify-start w-[100%] h-[25vh] ">    
+                          <AccordionContent className="rounded-[1em] ">
+                              <div className="flex gap-5 justify-start w-[100%] h-[25vh] p-3 ">    
                                 {coverlData.map((item: any) => (
-                                    <div key={item.id} className="w-[100%] sm:w-[30%] h-[100%] p-5  text-left  bg-mprimary">
+                                    <div key={item.id} className="w-[100%] sm:w-[50%] overflow-scroll p-5  text-left bg-mprimary  ">
                                             <p>
                                                 {item.text}
                                             </p>
