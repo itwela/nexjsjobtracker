@@ -94,6 +94,9 @@ interface JobsTableProps {
                   <TableHead className="w-[7em] truncate hover:text-clip">
                     Keywords
                   </TableHead>
+                  <TableHead className="w-[7em] truncate hover:text-clip">
+                    Edit
+                  </TableHead>
                 </TableHeader>
 
 
