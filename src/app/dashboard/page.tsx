@@ -155,8 +155,8 @@ export default async function Dashboard() {
                   
                 <div className="relative   px-4 min-w-[80vw]   h-full flex flex-col place-items-center gap-2">
                  <Clock/> 
-                  <TopboxOne />
                   <TopboxTwo />
+                  <TopboxOne />
                 </div>
 
                 <div className="relative flex   justify-between place-items-center">

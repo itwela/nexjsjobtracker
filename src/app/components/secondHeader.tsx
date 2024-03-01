@@ -137,7 +137,7 @@ export default function Secondheader() {
           {/* subscribe */}
           <Link href='/billing'>
             <span className=" pb-3 w-[20vw] flex place-content-center">
-            <span className="w-[15vw] place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+            <span className="w-[15vw] place-content-center bg-gradient-to-l from-blue-900 to-blue-400 text-[0.8em] outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>Subscribe</span>
               </span>
             </span>
@@ -147,7 +147,7 @@ export default function Secondheader() {
           
           <span className='main  flex flex-col gap-4  min-h-[15vh]'>
 
-          <span className='dashb  '>
+          <span className='dashb text-[0.8em]  '>
                 
                     <Link href='/dashboard'>
                         <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
@@ -157,7 +157,7 @@ export default function Secondheader() {
                     </Link>
           </span>
 
-          <span className='coverl flex justify-between  '>
+          <span className='coverl text-[0.8em] flex justify-between  '>
                     <Link href='/coverletter'>
                     <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
                             <p className=' truncate'>Cover Letter</p>
@@ -167,7 +167,7 @@ export default function Secondheader() {
           </span>
 
           
-          <span className='mydoc   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+          <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
               <Link href='/mydocs'>
                 <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>My Docs</p>
@@ -177,7 +177,7 @@ export default function Secondheader() {
               </Link>
           </span>
 
-          <span className='settings   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+          <span className='settings text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
               <Link href='/billing'>
                 <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
                         <p className='70%] truncate'>Settings</p>
@@ -268,7 +268,7 @@ export default function Secondheader() {
                       {/* subscribe */}
               <Link href='/billing' className="p-5">
                 <span className=" pb-3 w-[20vw] flex place-content-center">
-                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                     <span>Subscribe</span>
                   </span>
                 </span>
@@ -326,7 +326,7 @@ export default function Secondheader() {
         {/* Pro */}
         <Link href='/billing'>
           <span className=" pb-3 w-[20vw] flex place-content-center">
-          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
               <span>Pro</span>
             </span>
           </span>
@@ -336,7 +336,7 @@ export default function Secondheader() {
         
         <span className='main  flex flex-col gap-4  min-h-[15vh]'>
 
-        <span className='dashb  '>
+        <span className='dashb text-[0.8em] '>
               
                   <Link href='/dashboard'>
                       <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
@@ -346,7 +346,7 @@ export default function Secondheader() {
                   </Link>
         </span>
 
-        <span className='coverl flex justify-between  '>
+        <span className='coverl text-[0.8em] flex justify-between  '>
                   <Link href='/coverletter'>
                   <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
                           <p className=' truncate'>Cover Letter</p>
@@ -356,7 +356,7 @@ export default function Secondheader() {
         </span>
 
         
-        <span className='mydoc   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+        <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
             <Link href='/mydocs'>
               <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
                       <p className='70%] truncate'>My Docs</p>
@@ -366,7 +366,7 @@ export default function Secondheader() {
             </Link>
         </span>
 
-        <span className='settings   gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+        <span className='settings text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
             <Link href='/billing'>
               <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
                       <p className='70%] truncate'>Settings</p>
@@ -437,7 +437,7 @@ export default function Secondheader() {
                     {/* pro */}
             <Link href='/billing' className="p-5">
               <span className=" pb-3 w-[20vw] flex place-content-center">
-              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-main-w/40 hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                   <span>Pro</span>
                 </span>
               </span>

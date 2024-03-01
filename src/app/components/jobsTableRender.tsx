@@ -52,13 +52,13 @@ interface JobsTableProps {
               <File className="w-10 h-10 text-main-w/60" />
             </div>
 
-            <div className="flex flex-col gap-1 w-[100%] place-items-center text-center">
+            <div className="flex flex-col text-[0.8em] gap-1 w-[100%] place-items-center text-center">
               <h2 className="text-main-w font-black">No jobs found.</h2>
               <p className="text-main-w/60 w-[50%]">You dont have any jobs created yet. Please create some so that they will show here.</p>
             </div>
           </div>
         ) : (
-          <div className="jtable mt-4 px-6 w-[80vw]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
+          <div className="jtable mt-4 px-6 w-[80vw] text-[0.8em]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
             <div className="bg-mprimary w-[70vw] rounded-[2em] px-5  flex flex-col place-items-center place-content-center ">
               <span className="py-9">Your Jobs</span>
               <Table className="w-[70vw]">

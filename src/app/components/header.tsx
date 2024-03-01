@@ -40,7 +40,7 @@ export const Header = () => {
       <div className="w-[100%]  ">
 
 
-        <header className='flex     relative h-[8vh] place-content-center'>
+        <header className='flex   text-[0.8em]  relative h-[8vh] place-content-center'>
           <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
           
           <div className='flex justify-between gap-7 w-[100%] place-items-center place-content-center'>

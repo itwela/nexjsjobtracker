@@ -176,7 +176,7 @@ export function AddJobs() {
       {!showForm && (
           <>
 
-          <div className="flex text-main-w  flex-col max-w-[80vw] place-items-center place-content-center  gap-4">
+          <div className="flex text-main-w text-[0.8em] flex-col max-w-[80vw] place-items-center place-content-center  gap-4">
             <div  onMouseUp={handleShowForm} className='cursor-pointer  p-4 px-6  w-full rounded-[2.5em] bg-gradient-to-l from-blue-900 to-blue-400 hover:outline outline-[1px] hover:outline-[1px] ease-in outline-main-w/40  place-items-center flex justify-between'>
               <button className='flex gap-2 place-items-center' 
               >
