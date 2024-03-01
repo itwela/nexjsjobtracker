@@ -60,10 +60,10 @@ interface JobsTableProps {
           </div>
         ) : (
           <div className="jtable mt-4 px-6 w-[80vw]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
-            <div className="bg-mprimary rounded-[2em] px-5 w-[70vw] flex flex-col place-items-center place-content-center ">
+            <div className="bg-mprimary w-[70vw] rounded-[2em] px-5  flex flex-col place-items-center place-content-center ">
               <span className="py-9">Your Jobs</span>
-              <Table className="">
-                <TableHeader className="flex text-main-w justify-start gap-1">
+              <Table className="w-[70vw]">
+                <TableHeader className="flex text-main-w justify-evenly gap-1">
                   <TableHead className="w-[7em] truncate hover:text-clip">
                     Job Tttle
                   </TableHead>
@@ -102,7 +102,7 @@ interface JobsTableProps {
                   {/* pop up */}
 
                   {jobdata.map((item: any) => (
-                    <TableRow key={item.id} className="flex nosb items-center gap-1 hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
+                    <TableRow key={item.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
                       <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
                         {item.JobTitle}
                       </TableCell>
