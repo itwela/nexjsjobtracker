@@ -46,7 +46,7 @@ export default async function Home() {
                     
                     <div className="w-[100vw] h-[100vh] place-items-center place-content-center flex flex-col text-center gap-2">
                           
-                          <span id='pbai' className="scale-[70%] sm:scale-[100%] mb-3 bg-gradient-to-b from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                          <span id='pbai' className="scale-[70%] sm:scale-[100%] mb-3 bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                               <span>
                                 <BsStars/>
                               </span>

@@ -53,7 +53,7 @@ export default function HeroSectionTwo() {
         {/* button group */}
         <div className="w-[90%] sm:w-[70%] flex flex-col sm:flex-row place-items-center sm:place-items-center place-content-center gap-4">
 
-            <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+            <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-l from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>
                   <SlEnvolopeLetter/>
                 </span>
@@ -62,7 +62,7 @@ export default function HeroSectionTwo() {
                 </span>
             </span>
 
-            <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+            <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-l from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>
                   <LuMessagesSquare/>
                 </span>
@@ -71,7 +71,7 @@ export default function HeroSectionTwo() {
                 </span>
             </span>
 
-            <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+            <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-l from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>
                   <FaRegCheckCircle/>
                 </span>
@@ -83,8 +83,8 @@ export default function HeroSectionTwo() {
         </div>
 
         {/* tired of ..... */}
-        <span className="pt-5 w-[90%] sm:w-[70%]">
-            <h2 className="text-sm sm:text-md text-left sm:text-center hover:text-main-w text-main-w/60">
+        <span className="pt-5 w-[70%]">
+            <h2 className="text-sm sm:text-md text-center hover:text-main-w text-main-w/60">
                 Tired of rewriting cover letters? What about crafting messages to 
                 follow up on applications? Cant keep track of the 
                 job you applied to 3 weeks ago?
@@ -98,7 +98,7 @@ export default function HeroSectionTwo() {
             Track all your applications in one place
         </h1>
 
-        <Card className="hidden sm:flex absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+        <Card className="hidden md:flex absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
               <CardContent>
             
                   
