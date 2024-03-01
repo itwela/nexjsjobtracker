@@ -80,33 +80,11 @@ export default function Secondheader() {
       const data = await response.json();
       // // Accessing user data
       const user = data.user;
-      // console.log("User:", user);
-
-      // // Accessing job data
-      // const jobData = data.jobdata;
-      // console.log("Job Data:", jobData);
-
-      // // Accessing intro data
-      // const introData = data.introdata;
-      // console.log("Intro Data:", introData);
-
-      // // Accessing cover letter data
-      // const coverLetterData = data.coverletterdata;
-      // console.log("Cover Letter Data:", coverLetterData);
-
-      // Accessing specific properties of user data
-      // const username = user.username;
-      // const firstName = user.firstName;
-      // const lastName = user.lastName;
-      // console.log("Username:", username);
-      // console.log("First Name:", firstName);
-      // console.log("Last Name:", lastName);
-      // console.log('thiss is user data:', data)
       setUserData(data.user)
       setCoverLetterData(data.coverletterdata)
       setIntroData(data.introdata)
       setSubscriptionData(data.subscriptiondata)
-      setAllData(data)
+      setJobData(data.jobdata)
     } catch {
 
     }
