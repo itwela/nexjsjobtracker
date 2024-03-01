@@ -121,7 +121,7 @@ export default function Secondheader() {
   // console.log('You have successfully logged the subscription status data to the frontend',  subscriptionData)
 
   // if (subscriptionText != 'active') {
-  if ( subscriptionData?.status != 'active' || userData?.username != 'itwela') {
+  if ( subscriptionData?.status != 'active') {
 
     return (
       <>
