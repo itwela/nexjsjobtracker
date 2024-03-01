@@ -45,13 +45,13 @@ export default function HeroSectionTwo() {
     
     <div className="flex flex-col gap-5 place-items-center h-[50vh]">
 
-        <h1 className="text-left sm:text-center text-3xl sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+        <h1 className="text-center text-3xl sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
           Made <em className="text-blue-500 pr-3">by </em> job seekers, <br />
           <em className="text-blue-500 pr-3">for </em> job seekers
         </h1>
 
         {/* button group */}
-        <div className="w-[90%] sm:w-[70%] flex flex-col sm:flex-row place-items-start sm:place-items-center place-content-center gap-4">
+        <div className="w-[90%] sm:w-[70%] flex flex-col sm:flex-row place-items-center sm:place-items-center place-content-center gap-4">
 
             <span className="h-[50px] text-main-w/60 hover:text-main-w leading-[1em] bg-gradient-to-b from-dprimary to-lprimary outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>
@@ -94,7 +94,7 @@ export default function HeroSectionTwo() {
     </div>
 
     <div className="h-[50vh] relative flex place-content-start place-items-center flex-col">
-        <h1 className="flex w-[70%] text-3xl pt-[3em] sm:pt-[0em]  sm:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+        <h1 className="flex w-[70%] text-3xl pt-[3em] sm:pt-[0em]  md:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
             Track all your applications in one place
         </h1>
 
