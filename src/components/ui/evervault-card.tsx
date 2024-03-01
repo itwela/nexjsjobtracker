@@ -41,7 +41,7 @@ export const EvervaultCard = ({
     >
       <div
         onMouseMove={onMouseMove}
-        className="group/card  rounded-3xl w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full my-1"
+        className="group/card   w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full my-1"
       >
         <CardPattern
           mouseX={mouseX}
@@ -49,10 +49,10 @@ export const EvervaultCard = ({
           randomString={randomString}
         />
         <div className="relative w-full min-h-[8em] sm:min-h-[15vh] z-10 flex place-content-center place-items-center justify-center">
-          <div className="relative w-full h-full rounded-[0.5em] flex place-items-center place-content-center justify-center font-bold ">
+          <div className="relative w-full h-full  flex place-items-center place-content-center justify-center font-bold ">
             <div className="absolute w-full bg-mprimary/[0.8] dark:bg-black/[0.8] blur-sm rounded-[0.5em]" />
-              <div className="flex w-[80%] h-full flex-col place-items-center p-3 gap-1">
-              <span className="z-20 text-[0.6em] sm:text-[1em]">{text}</span>
+              <div className="flex w-[90%] h-full flex-col place-content-center text-center p-3 gap-1">
+              <span className="z-20 text-[0.6em] sm:text-[1em]">{text}</span> 
               <span className="z-20 text-[0.6em] sm:text-[1em]">{text2}</span>
               </div>
           </div>
