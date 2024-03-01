@@ -75,6 +75,31 @@ export async function POST(request: any) {
 
     }
 
+    if(user?.firstName === 'Itwela') {  
+
+        const completion = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: `${coverletterInst}` },
+                { role: "user", content: `${thePrompt}` },
+        ],
+        })
+
+        const theResponse = completion.choices[0].message.content;
+
+        const apiAdd = await prisma?.coverLetter.create({
+            data: {
+                userId: user?.id,
+                text: theResponse as string,
+
+            }
+            
+          })
+
+        return Response.json({ text: `${theResponse}` })
+
+    }
+
 
     if(sub?.status != 'active' && coverletter.length < 3) {  
 

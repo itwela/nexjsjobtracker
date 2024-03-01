@@ -35,8 +35,7 @@ interface JobsTableProps {
 }
 
 
- function JobsTable(
-  { jobdata }: JobsTableProps) {
+ function JobsTable({ jobdata }: JobsTableProps) {
 
 
 
@@ -128,10 +127,10 @@ interface JobsTableProps {
 
                       </TableCell> {/* Add action button cell */}
 
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                      <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
                         {item.JobTitle}
                       </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                      <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
                         {item.Company}
                       </TableCell>
                       <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">

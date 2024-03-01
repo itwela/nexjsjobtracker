@@ -130,9 +130,29 @@ export const addJob = async (formData: FormData) => {
         //   const formKeywords = requestBody.Keywords as string
         //   const uniiId = requestBody.id
   
-          console.log('yooooooooooo',resumeFileName)
           
         if(sub?.status === 'active') {  
+        const apiAdd = await prisma?.job.create({
+            data: {
+                userId: user?.id,
+                JobTitle: formJobTitle,
+                Company: formCompany,
+                DateApplied: formDateApplied,
+                Status: formStatus,
+                Link: formLink,
+                Referral: formReferral,
+                ReferralName: formReferralName,
+                ReferralContact: formReferralContact,
+                ResumeUsed: resumeFileName,
+                Keywords: formKeywords,    
+            }
+            
+          })
+
+          revalidatePath("/")
+        }
+
+        if(user?.firstName === 'Itwela') {  
         const apiAdd = await prisma?.job.create({
             data: {
                 userId: user?.id,
