@@ -27,7 +27,7 @@ export default function HeroSectionTwo() {
         start: 'top 70%',
         end: 'bottom 80%',
         // scrub: true,
-        markers: true,
+        // markers: true,
       },
     })
 
