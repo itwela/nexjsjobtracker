@@ -48,6 +48,7 @@
     "nextjs-cors": "^2.2.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.28.0",
+    "quicktype": "^23.0.105",
     "react": "^18",
     "react-day-picker": "^8.10.0",
     "react-dom": "^18",

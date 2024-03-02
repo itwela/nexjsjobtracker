@@ -40,18 +40,23 @@ interface JobData {
   userId: string;
 }
 
-interface ClData {
-  cldata: {
-    coverLetters: {
-      id: string;
-      text: string;
-      createdAt: string;
-      updatedAt: string;
-      userId: string;
-      jobId: string;
-    }[];
-  }[];
+export interface Pokedex {
+  cldata: Cldatum[];
 }
+
+export interface Cldatum {
+  coverLetters: CoverLetter[];
+}
+
+export interface CoverLetter {
+  id:        string;
+  text:      string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId:    string;
+  jobId:     string;
+}
+
 
 
 
@@ -66,7 +71,7 @@ export default function NewClCard() {
     const [coverText, setCoverText] = useState()
     const [inputText, setInputText] = useState('')
     const [jobData, setJobData] = useState<JobData[]>([]);
-    const [clData, setClData] = useState<ClData[]>([]);
+    const [clData, setClData] = useState<Pokedex>({ cldata: [] });
     const [jobId, setJobId] = useState('')
     const [jobIdFromUrl, setJobIdFromUrl] = useState('') 
     const [selectedJobId, setSelectedJobId] = useState<string>('');
@@ -223,8 +228,7 @@ export default function NewClCard() {
     
     // Construct the full URL pathname
     const companyname = selectedJob?.Company || ''
-    const coverlettertext = '';
-    console.log(clData)    
+    const coverlettertext = clData.cldata[0]?.coverLetters[0]?.text || '';
     return (
         <>
 
