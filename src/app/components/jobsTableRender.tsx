@@ -13,31 +13,76 @@ import {
 import { File } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { FaRegEnvelope } from "react-icons/fa";
 
-// Define the type for formData
-interface Job {
-  id: string;
-  JobTitle: string;
+
+interface JobData {
   Company: string;
-  DateApplied: string | null;
-  Status: string | null;
+  CoverLetters: Array<{
+    id: string;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: string;
+    jobId: string;
+  }> | null;
+  DateApplied: string;
+  Introduction: string | null;
+  JobTitle: string;
+  Keywords: string | null;
   Link: string;
   Referral: string;
-  ReferralName: string | null;
   ReferralContact: string | null;
-  // Add more properties if necessary
+  ReferralName: string | null;
+  ResumeUsed: string | null;
+  Status: string;
+  createdAt: string;
+  id: string;
+  updatedAt: string;
+  userId: string;
 }
 
-interface JobsTableProps {
-  jobdata: Job[];
-}
 
 
- function JobsTable({ jobdata }: JobsTableProps) {
+ export default function JobsTable() {
 
+   useEffect(() => {
+     getAllJobs();
+   }, []) 
 
+   const [jobData, setJobData] = useState<JobData[]>([]);
+
+  const getAllJobs = async () => {
+    const hello = 'hi api for cover letter job id'
+
+    try {
+      const response = await fetch('/api/db/getalljobs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          input: hello
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      // console.log('Fetched data:', data); // Log the fetched data
+      setJobData(data.jobdata); 
+      console.log(jobData)
+
+    } catch {
+
+    }
+
+  }
 
   return (
     <>
@@ -46,7 +91,7 @@ interface JobsTableProps {
           {/* <h2 className="font-black">Your Jobs:</h2> */}
         </div>
 
-        {jobdata?.length < 1 ? (
+        {jobData?.length === 0 ? (
           <div className="space-y-4  p-6 py-6 w-[100%] min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
             <div className="flex h-20 w-20 rounded-full items-center justify-center bg-dprimary/40">
               <File className="w-10 h-10 text-main-w/60" />
@@ -64,38 +109,43 @@ interface JobsTableProps {
               <Table className="w-full">
                 <TableHeader className="flex text-main-w justify-evenly gap-1">
                   
-                  <TableHead className="w-[5em] text-main-w/70 truncate hover:text-clip">
+                  <TableHead className="flex place-content-center place-items-center w-[5em] text-main-w/70 truncate hover:text-clip">
                     Edit
                   </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
+                  <TableHead className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Job Tttle
                   </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
+                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Company
                   </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
+                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Date Applied
                   </TableHead>
-                  <TableHead className="w-[7em]">
+                  <TableHead className="flex place-content-center place-items-center w-[7em]">
                     Status
                   </TableHead>
-                  <TableHead className="w-[7em]">
+                  <TableHead className="flex place-content-center place-items-center w-[7em]">
                     Link
                   </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
-                    Referral?
-                  </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
-                    Ref Name
-                  </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
-                    Ref Contact
-                  </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
+
+                    <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
+                      Referral?
+                    </TableHead>
+                    <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
+                      Ref'd By
+                    </TableHead>
+                    <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
+                      Contact
+                    </TableHead>
+
+                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Resume Used
                   </TableHead>
-                  <TableHead className="w-[7em] truncate hover:text-clip">
+                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Keywords
+                  </TableHead>
+                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Cover letter
                   </TableHead>
            
 
@@ -106,70 +156,77 @@ interface JobsTableProps {
 
                   {/* pop up */}
 
-                  {jobdata.map((item: any) => (
-                    <TableRow key={item.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
+                  {jobData.map((job) => ( 
+                    <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
                       
                       <TableCell className="w-[5em]">
                         <div className="flex gap-2">
 
                           <form action={deleteJobData}>
-                            <input type="hidden" name="jobId" value={item.id} />
+                            <input type="hidden" name="jobId" value={job.id} />
                             <button className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
                           </form>
 
-                          <Link href={`/dashboard/new/${item.id}`}>
-                            <input type="hidden" name="jobId" value={item.id} />
+                          <Link href={`/dashboard/new/${job.id}`}>
+                            <input type="hidden" name="jobId" value={job.id} />
                             <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
                           </Link>
 
 
                         </div>
 
-                      </TableCell> {/* Add action button cell */}
+                      </TableCell> 
 
                       <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
-                        {item.JobTitle}
+                        {job.JobTitle}
                       </TableCell>
                       <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
-                        {item.Company}
+                        {job.Company}
                       </TableCell>
                       <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.DateApplied}
+                        {job.DateApplied}
                       </TableCell>
                       <TableCell className={`w-[7em] font-medium whitespace-nowrap overflow-auto  
-                                  ${item.Status.includes("Applied") ? "bg-blue-500/10" :
-                          item.Status.includes("Inter") ? "bg-yellow-500/10" :
-                            item.Status.includes("Offer") ? "bg-green-500/10" :
-                              item.Status.includes("Rej") ? "bg-red-500/10" :
-                                item.Status.includes("Ghosted") ? "bg-gray-500/10 text-muted-foreground" : ""
-                        }`}>
-                        <div className="">
-                          {item.Status}
-                        </div>
+                      ${job?.Status?.includes("Applied") ? "bg-blue-500/10" :
+                      job?.Status?.includes("Inter") ? "bg-yellow-500/10" :
+                        job?.Status?.includes("Offer") ? "bg-green-500/10" :
+                          job?.Status?.includes("Rej") ? "bg-red-500/10" :
+                            job?.Status?.includes("Ghosted") ? "bg-gray-500/10 text-muted-foreground" : ""
+                    }`}>
+                    <div className="">
+                      {job?.Status}
+                    </div>
+                  </TableCell>
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        {job.Link}
+                      </TableCell>
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        {job.Referral}
+                      </TableCell>
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        {job.ReferralName}
+                      </TableCell>
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        {job.ReferralContact}
+                      </TableCell>
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        {job.ResumeUsed}
+                      </TableCell>
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        {job.Keywords}
+                      </TableCell>
 
+                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto">
+                        <Link href={`/coverletter/job/${job.id}`}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <button className="hover:text-main-w text-slate-500"><FaRegEnvelope size={18} type="submit" /></button>
+                        </Link>
                       </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.Link}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.Referral}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.ReferralName}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.ReferralContact}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.ResumeUsed}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {item.Keywords}
-                      </TableCell>
+
 
 
                     </TableRow>
-                  ))}
+                    ))}
 
                 </TableBody>
               </Table>
@@ -182,4 +239,3 @@ interface JobsTableProps {
   )
 }
 
-export default dynamic (() => Promise.resolve(JobsTable), {ssr: false}) 

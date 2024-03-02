@@ -19,19 +19,40 @@ export async function getUserData(userId: string) {
 }
 
 // this gets all job data from a user
+export async function getJobWithCl(userId: string) {
+  noStore();
+  const data = await prisma.job.findMany({
+    where: {
+      userId: userId
+  },
+  select: {
+      coverLetters: true // Include CoverLetter
+  },
+  orderBy: {
+      createdAt: 'desc'
+  },
+});
+  
+  return data;
+}
+
+// this gets all job data from a user
 export async function getJobData(userId: string) {
-    noStore();
-    const data = prisma.job.findMany({
-      where: {
-        userId: userId
-      },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
-    
-    return data;
-  }
+  noStore();
+  const data = await prisma.job.findMany({
+    where: {
+      userId: userId
+  },
+  // select: {
+  //     coverLetters: true // Include CoverLetter
+  // },
+  orderBy: {
+      createdAt: 'desc'
+  },
+});
+  
+  return data;
+}
 
 // this gets a unique job for a user
 export async function getUniqueJobData(userId: string) {
@@ -65,7 +86,7 @@ export async function getSubscriptionData(userId: string) {
     return data;
 }
 
-  // this get subscription data from user
+  // this get cover letter data from user
 export async function getCoverLetterData(userId: string) {
   noStore(); 
   const data = prisma.coverLetter.findMany({
@@ -75,6 +96,19 @@ export async function getCoverLetterData(userId: string) {
     orderBy: {
       createdAt: 'desc'
     }
+  });
+  
+  return data;
+}
+
+// this get cover letter data from user
+export async function getClByJobId(userId: string, jobId: string) {
+  noStore(); 
+  const data = prisma.job.findUnique({
+    where: {
+      userId: userId,
+      id: jobId
+    },
   });
   
   return data;
@@ -217,7 +251,7 @@ export const deleteJobData = async (formData: FormData) => {
 
   await prisma.job.delete({
     where: {
-      id: jobId
+      id: jobId,
     },
   });
 
@@ -268,12 +302,12 @@ export async function getUsername(userId: string) {
       id: userId
     },
     select: {
-      username: true
-    }
-
+      username: true,
+    },
   })
   return data;
 }
+
 
 
 

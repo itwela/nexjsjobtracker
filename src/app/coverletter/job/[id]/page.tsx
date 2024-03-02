@@ -1,9 +1,10 @@
-import CoverLetterGen from "../components/coverLetterComp";
-import { Header } from "../components/header";
-import SecondHeader from "../components/secondHeader";
+import CoverLetterGen from "../../../components/coverLetterComp";
+import { Header } from "../../../components/header";
+import SecondHeader from "../../../components/secondHeader";
+import NewClCard from "../../../components/clientcl";
 
 
-const CoverLetter = () => {
+const NewCoverLetter = () => {
   
   return (
       <>
@@ -15,11 +16,8 @@ const CoverLetter = () => {
         <div className="flex bg-gradient-to-b from-dprimary to-mprimary flex-col min-h-screen w-[100vw] sm:w-[80vw] place-items-center justify-items-center text-main-w">
 
               <Header/>
-              <div className="flex px-[3.5em] w-[100%] py-5">
-                <h1 className="text-4xl font-bold text-main-w/70">Create a cover letter</h1>
-              </div>
               <div className="px-9 w-[100%]">
-              <CoverLetterGen/>
+                <NewClCard/>
               </div>
           </div>
         </div>
@@ -27,4 +25,4 @@ const CoverLetter = () => {
     );
   };
   
-  export default CoverLetter;
+  export default NewCoverLetter;

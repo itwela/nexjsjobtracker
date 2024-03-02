@@ -19,7 +19,6 @@ import {
 
 
 interface CaroselForm {
-
   [key: string]: string;
 }
 // Define the type for formData
@@ -74,41 +73,6 @@ export function AddJobs() {
   const [formData, setFormData] = useState<FormData>({ jobdata: { Company: "", DateApplied: "", Introduction: null, JobTitle: "", Keywords: "", Link: "", Referral: "", ReferralContact: null, ReferralName: null, ResumeUsed: "", Status: "", createdAt: "", id: "", updatedAt: "", userId: "" } });
   const router = useRouter();
 
-
-  // const handleSubmit = async () => {
-  //   setFormData(formData); // Update the state
-  //   console.log(formData); // Update the state
-
-  //   try {
-  //     const response = await fetch('/api/db/addjobs', {
-  //         method: 'POST',
-  //         next: {
-  //           revalidate: 0
-  //         },
-  //         headers: {
-  //             'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify({
-  //             input: formData
-  //         })
-  //     });
-  
-  //     if (!response.ok) {
-  //         throw new Error('Failed to fetch data');
-  //     }
-  
-  
-  // } catch (error) {
-  //     // Handle error
-  // }
-
-     
-  //    toast("Success!: New Job Created", {
-  //        description: "Congratulations, you're one step closer to your next job!",
-  //    });
-     
-  
-  // }
 
   const handleShowForm = (e: any) => {
     setShowForm(!showForm)

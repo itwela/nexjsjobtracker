@@ -21,6 +21,13 @@ interface JobData {
   Company: string;
   DateApplied: string;
   Status: string;
+  Link: string;
+  Referral: string;
+  ReferralName: string | null;
+  ReferralContact: string | null;
+  Keywords: string | null;
+  CoverLetter: string | null;
+
   // Define other properties
 }
 
@@ -78,15 +85,12 @@ export default function Secondheader() {
       }
 
       const data = await response.json();
-      // // Accessing user data
-      // const user = data.user;
       setUserData(data.userData)
       setCoverLetterData(data.coverletterdata)
       setIntroData(data.introdata)
       setSubscriptionData(data.subscriptiondata)
       setJobData(data.jobdata)
-      console.log('the user data', jobData)
-      console.log('all the data', data)
+      // console.log('all the data', data)
       
     } catch {
 
@@ -170,7 +174,7 @@ export default function Secondheader() {
           <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
               <Link href='/mydocs'>
                 <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>My Docs</p>
+                        <p className='70%] truncate'>My docs</p>
                     <span className=''><IoDocumentTextOutline  className=''/>
                     </span>
                 </span>
@@ -251,7 +255,7 @@ export default function Secondheader() {
               
                   <Link href='/mydocs'>
                   <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className='70%] truncate'>My Docs</p>
+                            <p className='70%] truncate'>My docs</p>
                         <span className=''><IoDocumentTextOutline  className=''/>
                         </span>
                     </span>
@@ -359,7 +363,7 @@ export default function Secondheader() {
         <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
             <Link href='/mydocs'>
               <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                      <p className='70%] truncate'>My Docs</p>
+                      <p className='70%] truncate'>My docs</p>
                   <span className=''><IoDocumentTextOutline  className=''/>
                   </span>
               </span>
@@ -420,7 +424,7 @@ export default function Secondheader() {
             
                 <Link href='/mydocs'>
                 <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                          <p className='70%] truncate'>My Docs</p>
+                          <p className='70%] truncate'>My docs</p>
                       <span className=''><IoDocumentTextOutline  className=''/>
                       </span>
                   </span>

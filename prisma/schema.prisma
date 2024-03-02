@@ -46,6 +46,9 @@ model CoverLetter {
 
   User                 User?          @relation(fields: [userId], references: [id])
   userId               String  
+
+  job         Job      @relation(fields: [jobId], references: [id])
+  jobId       String     
 }
 
 model Introduction {
@@ -82,4 +85,5 @@ model Job {
   User                 User?          @relation(fields: [userId], references: [id])
   userId               String        
 
-}
+  coverLetters         CoverLetter[]  // Change from CoverLetter? to CoverLetter[]
+  }

@@ -13,12 +13,7 @@ export async function POST(request: any){
     const coverletterdata = await getCoverLetterData(user?.id as string)
     const jobdata = await getJobData(user?.id as string)
   
-    console.log({
-      'This is cover letter data' : coverletterdata,
-       'This is intro  data' : introdata, 
-       'This is subscription data' : subscriptiondata, 
-      })
 
     return Response.json(
-      { user, jobdata,data, subscriptiondata,  introdata, coverletterdata,})
+      { user, jobdata ,data, subscriptiondata,  introdata, coverletterdata,})
   }

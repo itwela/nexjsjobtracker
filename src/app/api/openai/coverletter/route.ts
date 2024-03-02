@@ -4,7 +4,7 @@ import { coverletterInst } from "@/app/prompts";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import prisma from '../../../libs/db';
 import { auth, currentUser } from "@clerk/nextjs";
-import { getCoverLetterData, getUserData } from "@/actions/databaseAc";
+import { getClByJobId, getCoverLetterData, getUserData } from "@/actions/databaseAc";
 import { getJobData } from "@/actions/databaseAc";
 import { getSubscriptionData } from "@/actions/databaseAc";
 
@@ -22,13 +22,12 @@ export async function POST(request: any) {
     auth();
     const user = await currentUser()
     const userdata = await getUserData(user?.id as string)
-    const jobdata = await getJobData(user?.id as string)
+    const jobdata = await getClByJobId(user?.id as string, requestBody.input)
     const sub = await getSubscriptionData(user?.id as string)
     const coverletter = await getCoverLetterData(user?.id as string)
     const firstName = userdata?.firstName;
     const lastName = userdata?.lastName;
     const myname = `${firstName} ${lastName}`
-    const thejobDate = jobdata?.[0].DateApplied;
 
     const thePrompt = `
 
@@ -36,7 +35,10 @@ export async function POST(request: any) {
     in crafting my cover letter. 
 
     My name is '${myname}'.
-    Todays date is '${thejobDate}'
+    I applied on '${jobdata?.DateApplied}'
+    Here are some keywprds that I want you to incorporate in the
+    letter if applicable. Meaning tie it into the job
+    description I give you as well. '${jobdata?.Keywords}' 
 
     please put the name and date im giving you at the top of the cover letter.
     No matter what make the first letter in the name capital.
@@ -63,10 +65,10 @@ export async function POST(request: any) {
         const theResponse = completion.choices[0].message.content;
 
         const apiAdd = await prisma?.coverLetter.create({
-            data: {
-                userId: user?.id,
+             data: {
+                userId: user?.id as string,
                 text: theResponse as string,
-
+                jobId: requestBody.input
             }
             
           })
@@ -91,6 +93,7 @@ export async function POST(request: any) {
             data: {
                 userId: user?.id,
                 text: theResponse as string,
+                jobId: requestBody.input
 
             }
             
@@ -101,8 +104,8 @@ export async function POST(request: any) {
     }
 
 
-    if(sub?.status != 'active' && coverletter.length < 3) {  
-
+    if(sub?.status != 'active' && coverletter.length < 3) {
+        
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
@@ -113,15 +116,15 @@ export async function POST(request: any) {
 
         const theResponse = completion.choices[0].message.content;
 
-        
         const apiAdd = await prisma?.coverLetter.create({
             data: {
-                userId: user?.id,
-                text: theResponse as string,
+                userId: user?.id as string,
+                text: theResponse as string ,       
+                jobId: requestBody.input
             }
             
-          })
-          
+        })
+            
         return Response.json({ text: `${theResponse}` })
 
     }

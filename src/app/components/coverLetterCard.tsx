@@ -5,17 +5,54 @@
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaRegCopy } from "react-icons/fa";
 import { toast } from "sonner";
 
 
 
+interface JobData {
+    
+    Company: string;
+    CoverLetter: {
+        id: string;
+        text: string;
+        createdAt: string;
+        updatedAt: string;
+        userId: string;
+        jobId: string;
+    } | null;
+    DateApplied: string;
+    Introduction: string | null;
+    JobTitle: string;
+    Keywords: string | null;
+    Link: string;
+    Referral: string;
+    ReferralContact: string | null;
+    ReferralName: string | null;
+    ResumeUsed: string | null;
+    Status: string;
+    createdAt: string;
+    id: string;
+    updatedAt: string;
+    userId: string;
+  }
+
+
 export default function CoverLetterCard() {
+    
+  useEffect(() => {
+      getJobId()
+      setJobId('')
+    }, [])  
+
     const [isLoading, setIsLoading] = useState(false)
     const [coverText, setCoverText] = useState()
     const [inputText, setInputText] = useState('')
-    
+    const [jobData, setJobData] = useState<JobData[]>([]);
+    const [jobId, setJobId] = useState('')
+    const [selectedJobId, setSelectedJobId] = useState<string>('');
+
     const handleInputChange = (event: any) => {
         setInputText(event.target.value);
         console.log(inputText)
@@ -24,7 +61,6 @@ export default function CoverLetterCard() {
     const handleSubmit = async (event: any) => {
         
         const jobDescription = inputText // Assuming your textarea has the name 'input'
-        // console.log(jobDescription);
 
         try {
             const response = await fetch('/api/openai/coverletter', {
@@ -33,7 +69,8 @@ export default function CoverLetterCard() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    input: jobDescription
+                    input: jobDescription,
+                    id: jobId
                 })
             });
         
@@ -67,6 +104,8 @@ export default function CoverLetterCard() {
         } catch (error) {
             // Handle error
         }
+
+
     };
 
     function copyText() {
@@ -84,12 +123,60 @@ export default function CoverLetterCard() {
 
     }
 
+    const getJobId = async () => {
+        const thejob = jobId
+
+        try {
+          const response = await fetch('/api/db/getalljobs', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              input: thejob
+            })
+          });
+    
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+    
+          const data = await response.json();
+          // console.log('Fetched data:', data); // Log the fetched data
+          setJobData(data.jobdata); 
+
+        } catch {
+    
+        }
+    
+      }
+
+      const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newJobId = e.target.value; // Get the new jobId from the selected option's value
+        const { value } = e.target
+        setJobId(newJobId); // Update the jobId state with the new value
+        setSelectedJobId(value);
+    };
+
+    // Find the selected job in the jobData array
+    const selectedJob = jobData.find(job => job.id === selectedJobId);
+
+    // Get the CoverLetter text of the selected job
+    const coverLetterText = selectedJob?.CoverLetter?.text || ''
 
     return (
         <>
                 <form action={handleSubmit} className=' flex flex-col gap-2'>
+                    <select id="status" onChange={handleStatusChange} className='border-transparent rounded-[0.2em] p-2 bg-lprimary w-full' name="status" required>
+                        <option value="">Select a Job</option>
+                        {/* Populate options with job data */}
+                        {jobData.map((job) => (
+                            <option key={job.id} value={job.id}>
+                               <span className="flex"><span>{job.JobTitle}</span> - <span className="italic text-main-w/70">{job.Company}</span></span>
+                            </option>
+                        ))}
+                    </select>
                         <Textarea onChange={handleInputChange} name="" id="input" className='min-h-[30vh] border-transparent'>
-
                         </Textarea>
                     <Button className='bg-main-w/80 hover:bg-main-w text-mprimary'>Submit</Button>
                 </form>
@@ -98,8 +185,8 @@ export default function CoverLetterCard() {
                 <div className='relative my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-mprimary p-5 rounded-[1em]'>
                 <FaRegCopy size={36} onClick={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer text-main-w/70 hover:text-main-w font-black p-2" />
 
-                  <h1 className='text-2xl font-semibold text-main-w/70 hover:text-main-w leading-none tracking-tight my-4'>
-                    Your Cover Letter:
+                  <h1 className='text-[1.5em] font-semibold text-main-w/70 hover:text-main-w leading-none tracking-tight my-4'>
+                    Your cover letter:
                   </h1>
                     <span id='cov-text'>{coverText}</span>
                 </div>

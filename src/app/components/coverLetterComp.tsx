@@ -6,11 +6,30 @@ import {
   CardTitle
 } from "@/components/ui/card";
 import CoverLetterCard from './coverLetterCard';
+import prisma from "@/app/libs/db";
+import { unstable_noStore as noStore } from "next/cache";
+import { currentUser } from "@clerk/nextjs";
 
 
+async function getJobData(userId: string) {
+  noStore();
+  const data = prisma.job.findMany({
+    where: {
+      userId: userId
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
 
+  return data;
+}
 
-const CoverLetterGen = () => {
+ const  CoverLetterGen = async () => {
+
+  const user = await currentUser()
+  const jobdata = await getJobData(user?.id as string)
+
   return (
     <>
       <div className=' flex flex-col w-[100%] gap-3 pb-4'>
@@ -18,8 +37,8 @@ const CoverLetterGen = () => {
           <Card className="w-[100%] border-transparent ">
                 
                 <CardHeader>
-                  <CardTitle >Add A Job Description</CardTitle>
-                  <CardDescription className='text-main-w/50'>Start generationg your Cover Letter by first adding a relevant job description</CardDescription>
+                    <CardTitle className="text-[1.5em]" >Choose a job</CardTitle>
+                  <CardDescription className='text-main-w/50'>Start generationg your cover letter by choosing a job and adding a relevant job description</CardDescription>
                 </CardHeader>
 
                 <CardContent className="">

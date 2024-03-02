@@ -15,67 +15,61 @@ import TopboxOne from "../components/topbox1";
 import TopboxTwo from "../components/topbox2";
 import Clock from "../components/clock";
 
-async function getUserData(userId: string) {
-  noStore();
-  const data = prisma.user.findUnique({
-    where: {
-      id: userId
-    },
-  });
+// async function getUserData(userId: string) {
+//   noStore();
+//   const data = prisma.user.findUnique({
+//     where: {
+//       id: userId
+//     },
+//   });
 
-  return data;
-}
+//   return data;
+// }
 
-async function getJobData(userId: string) {
-  noStore();
-  const data = prisma.job.findMany({
-    where: {
-      userId: userId
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
+// async function getJobData(userId: string) {
+//   noStore();
+//   const data = prisma.job.findMany({
+//     where: {
+//       userId: userId
+//     },
+//     include: {
+//       CoverLetter: true
+//     },
+//     orderBy: {
+//       createdAt: 'desc'
+//     }
+//   });
 
-  return data;
-}
+//   return data;
+// }
 
-async function getSubscriptionData(userId: string) {
-  noStore();
-  const data = await prisma.subscription.findUnique({
-    where: {
-      userId: userId
-    },
-    select: {
-      status: true,
-      user: {
-        select: {
-          stripeCustomerId: true,
-        }
-      }
-    }
+// async function getSubscriptionData(userId: string) {
+//   noStore();
+//   const data = await prisma.subscription.findUnique({
+//     where: {
+//       userId: userId
+//     },
+//     select: {
+//       status: true,
+//       user: {
+//         select: {
+//           stripeCustomerId: true,
+//         }
+//       }
+//     }
 
-  })
-  return data;
-}
-
-
-
-
-
-
-
-
-
+//   })
+//   return data;
+// }
 
 
 
 export default async function Dashboard() {
 
   const user = await currentUser()
-  const userdata = await getUserData(user?.id as string)
-  const jobdata = await getJobData(user?.id as string)
-  const subscriptiondata = await getSubscriptionData(user?.id as string)
+  // const userdata = await getUserData(user?.id as string)
+  // const jobdata = await getJobData(user?.id as string)
+  // const subscriptiondata = await getSubscriptionData(user?.id as string)
 
 
   return (
@@ -115,7 +109,7 @@ export default async function Dashboard() {
                 </div>
 
                 <div className="relative flex pb-9 w-[80vw]  justify-between place-items-center place-content-center">
-                  <JobsTable jobdata={jobdata} />
+                  <JobsTable />
                 </div>
 
 
@@ -164,7 +158,7 @@ export default async function Dashboard() {
                 </div>
 
                 <div className="relative flex pb-9 w-[80vw] px-4  justify-between place-items-center place-content-center">
-                  <JobsTable jobdata={jobdata} />
+                  <JobsTable />
                 </div>
 
 
