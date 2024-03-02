@@ -43,33 +43,37 @@ import {
                         <h2 className="text-main-w/50">Just in case you forgot to copy something, you can access it here!</h2>
                     </div>
 
-                      <Accordion type="single" collapsible className="w-[100%] px-3">
+                      <Accordion type="single" collapsible className=" px-3">
                         <AccordionItem value="item-1" className="">
                           <AccordionTrigger>My Cover Letters</AccordionTrigger>
                           <AccordionContent className="rounded-[1em] ">
-                              <div className="flex gap-5 justify-start w-[100%] h-[25vh] p-3 ">    
-                              {jobData.map((job: any) => (
-                                 <>
-                                  <div
-                                    key={job.id}
-                                    className="w-[100%] sm:w-[50%] overflow-scroll p-5  text-left bg-mprimary"
-                                  >
-                                    {/* Check if coverLetters exist */}
-                                    {job.coverLetters && job.coverLetters.map((coverLetter: any) => (
-                                      <>
-                                      <span className="flex w-full justify-between pb-4">
-                                        <p key={coverLetter.jobId} className="">
-                                          {job.JobTitle}, <span className="text-main-w/60">{job.Company}</span>
-                                        </p>
-                                        <p key={coverLetter.jobId} className="">{job.DateApplied}</p>
-                                      </span>
-                                      <p className="text-main-w/60" key={coverLetter.id}>{coverLetter.text}</p>
-                                       </>
-                                    ))}
+                              <div className="flex gap-5 justify-start h-[25vh] p-3 overflow-x-scroll ">    
+                              {jobData
+                                    // Filter jobs with cover letters   
+                                    .filter((job: any) => job.coverLetters && job.coverLetters.length > 0)
+                                    // Map over filtered jobs
+                                    .map((job: any) => (
+                                      <div
+                                        key={job.id}
+                                        className="min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary"
+                                      >
 
-                                  </div>
-                                  </>
-                                ))}                              
+                                        {/* Render job details */}
+                                        <span className="flex flex-col md:flex-row gap-2 w-full justify-between py-4">
+                                          <p>
+                                            {job.JobTitle}, <span className="text-main-w/60">{job.Company}</span>
+                                          </p>
+                                          <p className="absolute top-2 right-4">{job.DateApplied}</p>
+                                        </span>
+                                        {/* Map over cover letters */}
+                                        {job.coverLetters.map((coverLetter: any) => (
+                                          <p className="text-main-w/60" key={coverLetter.id}>
+                                            {coverLetter.text}
+                                          </p>
+                                        ))}
+                                      </div>
+                                    ))}    
+
                                 </div>   
                           </AccordionContent>
                         </AccordionItem>
