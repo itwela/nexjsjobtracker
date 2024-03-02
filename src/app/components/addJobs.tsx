@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { addJob } from '@/actions/databaseAc';
 // 
 import { FaPlus, FaPlusCircle } from 'react-icons/fa';
-import { useRouter } from 'next/navigation';
 import {
   Carousel,
   CarouselContent,
@@ -16,6 +15,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import router from "next/router";
 
 
 interface CaroselForm {
@@ -71,7 +71,6 @@ export function AddJobs() {
   
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<FormData>({ jobdata: { Company: "", DateApplied: "", Introduction: null, JobTitle: "", Keywords: "", Link: "", Referral: "", ReferralContact: null, ReferralName: null, ResumeUsed: "", Status: "", createdAt: "", id: "", updatedAt: "", userId: "" } });
-  const router = useRouter();
 
 
   const handleShowForm = (e: any) => {
@@ -131,6 +130,10 @@ export function AddJobs() {
     // Add more fields as needed
   });
 
+  const handleReload  = async  () => {
+    router.reload();
+  }
+  
 
             
 
@@ -171,7 +174,7 @@ export function AddJobs() {
               className="w-full flex pt-2  place-items-center place-content-center"
             >
                 <CarouselPrevious />        
-                      <form action={addJob} className=''>
+                      <form action={addJob}  className=''>
                       <CarouselContent className=" w-[40vw] flex  place-items-center place-content-start  z-5">
                             
                             

@@ -14,6 +14,7 @@ import SecondHeader from "../components/secondHeader";
 import TopboxOne from "../components/topbox1";
 import TopboxTwo from "../components/topbox2";
 import Clock from "../components/clock";
+import { getJobData } from "@/actions/databaseAc";
 
 // async function getUserData(userId: string) {
 //   noStore();
@@ -68,7 +69,7 @@ export default async function Dashboard() {
 
   const user = await currentUser()
   // const userdata = await getUserData(user?.id as string)
-  // const jobdata = await getJobData(user?.id as string)
+  const jobdata = await getJobData(user?.id as string)
   // const subscriptiondata = await getSubscriptionData(user?.id as string)
 
 
@@ -109,7 +110,7 @@ export default async function Dashboard() {
                 </div>
 
                 <div className="relative flex pb-9 w-[80vw]  justify-between place-items-center place-content-center">
-                  <JobsTable />
+                  <JobsTable jobdata={jobdata} />
                 </div>
 
 
@@ -158,7 +159,7 @@ export default async function Dashboard() {
                 </div>
 
                 <div className="relative flex pb-9 w-[80vw] px-4  justify-between place-items-center place-content-center">
-                  <JobsTable />
+                  <JobsTable jobdata={jobdata}/>
                 </div>
 
 

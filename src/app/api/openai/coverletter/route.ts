@@ -68,7 +68,7 @@ export async function POST(request: any) {
              data: {
                 userId: user?.id as string,
                 text: theResponse as string,
-                jobId: requestBody.input
+                jobId: requestBody.id
             }
             
           })
@@ -93,7 +93,7 @@ export async function POST(request: any) {
             data: {
                 userId: user?.id,
                 text: theResponse as string,
-                jobId: requestBody.input
+                jobId: requestBody.id
 
             }
             
@@ -120,7 +120,7 @@ export async function POST(request: any) {
             data: {
                 userId: user?.id as string,
                 text: theResponse as string ,       
-                jobId: requestBody.input
+                jobId: requestBody.id
             }
             
         })

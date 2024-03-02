@@ -9,7 +9,7 @@ import {
   import prisma from '../libs/db';
   import { auth, currentUser } from "@clerk/nextjs";
   import { unstable_noStore as noStore } from "next/cache";
-  import { getCoverLetterData } from "@/actions/databaseAc";  
+  import { getCoverLetterData, getJobData } from "@/actions/databaseAc";  
   import { getIntroductionData } from "@/actions/databaseAc";
 //   import { toast } from "sonner";
 // import { FaRegCopy } from "react-icons/fa";
@@ -18,30 +18,11 @@ import {
     noStore();
     auth();
     const user = await currentUser()
+    const jobData = await getJobData(user?.id as string)
     const coverlData = await getCoverLetterData(user?.id as string)
     const introData = await getIntroductionData(user?.id as string)
 
-    // const copyText = () => {
-    //   const element = document.getElementById("gen-text");
-  
-    //   if (element instanceof HTMLSpanElement) {
-    //     const textToCopy = element.innerText;
-  
-    //     navigator.clipboard.writeText(textToCopy)
-    //       .then(() => {
-    //         toast("Success!: Introduction Copied", {
-    //           description: "Congratulations, you're one step closer to your next job!",
-    //         });
-    //       })
-    //       .catch(error => {
-    //         console.error('Unable to copy text: ', error);
-    //         toast("Error: Copying Failed", {
-    //           description: "An error occurred while copying the introduction.",
-    //         });
-    //       });
-    //   }
-    // };
-  
+
     
     return (
         <>
@@ -67,29 +48,46 @@ import {
                           <AccordionTrigger>My Cover Letters</AccordionTrigger>
                           <AccordionContent className="rounded-[1em] ">
                               <div className="flex gap-5 justify-start w-[100%] h-[25vh] p-3 ">    
-                                {coverlData.map((item: any) => (
-                                    <div key={item.id} className="w-[100%] sm:w-[50%] overflow-scroll p-5  text-left bg-mprimary  ">
-                                            <p>
-                                                {item.text}
-                                            </p>
-                                    </div>
+                              {jobData.map((job: any) => (
+                                 <>
+                                  <div
+                                    key={job.id}
+                                    className="w-[100%] sm:w-[50%] overflow-scroll p-5  text-left bg-mprimary"
+                                  >
+                                    {/* Check if coverLetters exist */}
+                                    {job.coverLetters && job.coverLetters.map((coverLetter: any) => (
+                                      <>
+                                      <span className="flex w-full justify-between pb-4">
+                                        <p key={coverLetter.jobId} className="">
+                                          {job.JobTitle}, <span className="text-main-w/60">{job.Company}</span>
+                                        </p>
+                                        <p key={coverLetter.jobId} className="">{job.DateApplied}</p>
+                                      </span>
+                                      <p className="text-main-w/60" key={coverLetter.id}>{coverLetter.text}</p>
+                                       </>
+                                    ))}
 
-                                ))}
-                                  {/* <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" /> */}
-                                </div>
+                                  </div>
+                                  </>
+                                ))}                              
+                                </div>   
                           </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
                           <AccordionTrigger>My Introductions</AccordionTrigger>
                           <AccordionContent className="flex flex-col gap-3">
-                          {introData.map((item: any) => (
-                                    <div key={item.id} className="w-[100%] h-[10%] p-5 text-left  bg-mprimary">
-                                            <p>
-                                                {item.text}
-                                            </p>
-                                    </div>
+                                   <div className="flex gap-5 justify-start w-[100%] h-[25vh] p-3 ">
+                                {/* Iterate over jobData and access coverLetters */}
+                                
+                              {introData.map((item: any) => (
+                                        <div key={item.id} className="w-[100%] h-max  p-5 text-left  bg-mprimary">
+                                                <p>
+                                                    {item.text}
+                                                </p>
+                                        </div>
 
-                                ))}
+                                    ))}
+                              </div>
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>

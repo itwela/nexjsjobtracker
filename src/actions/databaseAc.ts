@@ -43,9 +43,9 @@ export async function getJobData(userId: string) {
     where: {
       userId: userId
   },
-  // select: {
-  //     coverLetters: true // Include CoverLetter
-  // },
+  include: {
+      coverLetters: true // Include CoverLetter
+  },
   orderBy: {
       createdAt: 'desc'
   },
@@ -235,8 +235,6 @@ export const addJob = async (formData: FormData) => {
         
 
 
-
-          
         
       
           
@@ -249,6 +247,13 @@ export const deleteJobData = async (formData: FormData) => {
 
   const jobId = formData.get('jobId') as string
 
+  await prisma.coverLetter.deleteMany({
+    where: {
+      jobId: jobId,
+    },
+  });
+
+
   await prisma.job.delete({
     where: {
       id: jobId,
@@ -256,6 +261,8 @@ export const deleteJobData = async (formData: FormData) => {
   });
 
   revalidatePath('/dashbard')
+  
+
 }
 
 

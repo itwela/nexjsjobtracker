@@ -17,19 +17,20 @@ import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
+import router from "next/router";
 
 
 interface JobData {
   Company: string;
-  CoverLetters: Array<{
+  coverLetters?: Array<{
     id: string;
     text: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
     userId: string;
     jobId: string;
-  }> | null;
-  DateApplied: string;
+  }>;
+  DateApplied: string | null; // Update the type to string | null
   Introduction: string | null;
   JobTitle: string;
   Keywords: string | null;
@@ -38,50 +39,60 @@ interface JobData {
   ReferralContact: string | null;
   ReferralName: string | null;
   ResumeUsed: string | null;
-  Status: string;
-  createdAt: string;
+  Status: string | null;
+  createdAt: Date;
   id: string;
-  updatedAt: string;
+  updatedAt: Date;
   userId: string;
+}
+
+type JobDataProps = {
+  jobdata: JobData[];
 }
 
 
 
- export default function JobsTable() {
+
+
+ export default function JobsTable({jobdata}: JobDataProps) {
 
    useEffect(() => {
-     getAllJobs();
+    //  getAllJobs();
    }, []) 
 
-   const [jobData, setJobData] = useState<JobData[]>([]);
+  //  const [jobData, setJobData] = useState<JobData[]>([]);
 
-  const getAllJobs = async () => {
-    const hello = 'hi api for cover letter job id'
+  // const getAllJobs = async () => {
+  //   const hello = 'hi api for cover letter job id'
 
-    try {
-      const response = await fetch('/api/db/getalljobs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          input: hello
-        })
-      });
+  //   try {
+  //     const response = await fetch('/api/db/getalljobs', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         input: hello
+  //       })
+  //     });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch data');
+  //     }
 
-      const data = await response.json();
-      // console.log('Fetched data:', data); // Log the fetched data
-      setJobData(data.jobdata); 
-      console.log(jobData)
+  //     const data = await response.json();
+  //     // console.log('Fetched data:', data); // Log the fetched data
+  //     setJobData(data.jobdata); 
+  //     console.log(jobData)
 
-    } catch {
+  //   } catch {
 
-    }
+  //   }
 
+  // }
+
+  const handleReload  = async  () => {
+    router.reload();
   }
 
   return (
@@ -91,7 +102,7 @@ interface JobData {
           {/* <h2 className="font-black">Your Jobs:</h2> */}
         </div>
 
-        {jobData?.length === 0 ? (
+        {jobdata?.length === 0 ? (
           <div className="space-y-4  p-6 py-6 w-[100%] min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
             <div className="flex h-20 w-20 rounded-full items-center justify-center bg-dprimary/40">
               <File className="w-10 h-10 text-main-w/60" />
@@ -156,7 +167,7 @@ interface JobData {
 
                   {/* pop up */}
 
-                  {jobData.map((job) => ( 
+                  {jobdata.map((job) => ( 
                     <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
                       
                       <TableCell className="w-[5em]">
@@ -164,7 +175,7 @@ interface JobData {
 
                           <form action={deleteJobData}>
                             <input type="hidden" name="jobId" value={job.id} />
-                            <button className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
+                            <button  className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
                           </form>
 
                           <Link href={`/dashboard/new/${job.id}`}>
@@ -184,7 +195,7 @@ interface JobData {
                         {job.Company}
                       </TableCell>
                       <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.DateApplied}
+                         {job.DateApplied} 
                       </TableCell>
                       <TableCell className={`w-[7em] font-medium whitespace-nowrap overflow-auto  
                       ${job?.Status?.includes("Applied") ? "bg-blue-500/10" :
