@@ -28,6 +28,7 @@ export default function HeroSectionTwo() {
         end: 'bottom 80%',
         // scrub: true,
         // markers: true,
+        toggleActions: 'play play reverse reverse'
       },
     })
 
