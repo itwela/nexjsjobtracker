@@ -14,7 +14,7 @@ import { File } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaRegEdit } from "react-icons/fa";
+import { FaPlus, FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
 import router from "next/router";
@@ -227,10 +227,14 @@ type JobDataProps = {
                         {job.Keywords}
                       </TableCell>
 
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto">
+                      <TableCell className="w-[7em] font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
                         <Link href={`/coverletter/job/${job.id}`}>
                               <input type="hidden" name="jobId" value={job.id} />
                               <button className="hover:text-main-w text-slate-500"><FaRegEnvelope size={18} type="submit" /></button>
+                        </Link>
+                        <Link href={`/coverletter/`}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <button className="hover:text-main-w text-slate-500"><FaPlus size={18} type="submit" /></button>
                         </Link>
                       </TableCell>
 
