@@ -13,6 +13,9 @@ import {
   import { getIntroductionData } from "@/actions/databaseAc";
 //   import { toast } from "sonner";
 // import { FaRegCopy } from "react-icons/fa";
+import spin from '../assets/system-solid-18-autorenew.gif'
+import { Suspense } from "react";
+
 
   export default async function Mydocs ()  {
     noStore();
@@ -26,6 +29,21 @@ import {
     
     return (
         <>
+                   <Suspense fallback={
+        
+        <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
+          <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
+            JobKompass
+          </span>
+          <span className="flex gap-3 place-items-center place-content-center">
+          <p className='text-main-w'>Data is loading, please wait a moment...</p>
+          <img src={spin.src} alt="" className="w-[20px]"/>
+          </span>
+        </div>
+      
+      }>
+
+        
         <div className="flex bg-gradient-to-b from-dprimary to-mprimary">
           {/* drift */}
   
@@ -99,6 +117,8 @@ import {
   
             </div>
           </div>
+
+          </Suspense>
         </>
       );
     };

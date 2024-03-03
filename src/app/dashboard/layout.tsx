@@ -64,7 +64,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   return (
     <Suspense fallback={
         
-      <div className='w-screen h-screen bg-lprimary flex-col flex place-content-center place-items-center'>
+      <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
         <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
           JobKompass
         </span>
