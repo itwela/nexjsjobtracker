@@ -22,13 +22,13 @@ import { useEffect, useState } from 'react';
 
     return(
         <> 
-            <div className="flex text-[0.8em]  z-10 justify-around place-content-center  place-items-center bg-mprimary rounded-[0.5em] py-2 m-4 relative gap-2 w-full h-[5vh]">
-                <span className='flex gap-1'>
+            <div className="flex md:flex-row flex-col  text-[0.8em]  z-10 justify-around place-content-center  place-items-center text-right rounded-[0.5em] py-4 m-4 relative md:gap-2 w-[70%] md:w-[50%] h-[5vh]">
+                <span className='flex gap-1 pt-3 md:pt-0'>
                     <h2 className="text-main-w flex  text-center ">{weekday},</h2>
                     <h2 className="text-main-w flex  text-center ">{datemonth}</h2>
                     <h2 className="text-main-w flex  text-center ">{dayday}</h2>
                 </span>
-                <h2 className="text-main-w flex  text-center ">{time}</h2>
+                <h2 className="text-main-w flex pb-3 md:pb-0  text-center ">{time}</h2>
                 {/* <h2 className="text-main-w flex  text-center ">{time}</h2> */}
             </div>
 

@@ -204,7 +204,7 @@ export function AddJobs() {
                             <div className='flex flex-col gap-2'>
                               <label className='font-bold' htmlFor="DateApplied">Date Applied</label>
                               <div className='mb-2  outline outline-[1px] outline-lprimary py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                                <input onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' required />
+                                <input onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' />
                               </div>
                             </div>
                             </CarouselItem>
@@ -215,6 +215,7 @@ export function AddJobs() {
                                   <div className='mb-2 outline outline-[1px] outline-lprimary py-2 px-3 rounded-[0.6em] bg-lprimary flex justify-start gap-3 place-items-center w-full'>
                                     <select onChange={handleStatusChange} id="status" className='rounded-[0.2em] px-2 bg-lprimary w-full' name="status" required>
                                       <option value="">Select a Status</option>
+                                      <option value="Interested">Interested</option>
                                       <option value="Applied">Applied</option>
                                       <option value="Interviewing">Interviewing</option>
                                       <option value="Offer">Offer</option>

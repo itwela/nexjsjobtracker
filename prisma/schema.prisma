@@ -75,7 +75,6 @@ model Job {
   ReferralContact      String?
   ResumeUsed           String?       
   Keywords             String?
-  Introduction         String?      
          
 
 

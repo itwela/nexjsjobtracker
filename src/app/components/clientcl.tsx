@@ -233,7 +233,7 @@ export default function NewClCard() {
         <>
 
               <div className="flex  w-[90%] py-5">
-                <h1 className="text-4xl font-bold text-main-w/70">{companyname} cover letter</h1>
+                <h1 className="text-4xl font-bold text-main-w/70"> Cover letter - {companyname}</h1>
               </div>
 
                 <form action={handleSubmit} className=' flex flex-col gap-2 '>

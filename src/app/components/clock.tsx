@@ -88,7 +88,7 @@ export default function Clock() {
         <>
                 
                 <div className="w-full  rounded-[10em] h-[45%] flex place-items-center px-10 my-5">        
-                    <div className="flex place-items-start place-content-start gap-3 ">
+                    <div className="flex text-[0.8em] md:flex-row flex-col place-items-start place-content-start md:gap-3 ">
                             <span className="">Greetings, </span>
                             
                             <h3 className='font-black text-2x;'>

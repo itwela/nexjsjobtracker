@@ -13,7 +13,7 @@ import {
 import { File } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FaPlus, FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
@@ -114,137 +114,118 @@ type JobDataProps = {
             </div>
           </div>
         ) : (
-          <div className="jtable mt-4 px-4  w-full text-[0.8em]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
-            <div className="bg-mprimary px-4 w-full rounded-[2em]  flex flex-col place-items-center place-content-center ">
+          <div className="jtable mt-4 px-4  w-full text-[0.6em] sm:text-[1em]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
+            <div className="bg-mprimary  w-full rounded-[2em]  flex flex-col px-9 place-content-center ">
               <span className="py-9">Your Jobs</span>
-              <Table className="w-full">
-                <TableHeader className="flex text-main-w justify-evenly gap-1">
-                  
-                  <TableHead className="flex place-content-center place-items-center w-[5em] text-main-w/70 truncate hover:text-clip">
-                    Edit
-                  </TableHead>
-                  <TableHead className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Job Tttle
-                  </TableHead>
-                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Company
-                  </TableHead>
-                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Date Applied
-                  </TableHead>
-                  <TableHead className="flex place-content-center place-items-center w-[7em]">
-                    Status
-                  </TableHead>
-                  <TableHead className="flex place-content-center place-items-center w-[7em]">
-                    Link
-                  </TableHead>
-
-                    <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
-                      Referral?
+                <Table className="w-full">
+                  <TableHeader className="flex text-main-w justify-evenly gap-1">
+                
+                    <TableHead className="flex place-content-center place-items-center w-[5em] text-main-w/70 truncate hover:text-clip">
+                      Edit
                     </TableHead>
-                    <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
-                      Ref'd By
+                    <TableHead className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Job Tttle
                     </TableHead>
-                    <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
-                      Contact
+                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Company
                     </TableHead>
-
-                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Resume Used
-                  </TableHead>
-                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Keywords
-                  </TableHead>
-                  <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Cover letter
-                  </TableHead>
-           
-
-                </TableHeader>
-
-
-                <TableBody>
-
-                  {/* pop up */}
-
-                  {jobdata.map((job) => ( 
-                    <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
-                      
-                      <TableCell className="w-[5em]">
-                        <div className="flex gap-2">
-
-                          <form action={deleteJobData}>
-                            <input type="hidden" name="jobId" value={job.id} />
-                            <button  className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
-                          </form>
-
-                          <Link href={`/dashboard/new/${job.id}`}>
-                            <input type="hidden" name="jobId" value={job.id} />
-                            <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
+                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Date Applied
+                    </TableHead>
+                    <TableHead className="flex place-content-center place-items-center w-[7em]">
+                      Status
+                    </TableHead>
+                    <TableHead className="flex place-content-center place-items-center w-[7em]">
+                      Link
+                    </TableHead>
+                      <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
+                        Referral?
+                      </TableHead>
+                      <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
+                        Ref'd By
+                      </TableHead>
+                      <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
+                        Contact
+                      </TableHead>
+                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Resume Used
+                    </TableHead>
+                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Keywords
+                    </TableHead>
+                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Cover letter
+                    </TableHead>
+                  </TableHeader>
+                  <TableBody>
+                    {/* pop up */}
+                    {jobdata.map((job) => (
+                      <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
+                
+                        <TableCell className="w-[5em]">
+                          <div className="flex gap-2">
+                            <form action={deleteJobData}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <button  className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
+                            </form>
+                            <Link href={`/dashboard/new/${job.id}`}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
+                            </Link>
+                          </div>
+                        </TableCell>
+                        <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
+                          {job.JobTitle}
+                        </TableCell>
+                        <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Company}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                           {job.DateApplied}
+                        </TableCell>
+                        <TableCell className={`w-[7em] font-medium whitespace-nowrap overflow-auto ${
+                          job?.Status?.includes("Applied") ? "bg-blue-500/10" :
+                        job?.Status?.includes("Inter") ? "bg-yellow-500/10" :
+                          job?.Status?.includes("Offer") ? "bg-green-500/10" :
+                            job?.Status?.includes("Rej") ? "bg-red-500/10" :
+                              job?.Status?.includes("Ghosted") ? "bg-gray-500/10 text-muted-foreground" : ""
+                      }`}>
+                      <div className="">
+                        {job?.Status}
+                      </div>
+                    </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Link}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Referral}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                          {job.ReferralName}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                          {job.ReferralContact}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                          {job.ResumeUsed}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Keywords}
+                        </TableCell>
+                        <TableCell className="w-[7em] font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
+                          <Link href={`/coverletter/job/${job.id}`}>
+                                <input type="hidden" name="jobId" value={job.id} />
+                                <button className="hover:text-main-w text-slate-500"><FaRegEnvelope size={18} type="submit" /></button>
                           </Link>
-
-
-                        </div>
-
-                      </TableCell> 
-
-                      <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
-                        {job.JobTitle}
-                      </TableCell>
-                      <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Company}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                         {job.DateApplied} 
-                      </TableCell>
-                      <TableCell className={`w-[7em] font-medium whitespace-nowrap overflow-auto  
-                      ${job?.Status?.includes("Applied") ? "bg-blue-500/10" :
-                      job?.Status?.includes("Inter") ? "bg-yellow-500/10" :
-                        job?.Status?.includes("Offer") ? "bg-green-500/10" :
-                          job?.Status?.includes("Rej") ? "bg-red-500/10" :
-                            job?.Status?.includes("Ghosted") ? "bg-gray-500/10 text-muted-foreground" : ""
-                    }`}>
-                    <div className="">
-                      {job?.Status}
-                    </div>
-                  </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Link}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Referral}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.ReferralName}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.ReferralContact}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.ResumeUsed}
-                      </TableCell>
-                      <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Keywords}
-                      </TableCell>
-
-                      <TableCell className="w-[7em] font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
-                        <Link href={`/coverletter/job/${job.id}`}>
-                              <input type="hidden" name="jobId" value={job.id} />
-                              <button className="hover:text-main-w text-slate-500"><FaRegEnvelope size={18} type="submit" /></button>
-                        </Link>
-                        <Link href={`/coverletter/`}>
-                              <input type="hidden" name="jobId" value={job.id} />
-                              <button className="hover:text-main-w text-slate-500"><FaPlus size={18} type="submit" /></button>
-                        </Link>
-                      </TableCell>
-
-
-
-                    </TableRow>
-                    ))}
-
-                </TableBody>
-              </Table>
+                          <Link href={`/coverletter/`}>
+                                <input type="hidden" name="jobId" value={job.id} />
+                                <button className="hover:text-main-w text-slate-500"><FaPlus size={18} type="submit" /></button>
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
               <span className="py-6 text-main-w/50">A list of your recent Job Applications.</span>
             </div>
           </div>

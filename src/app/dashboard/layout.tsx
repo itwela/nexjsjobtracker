@@ -1,8 +1,9 @@
 import { auth, currentUser } from '@clerk/nextjs';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import prisma from '../libs/db';
 import { getFirstData, getUserData } from '@/actions/databaseAc';
 import { stripe } from '../libs/stripe';
+import spin from '../assets/system-solid-18-autorenew.gif'
 
 
 
@@ -61,11 +62,27 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   }
 
   return (
+    <Suspense fallback={
+        
+      <div className='w-screen h-screen bg-lprimary flex-col flex place-content-center place-items-center'>
+        <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
+          JobKompass
+        </span>
+        <span className="flex gap-3 place-items-center place-content-center">
+        <p className='text-main-w'>Your jobs are loading...</p>
+        <img src={spin.src} alt="" className="w-[20px]"/>
+        </span>
+      </div>
+    
+    }>
+
     <div className="flex">
       <div className="flex">
         <main>{children}</main>
         <h1></h1>
       </div>
     </div>
+
+    </Suspense>
   );
 }
