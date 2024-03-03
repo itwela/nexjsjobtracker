@@ -58,8 +58,8 @@ export default async function YourJobs() {
             <>
                 <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
                     <span className="flex flex-col gap-1 text-center w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
-                        <span className="text-md sm:text-4xl  hover:text-main-w ">
-                            You've tracked <em>{jobdata.length}</em> jobs!
+                        <span className="text-md sm:text-4xl  ">
+                            You've tracked <em className="">{jobdata.length}</em> jobs!
                         </span> 
 
                         <span className="text-[0.6em] sm:text-[0.8em]">

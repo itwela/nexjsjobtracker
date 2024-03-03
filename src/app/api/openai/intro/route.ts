@@ -61,8 +61,9 @@ export async function POST(request: any) {
 
         const apiAdd = await prisma?.introduction.create({
             data: {
-                userId: user?.id,
+                userId: user?.id as string,
                 text: theResponse as string,
+                jobId: requestBody.id
             }
             
           })
@@ -84,8 +85,9 @@ export async function POST(request: any) {
 
         const apiAdd = await prisma?.introduction.create({
             data: {
-                userId: user?.id,
+                userId: user?.id as string,
                 text: theResponse as string,
+                jobId: requestBody.id
             }
             
           })
@@ -107,8 +109,9 @@ export async function POST(request: any) {
 
         const apiAdd = await prisma?.introduction.create({
             data: {
-                userId: user?.id,
+                userId: user?.id as string,
                 text: theResponse as string,
+                jobId: requestBody.id
             }
             
           })

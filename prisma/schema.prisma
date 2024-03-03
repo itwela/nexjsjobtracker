@@ -59,7 +59,11 @@ model Introduction {
   updatedAt            DateTime      @updatedAt
 
   User                 User?          @relation(fields: [userId], references: [id])
-  userId               String  
+  userId               String 
+  
+  job         Job      @relation(fields: [jobId], references: [id])
+  jobId       String     
+ 
 }
 
 
@@ -85,4 +89,5 @@ model Job {
   userId               String        
 
   coverLetters         CoverLetter[]  // Change from CoverLetter? to CoverLetter[]
+  introductions        Introduction[]
   }

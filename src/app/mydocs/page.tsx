@@ -9,12 +9,15 @@ import {
   import prisma from '../libs/db';
   import { auth, currentUser } from "@clerk/nextjs";
   import { unstable_noStore as noStore } from "next/cache";
-  import { getCoverLetterData, getJobData } from "@/actions/databaseAc";  
+  import { deleteCoverLetter, deleteIntroduction, getCoverLetterData, getJobData } from "@/actions/databaseAc";  
   import { getIntroductionData } from "@/actions/databaseAc";
 //   import { toast } from "sonner";
 // import { FaRegCopy } from "react-icons/fa";
 import spin from '../assets/system-solid-18-autorenew.gif'
 import { Suspense } from "react";
+import Link from "next/link";
+import { FaRegTrashCan } from "react-icons/fa6";
+import { FaRegEdit } from "react-icons/fa";
 
 
   export default async function Mydocs ()  {
@@ -64,8 +67,9 @@ import { Suspense } from "react";
                       <Accordion type="single" collapsible className=" px-3">
                         <AccordionItem value="item-1" className="">
                           <AccordionTrigger>My Cover Letters</AccordionTrigger>
+                          
                           <AccordionContent className="rounded-[1em] ">
-                              <div className="flex gap-5 justify-start h-[25vh] p-3 overflow-x-scroll ">    
+                              <div className="flex gap-5 justify-start h-[25vh] p-3 overflow-x-scroll  ">    
                               {jobData
                                     // Filter jobs with cover letters   
                                     .filter((job: any) => job.coverLetters && job.coverLetters.length > 0)
@@ -73,15 +77,28 @@ import { Suspense } from "react";
                                     .map((job: any) => (
                                       <div
                                         key={job.id}
-                                        className="min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary"
+                                        className="min-w-[80%] md:min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary"
                                       >
 
                                         {/* Render job details */}
                                         <span className="flex flex-col md:flex-row gap-2 w-full justify-between py-4">
+                                            
+                                          <div className="flex gap-2 absolute top-2 right-4">
+                                            <Link href={`/coverletter/job/${job.id}`}>
+                                              <input type="hidden" name="jobId" value={job.id} />
+                                              <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
+                                            </Link>
+                                            <form action={deleteCoverLetter}>
+                                              <input type="hidden" name="jobId" value={job.id} />
+                                              <button  className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
+                                            </form>
+                                          </div>
+
                                           <p>
                                             {job.JobTitle}, <span className="text-main-w/60">{job.Company}</span>
                                           </p>
-                                          <p className="absolute top-2 right-4">{job.DateApplied}</p>
+                                          <p className="absolute top-2 left-5 text-main-w/70">{job.DateApplied}</p>
+                                        
                                         </span>
                                         {/* Map over cover letters */}
                                         {job.coverLetters.map((coverLetter: any) => (
@@ -94,22 +111,35 @@ import { Suspense } from "react";
 
                                 </div>   
                           </AccordionContent>
+
                         </AccordionItem>
+
                         <AccordionItem value="item-2">
                           <AccordionTrigger>My Introductions</AccordionTrigger>
                           <AccordionContent className="">
-                                   <div className="flex gap-5 justify-start h-[25vh] p-3 overflow-x-scroll">
+                            <div className="flex gap-5 justify-start h-[25vh] p-3 overflow-x-scroll">
                                 {/* Iterate over jobData and access coverLetters */}
                                 
                               {introData.map((item: any) => (
-                                        <div key={item.id} className="min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary">
-                                                <p>
-                                                    {item.text}
-                                                </p>
+                                  <div key={item.id} className="min-w-[80%] md:min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary">
+                                         
+                                           <div className="flex gap-2 absolute top-2 right-4">
+                                          
+                                            <form action={deleteIntroduction}> 
+                                              <input type="hidden" name="coverId" value={item.id} />
+                                              <button  className="text-red-400/50 hover:text-red-300"><FaRegTrashCan size={18} type="submit" /></button>
+                                            </form>
+
+                                          </div>
+
+                                          <p>
+                                              {item.text}
+                                          </p>
                                         </div>
 
                                     ))}
                               </div>
+
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>

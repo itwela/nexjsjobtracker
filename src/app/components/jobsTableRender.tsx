@@ -56,39 +56,8 @@ type JobDataProps = {
  export default function JobsTable({jobdata}: JobDataProps) {
 
    useEffect(() => {
-    //  getAllJobs();
    }, []) 
 
-  //  const [jobData, setJobData] = useState<JobData[]>([]);
-
-  // const getAllJobs = async () => {
-  //   const hello = 'hi api for cover letter job id'
-
-  //   try {
-  //     const response = await fetch('/api/db/getalljobs', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         input: hello
-  //       })
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch data');
-  //     }
-
-  //     const data = await response.json();
-  //     // console.log('Fetched data:', data); // Log the fetched data
-  //     setJobData(data.jobdata); 
-  //     console.log(jobData)
-
-  //   } catch {
-
-  //   }
-
-  // }
 
   const handleReload  = async  () => {
     router.reload();
@@ -159,7 +128,7 @@ type JobDataProps = {
                   <TableBody>
                     {/* pop up */}
                     {jobdata.map((job) => (
-                      <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 hover:text-main-w border-transparent">
+                      <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 border-transparent">
                 
                         <TableCell className="w-[5em]">
                           <div className="flex gap-2">
@@ -173,16 +142,17 @@ type JobDataProps = {
                             </Link>
                           </div>
                         </TableCell>
-                        <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
+
+                        <TableCell className="w-[7em] hover:text-main-w  font-medium  whitespace-nowrap overflow-auto ">
                           {job.JobTitle}
                         </TableCell>
-                        <TableCell className="w-[7em]  font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w  font-medium  whitespace-nowrap overflow-auto ">
                           {job.Company}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                            {job.DateApplied}
                         </TableCell>
-                        <TableCell className={`w-[7em] font-medium whitespace-nowrap overflow-auto ${
+                        <TableCell className={`w-[7em] hover:text-main-w font-medium whitespace-nowrap overflow-auto ${
                           job?.Status?.includes("Applied") ? "bg-blue-500/10" :
                         job?.Status?.includes("Inter") ? "bg-yellow-500/10" :
                           job?.Status?.includes("Offer") ? "bg-green-500/10" :
@@ -193,25 +163,25 @@ type JobDataProps = {
                         {job?.Status}
                       </div>
                     </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                           {job.Link}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                           {job.Referral}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                           {job.ReferralName}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                           {job.ReferralContact}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                           {job.ResumeUsed}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium  whitespace-nowrap overflow-auto ">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium  whitespace-nowrap overflow-auto ">
                           {job.Keywords}
                         </TableCell>
-                        <TableCell className="w-[7em] font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
+                        <TableCell className="w-[7em] hover:text-main-w font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
                           <Link href={`/coverletter/job/${job.id}`}>
                                 <input type="hidden" name="jobId" value={job.id} />
                                 <button className="hover:text-main-w text-slate-500"><FaRegEnvelope size={18} type="submit" /></button>

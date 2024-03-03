@@ -9,14 +9,47 @@ import { EvervaultCard } from "../../components/ui/evervault-card";
 // import { error } from 'console';
 
 
+interface JobData {
+  Company: string;
+  coverLetters?: Array<{
+    id: string;
+    text: string;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+    jobId: string;
+  }>;
+  DateApplied: string | null; // Update the type to string | null
+  JobTitle: string;
+  Keywords: string | null;
+  Link: string;
+  Referral: string;
+  ReferralContact: string | null;
+  ReferralName: string | null;
+  ResumeUsed: string | null;
+  Status: string | null;
+  createdAt: Date;
+  id: string;
+  updatedAt: Date;
+  userId: string;
+}
+
+type JobDataProps = {
+  jobdata: JobData[];
+}
 
 
 
+export default function TopboxOne({jobdata}: JobDataProps) {
 
-export default function TopboxOne() {
+
   const [isGen, setIsGen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
+  const [theJId, setTheJId] = useState('')
+
+
+
 
   // Define the handlestate function outside the component
   const handlestate = async () => {
@@ -32,7 +65,8 @@ export default function TopboxOne() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          input: thanks
+          input: thanks,
+          id: theJId
         })
       });
 
@@ -62,7 +96,6 @@ export default function TopboxOne() {
     setData(null);
   }
 
-  // Define the copyText function outside the component
   const copyText = () => {
     const element = document.getElementById("gen-text");
 
@@ -84,9 +117,13 @@ export default function TopboxOne() {
     }
   };
 
-  // Attach event listeners only on the client-side
-    const handleCopy = () => copyText();
-    // document.getElementById("copy-button")?.addEventListener("mouseup", handleCopy);
+  const handleCopy = () => copyText();
+
+      // Handle changes in status fields
+      const handleSwap = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setTheJId(value)
+      };
 
 
 
@@ -98,7 +135,7 @@ export default function TopboxOne() {
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-[0.6em] sm:text-[1em]">{data}</span>
         <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
         {/* Add an id to the copy button */}
-        <FaRegCopy onMouseDown={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
+        <FaRegCopy onClick={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
       </span>
 
     </>
@@ -108,12 +145,12 @@ export default function TopboxOne() {
     if(isLoading == true) {
       return (
         <>
-        <span className=" text-ellipsis relative overflow-hidden bg-mprimary text-lprimary font-black flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-[25vh] ">
+        <span className=" text-ellipsis relative overflow-hidden bg-mprimary text-main-w/70 font-black place-content-center flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-[25vh] ">
 
           <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
            
           <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-0 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
-           <span className="animate-pulse text-[0.6em] sm:text-[1em] nosb place-content-center flex text-clip h-[80%] w-[70%] place-content-center overflow-ellipsis text-blue-300/40 overflow-y-scroll">
+           <span className="animate-pulse text-[0.6em] sm:text-[1em] nosb place-content-center flex text-clip h-[80%] w-[70%] place-content-center overflow-ellipsis  overflow-y-scroll">
                 Intro Loading.....
             </span>
 
@@ -128,11 +165,26 @@ export default function TopboxOne() {
 
 
       <>
-        <span onMouseUp={handlestate} className="bg-mprimary w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[25vh] ">
+        <span className="bg-mprimary w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[25vh] ">
 
-          <EvervaultCard text="Click me" text2="To generate a followup message to your most recent job " className="text-[0.8em] text-main-w/70 hover:text-main-w" />
-          <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
-          </span> 
+          <EvervaultCard text="" text2="" className="text-[0.8em] text-main-w/70 hover:text-main-w" />
+          
+          <span className='absolute flex flex-col gap-1 z-[10] place-items-center place-content-center '>
+            <span className='text-main-w/70 px-2'>Generate a introduction for</span>
+                 
+            <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 bg-lprimary w-full' name="status" required>
+              {/* <option value="">Select a Status</option> */}
+              {jobdata.map((job) => (
+                <option key={job.id} value={job.id}>
+                      <span className="flex"><span>{job.JobTitle}</span> - <span className="italic text-main-w/70">{job.Company}</span></span>
+                </option>
+                ))}
+            </select>
+
+            <span className='text-main-w/70 px-2'>Using the power of Ai</span>
+          
+            <button onClick={handlestate} className='p-2 px-6 rounded-full bg-main-w text-lprimary'>Go</button>
+          </span>
         </span>
       </>
 

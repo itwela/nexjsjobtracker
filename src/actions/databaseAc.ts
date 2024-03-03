@@ -114,7 +114,7 @@ export async function getClByJobId(userId: string, jobId: string) {
   return data;
 }
 
-  // this get subscription data from user
+  // this get introduction data from user
 export async function getIntroductionData(userId: string) {
   noStore(); 
   const data = prisma.introduction.findMany({
@@ -241,7 +241,7 @@ export const addJob = async (formData: FormData) => {
 }
 
 
-//  this is the function to deleted jobs
+//  this is the function to delete jobs
 export const deleteJobData = async (formData: FormData) => {
   noStore();
 
@@ -265,6 +265,37 @@ export const deleteJobData = async (formData: FormData) => {
 
 }
 
+//  this is the function to delete cover lettters
+export const deleteCoverLetter = async (formData: FormData) => {
+  noStore();
+
+  const jobId = formData.get('jobId') as string
+
+  await prisma.coverLetter.deleteMany({
+    where: {
+      jobId: jobId,
+    },
+  });
+
+    revalidatePath('/dashbard')
+  
+}
+
+//  this is the function to deleted jobs
+export const deleteIntroduction = async (formData: FormData) => {
+  noStore();
+
+  const introid = formData.get('coverId') as string
+
+  await prisma.introduction.deleteMany({
+    where: {
+      id: introid,
+    },
+  });
+
+    revalidatePath('/dashbard')
+  
+}
 
 export async function getFirstData({ 
   id, username, email, profileImg, firstName, lastName }: 

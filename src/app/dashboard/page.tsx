@@ -116,7 +116,7 @@ export default async function Dashboard() {
                       <span className="w-[75vw] overflow-scroll flex place-items-start place-content-start">
                         <span className="flex gap-2 px-9">
                           <YourJobs/>
-                          <TopboxOne />
+                          <TopboxOne jobdata={jobdata} />
                           <YourCoverLetter/>
                           <ComingSoon/>
                         </span>
@@ -177,7 +177,7 @@ export default async function Dashboard() {
                             <span className="w-[80vw] overflow-scroll flex place-items-start place-content-start">
                             <span className="flex gap-2 px-9">
                               <YourJobs/>
-                              <TopboxOne />
+                              <TopboxOne jobdata={jobdata} />
                               <YourCoverLetter/>
                               <ComingSoon/>
                             </span>
