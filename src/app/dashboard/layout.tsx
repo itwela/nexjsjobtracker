@@ -45,6 +45,25 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         possible error with user detection
         check is user is in database.
       `)
+
+      return (
+        <>
+          <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
+        <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
+          JobKompass
+        </span>
+        <span className="flex gap-3 place-items-center place-content-center">
+        <p className='text-main-w text-center'>Hi! We are attempting to connect you to JobKompass! <br />
+                                  If you're seeing this, there has been a temporary outage <br />
+                                  in our data feed. Plese try visiting us again in afew minutes. <br />
+                                  Thank you!
+        </p>
+        <img src={spin.src} alt="" className="w-[20px]"/>
+        </span>
+          </div>
+        </>
+      )
+      
     }
 
 
