@@ -31,7 +31,7 @@ export default async function YourJobs() {
     
     
             <>
-            <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
+            <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[28vh]">
                 <span className="flex flex-col gap-2 text-center w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
                     <span className="text-md sm:text-4xl  ">
                         You tracked your first Job!
@@ -84,7 +84,7 @@ export default async function YourJobs() {
         
         
             <>
-                <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
+                <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[28vh]">
                     <span className="flex flex-col gap-2 text-center w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
                         <span className="text-md sm:text-4xl  ">
                             You've tracked <em className="">{jobdata.length}</em> jobs!

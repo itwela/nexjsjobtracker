@@ -5,7 +5,7 @@ export default function YourCoverLetter() {
 
 
         <>
-          <Link href='/coverletter' className="w-[10em] sm:w-[20em] px-1 relative min-h-[8em] sm:min-h-[25vh] ">
+          <Link href='/coverletter' className="w-[10em] sm:w-[20em] px-1 relative min-h-[8em] sm:min-h-[28vh] ">
               <span  className="bg-mprimary   flex flex-col  rounded-[0.5em] w-full h-full place-content-center place-items-center text-main-w/70 hover:text-main-w mx-auto ">
                     <span className="flex flex-col gap-2 text-[0.6em] sm:text-[1em]  ">
                         <span>

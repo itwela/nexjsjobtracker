@@ -130,7 +130,7 @@ export default function TopboxOne({jobdata}: JobDataProps) {
   if(isGen == true && !isLoading ) {
     return (
     <>
-      <span className=" w-[10em] sm:w-[20em] relative overflow-hidden bg-mprimary text-main-w/70 hover:text-main-w font-black  flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[25vh] ">
+      <span className=" w-[10em] sm:w-[20em] relative overflow-hidden bg-mprimary text-main-w/70 hover:text-main-w font-black  flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[28vh] ">
 
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-[0.6em] sm:text-[1em]">{data}</span>
         <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
@@ -145,7 +145,7 @@ export default function TopboxOne({jobdata}: JobDataProps) {
     if(isLoading == true) {
       return (
         <>
-        <span className=" text-ellipsis relative overflow-hidden bg-mprimary text-main-w/70 font-black place-content-center flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-[25vh] ">
+        <span className=" text-ellipsis relative overflow-hidden bg-mprimary text-main-w/70 font-black place-content-center flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-[28vh] ">
 
           <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
            
@@ -165,7 +165,7 @@ export default function TopboxOne({jobdata}: JobDataProps) {
 
 
       <>
-        <span className="bg-mprimary  w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[25vh] ">
+        <span className="bg-mprimary  w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[28vh] ">
 
           <EvervaultCard text="" text2="" className=" text-[0.8em] text-main-w/70 hover:text-main-w" />
           

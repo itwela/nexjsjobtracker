@@ -3,7 +3,7 @@ export default function ComingSoon() {
 
 
         <>
-          <span  className="bg-mprimary w-[10em] sm:w-[20em] px-1  flex flex-col place-content-center place-items-center text-main-w/70 hover:text-main-w mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[25vh] ">
+          <span  className="bg-mprimary w-[10em] sm:w-[20em] px-1  flex flex-col place-content-center place-items-center text-main-w/70 hover:text-main-w mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[28vh] ">
                 <span className="flex flex-col gap-1 text-[0.6em] sm:text-[1em]  ">
                     <span>
                         Its easy to burnout!
