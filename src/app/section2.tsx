@@ -58,7 +58,7 @@ export default function HeroSectionTwo() {
            {/* section 2 made by for */}
            <section ref={triggerRef} className="second-wrapper w-[100vw] overflow-hidden bg-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] ">
 
-<div className="h-[100vh] pt-[10vh] w-[100vw] justify-start flex place-items-center place-content-center flex-col text-center gap-2">
+<div className="h-[100vh] pt-[10vh] w-[100vw] justify-between flex place-items-center place-content-center flex-col text-center gap-2">
     
     <div className="flex flex-col gap-5 place-items-center h-[50vh]">
 
@@ -111,16 +111,16 @@ export default function HeroSectionTwo() {
 
     </div>
 
-    <div className="h-[50vh] relative flex place-content-start place-items-center flex-col">
-        <h1 id="trackall" className="flex w-[70%] text-3xl pt-[3em] sm:pt-[0em]  md:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
+    <div className="h-[50vh] relative flex place-content-start place-items-center  flex-col">
+        <h1 id="trackall" className="flex w-[70%] text-3xl  sm:pt-[0em]  md:text-5xl bg-gradient-to-r from-main-w to-lprimary bg-clip-text text-transparent">
             Track all your applications in one place
         </h1>
 
-        <Card id="cardpic" className="hidden md:flex absolute border-main-w/40 top-[35%] h-[200em] w-[80vw] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+        <Card id="cardpic" className="hidden md:flex   border-main-w/40  h-[200em] w-[80vw] top-[10%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
               <CardContent>
             
                   
-              <div  className="homeimg w-full h-full absolute top-0 left-0" >
+              <div  className="homeimg w-full h-full absolute left-0" >
               </div>
 
 

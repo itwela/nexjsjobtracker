@@ -36,9 +36,8 @@ async function getJobData(userId: string) {
           
           <Card className="w-[100%] border-transparent ">
                 
-                <CardHeader>
-                    <CardTitle className="text-[1.5em]" >Choose a job</CardTitle>
-                  <CardDescription className='text-main-w/50'>Start generationg your cover letter by choosing a job and adding a relevant job description</CardDescription>
+                <CardHeader className="py-1">
+                    <CardTitle className="text-[1em]" >Choose a job</CardTitle>
                 </CardHeader>
 
                 <CardContent className="">

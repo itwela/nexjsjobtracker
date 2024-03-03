@@ -106,6 +106,7 @@ type JobDataProps = {
                     <TableHead className="flex place-content-center place-items-center w-[7em]">
                       Link
                     </TableHead>
+
                       <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
                         Referral?
                       </TableHead>
@@ -115,6 +116,7 @@ type JobDataProps = {
                       <TableHead className="flex place-content-center place-items-center bg-dprimary w-[7em] truncate hover:text-clip">
                         Contact
                       </TableHead>
+                      
                     <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                       Resume Used
                     </TableHead>

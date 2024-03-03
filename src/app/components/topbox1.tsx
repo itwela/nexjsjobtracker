@@ -172,7 +172,7 @@ export default function TopboxOne({jobdata}: JobDataProps) {
           <span className='text-[0.6em] translate-y-[-30%] sm:text-[0.8em] absolute w-[80%] text-center flex flex-col gap-1 z-[10] place-items-center place-content-center '>
             <span className='text-main-w/70 hover:text-main-w px-2'>Generate a introduction for</span>
                  
-            <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 bg-lprimary w-full' name="status" required>
+            <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 py-1 bg-lprimary w-full' name="status" required>
               {/* <option value="">Select a Status</option> */}
               {jobdata.map((job) => (
                 <option key={job.id} value={job.id}>
