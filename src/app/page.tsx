@@ -177,7 +177,7 @@ export default async function Home() {
           </section>
 
         <HeroSectionFive/>
-        <section className="hidden sm:flex w-[100vw] bg-gradient-to-b from-blue-500 to-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center sm:place-content-center h-[100vh] py-[10vh] ">
+        <section className="flex w-[100vw] bg-gradient-to-b from-blue-500 to-dprimary gap-3  px-8 flex flex-col md:flex-row place-items-center sm:place-content-center h-[100vh] py-[10vh] ">
           {/* <section className="w-[100vw] bg-gradient-to-b from-dprimary to-mprimary gap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center h-[100vh] py-[10vh] "> */}
 
               <div className="h-[100vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
@@ -192,10 +192,8 @@ export default async function Home() {
 
                         
                         <div className="flex w-full gap-4 h-[50vh]">
-                          <Card className="hidden h-full sm:flex place-items-center border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                              <CardHeader></CardHeader>
-                              <CardDescription></CardDescription>
-                              <CardContent className="w-[90%]">
+                          <Card className=" h-full flex place-items-center border-main-w/30 w-[100%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
+                              <CardContent className="w-[100%]">
                                 <Accordion type="single" collapsible className="w-[100%] sm:px-3 text-left text-[0.5em] sm:text-lg">
                                   
                                   <AccordionItem value="item-1">
