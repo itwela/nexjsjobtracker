@@ -165,12 +165,12 @@ export default function TopboxOne({jobdata}: JobDataProps) {
 
 
       <>
-        <span className="bg-mprimary w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[25vh] ">
+        <span className="bg-mprimary  w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[25vh] ">
 
-          <EvervaultCard text="" text2="" className="text-[0.8em] text-main-w/70 hover:text-main-w" />
+          <EvervaultCard text="" text2="" className=" text-[0.8em] text-main-w/70 hover:text-main-w" />
           
-          <span className='absolute flex flex-col gap-1 z-[10] place-items-center place-content-center '>
-            <span className='text-main-w/70 px-2'>Generate a introduction for</span>
+          <span className='text-[0.6em] translate-y-[-30%] sm:text-[0.8em] absolute w-[80%] text-center flex flex-col gap-1 z-[10] place-items-center place-content-center '>
+            <span className='text-main-w/70 hover:text-main-w px-2'>Generate a introduction for</span>
                  
             <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 bg-lprimary w-full' name="status" required>
               {/* <option value="">Select a Status</option> */}
@@ -181,10 +181,11 @@ export default function TopboxOne({jobdata}: JobDataProps) {
                 ))}
             </select>
 
-            <span className='text-main-w/70 px-2'>Using the power of Ai</span>
+            <span className='text-main-w/70 hover:text-main-w px-2'>Using the power of Ai</span>
           
-            <button onClick={handlestate} className='p-2 px-6 rounded-full bg-main-w text-lprimary'>Go</button>
           </span>
+
+            <button onClick={handlestate} className='absolute bottom-12 p-1 px-3 sm:p-2 sm:px-6 sm:mt-3 rounded-full bg-main-w/70 hover:bg-main-w text-lprimary'>Go</button>
         </span>
       </>
 
