@@ -31,17 +31,45 @@ export default async function YourJobs() {
     
     
             <>
-                <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70 hover:text-main-w  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
-                    <span className="flex w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">        
-                        <span className="">
-                            You tracked your first job! Congrats
-                        </span>
-                    </span>
-                    
-                    <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
-                    </span>
-                </div>
-            </>
+            <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
+                <span className="flex flex-col gap-2 text-center w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
+                    <span className="text-md sm:text-4xl  ">
+                        You tracked your first Job!
+                    </span> 
+
+                    <span className="text-[0.6em] sm:text-[0.8em]">
+                        {/* interested */}
+                            <span className="w-full  px-[0.3em] hover:text-main-w  flex justify-between">
+                                <span>Interested:</span> {interestedJobsCount}
+                            </span>
+                            {/* Applied  */}
+                            <span className="w-full bg-blue-500/10 px-[0.3em] hover:text-main-w  flex justify-between">
+                                <span>Applied:</span> {appliedJobsCount}
+                            </span>
+                            {/* Interviewing  */}
+                            <span className="w-full bg-yellow-500/10 px-[0.3em] hover:text-main-w  flex justify-between">
+                                <span>Interviewing:</span> {interviewingJobsCount}
+                            </span>
+                            {/* Offer  */}
+                            <span className="w-full bg-green-500/10 px-[0.3em] hover:text-main-w  flex justify-between">
+                                <span>Offer:</span> {offerJobsCount}
+                            </span>
+                            {/* Rejected  */}
+                            <span className="w-full bg-red-500/10 px-[0.3em] hover:text-main-w  flex justify-between">
+                            
+                                 <span>Rejected:</span> {rejectedJobsCount}
+                            </span>
+                            {/* Ghosted  */}
+                            <span className="w-full bg-gray-500/10 px-[0.3em] hover:text-main-w  flex justify-between">
+                                <span>Ghosted:</span> {ghostedJobsCOunt}
+                            </span>
+                    </span>  
+                </span>
+                
+                <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
+                </span>
+            </div>
+        </>
       
             
       
@@ -57,7 +85,7 @@ export default async function YourJobs() {
         
             <>
                 <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
-                    <span className="flex flex-col gap-1 text-center w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
+                    <span className="flex flex-col gap-2 text-center w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
                         <span className="text-md sm:text-4xl  ">
                             You've tracked <em className="">{jobdata.length}</em> jobs!
                         </span> 
@@ -103,63 +131,7 @@ export default async function YourJobs() {
         );
     }
 
-    if(interestedJobsCount === 1) {
 
-        return (
-    
-    
-            <>
-                <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70 hover:text-main-w  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
-                    <span className="flex w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
-                        <span className="">
-                            You have applied to {jobdata.length} job so far!
-                        </span>            
-                        <span className="">
-                            Dont forget to apply to your {interestedJobsCount} job you marked as interested
-                        </span>
-                    </span>
-                    
-                    <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
-                    </span>
-                </div>
-            </>
-      
-            
-      
-      
-         
-        );
-
-    }
-
-    if(interestedJobsCount > 1) {
-
-        return (
-    
-    
-            <>
-                <div className="rounded-[0.5em] bg-mprimary w-[10em] sm:w-[20em] px-1 text-main-w/70 hover:text-main-w  flex flex-col place-content-center place-items-center mx-auto  relative min-h-[8em] sm:min-h-[25vh]">
-                    <span className="flex w-[90%] px-1 flex-col gap-1 text-[0.6em] sm:text-[1em] z-1 ">
-                        <span className="">
-                            You have applied to {jobdata.length} jobs
-                        </span>            
-                        <span className="">
-                            Dont forget to apply to your {interestedJobsCount} jobs you marked as interested
-                        </span>
-                    </span>
-                    
-                    <span className=' absolute bottom-2 left-2 z-10 flex place-items-end place-content-start'>
-                    </span>
-                </div>
-            </>
-      
-            
-      
-      
-         
-        );
-
-    }
 
   
 
