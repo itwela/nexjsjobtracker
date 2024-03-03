@@ -97,12 +97,12 @@ import { Suspense } from "react";
                         </AccordionItem>
                         <AccordionItem value="item-2">
                           <AccordionTrigger>My Introductions</AccordionTrigger>
-                          <AccordionContent className="flex flex-col gap-3">
-                                   <div className="flex gap-5 justify-start w-[100%] h-[25vh] p-3 ">
+                          <AccordionContent className="">
+                                   <div className="flex gap-5 justify-start h-[25vh] p-3 overflow-x-scroll">
                                 {/* Iterate over jobData and access coverLetters */}
                                 
                               {introData.map((item: any) => (
-                                        <div key={item.id} className="w-[100%] h-max  p-5 text-left  bg-mprimary">
+                                        <div key={item.id} className="min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary">
                                                 <p>
                                                     {item.text}
                                                 </p>
