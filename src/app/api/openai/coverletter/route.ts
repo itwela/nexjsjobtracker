@@ -22,7 +22,7 @@ export async function POST(request: any) {
     auth();
     const user = await currentUser()
     const userdata = await getUserData(user?.id as string)
-    const jobdata = await getClByJobId(user?.id as string, requestBody.input)
+    const jobdata = await getClByJobId(user?.id as string, requestBody.id)
     const sub = await getSubscriptionData(user?.id as string)
     const coverletter = await getCoverLetterData(user?.id as string)
     const firstName = userdata?.firstName;
@@ -35,7 +35,8 @@ export async function POST(request: any) {
     in crafting my cover letter. 
 
     My name is '${myname}'.
-    I applied on '${jobdata?.DateApplied}'
+    Im applying to the '${jobdata?.JobTitle}' role on
+    '${jobdata?.DateApplied}' at '${jobdata?.Company}'.
     Here are some keywprds that I want you to incorporate in the
     letter if applicable. Meaning tie it into the job
     description I give you as well. '${jobdata?.Keywords}' 
