@@ -31,7 +31,6 @@ interface JobData {
     jobId: string;
   }>;
   DateApplied: string | null; // Update the type to string | null
-  Introduction: string | null;
   JobTitle: string;
   Keywords: string | null;
   Link: string;
