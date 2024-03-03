@@ -156,7 +156,7 @@ type JobDataProps = {
                         </TableCell>
                         <TableCell className={`w-[7em] hover:text-main-w font-medium whitespace-nowrap overflow-auto ${
                           job?.Status?.includes("Applied") ? "bg-blue-500/10" :
-                        job?.Status?.includes("Inter") ? "bg-yellow-500/10" :
+                        job?.Status?.includes("Interviewing") ? "bg-yellow-500/10" :
                           job?.Status?.includes("Offer") ? "bg-green-500/10" :
                             job?.Status?.includes("Rej") ? "bg-red-500/10" :
                               job?.Status?.includes("Ghosted") ? "bg-gray-500/10 text-muted-foreground" : ""
