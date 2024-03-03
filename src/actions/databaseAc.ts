@@ -165,7 +165,7 @@ export const addJob = async (formData: FormData) => {
         //   const uniiId = requestBody.id
   
           
-        if(sub?.status === 'active') {  
+        if(sub?.status === 'active' || data.length < 3) {  
         const apiAdd = await prisma?.job.create({
             data: {
                 userId: user?.id,
@@ -187,27 +187,6 @@ export const addJob = async (formData: FormData) => {
         }
 
         if(user?.firstName === 'Itwela') {  
-        const apiAdd = await prisma?.job.create({
-            data: {
-                userId: user?.id,
-                JobTitle: formJobTitle,
-                Company: formCompany,
-                DateApplied: formDateApplied,
-                Status: formStatus,
-                Link: formLink,
-                Referral: formReferral,
-                ReferralName: formReferralName,
-                ReferralContact: formReferralContact,
-                ResumeUsed: resumeFileName,
-                Keywords: formKeywords,    
-            }
-            
-          })
-
-          revalidatePath("/")
-        }
-
-        if(sub?.status != 'active' && data.length < 3) {  
         const apiAdd = await prisma?.job.create({
             data: {
                 userId: user?.id,
