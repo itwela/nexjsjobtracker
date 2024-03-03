@@ -55,6 +55,22 @@ type JobDataProps = {
 
  export default function JobsTable({jobdata}: JobDataProps) {
 
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 5; // Adjust this value as needed
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = jobdata.slice(indexOfFirstJob, indexOfLastJob);
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => prev - 1);
+  };
+  
+
    useEffect(() => {
    }, []) 
 
@@ -84,12 +100,33 @@ type JobDataProps = {
         ) : (
           <div className="jtable mt-4 px-4  w-full text-[0.6em] sm:text-[1em]   min-h-[30vh] flex flex-col rounded-[0.5em] shadow place-items-center place-content-center">
             <div className="bg-mprimary  w-full rounded-[2em]  flex flex-col px-9 place-content-center ">
-              <span className="py-9">Your Jobs</span>
+              <span className="flex justify-between w-full">
+                <span className="py-9">Your Jobs</span>
+                <div className="flex justify-center my-2">
+                  <button
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    className="text-main-w py-2 px-4 rounded-l"
+                  >
+                    Prev
+                  </button>
+                  <button
+                    onClick={handleNextPage}
+                    disabled={indexOfLastJob >= jobdata.length}
+                    className="text-main-w py-2 px-4 rounded-l"
+                  >
+                    Next
+                  </button>
+                </div>
+              </span>
                 <Table className="w-full">
                   <TableHeader className="flex text-main-w justify-evenly gap-1">
                 
                     <TableHead className="flex place-content-center place-items-center w-[5em] text-main-w/70 truncate hover:text-clip">
                       Edit
+                    </TableHead>
+                    <TableHead className=" flex place-content-center place-items-center w-[2em] truncate hover:text-clip">
+                      #
                     </TableHead>
                     <TableHead className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                       Job Tttle
@@ -129,7 +166,7 @@ type JobDataProps = {
                   </TableHeader>
                   <TableBody>
                     {/* pop up */}
-                    {jobdata.map((job) => (
+                    {currentJobs.map((job, index) => (
                       <TableRow key={job.id} className="flex nosb items-center gap-1 justify-evenly hover:bg-lprimary/50 text-main-w/60 border-transparent">
                 
                         <TableCell className="w-[5em]">
@@ -145,6 +182,9 @@ type JobDataProps = {
                           </div>
                         </TableCell>
 
+                        <TableCell className="w-[2em] hover:text-main-w  font-medium  whitespace-nowrap overflow-auto ">
+                          {indexOfFirstJob + index + 1}
+                        </TableCell>
                         <TableCell className="w-[7em] hover:text-main-w  font-medium  whitespace-nowrap overflow-auto ">
                           {job.JobTitle}
                         </TableCell>
