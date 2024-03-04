@@ -229,21 +229,44 @@ export default function NewClCard() {
     // Construct the full URL pathname
     const companyname = selectedJob?.Company || ''
     const coverlettertext = clData.cldata[0]?.coverLetters[0]?.text || '';
+    
+    function copyText() {
+      const element = document.getElementById("cov-link");
+    
+      if (element instanceof HTMLSpanElement) {
+        const textToCopy = element.innerText;
+        console.log(textToCopy)
+    
+        navigator.clipboard.writeText(textToCopy)
+
+        toast("Copied!", {
+      }); 
+
+      }
+
+
+  }
     return (
         <>
 
-              <div className="flex  w-[90%] py-5">
-                <h1 className="text-4xl font-bold text-main-w/70"> Cover letter - {companyname}</h1>
+              <div className="flex flex-col  w-full py-5">
+                <h1 className="text-4xl font-bold text-main-w/70">Cover letter</h1>
+                <span className="flex justify-between w-full">
+                   <h1 className="text-md font-bold text-main-w/50">{companyname} - {jobtitle}</h1>
+                    
+                    <span id="status" className='w-[50%] border-transparent place-content-end flex rounded-[0.2em] p-2 '>
+                       <span className=" text-main-w/70 truncate flex place-content-end place-items-center gap-2">
+                         <span className="">Link - </span>
+                         <span className="">
+                           <span id='cov-link' className="cursor-pointer" onClick={copyText}>{joblink}</span>
+                         </span>
+                       </span>
+                    </span>
+
+                </span>
               </div>
 
                 <form action={handleSubmit} className=' flex flex-col gap-2 '>
-                    <span id="status" className='border-transparent justify-between flex rounded-[0.2em] p-2 bg-lprimary w-full'>
-                       <span className="text-transparent">Link - </span>
-                       <span className="flex gap-2">
-                         {joblink}
-                         <FaLink/>
-                       </span> 
-                    </span>
                         <span className="relative">
                           <Textarea onChange={handleInputChange} name="" id="editcov-text" defaultValue={coverlettertext}  className='min-h-[70vh]  border-transparent'>
                           </Textarea>
