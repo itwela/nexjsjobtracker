@@ -24,7 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   
   useGSAP(()  => {
 
-    let tl = gsap.timeline({defaults: {ease: 'power2.out', duration: 2}})
+    let tl = gsap.timeline({defaults: {ease: 'power2.out', duration: 0.8}})
     
     tl.from(['#header-name', '#signin', '#signup'], {
       y: '-3000px',

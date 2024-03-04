@@ -40,8 +40,8 @@ export default async function Home() {
           {/* section 1 intro hero */}
           <section className="gradi  overflow-hidden flex place-content-center flex-col w-[100vw] h-[100vh]">
           
+                <span className="pt-[5em]"><Header/></span>
               <Sec1Bg/>
-              <span className="translate-y-[5vh]"><Header/> </span>
               <FirstComponent/>
 
           </section>
