@@ -21,7 +21,7 @@ export default function HomeSectionFour() {
             start: "top 60%",
             end: "top 5%",
             // scrub: true,
-            markers: true,
+            // markers: true,
             toggleActions: 'restart none none reverse'
           },
         })
