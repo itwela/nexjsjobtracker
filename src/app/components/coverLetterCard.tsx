@@ -4,6 +4,7 @@
 
 
 import { Button } from "@/components/ui/button";
+import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from '@/components/ui/textarea';
 import { useEffect, useState } from 'react';
 import { FaRegCopy } from "react-icons/fa";
@@ -166,6 +167,9 @@ export default function CoverLetterCard() {
 
     return (
         <>
+                {/* <CardHeader className="py-1"> */}
+                {/* </CardHeader> */}
+
                 <form action={handleSubmit} className=' flex flex-col gap-2'>
                     <select id="status" onChange={handleStatusChange} className='border-transparent rounded-[0.2em] p-2 bg-lprimary w-full' name="status" required>
                         <option value="">Select a Job</option>
@@ -176,6 +180,7 @@ export default function CoverLetterCard() {
                             </option>
                         ))}
                     </select>
+                    <CardTitle className="text-[1em]" >Add job description</CardTitle>
                         <Textarea onChange={handleInputChange} name="" id="input" className='min-h-[30vh] border-transparent'>
                         </Textarea>
                     <Button className='bg-main-w/80 hover:bg-main-w text-mprimary'>Submit</Button>

@@ -20,7 +20,7 @@ const CoverLetter = () => {
                 <h2 className='text-main-w/50 text-[0.6em] sm:text-[0.8em]'>Start generationg your cover letter by choosing a job and adding a relevant job description</h2>
               </div>
               <div className="px-9 w-[100%]">
-              <CoverLetterGen/>
+              <CoverLetterGen/> 
               </div>
           </div>
         </div>
