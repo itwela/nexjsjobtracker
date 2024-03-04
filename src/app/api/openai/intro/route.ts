@@ -28,6 +28,7 @@ export async function POST(request: any) {
     const companyname = jobdata?.[0].Company;
     const keywords = jobdata?.[0].Keywords;    
     const requestBody = await request.json();
+    console.log(requestBody)
 
     const thePrompt = `
 
@@ -62,6 +63,7 @@ export async function POST(request: any) {
         })
 
         const theResponse = completion.choices[0].message.content;
+        // const theResponse = 'hi';
 
         const apiAdd = await prisma?.introduction.create({
             data: {
