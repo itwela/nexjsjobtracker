@@ -37,11 +37,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     }).from('#optimize', {
       y: '-20px',
       opacity: 0,
-    }).from('#herogsb', {
+    }).from('#cardc', {
       y: '25px',
       opacity: 0,
-      duration: 3,
-    })
+      duration: 1.2,
+    }).from('#herogsb', {
+    y: '25px',
+    opacity: 0,
+    duration: 3,
+  })
     
   }, [])
 

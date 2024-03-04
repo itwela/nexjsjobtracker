@@ -120,7 +120,7 @@ type JobDataProps = {
                 </div>
               </span>
                 <Table className="w-full">
-                  <TableHeader className="flex text-main-w justify-evenly gap-1">
+                  <TableHeader className="flex border-b border-main-w/50 text-main-w justify-evenly gap-1">
                 
                     <TableHead className="flex place-content-center place-items-center w-[5em] text-main-w/70 truncate hover:text-clip">
                       Edit
