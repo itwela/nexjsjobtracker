@@ -250,13 +250,13 @@ export default function NewClCard() {
         <>
 
               <div className="flex flex-col  w-full py-5">
-                <h1 className="text-4xl font-bold text-main-w/70">Cover letter</h1>
+                <h1 className="text-4xl font-bold text-main-w">Cover letter</h1>
                 <span className="flex place-contet-center place-items-center justify-between w-full gap-2">
                    <h1 className="text-[0.8em] font-bold text-main-w/50">{companyname} - {jobtitle}</h1>
                     
                     <span id="status" className='w-[50%] text-[0.8em] border-transparent place-content-end flex rounded-[0.2em] p-2 '>
                        <span className=" text-main-w/50 truncate">
-                           <span id='cov-link' className="cursor-pointer" onClick={copyText}><em>lor{joblink}</em></span>
+                           <span id='cov-link' className="cursor-pointer hover:text-main-w" onClick={copyText}><em>{joblink}</em></span>
                        </span>
                     </span>
 
