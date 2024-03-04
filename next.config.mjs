@@ -35,3 +35,15 @@ disableLogger: true,
 // https://vercel.com/docs/cron-jobs
 automaticVercelMonitors: true,
 });
+
+// Babel configuration to disable the throwing of JSX Namespace error
+export const babel = {
+    plugins: [
+      [
+        'transform-react-jsx',
+        {
+          throwIfNamespace: false,
+        },
+      ],
+    ],
+  };
