@@ -12,6 +12,7 @@ import HeroSectionTwo from "./section2";
 import { MouseParallax, ScrollParallax } from "react-just-parallax";
 import FirstComponent from "./section1";
 import Sec1Bg from "./bfsection1";
+import HomeSectionFour from "./section4";
 
 
 export default async function Home() {
@@ -51,98 +52,7 @@ export default async function Home() {
 
           {/* section 4 - pricing */} 
 
-          <section className="  w-[100vw] bg-main-wgap-3  px-8 flex flex-col md:flex-row place-items-center place-content-center min-h-[100vh] sm:py-[10vh] ">
-
-
-            <div className="min-h-[100vh] translate-y-[-5vh] sm:translate-y-[-0vh] w-[100vw] justify-evenly flex place-items-center place-content-center flex-col text-center gap-2">
-                
-                <div className="flex flex-col w-[70%] gap-5 place-items-start">
-
-                    <h1 className="text-left text-5xl text-dprimary pb-5">
-                        Pricing
-                      </h1>
-                      <div className="flex flex-col sm:flex-row w-full gap-4 min-h-[30vh] sm:min-h-[50vh]">
-                        <Card className=" border-main-w/40 hover:border-main-w/70  justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                              <span className="flex w-[100%] justify-between">   
-                                <CardHeader className="sm:text-3xl p-0 text-dprimary/60">Basic</CardHeader>
-                                  <span className="w-[40%] sm:w-[20%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
-                                          <span className="text-sm sm:text-md">
-                                            Popular
-                                          </span>
-                                  </span>
-                                </span>
-                              <CardHeader className="sm:text-5xl p-0 text-dprimary">Free</CardHeader>
-                              <CardDescription className="text-dprimary/70">Get started today for free</CardDescription>
-                              <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
-                              <CardContent className="p-0">
-                                <span className="flex flex-col py-2 gap-2 sm:gap-5 ">
-                                    <span className="flex gap-2 place-items-center"> Track up to 3 jobs</span>
-                                    <span className="flex gap-2  place-items-center"> Generate up to 3 cover letters</span>
-                                    <span className="flex gap-2  place-items-center"> Generate  up to 3 job introduction messages</span>
-                                </span>
-                              </CardContent>
-                              <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
-        {/* get started */}
-                              <CardContent className="p-0 mt-2 w-[100%] flex place-content-center">
-                              <Link
-                                href='/sign-up'>
-
-                                <span className="w-full mb-3  outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 flex gap-2 place-content-center">
-
-                                    <span>
-                                      Get Started
-                                    </span>
-                                </span>
-                                </Link>
-                              </CardContent>
-                        </Card>
-                            
-
-                        <Card className=" border-main-w/40 hover:border-main-w/70 justify-evenly flex flex-col text-left p-6  w-[100%] sm:w-[50%] bg-gradient-to-b from-gray-100/20 via-transparent to-transparent backdrop-blur-lg bg-opacity-75">
-                            <span className="flex w-[100%] justify-between">   
-                              <CardHeader className="text-xl sm:text-3xl p-0 text-dprimary/60">Pro</CardHeader>
-                                <span className="opacity-0 w-[30%] mb-3 outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
-                                        <span>
-                                          Recommended
-                                        </span>
-                                </span>
-                              </span>
-                              <span className="flex gap-4">   
-                                  <CardHeader className="sm:text-5xl p-0 text-dprimary">$15.00</CardHeader>
-                                  <span className="text-dprimary/70"> / month</span>
-                              </span>
-                            <CardDescription className="text-dprimary/70">For the serial job hunters</CardDescription>
-                            <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
-                            <CardContent className="p-0">
-                              <span className="flex flex-col py-2 gap-2 sm:gap-5">
-                                  <span className="flex gap-2">Track an unlimited amount of jobs</span>
-                                  <span className="flex gap-2"> Generate unlimited cover letters</span>
-                                  <span className="flex gap-2"> Generate unlimited job introduction messages</span>
-                              </span>
-                            </CardContent>
-                            <span className="w-[100%] h-[0.2em] my-1 bg-main-w/30"></span>
-        {/* get started */}
-                            <CardContent className="p-0 mt-2 w-[100%] flex place-content-center">
-                            <Link
-                                href='/sign-up'>
-
-                                <span className="w-full mb-3  outline outline-[1px] hover:outline-[3px] ease-in outline-main-w/40 px-4 rounded-full p-2 select-none flex gap-2 place-content-center">
-
-                                    <span>
-                                      Subscribe
-                                    </span>
-                                </span>
-                                </Link>
-                            </CardContent>
-                        </Card>
-                      </div>
-
-
-                </div>
-
-            </div>
-
-          </section>
+            <HomeSectionFour/>
 
           {/* section 5 - faq */} 
           <section className="flex w-[100vw] gap-3  px-8 flex flex-col md:flex-row place-items-center sm:place-content-center h-[100vh] py-[10vh] ">

@@ -21,19 +21,19 @@ export default function HeroSectionTwo() {
     const trigger = triggerRef.current;
 
     let tl2 = gsap.timeline({
-      defaults: {ease: 'power2.out', duration: 2},
+      defaults: {ease: 'power2.out', duration: 0.8},
       scrollTrigger: {
         trigger: trigger,
         start: "top 60%",
-        end: "top 30%",
-        scrub: true,
+        end: "top 5%",
+        // scrub: true,
         markers: true,
-        toggleActions: 'play play none none'
+        toggleActions: 'restart none none reverse'
       },
     })
 
     tl2.from(("#madeby"),{
-      y:'-39',
+      y:'39',
       opacity: 0
     })
 
