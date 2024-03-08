@@ -182,7 +182,7 @@ export default function FirstComponent() {
                     </div>
                   </div>
 
-                  <div  className="flex float relative place-content-center place-items-end pb-5 pr-3 relative z-[2] w-[30vw]   h-[60%]  ">
+                  <div  className="flex float relative place-content-center place-items-end pb-5 pr-3 relative z-[2] w-[40vw]   h-[60%]  ">
 
                     <div id='circlecont' className="w-[90%] h-max rounded-[2em] bg-main-w px-6 py-7 text-left">
                       <div className="text-blue-500 w-max text-[2vw] h-max  flex place-items-start place-content-start font-black  gap-2"><FaRegUser /> About us</div>
