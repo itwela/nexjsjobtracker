@@ -108,6 +108,10 @@ html {
   
 }
 
+.showsb ::-webkit-scrollbar {
+  display: flex !important;
+}
+
 /* Track */
 .jtable ::-webkit-scrollbar {
   display: flex;
@@ -139,12 +143,26 @@ html {
   background-image: url('../../public/jobkhome.png');
 }
 
+#addgif {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('../../public/addgif.gif');
+}
+
+#intr {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('../../public/intr.gif');
+}
+
 @keyframes floatAnimation {
   0% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-15px);
   }
   100% {
     transform: translateY(0);
@@ -153,4 +171,8 @@ html {
 
 .float {
   animation: floatAnimation 4s ease-in-out infinite; /* Adjust animation duration and timing function as needed */
+}
+
+.float2 {
+  animation: floatAnimation 7s ease-in-out infinite; /* Adjust animation duration and timing function as needed */
 }

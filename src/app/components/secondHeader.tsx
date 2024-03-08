@@ -232,7 +232,7 @@ export default function Secondheader() {
           <span className=''>
             <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
             <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
-            <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center">JobKompass</span>
+            <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center text-main-w">JobKompass</span>
 
               <Link href='/dashboard'>
                 <span className='dashb  '>
@@ -401,7 +401,7 @@ export default function Secondheader() {
         <span className=''>
           <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
           <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
-          <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center">JobKompass</span>
+          <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center text-main-w">JobKompass</span>
 
             <Link href='/dashboard'>
               <span className='dashb  '>
