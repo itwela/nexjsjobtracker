@@ -101,7 +101,7 @@ export default function HeroSectionTwo() {
     return(
         <>
            {/* section 2 made by for */}
-        <section ref={triggerRef} className="second-wrapper w-[100vw] bg-lprimary gap-3  flex flex-col md:flex-row h-max ">
+        <section ref={triggerRef} className="second-wrapper w-[100vw] bg-mprimary gap-3  flex flex-col md:flex-row h-max ">
 
           <div className="h-[100vh] w-[100%] px-[2em] pt-[2em] pb-[3em] overflow-hidden  justify-start hidden lg:flex flex-col text-center gap-2">
 
@@ -156,7 +156,7 @@ export default function HeroSectionTwo() {
 
               <div className="h-full w-[60%] flex gap-2 nosb overflow-x-auto nosb   ">
 
-                <div className="flex gap-7  ">
+                <div className="flex gap-7 text-main-w  ">
                   <div
                     id="introcard" className="flex cursor-pointer flex-col w-[30em] h-full place-items-end"
                     onMouseEnter={() => handleHover("blacksmall")}
@@ -165,7 +165,7 @@ export default function HeroSectionTwo() {
                     <div id="blacksmall" className="w-[40%] h-[5%] bg-gray-700 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Interested</h3>
                     </div>
-                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-dprimary/60 rounded-[2em]">
                         
                         <div id="addgif" className="h-[50%] w-full flex place-content-center place-items-center">
                         </div>
@@ -186,7 +186,7 @@ export default function HeroSectionTwo() {
                     <div id='bluesmall' className="w-[40%] h-[5%] bg-blue-500 flex place-content-center rounded-t-[0.7em] mr-[15%] place-items-center">
                       <h3 className="text-main-w">Applied</h3>
                     </div>
-                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-dprimary/60 rounded-[2em]">
                         
                         <div id="intr" className="h-[50%] w-full flex place-content-center place-items-center">
 
@@ -210,7 +210,7 @@ export default function HeroSectionTwo() {
                       <h3 className="text-main-w">Intereviewing</h3>
 
                     </div>
-                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-dprimary/60 rounded-[2em]">
                         
                     <div id="intr" className="h-[50%] w-full flex place-content-center place-items-center">
                     </div>
@@ -232,7 +232,7 @@ export default function HeroSectionTwo() {
                     <div id="offersmall" className="w-[40%] h-[5%] bg-green-500 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Offer</h3>
                     </div>
-                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full p-[4vw] py-[7vh] flex flex-col justify-between h-[95%] bg-dprimary/60 rounded-[2em]">
                     
                         <div id="intr" className="h-[50%] w-full flex place-content-center place-items-center">
                         </div>
@@ -307,7 +307,7 @@ export default function HeroSectionTwo() {
                 </h3>
               </div>
 
-              <div className="h-full text-dprimary w-[60%] flex gap-2 nosb   ">
+              <div className="h-full text-main-w w-[60%] flex gap-2 nosb   ">
 
                 <div className="flex flex-col gap-7 w-full text-[1.5vw] ">
                  {/* div 1 */}
@@ -319,7 +319,7 @@ export default function HeroSectionTwo() {
                     <div id="blacksmall" className="w-[40%] h-[15%] bg-gray-700 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Interested</h3>
                     </div>
-                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-dprimary/60 rounded-[2em]">
                         <span>
                           Ever lose track of a job you applied for? Want to save it
                           for later? Keep track of all your dream jobs in one place.
@@ -335,7 +335,7 @@ export default function HeroSectionTwo() {
                     <div id='bluesmall' className="w-[40%] h-[15%] bg-blue-500 flex place-content-center rounded-t-[0.7em] mr-[15%] place-items-center">
                       <h3 className="text-main-w">Applied</h3>
                     </div>
-                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-dprimary/60 rounded-[2em]">
                           <span className="text-left">
                             Congrats, you applied to your dream job! Update your status
                             easily and even add more too.
@@ -351,7 +351,7 @@ export default function HeroSectionTwo() {
                       <h3 className="text-main-w">Intereviewing</h3>
 
                     </div>
-                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-dprimary/60 rounded-[2em]">
                           <span className="text-left">
                             Update your job status when that recuiter finally reaches out to you!
                             Gain valuable insights on what got you that interview from reusme used, to keywords, and if your cover letter was effective.
@@ -367,7 +367,7 @@ export default function HeroSectionTwo() {
                     <div id="offersmall" className="w-[40%] h-[15%] bg-green-500 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Offer</h3>
                     </div>
-                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-4 flex place-items-center place-content-center h-[95%] bg-dprimary/60 rounded-[2em]">
                           <span className="text-left">
                               Congrats! You got an offer! Update your status to reflect your new job. Share with friends,
                               gain valuable data for friends and family on how exactly you got that dream job!
@@ -398,14 +398,14 @@ export default function HeroSectionTwo() {
               <div className="w-[100%] text-main-w flex mb-3  flex-col justify-between  ">
              
 
-                <h3 id="extrainfo" className="text-[0.7em] text-center text-main-w/60 w-[100%]">
+                <h3 id="extrainfo" className=" text-left text-main-w/60 w-[100%]">
                   Add jobs, update status, gain valuable insights into where to spend your time applying, learn what resumes perform the best, all in one platform.
                 </h3>
               </div>
 
-              <div className="text-dprimary w-[100%] flex nosb   ">
+              <div className="text-main-w w-[100%] flex nosb   ">
 
-                <div className="flex flex-col w-full text-[3.5vw] gap-3 ">
+                <div className="flex flex-col w-full  gap-3 ">
                   
                   {/* div 1 */}
                   <div
@@ -416,7 +416,7 @@ export default function HeroSectionTwo() {
                     <div id="blacksmall" className="w-[40%] h-[15%] bg-gray-700 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Interested</h3>
                     </div>
-                    <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-dprimary/60 rounded-[2em]">
                       <span>
                         Ever lose track of a job you applied for? Want to save it
                         for later? Keep track of all your dream jobs in one place.
@@ -432,7 +432,7 @@ export default function HeroSectionTwo() {
                     <div id='bluesmall' className="w-[40%] h-[15%] bg-blue-500 flex place-content-center rounded-t-[0.7em] mr-[15%] place-items-center">
                       <h3 className="text-main-w">Applied</h3>
                     </div>
-                    <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-dprimary/60 rounded-[2em]">
                       <span className="text-left">
                         Congrats, you applied to your dream job! Update your status
                         easily and even add more too.
@@ -448,7 +448,7 @@ export default function HeroSectionTwo() {
                       <h3 className="text-main-w">Intereviewing</h3>
 
                     </div>
-                    <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-dprimary/60 rounded-[2em]">
                       <span className="text-left">
                         Update your job status when that recuiter finally reaches out to you!
                         Gain valuable insights on what got you that interview from reusme used, to keywords, and if your cover letter was effective.
@@ -461,10 +461,10 @@ export default function HeroSectionTwo() {
                     onMouseEnter={() => handleHover("offersmall")}
                     onMouseLeave={() => handleHover(null)}
                     id="hiredcard" className="flex flex-col w-[100%] h-max place-items-end">
-                    <div id="offersmall" className="w-[40%] h-[15%] bg-green-500 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
+                    <div id="offersmall" className="w-[40%] h-[10%] bg-green-500 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Offer</h3>
                     </div>
-                    <div className="w-full px-8 py-5 flex place-items-center place-content-center h-[15em] bg-main-w rounded-[2em]">
+                    <div className="w-full px-8 py-5 flex place-items-center place-content-center h-[15em] bg-dprimary/60 rounded-[2em]">
                       <span className="text-left">
                         Congrats! You got an offer! Update your status to reflect your new job. Share with friends,
                         gain valuable data for friends and family on how exactly you got that dream job!
