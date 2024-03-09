@@ -413,7 +413,7 @@ export default function HeroSectionTwo() {
                     onMouseEnter={() => handleHover("blacksmall")}
                     onMouseLeave={() => handleHover(null)}
                   >
-                    <div id="blacksmall" className="w-[40%] h-[15%] bg-gray-700 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
+                    <div  className="w-[40%] h-[15%] bg-gray-700 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Interested</h3>
                     </div>
                     <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-dprimary/60 rounded-[2em]">
@@ -429,7 +429,7 @@ export default function HeroSectionTwo() {
                     onMouseEnter={() => handleHover("bluesmall")}
                     onMouseLeave={() => handleHover(null)}
                     id="appliedcard" className="flex flex-col w-[100%] h-max place-items-end">
-                    <div id='bluesmall' className="w-[40%] h-[15%] bg-blue-500 flex place-content-center rounded-t-[0.7em] mr-[15%] place-items-center">
+                    <div  className="w-[40%] h-[15%] bg-blue-500 flex place-content-center rounded-t-[0.7em] mr-[15%] place-items-center">
                       <h3 className="text-main-w">Applied</h3>
                     </div>
                     <div className="w-full px-8 py-5 flex place-items-center place-content-center min-h-[15em] bg-dprimary/60 rounded-[2em]">
@@ -444,7 +444,7 @@ export default function HeroSectionTwo() {
                     onMouseEnter={() => handleHover("yellowsmall")}
                     onMouseLeave={() => handleHover(null)}
                     id="interviewcard" className="flex flex-col w-[100%] h-max place-items-end">
-                    <div id="yellowsmall" className="w-[40%] h-[15%]  flex place-content-center bg-yellow-500 rounded-t-[0.7em] mr-[15%] place-items-center">
+                    <div  className="w-[40%] h-[15%]  flex place-content-center bg-yellow-500 rounded-t-[0.7em] mr-[15%] place-items-center">
                       <h3 className="text-main-w">Intereviewing</h3>
 
                     </div>
@@ -461,7 +461,7 @@ export default function HeroSectionTwo() {
                     onMouseEnter={() => handleHover("offersmall")}
                     onMouseLeave={() => handleHover(null)}
                     id="hiredcard" className="flex flex-col w-[100%] h-max place-items-end">
-                    <div id="offersmall" className="w-[40%] h-[10%] bg-green-500 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
+                    <div  className="w-[40%] h-[10%] bg-green-500 rounded-t-[0.7em] mr-[15%] flex place-content-center place-items-center">
                       <h3 className="text-main-w">Offer</h3>
                     </div>
                     <div className="w-full px-8 py-5 flex place-items-center place-content-center h-[15em] bg-dprimary/60 rounded-[2em]">
