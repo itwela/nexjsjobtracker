@@ -227,11 +227,11 @@ export default function FirstComponent() {
             <div className="w-[100vw] px-[0.5em] pt-[1em] pb-[1em] bg-dprimary overflow-hiddden relative bg h-[100vh]   flex flex-col text-center gap-2">
 
 
-              <div className=" rounded-[3em]  w-full h-[100%] ">
+              <div className=" rounded-[3em]  w-full min-h-[100vh] ">
 
 
                 
-                <div className="relative  w-full h-full flex place-items-end justify-between">
+                <div className="relative  w-full min-h-[100vh] flex place-items-end justify-between">
 
                   {/* small  ----------------- start*/}
 
@@ -246,7 +246,7 @@ export default function FirstComponent() {
                     <image className="w-full translate-y-[-50%]" xlinkHref="https://cdn.dribbble.com/users/1770290/screenshots/6144278/bg_74.gif" clipPath="url(#maskPath)" />
                   </svg>
 
-                  <div className="flex flex-col text-main-w  relative place-content-end relative z-[2] w-[100%]   h-max  ">
+                  <div className="flex flex-col text-main-w  relative place-content-end relative z-[2] w-[100%]   h-[70vh]  ">
 
                   <a href="/sign-up" className="w-max h-max mb-3 ml-2">
                         <button id="gsb" className="text-[4.8vw] px-4 py-2 w-full h-full bg-blue-500 text-main-w rounded-2xl">
@@ -262,11 +262,11 @@ export default function FirstComponent() {
                       <h1 id="yjobs" className="text-[7.5vw]">Your Job Search, Today</h1>
                     </div>
 
-                    <div id='circlecont' className="flex py-2 pb-9  bg-dprimary relative place-content-center place-items-center  relative z-[2] w-[100%]   h-max  ">
+                    <div id='circlecont' className="flex py-2 pb-9  bg-dprimary relative place-content-center place-items-center  relative z-[2] w-[100%]   h-[60%]  ">
 
-                      <div className="w-[90%] h-max rounded-[2em] mt-2 bg-lprimary/60 text-main-w px-[3em] py-[3em] text-left">
+                      <div className="w-[90%] h-full rounded-[2em] mt-2 overflow-y-scroll gap-3 place-content-start flex flex-col place-items-start bg-lprimary/60 text-main-w px-[3em] py-[3em] text-left">
                         <div className="text-blue-500 w-max text-[4vw] h-max  flex place-items-start place-content-start font-black  gap-2"><FaRegUser /> About us</div>
-                        <div className="w-full  flex flex-col gap-2 justify-evenly h-full ">
+                        <div className="w-full place-items-start place-content-start  flex flex-col gap-2  h-[80%] overflow-y-scroll ">
                           <span>
                             JobKompass is a web app built due to frustration
                             in finding a job in the software engineering market.
