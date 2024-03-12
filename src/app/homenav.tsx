@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+
 export default function NLoginHeader() {
     return (
         <>
@@ -5,8 +8,13 @@ export default function NLoginHeader() {
                 <span>JobKompass</span>
 
                 <span className="hidden sm:flex gap-2">
-                    <button className="px-5 py-2 outline outline-1 rounded-lg">Sign in</button>
-                    <button className="rounded-lg bg-main-w text-dprimary px-5 py-2">Sign up</button>
+                    <Link href='/sign-in'>
+                        <button className="px-5 py-2 outline outline-1 rounded-lg">Sign in</button>
+                    </Link>
+                    <Link href='/sign-up'>
+                        <button className="rounded-lg bg-main-w text-dprimary px-5 py-2">Sign up</button>
+                    </Link>
+                    
                 </span>
             </div>
         </>
