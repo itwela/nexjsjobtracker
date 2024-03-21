@@ -183,7 +183,7 @@ export function AddJobs() {
 
                             <div className='flex flex-col gap-2'>
                               <label htmlFor="JobTitle" className='font-bold'>Add Job Title</label>
-                              <Input onChange={handleInputChange} className='border-lprimary' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
+                              <Input autoComplete="off" onChange={handleInputChange} className='border-lprimary' type="text" id="JobTitle" name="JobTitle" placeholder="Add Job Title" required />
                             </div>
 
                             </CarouselItem>
@@ -193,7 +193,7 @@ export function AddJobs() {
 
                             <div className='flex flex-col gap-2 mb-2'>
                               <label className='font-bold' htmlFor="Company">Add Company</label>
-                              <Input onChange={handleInputChange} className='border-lprimary' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
+                              <Input autoComplete="off" onChange={handleInputChange} className='border-lprimary' type="text" id="Company" name="Company" placeholder="Name of Company?" required />
                             </div>
 
                             </CarouselItem>
@@ -204,7 +204,7 @@ export function AddJobs() {
                             <div className='flex flex-col gap-2'>
                               <label className='font-bold' htmlFor="DateApplied">Date Applied</label>
                               <div className='mb-2  outline outline-[1px] outline-lprimary py-2 px-3 bg-lprimary rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                                <input onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' />
+                                <input autoComplete="off" onChange={handleInputChange} type="date" id="DateApplied" name="DateApplied" className='rounded-[0.2em] px-2 bg-lprimary w-[100%] text-main-w ' />
                               </div>
                             </div>
                             </CarouselItem>
@@ -229,7 +229,7 @@ export function AddJobs() {
 {/* job link? */}            <CarouselItem>
                             <div className='flex flex-col gap-2'>
                             <label className='font-bold' htmlFor="status">Link</label>
-                              <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
+                              <Input autoComplete="off" className='border-lprimary' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
                             </div>
                             </CarouselItem>
 
@@ -251,14 +251,14 @@ export function AddJobs() {
 {/* referral name */}          <CarouselItem>
                                 <div className='flex flex-col gap-2'>
                                   <label className='font-bold' htmlFor="ReferralName">Referral Name</label>
-                                  <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
+                                  <Input autoComplete="off" className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralName" name="ReferralName" placeholder="Referral Name" />
                                 </div>
                                 </CarouselItem>
 
 {/* referral contact */}      <CarouselItem>
                                 <div className='flex flex-col gap-2'>
                                   <label className='font-bold' htmlFor="ReferralContact">Referral Contact</label>
-                                  <Input className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
+                                  <Input autoComplete="off" className='border-lprimary' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
                                 </div>
                                 </CarouselItem>
 
@@ -269,7 +269,7 @@ export function AddJobs() {
 
                         <div className='flex flex-col gap-2'>
                           <label className='font-bold text-main-w' htmlFor="ResumeUsed">Add Resume</label>
-                          <Input className='border-lprimary cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
+                          <Input autoComplete="off" className='border-lprimary cursor-pointer text-main-w' onChange={handleInputChange}  type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
                         </div>
                         </CarouselItem>
 
@@ -278,7 +278,7 @@ export function AddJobs() {
 
                         <div className='mb-2 flex flex-col gap-2'>
                           <label className='font-bold' htmlFor="Keywords">Add Keywords</label>
-                          <Input className='border-lprimary' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
+                          <Input autoComplete="off" className='border-lprimary' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
                         </div>
                         </CarouselItem>
 
