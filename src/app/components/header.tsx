@@ -47,7 +47,7 @@ export const Header = () => {
             
             <span className='flex place-items-center gap-1'>
             <Link href='/'>
-              <h1 id='header-name' className='text-sm sm:text-1xl pl-5 text-main-w/60 hover:text-main-w'>JobKompass</h1>
+              <h1 id='header-name' className='text-sm sm:text-1xl pl-5  '>JobKompass</h1>
             </Link>
             </span>
             <div className='flex  '>
@@ -56,7 +56,7 @@ export const Header = () => {
                     <Link
                     id='signin'
                       href='/sign-in'
-                      className=' text-sm text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover:text-main-w/60 mr-4'
+                      className=' text-sm text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover: mr-4'
                     >
                       Sign In
                     </Link>
@@ -72,8 +72,8 @@ export const Header = () => {
                 {userId && (
                   <>
                
-                  <Link href='/dashboard' className='hidden md:flex text-main-w/60 hover:text-main-w text-sm mr-4 '>
-                    Dashboard
+                  <Link href='/dashboard' className='hidden md:flex   text-sm mr-4 '>
+                    Home
                   </Link>
                
 
@@ -85,7 +85,7 @@ export const Header = () => {
           {userId && (
           <div className='flex place-items-center gap-2 px-5'>
 
-            <Link href='/profile' className='text-main-w/60 hover:text-main-w text-sm mr-4'>
+            <Link href='/profile' className='  text-sm mr-4'>
               Profile
             </Link>
             <div className='ml-auto'>

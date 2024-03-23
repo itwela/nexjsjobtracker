@@ -8,14 +8,14 @@ export interface JobData {
       userId: string;
       jobId: string;
     }>;
-    DateApplied: string | null; // Update the type to string | null
+    DateApplied: string | null;
     JobTitle: string;
     Keywords: string | null;
     Link: string;
     Referral: string;
     ReferralContact: string | null;
     ReferralName: string | null;
-    ResumeUsed: string | null;
+    ResumeUsed: string | number | readonly string[] | undefined
     Status: string | null;
     createdAt: Date;
     id: string;

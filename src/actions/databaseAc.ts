@@ -12,7 +12,6 @@ async function getTheUser() {
   const theUserId = theUser?.id;
   if (theUserId) {
     theId = theUserId;
-    console.log(theUserId);
   } else {
     throw new Error("User ID is undefined");
     // or provide a default value: theId = "defaultUserId";
@@ -50,8 +49,8 @@ export async function getJobWithCl() {
   return data;
 }
 
-// this gets all job data from a user
-export async function getJobData() {
+// this gets all job data with cover letter from a user
+export async function getJobDataWithCl() {
   noStore();
   await getTheUser();
   const data = await prisma.job.findMany({
@@ -66,9 +65,26 @@ export async function getJobData() {
   },
 });
   
-  console.log(data)
   return data;
 }
+
+export async function getJobData() {
+  noStore();
+  await getTheUser();
+  const user = await currentUser()
+  const data = await prisma.job.findMany({
+    where: {
+      userId: theId as string
+  },
+  orderBy: {
+      createdAt: 'desc'
+  },
+});
+  
+  return data;
+}
+
+
 
 // this gets a unique job for a user
 export async function getUniqueJobData() {
@@ -155,7 +171,6 @@ export async function getIntroductionData() {
 export const addJob = async (formData: FormData) => {
     noStore();
     const requestBody = formData;
-    console.log(requestBody)
   
     const user = await currentUser()
     const data = await getJobData()
@@ -177,16 +192,18 @@ export const addJob = async (formData: FormData) => {
     const formReferralName = formData.get('ReferralName') as string;    //   const formCompany = requestBody.Company as string
     const formReferralContact = formData.get('ReferralContact') as string;    //   const formCompany = requestBody.Company as string
     const resumeFileName = resumeFile.name;        //   const formattedDate = requestBody.DateApplied as string
-            
-        if(
+    console.log('heres the date:',formDateApplied)
+
+    if(
           sub?.status === 'active' 
           || data.length < 3
           || user?.firstName === 'Itwela'
           ) {  
         const apiAdd = await prisma?.job.create({
             data: {
-                userId: user?.id,
-                JobTitle: formJobTitle,
+                  User: {
+                    connect: { id: user?.id }
+                },                JobTitle: formJobTitle,
                 Company: formCompany,
                 DateApplied: formDateApplied,
                 Status: formStatus,
@@ -210,12 +227,54 @@ export const addJob = async (formData: FormData) => {
         }
         
 
-
+        revalidatePath("/")
         
       
           
 }
 
+export async function updateJobData(formData: FormData) {
+  noStore();
+
+  const formJobId = formData.get('jobId') as string;
+  const formJobTitle = formData.get('JobTitle') as string;
+  const formCompany = formData.get('Company') as string;
+  const formDateApplied = formData.get('DateApplied') as string;
+  const formStatus = formData.get('status') as string;
+  const formLink = formData.get('Link') as string;
+  const formReferral = formData.get('referral') as string;
+  const formKeywords = formData.get('Keywords') as string;    //   const formCompany = requestBody.Company as string
+  const formReferralName = formData.get('ReferralName') as string;    //   const formCompany = requestBody.Company as string
+  const formReferralContact = formData.get('ReferralContact') as string;    //   const formCompany = requestBody.Company as string
+
+  let taskData: any = {
+    // userId: theId,
+      User: {
+        connect: { id: theId }
+    },                
+    JobTitle: formJobTitle,
+    Company: formCompany,
+    DateApplied: formDateApplied,
+    Status: formStatus,
+    Link: formLink,
+    Referral: formReferral,
+    ReferralName: formReferralName,
+    ReferralContact: formReferralContact,
+    Keywords: formKeywords,    
+
+  };
+
+
+  const apiAdd = await prisma?.job.update({
+
+    where: {
+        id: formJobId,
+    },
+    data: taskData
+})
+
+    revalidatePath("/")
+}
 
 //  this is the function to delete jobs
 export const deleteJobData = async (formData: FormData) => {

@@ -58,6 +58,7 @@ export default function Clock({userdata}: {userdata: any}) {
                 }
 
                 toast("Welcome to JobKompass!",{
+                    id: "success",
                     description: "Good to see you today!",
                   })
 
@@ -88,7 +89,7 @@ export default function Clock({userdata}: {userdata: any}) {
         <>
                 
                 <div className=" rounded-[10em] h-full flex place-items-center">        
-                    <div className="flex font-black md:flex-row flex-col place-items-start place-content-start md:gap-3 ">
+                    <div className="flex text-3xl font-black sm:flex-row flex-col place-items-start place-content-start sm:gap-3 ">
                             <span className="">Greetings, </span>
                             
                             <h3 className=''>

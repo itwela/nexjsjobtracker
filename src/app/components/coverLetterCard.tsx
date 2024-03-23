@@ -40,7 +40,7 @@ interface JobData {
   }
 
 
-export default function CoverLetterCard() {
+export default function CoverLetterCard({jobdata}: {jobdata: any}) {
     
   useEffect(() => {
       getJobId()
@@ -171,7 +171,7 @@ export default function CoverLetterCard() {
                 {/* </CardHeader> */}
 
                 <form action={handleSubmit} className=' flex flex-col gap-2'>
-                    <select id="status" onChange={handleStatusChange} className='border-transparent rounded-[0.2em] p-2 bg-lprimary w-full' name="status" required>
+                    <select id="status" onChange={handleStatusChange} className='border-transparent rounded-[0.2em] p-2 bg-white w-full' name="status" required>
                         <option value="">Select a Job</option>
                         {/* Populate options with job data */}
                         {jobData.map((job) => (
@@ -181,16 +181,16 @@ export default function CoverLetterCard() {
                         ))}
                     </select>
                     <CardTitle className="text-[1em]" >Add job description</CardTitle>
-                        <Textarea onChange={handleInputChange} name="" id="input" className='min-h-[30vh] border-transparent'>
+                        <Textarea onChange={handleInputChange} name="" id="input" className='min-h-[30vh] bg-white border-transparent'>
                         </Textarea>
-                    <Button className='bg-main-w/80 hover:bg-main-w text-mprimary'>Submit</Button>
+                    <Button className='bg-gradient-to-l from-blue-900 to-blue-400 text-white'>Submit</Button>
                 </form>
 
                 
-                <div className='relative my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-mprimary p-5 rounded-[1em]'>
-                <FaRegCopy size={36} onClick={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer text-main-w/70 hover:text-main-w font-black p-2" />
+                <div className='relative my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-[1em]'>
+                <FaRegCopy size={36} onClick={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer font-black p-2" />
 
-                  <h1 className='text-[1.5em] font-semibold text-main-w/70 hover:text-main-w leading-none tracking-tight my-4'>
+                  <h1 className='text-[1.5em] font-semibold  leading-none tracking-tight my-4'>
                     Your cover letter:
                   </h1>
                     <span id='cov-text'>{coverText}</span>

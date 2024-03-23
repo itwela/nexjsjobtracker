@@ -1,14 +1,24 @@
-import { auth, currentUser } from '@clerk/nextjs';
 import { ReactNode, Suspense } from 'react';
-import prisma from '../libs/db';
-import { getFirstData, getJobData, getUserData } from '@/actions/databaseAc';
-import { stripe } from '../libs/stripe';
-import spin from '../assets/system-solid-18-autorenew.gif'
+import { currentUser } from '@clerk/nextjs';
+import { getJobData } from '@/actions/databaseAc'; // Assuming `getUserData` is not used
 import Dashboard from './page';
+import spin from '../assets/system-solid-18-autorenew.gif';
+import SecondHeaderS from '../components/S_secondHeader';
 
+export default function DashboardLayout() {
+  return (
+    <Suspense fallback={<div className="flex w-screen h-screen place-items-center place-content-center bg-gray-200 justify-center">
+      <div className='flex flex-col gap-4 place-items-center place-content-center'>
+        <span className='font-bold'>JobKompass</span>
+        <span>Loading.....</span>
+      </div>
+      </div>}>
+      <DashboardWithData />
+    </Suspense>
+  );
+}
 
-
-export default async function DashboardLayout() {
+async function DashboardWithData() {
   try {
     const userdata = await currentUser();
     const jobdata = await getJobData();
@@ -18,16 +28,23 @@ export default async function DashboardLayout() {
     const plainJobData = JSON.parse(JSON.stringify(jobdata));
 
     return (
-      <div className="flex">
-        <div className="flex">
-          <main><Dashboard userdata={plainUserData} jobdata={plainJobData}/></main>
-          <h1></h1>
+      <div className="flex w-screen">
+        <div className="flex w-full">
+          <main className='w-full flex'>
+             <div className="flex bg-dprimary relative sm:w-[20%] ">
+                <SecondHeaderS  />
+            </div>
+            <div className="flex sm:w-[80%] w-[100%]">
+              <Dashboard userdata={plainUserData} jobdata={plainJobData} />
+            </div>
+          </main>
+          <h1></h1> {/* Make sure to add content */}
         </div>
       </div>
     );
   } catch (error) {
     // Handle errors here
     console.error('Error fetching data:', error);
-    return null; // or render an error message
+    return <div>Error fetching data. Please try again later.</div>; // Render an error message
   }
 }

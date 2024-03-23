@@ -18,15 +18,16 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
+import SecondHeaderS from "../components/S_secondHeader";
 
 
   export default async function Mydocs ()  {
     noStore();
     auth();
     const user = await currentUser()
-    const jobData = await getJobData(user?.id as string)
-    const coverlData = await getCoverLetterData(user?.id as string)
-    const introData = await getIntroductionData(user?.id as string)
+    const jobData = await getJobData()
+    const coverlData = await getCoverLetterData()
+    const introData = await getIntroductionData()
 
 
     
@@ -34,12 +35,12 @@ import { FaRegEdit } from "react-icons/fa";
         <>
                    <Suspense fallback={
         
-        <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
-          <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
+        <div className='w-screen h-screen bg-gray-200  flex-col flex place-content-center place-items-center'>
+          <span className="w-full  pb-5 flex place-items-center place-content-center">
             JobKompass
           </span>
           <span className="flex gap-3 place-items-center place-content-center">
-          <p className='text-main-w'>Data is loading, please wait a moment...</p>
+          <p className=''>Data is loading, please wait a moment...</p>
           <img src={spin.src} alt="" className="w-[20px]"/>
           </span>
         </div>
@@ -47,21 +48,20 @@ import { FaRegEdit } from "react-icons/fa";
       }>
 
         
-        <div className="flex bg-gradient-to-b from-dprimary to-mprimary">
+        <div className="flex w-screen bg-gray-200 ">
           {/* drift */}
   
-          <div className="w-[0vw] md:w-[20vw] sm:flex">
-          <SecondHeader/>
+          <div className="hidden sm:w-[20%] sm:flex">
+          <SecondHeaderS/>
           </div>
   
-          <div className="flex  min-h-screen flex-col place-items-center  w-[100vw] md:w-[80vw] px-6 justify-items-start">
-            <Header/>
+          <div className="flex py-8 min-h-screen flex-col place-items-center  w-[100vw] md:w-[80vw] justify-items-start">
   
-            <div className="pagewrapper  px-4 text-main-w  w-[100vw] sm:w-[80vw]">
+            <div className="pagewrapper  px-4   w-full">
   
                     <div className="flex flex-col w-[100%] py-5 gap-3">
                         <h1 className="text-4xl font-bold">My Documents</h1>
-                        <h2 className="text-main-w/50">Just in case you forgot to copy something, you can access it here!</h2>
+                        <h2 className="/50">Just in case you forgot to copy something, you can access it here!</h2>
                     </div>
 
                       <Accordion type="single" collapsible className=" px-3">
@@ -77,7 +77,7 @@ import { FaRegEdit } from "react-icons/fa";
                                     .map((job: any) => (
                                       <div
                                         key={job.id}
-                                        className="min-w-[80%] md:min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary"
+                                        className="min-w-[80%] md:min-w-[40%] relative overflow-scroll p-5  text-left bg-white "
                                       >
 
                                         {/* Render job details */}
@@ -86,7 +86,7 @@ import { FaRegEdit } from "react-icons/fa";
                                           <div className="flex gap-2 absolute top-2 right-4">
                                             <Link href={`/coverletter/job/${job.id}`}>
                                               <input type="hidden" name="jobId" value={job.id} />
-                                              <button className="hover:text-main-w text-slate-500"><FaRegEdit size={18} type="submit" /></button>
+                                              <button className="hover: text-slate-500"><FaRegEdit size={18} type="submit" /></button>
                                             </Link>
                                             <form action={deleteCoverLetter}>
                                               <input type="hidden" name="jobId" value={job.id} />
@@ -95,14 +95,14 @@ import { FaRegEdit } from "react-icons/fa";
                                           </div>
 
                                           <p>
-                                            {job.JobTitle}, <span className="text-main-w/60">{job.Company}</span>
+                                            {job.JobTitle}, <span className="/60">{job.Company}</span>
                                           </p>
-                                          <p className="absolute top-2 left-5 text-main-w/70">{job.DateApplied}</p>
+                                          <p className="absolute top-2 left-5 /70">{job.DateApplied}</p>
                                         
                                         </span>
                                         {/* Map over cover letters */}
                                         {job.coverLetters.map((coverLetter: any) => (
-                                          <p className="text-main-w/60" key={coverLetter.id}>
+                                          <p className="/60" key={coverLetter.id}>
                                             {coverLetter.text}
                                           </p>
                                         ))}
@@ -121,7 +121,7 @@ import { FaRegEdit } from "react-icons/fa";
                                 {/* Iterate over jobData and access coverLetters */}
                                 
                               {introData.map((item: any) => (
-                                  <div key={item.id} className="min-w-[80%] md:min-w-[40%] relative overflow-scroll p-5  text-left bg-mprimary">
+                                  <div key={item.id} className="min-w-[80%] md:min-w-[40%] relative overflow-scroll p-5  text-left bg-white ">
                                          
                                            <div className="flex gap-2 absolute top-2 right-4">
                                           
