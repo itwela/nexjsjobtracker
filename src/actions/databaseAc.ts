@@ -5,13 +5,26 @@ import { auth, currentUser } from "@clerk/nextjs";
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 import { stripe } from "@/app/libs/stripe";
 
+let theId = ''
 
+async function getTheUser() {
+  const theUser = await currentUser();
+  const theUserId = theUser?.id;
+  if (theUserId) {
+    theId = theUserId;
+    console.log(theUserId);
+  } else {
+    throw new Error("User ID is undefined");
+    // or provide a default value: theId = "defaultUserId";
+  }
+}
 //  this gets userId
-export async function getUserData(userId: string) {
+export async function getUserData() {
   noStore();
+  await getTheUser();
   const data = prisma.user.findUnique({
     where: {
-      id: userId
+      id: theId
     },
   });
   
@@ -19,11 +32,12 @@ export async function getUserData(userId: string) {
 }
 
 // this gets all job data from a user
-export async function getJobWithCl(userId: string) {
+export async function getJobWithCl() {
   noStore();
+  await getTheUser();
   const data = await prisma.job.findMany({
     where: {
-      userId: userId
+      userId: theId
   },
   select: {
       coverLetters: true // Include CoverLetter
@@ -37,11 +51,12 @@ export async function getJobWithCl(userId: string) {
 }
 
 // this gets all job data from a user
-export async function getJobData(userId: string) {
+export async function getJobData() {
   noStore();
+  await getTheUser();
   const data = await prisma.job.findMany({
     where: {
-      userId: userId
+      userId: theId as string
   },
   include: {
       coverLetters: true // Include CoverLetter
@@ -51,15 +66,17 @@ export async function getJobData(userId: string) {
   },
 });
   
+  console.log(data)
   return data;
 }
 
 // this gets a unique job for a user
-export async function getUniqueJobData(userId: string) {
+export async function getUniqueJobData() {
   noStore();
+  await getTheUser();
   const data = prisma.job.findUnique({
     where: {
-      id: userId
+      id: theId
     },
   });
   
@@ -67,11 +84,12 @@ export async function getUniqueJobData(userId: string) {
 }
 
   // this get subscription data from user
-export async function getSubscriptionData(userId: string) {
+export async function getSubscriptionData() {
   noStore(); 
+  await getTheUser();
   const data = await prisma.subscription.findUnique({
       where: {
-        userId: userId
+        userId: theId
       },
       select: {
         status: true,
@@ -87,11 +105,12 @@ export async function getSubscriptionData(userId: string) {
 }
 
   // this get cover letter data from user
-export async function getCoverLetterData(userId: string) {
+export async function getCoverLetterData() {
   noStore(); 
+  await getTheUser();
   const data = prisma.coverLetter.findMany({
     where: {
-      userId: userId
+      userId: theId
     },
     orderBy: {
       createdAt: 'desc'
@@ -102,11 +121,12 @@ export async function getCoverLetterData(userId: string) {
 }
 
 // this get cover letter data from user
-export async function getClByJobId(userId: string, jobId: string) {
+export async function getClByJobId(jobId: string) {
   noStore(); 
+  await getTheUser();
   const data = prisma.job.findUnique({
     where: {
-      userId: userId,
+      userId: theId,
       id: jobId
     },
   });
@@ -115,11 +135,12 @@ export async function getClByJobId(userId: string, jobId: string) {
 }
 
   // this get introduction data from user
-export async function getIntroductionData(userId: string) {
+export async function getIntroductionData() {
   noStore(); 
+  await getTheUser();
   const data = prisma.introduction.findMany({
     where: {
-      userId: userId
+      userId: theId
     },
     orderBy: {
       createdAt: 'desc'
@@ -137,8 +158,8 @@ export const addJob = async (formData: FormData) => {
     console.log(requestBody)
   
     const user = await currentUser()
-    const data = await getJobData(user?.id as string)
-    const sub = await getSubscriptionData(user?.id as string)
+    const data = await getJobData()
+    const sub = await getSubscriptionData()
     
     if(!user) {
       throw new Error("Not Authorized")
@@ -156,15 +177,7 @@ export const addJob = async (formData: FormData) => {
     const formReferralName = formData.get('ReferralName') as string;    //   const formCompany = requestBody.Company as string
     const formReferralContact = formData.get('ReferralContact') as string;    //   const formCompany = requestBody.Company as string
     const resumeFileName = resumeFile.name;        //   const formattedDate = requestBody.DateApplied as string
-        //   const formStatus = requestBody.Status as string
-        //   const formLink = requestBody.Link as string
-        //   const formReferral = requestBody.Referral as string
-        //   const formReferralName = requestBody.ReferralName as string
-        //   const formReferralContact = requestBody.ReferralContact as string
-        //   const formKeywords = requestBody.Keywords as string
-        //   const uniiId = requestBody.id
-  
-          
+            
         if(
           sub?.status === 'active' 
           || data.length < 3
@@ -296,11 +309,12 @@ export async function getFirstData({
   }
 }
 
-export async function getUsername(userId: string) {
+export async function getUsername() {
   noStore();
+  await getTheUser();
   const data = await prisma.user.findUnique({
     where: {
-      id: userId
+      id: theId
     },
     select: {
       username: true,

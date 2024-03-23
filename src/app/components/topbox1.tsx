@@ -6,6 +6,8 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 import { toast } from "sonner";
 import { FaRightLong } from "react-icons/fa6";
 import { EvervaultCard } from "../../components/ui/evervault-card";
+import { FaRegMessage } from "react-icons/fa6";
+
 // import { error } from 'console';
 
 
@@ -40,7 +42,7 @@ type JobDataProps = {
 
 
 
-export default function TopboxOne({jobdata}: JobDataProps) {
+export default function TopboxOne({jobdata}: any) {
 
 
   const [isGen, setIsGen] = useState(false);
@@ -130,12 +132,12 @@ export default function TopboxOne({jobdata}: JobDataProps) {
   if(isGen == true && !isLoading ) {
     return (
     <>
-      <span className=" w-[10em] sm:w-[20em] relative overflow-hidden bg-mprimary text-main-w/70 hover:text-main-w font-black  flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-[28vh] ">
+      <span className=" w-[10em] sm:w-[20em] relative overflow-hidden bg-white   font-black  flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-full ">
 
         <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-[0.6em] sm:text-[1em]">{data}</span>
-        <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-1 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
+        <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-1 cursor-pointer bg-white text-main-w/60  font-black p-2" />
         {/* Add an id to the copy button */}
-        <FaRegCopy onClick={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60 hover:text-main-w bg-mprimary rounded-[0.5em] hover:text-main-w/70 font-black p-2" />
+        <FaRegCopy onClick={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60  bg-white rounded-[0.5em] hover: font-black p-2" />
       </span>
 
     </>
@@ -145,11 +147,11 @@ export default function TopboxOne({jobdata}: JobDataProps) {
     if(isLoading == true) {
       return (
         <>
-        <span className=" text-ellipsis relative overflow-hidden bg-mprimary text-main-w/70 font-black place-content-center flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-[28vh] ">
+        <span className=" text-ellipsis relative overflow-hidden bg-white  font-black place-content-center flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-full ">
 
           <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
            
-          <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-0 cursor-pointer bg-mprimary text-main-w/60 hover:text-main-w font-black p-2" />
+          <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-0 cursor-pointer bg-white text-main-w/60  font-black p-2" />
            <span className="animate-pulse text-[0.6em] sm:text-[1em] nosb place-content-center flex text-clip h-[80%] w-[70%] place-content-center overflow-ellipsis  overflow-y-scroll">
                 Intro Loading.....
             </span>
@@ -165,33 +167,44 @@ export default function TopboxOne({jobdata}: JobDataProps) {
 
 
       <>
-        <span className="bg-mprimary  w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-[28vh] ">
+              <span className='w-[10em] sm:w-[20em] px-1 relative h-full'>
+                <span  className="bg-blue-400 relative justify-evenly flex  text-white rounded-[0.5em] w-full h-full place-content-center place-items-center  mx-auto ">
+                    <span className="w-[40%] h-[70%]  rounded-lg  flex place-items-center place-content-center">
+                        <FaRegMessage className="w-[80%] h-[80%] bg-blue-300/50 rounded-lg p-3 "/>
+                    </span>
+                    <span className="flex flex-col gap-2 text-[0.6em] sm:text-[1em]  ">
+                        <span>
+                            Generate <br /> Introduction
+                        </span>
+                    </span>
+                </span>
+              </span>
+        {/* <span className="bg-white  w-[10em] sm:w-[20em]  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-[0.5em] relative min-h-[8em] sm:min-h-full ">
 
-          <EvervaultCard text="" text2="" className=" text-[0.8em] text-main-w/70 hover:text-main-w" />
+          <EvervaultCard text="" text2="" className=" text-[0.8em]  " />
           
           <span className='text-[0.6em] translate-y-[-30%] sm:text-[0.8em] absolute w-[80%] text-center flex flex-col gap-1 z-[10] place-items-center place-content-center '>
-            <span className='text-main-w/70 hover:text-main-w px-2'>Generate a introduction for</span>
+            <span className='  px-2'>Generate a introduction for</span>
                  
-            <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 py-1 bg-lprimary w-full' name="status" required>
-              {/* <option value="">Select a Status</option> */}
+            <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 py-1  w-full' name="status" required>
               <option value="">Choose a job</option>
               {jobdata.map((job) => (
                 <>
                 <option key={job.id} value={job.id}>
                       <span className="flex">
-                        <span className="italic text-main-w/70">{job.Company} - </span></span>
+                        <span className="italic ">{job.Company} - </span></span>
                         <span>{job.JobTitle}</span> 
                 </option>
                 </>
                 ))}
             </select>
 
-            <span className='text-main-w/70 hover:text-main-w px-2'>Using the power of Ai</span>
+            <span className='  px-2'>Using the power of Ai</span>
           
           </span>
 
             <button onClick={handlestate} className='absolute bottom-12 p-1 px-3 sm:p-2 sm:px-6 sm:mt-3 rounded-full bg-main-w/70 hover:bg-main-w text-lprimary'>Go</button>
-        </span>
+        </span> */}
       </>
 
       

@@ -1,15 +1,16 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { FaRegCompass } from "react-icons/fa";
+import { FaHome, FaRegCompass } from "react-icons/fa";
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
-import { LuNewspaper } from "react-icons/lu";
+import { FaRegNewspaper } from "react-icons/fa6";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 import { MouseEvent } from 'react';
 import { MenuIcon } from "lucide-react";
 import { toast } from "sonner";
 import gsap from "gsap";
 import { Link } from "@nextui-org/react";
+import { FaRegMessage } from "react-icons/fa6";
 
 interface UserData {
   username: string;
@@ -130,66 +131,73 @@ export default function Secondheader() {
     return (
       <>
     
-      <span className="">
 
 
-      <span className=''>
-        <span  className='hidden md:flex nav-wrapper pt-8 pb-8 bg-dprimary md:flex flex-col justify-between w-full h-screen '>
+        <span  className='hidden md:flex nav-wrapper  bg-dprimary md:flex flex-col justify-between w-full h-screen '>
         
-        <nav className='  flex-col place-items-start place-content-start hidden md:flex  min-w-[20vw]    fixed justify-start  relative text-main-w'>
+        <nav className='  flex-col  hidden md:flex  w-full    fixed  relative text-main-w'>
        
           {/* subscribe */}
-          <Link href='/billing'>
-            <span className=" pb-3 w-[20vw] flex place-content-center">
-            <span className="w-[15vw] place-content-center bg-gradient-to-l from-blue-900 to-blue-400 text-[0.8em] outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+          {/* <Link href='/billing'>
+            <span className=" pb-3 w-full flex place-content-center">
+            <span className="w-[15vw] place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                 <span>Subscribe</span>
               </span>
             </span>
-          </Link>
+          </Link> */}
           
           {/* <span className='pt-3 p-5 px-6 bg-primary rounded-[0.5em] pb-3'><FaRegCompass/></span>   */}
           
-          <span className='main  flex flex-col gap-4  min-h-[15vh]'>
+          <span className='main w-full  p-4 flex flex-col gap-4 h-screen justify-between'>
 
-          <span className='dashb text-[0.8em]  '>
+              {/* top */}
+              <span className="flex flex-col gap-4">
                 
-                    <Link href='/dashboard'>
-                        <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
-                              <p className='truncate'>Dashoard</p>
-                              <span className=''><MdOutlineLibraryAdd/></span>
-                        </span>     
-                    </Link>
-          </span>
-
-          <span className='coverl text-[0.8em] flex justify-between  '>
-                    <Link href='/coverletter'>
-                    <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className=' truncate'>Cover Letter</p>
-                          <span className=''><LuNewspaper className=''/></span>
-                      </span>
-                    </Link>
-          </span>
-
-          
-          <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
-              <Link href='/mydocs'>
-                <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>My docs</p>
-                    <span className=''><IoDocumentTextOutline  className=''/>
-                    </span>
+                <span className="jk">
+                  <span className="flex py-4 justify-between gap-4 hover:bg-mprimary/70  justify-between text-main-w hover:text-main-w   w-full">
+                    <span>JobKompass</span>
+                    <span>Jk</span>
+                  </span>
                 </span>
-              </Link>
-          </span>
 
-          <span className='settings text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
-              <Link href='/billing'>
-                <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Settings</p>
-                    <span className=''><IoSettingsOutline  className=''/>
-                    </span>
+                {/* home */}
+                <Link className="w-full py-2 hover:bg-mprimary/70 flex justify-between gap-4" href='/dashboard'>
+                      <p className='truncate'>Home</p>
+                      <span className=''><FaHome/></span>
+                </Link>
+
+                {/* features */}
+                <span className="flex flex-col gap-4">
+                
+                  <span className="font-bold">Features</span>
+                
+                  <Link className="w-full hover:bg-mprimary/70 flex justify-between gap-4" href='/coverletter'>
+                        <p className=' truncate'>Cover Letter</p>
+                        <span className=''><FaRegNewspaper className=''/></span>
+                  </Link>
+                  <span className="w-full hover:bg-mprimary/70 flex justify-between gap-4">
+                        <p className=' truncate'>Introduction</p>
+                        <span className=''><FaRegMessage className=''/></span>
+                  </span>
+                
+                  <Link className="w-full hover:bg-mprimary/70 flex justify-between gap-4" href='/mydocs'>
+                      <p className=' truncate'>My docs</p>
+                      <span className=''><IoDocumentTextOutline  className=''/></span>
+                  </Link>
                 </span>
-              </Link>
-          </span>
+              </span>
+
+              <span className="flex flex-col gap-4">
+                <Link className="w-full hover:bg-mprimary/70 flex justify-between gap-4" href='/billing'>
+                    <p className=' truncate'>Profile</p>
+                    <span className=''><IoSettingsOutline  className=''/></span>
+                </Link>
+                
+                <Link className="w-full hover:bg-mprimary/70 flex justify-between gap-4" href='/billing'>
+                    <p className=' truncate'>Settings</p>
+                    <span className=''><IoSettingsOutline  className=''/></span>
+                </Link>
+              </span>
 
           </span>
 
@@ -197,47 +205,24 @@ export default function Secondheader() {
 
         </nav>
 
-          <span className='count absolute bottom-10   gap-4 cursor-pointer flex flex-col gap-4'>
-                
-                <span className='text-[0.5em] flex gap-3 w-[20vw]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Cover Letters</p>
-                    <span className=''>{coverLetterData.length} <span className="text-blue-500">/ 3</span>
-                    </span>
-                </span>
-
-                <span className='flex w-[20vw] text-[0.5em] gap-3   p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Introductions</p>
-                    <span className=''> {introData.length} <span className="text-blue-500">/ 3</span>
-                    </span>
-                </span>
-
-                <span className='flex w-[20vw] text-[0.5em] gap-3    p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Tracked Jobs</p>
-                    <span className=''>{jobData.length} <span className="text-blue-500">/ 3</span>
-                    </span>
-                </span>
-          </span>
-
         </span>
 
-      </span>
 
-      </span>
 
         {/* mobile */}
-      <span id='hamburger' onClick={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+      <span id='hamburger' onClick={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w hover:text-main-w cursor-pointer'/></span> 
 
         <span className="">
 
           <span className=''>
             <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
-            <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+            <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w hover:text-main-w cursor-pointer'/></span> 
             <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center text-main-w">JobKompass</span>
 
               <Link href='/dashboard'>
                 <span className='dashb  '>
                       
-                <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
                                     <p    className=''>Dashoard</p>
                                     <button   className=''><MdOutlineLibraryAdd/></button>
                               </span>     
@@ -246,24 +231,24 @@ export default function Secondheader() {
 
               <span className='coverl  flex justify-between  '>
                         <Link href='/coverletter'>
-                        <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                        <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
                                 <p className=' truncate'>Cover Letter</p>
-                              <span className=''><LuNewspaper className=''/></span>
+                              <span className=''><FaRegMessage className=''/></span>
                           </span>
                         </Link>
               </span>
               
                   <Link href='/mydocs'>
-                  <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className='70%] truncate'>My docs</p>
+                  <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
+                            <p className=' truncate'>My docs</p>
                         <span className=''><IoDocumentTextOutline  className=''/>
                         </span>
                     </span>
                   </Link>
 
                   <Link href='/billing'>
-                  <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className='70%] truncate'>Settings</p>
+                  <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
+                            <p className=' truncate'>Settings</p>
                         <span className=''><IoSettingsOutline  className=''/>
                         </span>
                     </span>
@@ -271,8 +256,8 @@ export default function Secondheader() {
 
                       {/* subscribe */}
               <Link href='/billing' className="p-5">
-                <span className=" pb-3 w-[20vw] flex place-content-center">
-                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+                <span className=" pb-3 w-full flex place-content-center">
+                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                     <span>Subscribe</span>
                   </span>
                 </span>
@@ -280,20 +265,20 @@ export default function Secondheader() {
 
               <span className='count absolute bottom-10   gap-2 cursor-pointer flex flex-col '>
                     
-                    <span className='flex  p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                            <p className='70%] truncate'>Cover Letters</p>
+                    <span className='flex  p-2 text-main-w  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
+                            <p className=' truncate'>Cover Letters</p>
                         <span className=''>{coverLetterData.length} <span>/ 3</span>
                         </span>
                     </span>
 
-                    <span className='flex  p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6 gap-2  '>
-                            <p className='70%] truncate'>Introductions</p>
+                    <span className='flex  p-2 text-main-w  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6 gap-2  '>
+                            <p className=' truncate'>Introductions</p>
                         <span className=''>{introData.length} <span>/ 3</span>
                         </span>
                     </span>
 
-                    <span className='flex   p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                            <p className='70%] truncate'>Tracked Jobs</p>
+                    <span className='flex   p-2 text-main-w  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
+                            <p className=' truncate'>Tracked Jobs</p>
                         <span className=''>{jobData.length} <span>/ 3</span>
                         </span>
                     </span>
@@ -325,12 +310,12 @@ export default function Secondheader() {
     <span className=''>
       <span  className='hidden md:flex nav-wrapper pt-8 pb-8 bg-dprimary md:flex flex-col justify-between w-full h-screen '>
       
-      <nav className='  flex-col place-items-start place-content-start hidden md:flex  min-w-[20vw]    fixed justify-start  relative text-main-w'>
+      <nav className='  flex-col place-items-start place-content-start hidden md:flex  min-w-full    fixed justify-start  relative text-main-w'>
      
         {/* Pro */}
         <Link href='/billing'>
-          <span className=" pb-3 w-[20vw] flex place-content-center">
-          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+          <span className=" pb-3 w-full flex place-content-center">
+          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
               <span>Pro</span>
             </span>
           </span>
@@ -340,40 +325,40 @@ export default function Secondheader() {
         
         <span className='main  flex flex-col gap-4  min-h-[15vh]'>
 
-        <span className='dashb text-[0.8em] '>
+        <span className='dashb '>
               
                   <Link href='/dashboard'>
-                      <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
+                      <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w hover:text-main-w   w-full '>
                             <p className='truncate'>Dashoard</p>
                             <span className=''><MdOutlineLibraryAdd/></span>
                       </span>     
                   </Link>
         </span>
 
-        <span className='coverl text-[0.8em] flex justify-between  '>
+        <span className='coverl flex justify-between  '>
                   <Link href='/coverletter'>
-                  <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                  <span className='flex  w-full  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
                           <p className=' truncate'>Cover Letter</p>
-                        <span className=''><LuNewspaper className=''/></span>
+                        <span className=''><FaRegNewspaper className=''/></span>
                     </span>
                   </Link>
         </span>
 
         
-        <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+        <span className='mydoc  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
             <Link href='/mydocs'>
-              <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                      <p className='70%] truncate'>My docs</p>
+              <span className='flex w-full  p-5 text-main-w hover:text-main-w  place-items-center  justify-between px-6  '>
+                      <p className=' truncate'>My docs</p>
                   <span className=''><IoDocumentTextOutline  className=''/>
                   </span>
               </span>
             </Link>
         </span>
 
-        <span className='settings text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
+        <span className='settings  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
             <Link href='/billing'>
-              <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                      <p className='70%] truncate'>Settings</p>
+              <span className='flex w-full  p-5 text-main-w hover:text-main-w  place-items-center  justify-between px-6  '>
+                      <p className=' truncate'>Settings</p>
                   <span className=''><IoSettingsOutline  className=''/>
                   </span>
               </span>
@@ -394,19 +379,19 @@ export default function Secondheader() {
     </span>
 
       {/* mobile */}
-    <span id='hamburger' onClick={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+    <span id='hamburger' onClick={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w hover:text-main-w cursor-pointer'/></span> 
 
       <span className="">
 
         <span className=''>
           <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
-          <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+          <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w hover:text-main-w cursor-pointer'/></span> 
           <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center text-main-w">JobKompass</span>
 
             <Link href='/dashboard'>
               <span className='dashb  '>
                     
-              <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+              <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
                                   <p    className=''>Dashoard</p>
                                   <button   className=''><MdOutlineLibraryAdd/></button>
                             </span>     
@@ -415,24 +400,24 @@ export default function Secondheader() {
 
             <span className='coverl  flex justify-between  '>
                       <Link href='/coverletter'>
-                      <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
+                      <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
                               <p className=' truncate'>Cover Letter</p>
-                            <span className=''><LuNewspaper className=''/></span>
+                            <span className=''><FaRegNewspaper className=''/></span>
                         </span>
                       </Link>
             </span>
             
                 <Link href='/mydocs'>
-                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                          <p className='70%] truncate'>My docs</p>
+                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
+                          <p className=' truncate'>My docs</p>
                       <span className=''><IoDocumentTextOutline  className=''/>
                       </span>
                   </span>
                 </Link>
 
                 <Link href='/billing'>
-                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                          <p className='70%] truncate'>Settings</p>
+                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w hover:text-main-w  px-6 '>
+                          <p className=' truncate'>Settings</p>
                       <span className=''><IoSettingsOutline  className=''/>
                       </span>
                   </span>
@@ -440,8 +425,8 @@ export default function Secondheader() {
 
                     {/* pro */}
             <Link href='/billing' className="p-5">
-              <span className=" pb-3 w-[20vw] flex place-content-center">
-              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
+              <span className=" pb-3 w-full flex place-content-center">
+              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
                   <span>Pro</span>
                 </span>
               </span>

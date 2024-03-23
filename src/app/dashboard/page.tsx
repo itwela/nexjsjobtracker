@@ -1,3 +1,4 @@
+'use client'
 
 import prisma from "@/app/libs/db";
 import {
@@ -20,6 +21,8 @@ import YourJobs from "../components/yourjobs";
 import YourCoverLetter from "../components/yourcoverletter";
 import ComingSoon from "../components/comingsoon";
 import spin from '../assets/system-solid-18-autorenew.gif'
+import AddJobForm from "../components/addJobForm";
+import React from "react";
 
 // async function getUserData(userId: string) {
 //   noStore();
@@ -70,84 +73,62 @@ import spin from '../assets/system-solid-18-autorenew.gif'
 
 
 
-export default async function Dashboard() {
+export default function Dashboard({jobdata, userdata}: {jobdata: any, userdata: any}) {
+  const [formOpen, setFormOpen] = React.useState(false);
+  const handleFormOpen = () => setFormOpen(!formOpen);
+  const handleFormClose = () => setFormOpen(false);
 
-  try {
-    
-    const user = await currentUser()
-    // const userdata = await getUserData(user?.id as string)
-    const jobdata = await getJobData(user?.id as string)
-   
-  
     return (
       <>
+    
+              <div className="hidden md:flex min-h-screen w-[100vw]">
   
-            <div className="dashwrapper  flex  text-main-w">
-                    {/* <div className="gradi  w-[100vw] flex place-items-center flex-col"> */}
-  
-              <div className="hidden md:flex min-h-screen   w-[100vw] ">
-                
-                
-                <ResizablePanelGroup
-                  direction="horizontal"
-                  className="bg-gradient-to-b from-dprimary to-mprimary"
-                >
-                  <ResizablePanel className="bg-dprimary"  defaultSize={20}>
-                    
-                    <div className="hidden md:flex md:w-[20vw] bg-dprimary relative">
-                      <SecondHeader  />
-                    </div>
-  
-                  </ResizablePanel>
-  
-                  <ResizableHandle  withHandle />
-  
-                  <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
-                    
-  
-                    <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
-  
-                      <Header />
-  
+                    <div className="grid grid-cols-5 grid-rows-1 bg-gray-200 min-h-[92vh] justify-content-start ">
+                      
+                      <div className="flex bg-dprimary relative">
+                        <SecondHeader  />
+                      </div>
                         
-                      <div className="relative   px-4 min-w-[80vw]   h-full flex flex-col place-items-center gap-2">
-                        <span className="w-full flex justify-between">
-                          <Clock/>
-                          <TopboxTwo />
-                        </span>
-                        <span className="w-[75vw] overflow-scroll flex place-items-start place-content-start">
-                          <span className="flex gap-2 px-9">
-                            <YourJobs/>
-                            <TopboxOne jobdata={jobdata} />
-                            <YourCoverLetter/>
-                            <ComingSoon/>
+                      <div className="flex px-4 h-full w-full gap-4 flex-col col-start-2 col-span-5 place-items-center place-content-start">
+                        <div className="relative   flex flex-col gap-2  w-full ">
+                        
+                          <span className="flex py-9 w-full justify-between place-items-center place-content-center">
+                            {/* greetings, time */}
+                            <span className="w-full justify-between h-max flex flex-col place-items-start gap-1">
+                              <TopboxTwo />
+                              <Clock userdata={userdata}/>
+                            </span>
+                            {/* add job button */}
+                            <AddJobs handleFormOpen={handleFormOpen} handleFormClose={handleFormClose} />
                           </span>
-                        </span>
-                      </div>
-  
-                      <div className="relative flex   justify-between place-items-center">
-                        <AddJobs />
-                      </div>
-  
-                      <div className="relative flex pb-9 w-[80vw]  justify-between place-items-center place-content-center">
-                        <JobsTable jobdata={jobdata} />
+
+                          {/* generate stuff */}
+                          <span className="h-[15vh] overflow-x-scroll w-full ">
+                            <span className="w-max flex  gap-2 h-full">
+                                <YourCoverLetter/>
+                                <TopboxOne jobdata={jobdata} />
+                                {/* <YourJobs/> */}
+                                <ComingSoon/>
+                            </span>
+                          </span>
+
+                        </div>
+
+                        {/* add job form */}
+                        <AddJobForm formopen={formOpen} handleClose={handleFormClose}/>
+
+                        {/* job table */}
+                        <div className="relative flex pb-9 w-full justify-between place-items-center place-content-center">
+                          <JobsTable jobdata={jobdata} />
+                        </div>
                       </div>
   
   
                       
-  
                     </div>
   
-  
-                  </ResizablePanel>
-  
-                </ResizablePanelGroup>
-  
-  
-  
-  
               </div>
-  
+                
               {/* mobile */}
               <div className="md:hidden  min-h-screen   w-[100vw] ">
                 
@@ -167,13 +148,11 @@ export default async function Dashboard() {
                   <ResizablePanel className="min-w-[80vw]" defaultSize={80}>
                     
                     <div className="flex flex-col min-h-[92vh] min-w-[80vw] place-items-center place-content-start  gap-5 pb-5">
-  
-                      <Header />
-  
-                        
+    
+                      
                       <div className="relative   px-4 w-[80vw]   h-full flex flex-col place-items-center gap-2">
                           <span className="w-full flex justify-between">
-                            <Clock/>
+                            <Clock userdata={userdata}/>
                             <TopboxTwo />
                           </span>
                               <span className="w-[80vw] overflow-scroll flex place-items-start place-content-start">
@@ -187,7 +166,7 @@ export default async function Dashboard() {
                           </div>
   
                       <div className="relative flex   justify-between place-items-center">
-                        <AddJobs />
+                        <AddJobs  handleFormOpen={handleFormOpen} handleFormClose={handleFormClose}/>
                       </div>
   
                       <div className="relative flex pb-9 w-[80vw] px-4  justify-between place-items-center place-content-center">
@@ -208,25 +187,10 @@ export default async function Dashboard() {
   
               </div>
   
-            </div>
       </>
     );
 
-  } catch (error) {
-       <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
-        <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
-          JobKompass
-        </span>
-        <span className="flex gap-3 place-items-center place-content-center">
-        <p className='text-main-w text-center'>Hi! We are attempting to connect you to JobKompass! <br />
-                                  We've encountered the error: <br />
-                                  {error as string} <br />
-                                  Please try refreshing the page.
-        </p>
-        <img src={spin.src} alt="" className="w-[20px]"/>
-        </span>
-          </div>
-  }
+
 
 };
 

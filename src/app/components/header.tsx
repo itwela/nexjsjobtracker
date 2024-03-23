@@ -37,13 +37,13 @@ export const Header = () => {
   return (
     <>
 
-      <div className="w-[100%]  ">
+      <div className="w-full  ">
 
 
         <header className='flex   text-[0.8em]  relative h-[8vh] place-content-center'>
-          <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
+          <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed w-full py-5 justify-between place-contetn-center'>
           
-          <div className='flex justify-between gap-7 w-[100%] place-items-center place-content-center'>
+          <div className='flex justify-between gap-7 w-full place-items-center place-content-center'>
             
             <span className='flex place-items-center gap-1'>
             <Link href='/'>

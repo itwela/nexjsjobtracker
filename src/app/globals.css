@@ -91,6 +91,14 @@ html {
   /* src: url('./fonts/gramatika/GramatikaTrial-Light-BF65dea4c59cf23.otf'); */
 }
 
+.coverletter-card {
+  background-color: #93c5fd;
+}
+
+*:focus{
+  box-shadow: none !important;
+}
+
 .it-center{
   display: flex;
   place-items: center;
@@ -168,6 +176,7 @@ html {
     transform: translateY(0);
   }
 }
+
 
 .float {
   animation: floatAnimation 4s ease-in-out infinite; /* Adjust animation duration and timing function as needed */
