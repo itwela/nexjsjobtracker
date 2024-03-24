@@ -34,23 +34,25 @@ export default async function Home() {
 
 
 
+
   return (
     <>
     <div className="flex relative w-[100vw] place-content-center place-items-center">
-      <div className="flex min-h-screen w-[100vw]  flex-col place-content-center  place-items-start w-[100vw]">
-          {/* mobile header */}
-          <span className="md:hidden">
-          {/* <SecondHeaderS/> */}
-          </span>
+      <div className="flex min-h-[100vh]   flex-col place-content-center justify-start  place-items-center w-[100vw]">
 
-{/* header */}
+{/* hero */}
+          <div className="w-full px-4 py-6 h-full gap-9 flex flex-col place-content-center place-items-center">
+            <span className="w-full h-[5%] ">
+              <NLoginHeader/>
+            </span>
 
-          <span className=" ">
-            <NLoginHeader/>
-          </span>
+            <FirstComponent/>
 
-          {/* section 1 intro hero */}
-          <section className="gradi   overflow-hidden flex place-content-center place-items-center flex-col w-[100vw] h-[100vh]">
+          </div>
+
+
+
+          {/* <section className="gradi   overflow-hidden flex place-content-center place-items-center flex-col w-[100vw] h-[100vh]">
           
               <FirstComponent/>
 
@@ -58,13 +60,10 @@ export default async function Home() {
 
             <HeroSectionTwo/>
 
-            {/* <HeroSectionThree/> */}
         
-          {/* section 4 - pricing */} 
 
             <HomeSectionFour/>
 
-          {/* section 5 - faq */} 
           <section className="flex w-[100vw] gap-3 bg-dprimary px-8 flex flex-col md:flex-row place-items-center sm:place-content-center h-[100vh] py-[10vh] ">
 
 
@@ -100,7 +99,6 @@ export default async function Home() {
                       <AccordionTrigger className="text-left">How can a JobKompass benefit me?</AccordionTrigger>
                       <AccordionContent className="text-main-w">
                         <span className="hover:text-main-w/80">It helps you keep track of job applications, deadlines, and application statuses in one centralized location.</span> <br />
-                        {/* <span className="hover:text-main-w/80">It streamlines the job search process by providing easy access to job listings from various sources.</span> <br /> */}
                         <span className="hover:text-main-w/80">It saves time by automating repetitive tasks, such as finding the right words to say to a recruiter and generating cover letters.</span> <br />
                         <span className="hover:text-main-w/80">It provides insights and analytics to help you assess your job search progress and optimize your strategy.</span> <br />
                       </AccordionContent>
@@ -141,7 +139,7 @@ export default async function Home() {
 
 
           </section>
-          <Footer/>
+          <Footer/> */}
       </div>
     </div>
     </>
