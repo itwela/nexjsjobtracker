@@ -33,11 +33,11 @@ export function AddJobs({formopen, handleFormOpen, handleFormClose}: {formopen: 
   return (
     <>
           <div className="flex  text-[0.8em] flex-col w-full place-items-end place-content-center  gap-4">
-            <div  onClick={handleFormOpen} className='cursor-pointer  p-1 w-max rounded-lg  hover:outline outline-[1px] hover:outline-[1px] ease-in outline-main-w/40  place-items-center flex justify-between'>
+            <div  onClick={handleFormOpen} className='cursor-pointer  p-1 w-max rounded-lg   place-items-center flex justify-between'>
 
                 {formopen === true && (
                   <>
-                  <button className='p-4 px-6  text-red-500 rounded-lg h-full w-full flex text-white gap-2 place-items-center' 
+                  <button className='p-4 px-6 text-red-500 rounded-lg h-full w-full flex  gap-2 place-items-center' 
                     >
                     <h2><IoCloseCircle className=' font-black font-bold' size={18}/></h2>
                     <h2 className='font-black '>Close Form</h2>                  

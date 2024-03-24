@@ -305,10 +305,10 @@ export const deleteCoverLetter = async (formData: FormData) => {
   noStore();
 
   const jobId = formData.get('jobId') as string
-
+  console.log("the cover letter id:",jobId)
   await prisma.coverLetter.deleteMany({
     where: {
-      jobId: jobId,
+      id: jobId,
     },
   });
 

@@ -1,6 +1,6 @@
 import { get } from "http";
 import Secondheader from "./secondHeader";
-import { getUserData } from "@/actions/databaseAc";
+import { getJobData, getUserData } from "@/actions/databaseAc";
 import {  auth } from '@clerk/nextjs';
 
 
@@ -10,10 +10,11 @@ export default async function SecondHeaderS() {
 
     const {userId} = await auth();
     const userdata = await getUserData()    
+    const jobdata = await getJobData();
 
     return (
         <>
-        <Secondheader userdata={userdata} userauth={userId}/>
+        <Secondheader userdata={userdata} jobdata={jobdata}  userauth={userId}/>
         </>
     )
 }
@@ -21,6 +22,7 @@ export default async function SecondHeaderS() {
 async function fetchData() {
     const userId = await auth();
     const userdata = await getUserData();
+    const jobdata = await getJobData();
 
-    return { userId, userdata };
+    return { userId, userdata, jobdata };
 }

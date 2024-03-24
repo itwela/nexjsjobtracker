@@ -260,7 +260,6 @@ type JobDataProps = {
                       ))}
                   </TableBody>
                 </Table>
-              <span className="py-6 /50">A list of your recent Job Applications.</span>
             </div>
           </div>
         )}

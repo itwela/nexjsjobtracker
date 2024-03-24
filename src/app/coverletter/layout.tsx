@@ -16,10 +16,10 @@ export default async function CoverLetterLayoutWithData() {
             <div className="flex">
                 <div className="flex w-screen">
                     <main className=' flex w-full'>
-                      <div className='w-[20%]'>
+                      <div className='sm:w-[20%]'>
                         <SecondHeaderS />
                       </div>
-                      <div className='w-[80%]'>
+                      <div className='w-[100%] sm:w-[80%]'>
                         <CoverLetter jobdata={jobdata} />
                       </div>
                     </main>

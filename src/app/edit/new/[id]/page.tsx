@@ -54,7 +54,8 @@ export default function EditJob({ jobdata }: any) {
 
     const filteredJob = jobdata.filter((job: JobData) => job.id === endOfUrl);
     const initialDate = filteredJob.find((job: JobData) => job.id === endOfUrl)?.DateApplied;
-    const [datevalue, setdateValue] = React.useState<Dayjs | null>(initialDate ? dayjs(initialDate) : null);
+    const [datevalue, setdateValue] = React.useState<Dayjs | null>(initialDate);
+    // const [datevalue, setdateValue] = React.useState<Dayjs | null>(dayjs(Date.now()));
 
 
     const handleSubmit = async () => {
@@ -86,6 +87,7 @@ export default function EditJob({ jobdata }: any) {
     const handleDateChange = (duedate: any) => {
         duedate = dayjs(duedate).format('YYYY-MM-DD');
         setdateValue(duedate)
+        console.log(duedate);
         setFormData(prevState => ({
             ...prevState,
             jobdata: {

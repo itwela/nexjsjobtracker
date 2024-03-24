@@ -53,7 +53,7 @@ const dbUser = await prisma.user.findUnique({
     stripeCustomerId: true
   }
 })
-
+ 
     if (!dbUser?.stripeCustomerId){
       throw new Error('Cant get customer id')
     }
@@ -81,19 +81,19 @@ const dbUser = await prisma.user.findUnique({
       <>
 
 
-      <div className="flex bg-gray-200 min-h-screen flex-col place-items-center w-full pb-5  justify-start">
-        <div className="grid grid-cols-1 grid-rows-2 gap-4 text-main-w/70 w-[80%] h-[65vh] ">
+      <div className="flex py-[4em] bg-gray-200 min-h-screen flex-col place-items-center w-full pb-5  justify-start">
+        <div className="grid grid-cols-1 grid-rows-2 gap-4  w-[80%] h-[65vh] ">
           <div className="flex">
 
-            <div className="w-[80%] py-5">
-              <h1 className="text-4xl text-main-w font-bold">Subscription</h1>
+            <div className="w-full py-5">
+              <h1 className="text-4xl  font-bold">Subscription</h1>
               <h1 className="">Settings regarding your subscription</h1>
             </div>
           </div>
 
-          <Card className="w-[100%] place-self-start">
+          <Card className="w-[100%] place-self-start bg-white">
             <CardHeader>
-              <CardTitle className="text-main-w">Manage Billing</CardTitle>
+              <CardTitle className="text-2xl">Manage Billing</CardTitle>
               <CardDescription>
                 <span className="flex flex-col gap-2">
                     <span >Here you can</span>
@@ -105,7 +105,7 @@ const dbUser = await prisma.user.findUnique({
             </CardHeader>
             <CardContent>
               <form action={createCustomerPortal}>
-                <Button className='bg-main-w/70 hover:bg-main-w text-dprimary'>Launch portal</Button>
+                <Button className='text-white bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent hover:outline-main-w/80'>Launch portal</Button>
               </form>
             </CardContent>
             {/* <CardFooter>
@@ -142,7 +142,7 @@ const dbUser = await prisma.user.findUnique({
                                 <span className="  flex gap-2 w-full justify-start"><FaRegCheckCircle/> Unlimited cover letters</span>
                                 <span className="flex  gap-2 w-full  justify-start"><FaRegCheckCircle/> Unlimited generated introductions</span>
                                 <span className="flex  gap-2 w-full  justify-start"><FaRegCheckCircle/> Track an unlimited amount of jobs</span>
-                              </div>
+                              </div> 
 
                               <form action={createSubscription}>
                                 <Button className="text-white bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent hover:outline-main-w/80"> Create Subscription</Button>

@@ -63,7 +63,8 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: "80%",
+    maxWidth: 400,
     height: 400,
     bgcolor: 'background.paper',
     borderRadius: '10px',
@@ -227,7 +228,7 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
                     <span className='font-bold w-full  px-2'>Generate a introduction for</span>
                     <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 py-1  w-full' name="status" required>
                       <option value="">Choose a job</option>
-                      {jobdata.map((job: any) => (
+                      {jobdata.map((job: JobData) => (
                         <>
                         <option key={job.id} value={job.id}>
                               <span className="flex">
@@ -237,7 +238,7 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
                         </>
                         ))}
                     </select>
-                    <button onClick={handlestate} className=' p-1 px-3 sm:p-2 sm:px-6 sm:mt-3 rounded-full bg-blue-300 hover:bg-blue-500 text-white '>Go</button>
+                    <button onClick={handlestate} className='w-[60%] flex place-self-center p-1 px-3 sm:p-2 sm:px-6 sm:mt-3 rounded-full bg-blue-300 hover:bg-blue-500 text-white place-content-center'>Go</button>
                   </span>
 
                   <span className='w-full flex place-items-center place-content-end'>JobKompass</span>
@@ -261,7 +262,7 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
         )}
 
         </Box>
-      </Modal>
+              </Modal>
       </>
 
       
