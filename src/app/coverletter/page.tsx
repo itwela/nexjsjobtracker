@@ -3,7 +3,7 @@ import { Header } from "../components/header";
 import SecondHeader from "../components/secondHeader";
 
 
-const CoverLetter = ({jobdata}: {jobdata: any}) => {
+const CoverLetter = (jobdata: any) => {
   
   return (
       <>
