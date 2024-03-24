@@ -51,12 +51,12 @@ export default function FirstComponent() {
       </div>
       <div className="w-full h-[60vh] p-5">
         {/* fast marquee */}
-        <div className="w-full h-full overflow-hidden">
-          <Marquee>
-            <img className="px-2" src="https://images.pexels.com/photos/17428121/pexels-photo-17428121/free-photo-of-cup-of-milk-by-airpods-case-on-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-            <img className="px-2" src="https://images.pexels.com/photos/9800033/pexels-photo-9800033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-            <img className="px-2" src="https://images.pexels.com/photos/5992553/pexels-photo-5992553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-            <img className="px-2" src="https://images.pexels.com/photos/1376696/pexels-photo-1376696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+        <div className="w-full h-full">
+          <Marquee className="h-full overflow-hidden">
+            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/17428121/pexels-photo-17428121/free-photo-of-cup-of-milk-by-airpods-case-on-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/9800033/pexels-photo-9800033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/5992553/pexels-photo-5992553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/1376696/pexels-photo-1376696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
           </Marquee>
         </div>
       </div>
