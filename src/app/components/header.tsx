@@ -56,14 +56,14 @@ export const Header = () => {
                     <Link
                     id='signin'
                       href='/sign-in'
-                      className=' text-sm text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover: mr-4'
+                      className=' text-sm  p-2 px-3 outline outline-[1px]   rounded-lg  mr-4'
                     >
                       Sign In
                     </Link>
                     <Link
                     id='signup'
                       href='/sign-up'
-                      className='text-sm text-dprimary bg-main-w outline px-3 p-2 outline-[1px] rounded-full outline-main-w hover:text-dprimary/60 mr-4'
+                      className='text-sm text-white bg-gradient-to-r from-blue-500 to-blue-200  px-3 p-2  rounded-lg  mr-4'
                     >
                       Sign Up
                     </Link>
