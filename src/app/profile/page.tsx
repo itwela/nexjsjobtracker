@@ -12,7 +12,8 @@ const ProfilePage = () => {
           <Header/>
           
           <div className='w-[100vw] flex place-content-center'>
-          <UserProfile />
+          <UserProfile /> 
+          {/* bug fix */}
           </div>
         </div>
         </div>
