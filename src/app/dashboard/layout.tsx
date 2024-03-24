@@ -25,7 +25,7 @@ async function DashboardWithData() {
 
     // Ensure userdata and jobdata are plain objects
     const plainUserData = JSON.parse(JSON.stringify(userdata));
-    const plainJobData = JSON.parse(JSON.stringify(jobdata));
+    const plainJobData = Array.isArray(jobdata) ? jobdata : [];
 
     return (
       <div className="flex w-screen">

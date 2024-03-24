@@ -74,7 +74,7 @@ import { JobData } from "../types/JobTypes";
 
 
 
-export default function Dashboard( jobdata: any, userdata : any ) {
+export default function Dashboard( {jobdata, userdata}: any ) {
   const [formOpen, setFormOpen] = React.useState(false);
   const handleFormOpen = () => setFormOpen(!formOpen);
   const handleFormClose = () => setFormOpen(false);
