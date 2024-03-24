@@ -37,17 +37,17 @@ export const Header = () => {
   return (
     <>
 
-      <div className="w-[100%]  ">
+      <div className="w-full  ">
 
 
         <header className='flex   text-[0.8em]  relative h-[8vh] place-content-center'>
-          <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed min-w-[80vw] max-w-[100vw] py-5 justify-between place-contetn-center'>
+          <nav className='flex z-10 rounded-xl  bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-lg bg-opacity-75 fixed w-full py-5 justify-between place-contetn-center'>
           
-          <div className='flex justify-between gap-7 w-[100%] place-items-center place-content-center'>
+          <div className='flex justify-between gap-7 w-full place-items-center place-content-center'>
             
             <span className='flex place-items-center gap-1'>
             <Link href='/'>
-              <h1 id='header-name' className='text-sm sm:text-1xl pl-5 text-main-w/60 hover:text-main-w'>JobKompass</h1>
+              <h1 id='header-name' className='text-sm sm:text-1xl pl-5  '>JobKompass</h1>
             </Link>
             </span>
             <div className='flex  '>
@@ -56,7 +56,7 @@ export const Header = () => {
                     <Link
                     id='signin'
                       href='/sign-in'
-                      className=' text-sm text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover:text-main-w/60 mr-4'
+                      className=' text-sm text-main-w outline p-2 px-3 outline-[1px] rounded-full outline-main-w hover: mr-4'
                     >
                       Sign In
                     </Link>
@@ -72,8 +72,8 @@ export const Header = () => {
                 {userId && (
                   <>
                
-                  <Link href='/dashboard' className='hidden md:flex text-main-w/60 hover:text-main-w text-sm mr-4 '>
-                    Dashboard
+                  <Link href='/dashboard' className='hidden md:flex   text-sm mr-4 '>
+                    Home
                   </Link>
                
 
@@ -85,7 +85,7 @@ export const Header = () => {
           {userId && (
           <div className='flex place-items-center gap-2 px-5'>
 
-            <Link href='/profile' className='text-main-w/60 hover:text-main-w text-sm mr-4'>
+            <Link href='/profile' className='  text-sm mr-4'>
               Profile
             </Link>
             <div className='ml-auto'>

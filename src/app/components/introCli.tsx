@@ -46,17 +46,13 @@ type JobDataProps = {
 
 
 
-export default function TopboxOne({jobdata}: {jobdata: any}) {
+export default function MenuIntroModalC({jobdata, menuModalOpen, handleMenuModalClose}: {jobdata: any; menuModalOpen: any; handleMenuModalClose: any}) {
 
 
   const [isGen, setIsGen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
   const [theJId, setTheJId] = useState('')
-
-  const [modalopen, setmodalOpen] = React.useState(false);
-  const handleModalOpen = () => setmodalOpen(!modalopen);
-  const handleModalClose = () => setmodalOpen(false);
 
   const style = {
     position: 'absolute' as 'absolute',
@@ -151,59 +147,14 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
 
 
 
-  // if(isGen == true && !isLoading ) {
-  //   return (
-  //   <>
-  //     <span className=" w-[10em] sm:w-[20em] relative overflow-hidden bg-white   font-black  flex flex-col place-content-center nosb mx-auto rounded-[0.5em] relative h-full ">
-
-  //       <span id="gen-text" className="nosb text-ellipsis py-[0.6em] h-[80%] px-[4em] w-full overflow-ellipsis overflow-y-scroll text-[0.6em] sm:text-[1em]">{data}</span>
-  //       <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-1 cursor-pointer bg-white text-main-w/60  font-black p-2" />
-  //       {/* Add an id to the copy button */}
-  //       <FaRegCopy onClick={copyText} id="copy-button" size={36} className="absolute top-2 right-3 p-1 z-10 cursor-pointer text-main-w/60  bg-white rounded-[0.5em] hover: font-black p-2" />
-  //     </span>
-
-  //   </>
-  //   )
-  //   }
-
-  //   if(isLoading == true) {
-  //     return (
-  //       <>
-  //       <span className=" text-ellipsis relative overflow-hidden bg-white  font-black place-content-center flex flex-col place-items-center nosb mx-auto rounded-[0.5em] relative  w-[10em] sm:w-[20em] h-full ">
-
-  //         <span className=" flex flex-col gap-2 py-[3em] h-[100%] w-[100%] place-items-center place-content-center">
-           
-  //         <FaRightLong size={36} onClick={handleBack} className="absolute scale-x-[-100%] bottom-0 left-0 cursor-pointer bg-white text-main-w/60  font-black p-2" />
-  //          <span className="animate-pulse text-[0.6em] sm:text-[1em] nosb place-content-center flex text-clip h-[80%] w-[70%] place-content-center overflow-ellipsis  overflow-y-scroll">
-  //               Intro Loading.....
-  //           </span>
-
-  //         </span>
-  //       </span>
-
-  //     </>
-  //     )
-  //     }
 
   return (
 
 
       <>
-              <span onClick={handleModalOpen} className=' px-1 w-[10em] sm:w-[20em] h-full cursor-pointer'>
-                <span  className="bg-blue-400 relative justify-evenly flex  text-white rounded-[0.5em] w-full h-full place-content-center place-items-center  mx-auto ">
-                    <span className="w-[40%] h-[70%]  rounded-lg  flex place-items-center place-content-center">
-                        <FaRegMessage className="w-[80%] h-[80%] bg-blue-300/50 rounded-lg p-3 "/>
-                    </span>
-                    <span className="flex flex-col gap-2 text-[0.6em] sm:text-[1em]  ">
-                        <span>
-                            Generate <br /> Introduction
-                        </span>
-                    </span>
-                </span>
-              </span>
               <Modal
-        open={modalopen}
-        onClose={handleModalClose}
+        open={menuModalOpen}
+        onClose={handleMenuModalClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className=''
@@ -228,7 +179,7 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
                     <span className='font-bold w-full  px-2'>Generate a introduction for</span>
                     <select onChange={handleSwap} id="status" className='rounded-[0.2em] px-2 py-1  w-full' name="status" required>
                       <option value="">Choose a job</option>
-                      {jobdata.map((job: JobData) => (
+                      {jobdata.map((job: any) => (
                         <>
                         <option key={job.id} value={job.id}>
                               <span className="flex">
@@ -264,10 +215,6 @@ export default function TopboxOne({jobdata}: {jobdata: any}) {
         </Box>
               </Modal>
       </>
-
-      
-
-
    
   );
   

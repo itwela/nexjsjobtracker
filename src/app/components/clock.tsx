@@ -16,7 +16,7 @@ interface UserData {
     }
 }
 
-export default function Clock() {
+export default function Clock({userdata}: {userdata: any}) {
 
     const [theUser, setTheUser] = useState<UserData>({ userdata: { id: "", username: "", email: '', stripeCustomerId: "", firstName: '', lastName: ''} });
 
@@ -58,6 +58,7 @@ export default function Clock() {
                 }
 
                 toast("Welcome to JobKompass!",{
+                    id: "success",
                     description: "Good to see you today!",
                   })
 
@@ -87,13 +88,13 @@ export default function Clock() {
     return (
         <>
                 
-                <div className="w-full  rounded-[10em] h-[45%] flex place-items-center px-10 my-5">        
-                    <div className="flex text-[0.8em] md:flex-row flex-col place-items-start place-content-start md:gap-3 ">
+                <div className=" rounded-[10em] h-full flex place-items-center">        
+                    <div className="flex text-3xl font-black sm:flex-row flex-col place-items-start place-content-start sm:gap-3 ">
                             <span className="">Greetings, </span>
                             
-                            <h3 className='font-black text-2x;'>
+                            <h3 className=''>
                                 {/* so basically this say if the usere didnt submit a first and last name to display their username instead so the app will always be personalized! */}
-                                { theUser?.userdata.firstName ? theUser?.userdata.firstName : theUser?.userdata.username}.
+                                { userdata?.firstName ? userdata?.firstName : userdata?.username}.
                             </h3>
                     </div>        
                 </div>

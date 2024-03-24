@@ -11,24 +11,10 @@ import { unstable_noStore as noStore } from "next/cache";
 import { currentUser } from "@clerk/nextjs";
 
 
-async function getJobData(userId: string) {
-  noStore();
-  const data = prisma.job.findMany({
-    where: {
-      userId: userId
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
 
-  return data;
-}
 
- const  CoverLetterGen = async () => {
+ const  CoverLetterGen = async ({jobdata}: {jobdata: any}) => {
 
-  const user = await currentUser()
-  const jobdata = await getJobData(user?.id as string)
 
   return (
     <>
@@ -42,7 +28,7 @@ async function getJobData(userId: string) {
 
                 <CardContent className="">
 
-                  <CoverLetterCard/>
+                  <CoverLetterCard jobdata={jobdata}/>
 
                 </CardContent>
                 {/* <CardFooter>

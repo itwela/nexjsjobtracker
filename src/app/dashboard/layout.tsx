@@ -1,107 +1,50 @@
-import { auth, currentUser } from '@clerk/nextjs';
 import { ReactNode, Suspense } from 'react';
-import prisma from '../libs/db';
-import { getFirstData, getUserData } from '@/actions/databaseAc';
-import { stripe } from '../libs/stripe';
-import spin from '../assets/system-solid-18-autorenew.gif'
+import { currentUser } from '@clerk/nextjs';
+import { getJobData } from '@/actions/databaseAc'; // Assuming `getUserData` is not used
+import Dashboard from './page';
+import spin from '../assets/system-solid-18-autorenew.gif';
+import SecondHeaderS from '../components/S_secondHeader';
 
-
-
-export default async function DashboardLayout({ children }: { children: ReactNode }) {
-  const sessionId  = auth();
-  const userfunc = currentUser()
-  const user = await userfunc 
-  // const userDa = await getUserData(user?.id as string)
-  console.log(user)
-
-    try {
-
-          const find = await prisma.user.findUnique({
-            where:  {
-              id: user?.id
-            } ,
-            select: { 
-              id: true, 
-              stripeCustomerId: true
-              }
-          })
-
-          if (!find) {      
-              console.log('new user detected')      
-              const userData = {
-              email: user?.emailAddresses[0]?.emailAddress as string,
-              firstName: user?.firstName as string,
-              username: user?.username as string,
-              id: user?.id as string,
-              lastName: user?.lastName as string,
-              profileImg: user?.imageUrl,
-                // email: 'email'
-              };
-            await getFirstData(userData);
-          }
-
-    } catch (error) {
-      console.log(`
-        possible error with user detection
-        check is user is in database.
-      `)
-
-      return (
-        <>
-          <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
-        <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
-          JobKompass
-        </span>
-        <span className="flex gap-3 place-items-center place-content-center">
-        <p className='text-main-w text-center'>Hi! We are attempting to connect you to JobKompass! <br />
-                                  If you're seeing this, there has been a temporary outage <br />
-                                  in our data feed. Plese try visiting us again in afew minutes. <br />
-                                  Thank you!
-        </p>
-        <img src={spin.src} alt="" className="w-[20px]"/>
-        </span>
-          </div>
-        </>
-      )
-      
-    }
-
-
-
-  if (!user) {
-    return (
-      <>
-        <div className='flex place-items-center w-[100vw] h-[100svh] h-screen '>
-            <p>
-              no user
-            </p>
-        </div>
-      </>
-    )
-  }
-
+export default function DashboardLayout() {
   return (
-    <Suspense fallback={
-        
-      <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
-        <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
-          JobKompass
-        </span>
-        <span className="flex gap-3 place-items-center place-content-center">
-        <p className='text-main-w'>Your jobs are loading...</p>
-        <img src={spin.src} alt="" className="w-[20px]"/>
-        </span>
+    <Suspense fallback={<div className="flex w-screen h-screen place-items-center place-content-center bg-gray-200 justify-center">
+      <div className='flex flex-col gap-4 place-items-center place-content-center'>
+        <span className='font-bold'>JobKompass</span>
+        <span>Loading.....</span>
       </div>
-    
-    }>
-
-    <div className="flex">
-      <div className="flex">
-        <main>{children}</main>
-        <h1></h1>
-      </div>
-    </div>
-
+      </div>}>
+      <DashboardWithData />
     </Suspense>
   );
+}
+
+async function DashboardWithData() {
+  try {
+    const userdata = await currentUser();
+    const jobdata = await getJobData();
+
+    // Ensure userdata and jobdata are plain objects
+    const plainUserData = JSON.parse(JSON.stringify(userdata));
+    const plainJobData = JSON.parse(JSON.stringify(jobdata));
+
+    return (
+      <div className="flex w-screen">
+        <div className="flex w-full">
+          <main className='w-full flex'>
+             <div className="flex bg-dprimary relative sm:w-[20%] ">
+                <SecondHeaderS  />
+            </div>
+            <div className="flex sm:w-[80%] w-[100%]">
+              <Dashboard userdata={plainUserData} jobdata={plainJobData} />
+            </div>
+          </main>
+          <h1></h1> {/* Make sure to add content */}
+        </div>
+      </div>
+    );
+  } catch (error) {
+    // Handle errors here
+    console.error('Error fetching data:', error);
+    return <div>Error fetching data. Please try again later.</div>; // Render an error message
+  }
 }

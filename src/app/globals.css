@@ -91,6 +91,14 @@ html {
   /* src: url('./fonts/gramatika/GramatikaTrial-Light-BF65dea4c59cf23.otf'); */
 }
 
+.coverletter-card {
+  background-color: #93c5fd;
+}
+
+*:focus{
+  box-shadow: none !important;
+}
+
 .it-center{
   display: flex;
   place-items: center;
@@ -115,21 +123,25 @@ html {
 /* Track */
 .jtable ::-webkit-scrollbar {
   display: flex;
+  width: 3px !important;
+  height: 7px !important;
 }
 
 .jtable ::-webkit-scrollbar-thumb {
-  background: #3e3e3e; 
-  border-radius: 10px;
-  width: 5px;
-  height: 5px;
+  background: #b2b2b2; 
+  cursor: pointer !important;
+
+  /* border-radius: 4px !important;
+  width: 3px !important;
+  height: 3px !important; */
 }
  
 
 
 /* Handle on hover */
-.jtable ::-webkit-scrollbar-thumb:hover {
+/* .jtable ::-webkit-scrollbar-thumb:hover {
   background: #585858; 
-}
+} */
 
 .gen-text {
   transition: 3s ease;
@@ -168,6 +180,7 @@ html {
     transform: translateY(0);
   }
 }
+
 
 .float {
   animation: floatAnimation 4s ease-in-out infinite; /* Adjust animation duration and timing function as needed */

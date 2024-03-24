@@ -15,9 +15,7 @@ const requestBody = await request.json();
 // console.log(requestBody)
 noStore();  
 const user = await currentUser()
-const userdata = await getUserData(user?.id as string)
-const jobdata = await getUniqueJobData(user?.id as string)
-
+const jobId = requestBody.jobId
 
 
 async function postUserData() {
@@ -36,14 +34,12 @@ async function postUserData() {
     const formReferralContact = requestBody.input.text.ReferralContact as string
     const formKeywords = requestBody.input.text.Keywords as string
     const resumeFileName = requestBody.input.text.ResumeUsed.split('\\').pop() as string;
-    const uniiId = requestBody.input.text.id
-    console.log('yooooooooooo',uniiId)
     
 
     const apiAdd = await prisma?.job.update({
         where: {
-            id: uniiId,
-            userId: user.id
+            id: jobId,
+            userId: user?.id
         },
         data: {
         JobTitle: formJobTitle,
@@ -59,12 +55,14 @@ async function postUserData() {
         }
     })
 
+    revalidatePath('/')
 
     
 }
 
 postUserData();
 
+revalidatePath('/')
 
 return Response.json({ text: `success` })
 

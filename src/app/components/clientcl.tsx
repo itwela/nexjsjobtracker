@@ -61,7 +61,7 @@ export interface CoverLetter {
 
 
 
-export default function NewClCard() {
+export default function NewClCard({jobdata}: {jobdata: JobData}) {
     
   useEffect(() => {
       getJobId()

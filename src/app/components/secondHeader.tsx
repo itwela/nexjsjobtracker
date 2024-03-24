@@ -1,15 +1,19 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { FaRegCompass } from "react-icons/fa";
+import { FaHome, FaRegCompass } from "react-icons/fa";
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
-import { LuNewspaper } from "react-icons/lu";
+import { FaRegNewspaper } from "react-icons/fa6";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 import { MouseEvent } from 'react';
 import { MenuIcon } from "lucide-react";
 import { toast } from "sonner";
 import gsap from "gsap";
 import { Link } from "@nextui-org/react";
+import { FaRegMessage } from "react-icons/fa6";
+import { UserButton } from "@clerk/nextjs";
+import React from "react";
+import MenuIntroModalC from "./introCli";
 
 interface UserData {
   username: string;
@@ -47,18 +51,23 @@ interface SubscriptionData {
   status: string | null | undefined;
 }
 
-export default function Secondheader() {
+export default function Secondheader({userdata, userauth, jobdata}: {userdata: any; userauth: any; jobdata: any}) {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [jobData, setJobData] = useState<JobData[]>([]);
-  const [introData, setIntroData] = useState<IntroData[]>([]);
+  const [introData, setIntroData] = useState<IntroData[]>([]); 
   const [coverLetterData, setCoverLetterData] = useState<CoverLetterData[]>([]);
   const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null >(null);
   
+  const [menuModalOpen, setmenuModalOpen] = React.useState(false);
+  const handleMenuModalOpen = () => setmenuModalOpen(!menuModalOpen);
+  const handleMenuModalClose = () => setmenuModalOpen(false);
+
+
   useEffect(() => {
     setIsOpen(false); // Set isOpen to false initially
     getTheUser();
     gsap.set('#nacbar', {
-      yPercent: '-900'
+      xPercent: '-900'
     });
   }, []);
   
@@ -106,199 +115,203 @@ export default function Secondheader() {
   useEffect(() => {
     if (isOpen) {
       gsap.to('#nacbar', {
-        yPercent: '0',
+        xPercent: '0',
         opacity: 1,
         ease: 'power4.inOut'
       });
     } else {
       gsap.to('#nacbar', {
-        yPercent: '-800',
+        xPercent: '-800',
         opacity: 0,
       });
     }
   }, [isOpen]);
 
-  
-  // console.log('You have successfully logged the user data to frontend',userData)
-  // console.log('You have successfully logged the jobdata to the frontend', jobData)
-  // console.log('You have successfully logged the cover letter dat to the frontend',  coverLetterData)
-  // console.log('You have successfully logged the subscription status data to the frontend',  subscriptionData)
-
-  // if (subscriptionText != 'active') {
-  if ( subscriptionData?.status != 'active') {
+    if ( 
+      subscriptionData?.status != 'active'
+      ) {
 
     return (
       <>
     
-      <span className="">
 
 
-      <span className=''>
-        <span  className='hidden md:flex nav-wrapper pt-8 pb-8 bg-dprimary md:flex flex-col justify-between w-full h-screen '>
+        <span  className='hidden sm:flex nav-wrapper  bg-dprimary md:flex flex-col justify-between w-full h-full '>
         
-        <nav className='  flex-col place-items-start place-content-start hidden md:flex  min-w-[20vw]    fixed justify-start  relative text-main-w'>
-       
-          {/* subscribe */}
-          <Link href='/billing'>
-            <span className=" pb-3 w-[20vw] flex place-content-center">
-            <span className="w-[15vw] place-content-center bg-gradient-to-l from-blue-900 to-blue-400 text-[0.8em] outline outline-[1px] outline-transparent hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
-                <span>Subscribe</span>
-              </span>
-            </span>
-          </Link>
-          
-          {/* <span className='pt-3 p-5 px-6 bg-primary rounded-[0.5em] pb-3'><FaRegCompass/></span>   */}
-          
-          <span className='main  flex flex-col gap-4  min-h-[15vh]'>
+          <nav className='  flex-col  hidden sm:flex  w-full h-full   fixed  relative text-main-w'>
+                    
+            <span className='main w-full  p-4 flex flex-col gap-4 h-full justify-between'>
 
-          <span className='dashb text-[0.8em]  '>
-                
-                    <Link href='/dashboard'>
-                        <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
-                              <p className='truncate'>Dashoard</p>
-                              <span className=''><MdOutlineLibraryAdd/></span>
-                        </span>     
+                {/* top */}
+                <span className="flex flex-col gap-4">
+                  
+                  <span className="jk">
+                    <span className="flex py-4 justify-between gap-4  place-items-center  justify-between text-main-w hover:text-main-w   w-full">
+                      <span className="w-[60%] truncate">{userdata?.email}</span>
+                      {/* {userauth != null && (
+                        <> */}
+                          <span ><UserButton /></span>
+                        {/* </> 
+                      )} */}
+                    </span>
+                  </span>
+
+                  {/* home */}
+                  <Link className="p-1 w-full py-2  flex justify-between gap-4" href='/dashboard'>
+                        <p className='truncate'>Home</p>
+                        <span className=''><FaHome/></span>
+                  </Link>
+
+                  {/* features */}
+                  <span className="flex flex-col gap-4 my-4">
+                  
+                    <span className="font-bold py-4 ">Features</span>
+                  
+                    <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/coverletter'>
+                          <p className=' truncate'>Cover Letter</p>
+                          <span className=''><FaRegNewspaper className=''/></span>
                     </Link>
-          </span>
 
-          <span className='coverl text-[0.8em] flex justify-between  '>
-                    <Link href='/coverletter'>
-                    <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className=' truncate'>Cover Letter</p>
-                          <span className=''><LuNewspaper className=''/></span>
+                    <span onClick={handleMenuModalOpen} className="p-1 w-full cursor-pointer  flex justify-between gap-4">
+                          <p className=' truncate'>Introduction</p>
+                          <span className=''><FaRegMessage className=''/></span>
+                    </span>
+
+                    {menuModalOpen && (
+                      <MenuIntroModalC menuModalOpen={menuModalOpen} handleMenuModalClose={handleMenuModalClose} jobdata={jobdata} />
+                    )}
+                    
+                    <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/mydocs'>
+                        <p className=' truncate'>My docs</p>
+                        <span className=''><IoDocumentTextOutline  className=''/></span>
+                    </Link>
+                  </span>
+                </span>
+
+                <span className="flex flex-col gap-4 py-8">
+                  <Link className="w-full  flex justify-between gap-4" href='/profile'>
+                      <p className=' truncate'>Profile</p>
+                      <span className=''><IoSettingsOutline  className=''/></span>
+                  </Link>
+                  
+                  <Link className="w-full  flex justify-between gap-4" href='/billing'>
+                      <p className=' truncate'>Settings</p>
+                      <span className=''><IoSettingsOutline  className=''/></span>
+                  </Link>
+
+                    <Link href='/billing'>
+                      <span className="rounded-lg py-4 w-full bg-gradient-to-r from-blue-600 to-blue-100 flex justify-center place-items-center place-content-center gap-4">
+                        <span className="text-center text-white">
+                          Subscribe
+                        </span>
                       </span>
                     </Link>
-          </span>
+                      
+                  </span>
 
-          
-          <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
-              <Link href='/mydocs'>
-                <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>My docs</p>
-                    <span className=''><IoDocumentTextOutline  className=''/>
-                    </span>
-                </span>
-              </Link>
-          </span>
 
-          <span className='settings text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
-              <Link href='/billing'>
-                <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Settings</p>
-                    <span className=''><IoSettingsOutline  className=''/>
-                    </span>
-                </span>
-              </Link>
-          </span>
-
-          </span>
+            </span>
 
 
 
-        </nav>
-
-          <span className='count absolute bottom-10   gap-4 cursor-pointer flex flex-col gap-4'>
-                
-                <span className='text-[0.5em] flex gap-3 w-[20vw]  p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Cover Letters</p>
-                    <span className=''>{coverLetterData.length} <span className="text-blue-500">/ 3</span>
-                    </span>
-                </span>
-
-                <span className='flex w-[20vw] text-[0.5em] gap-3   p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Introductions</p>
-                    <span className=''> {introData.length} <span className="text-blue-500">/ 3</span>
-                    </span>
-                </span>
-
-                <span className='flex w-[20vw] text-[0.5em] gap-3    p-5 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                        <p className='70%] truncate'>Tracked Jobs</p>
-                    <span className=''>{jobData.length} <span className="text-blue-500">/ 3</span>
-                    </span>
-                </span>
-          </span>
+          </nav>
 
         </span>
 
-      </span>
 
-      </span>
 
         {/* mobile */}
-      <span id='hamburger' onClick={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+      <span id='hamburger' onClick={handleButtonClick} className='fixed sm:hidden top-[1.5%] left-4 z-10'>  <MenuIcon  className=' cursor-pointer'/></span> 
 
         <span className="">
 
           <span className=''>
-            <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
-            <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
-            <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center text-main-w">JobKompass</span>
-
-              <Link href='/dashboard'>
-                <span className='dashb  '>
-                      
-                <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                                    <p    className=''>Dashoard</p>
-                                    <button   className=''><MdOutlineLibraryAdd/></button>
-                              </span>     
-                </span>
-              </Link> 
-
-              <span className='coverl  flex justify-between  '>
-                        <Link href='/coverletter'>
-                        <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                                <p className=' truncate'>Cover Letter</p>
-                              <span className=''><LuNewspaper className=''/></span>
+            <span id="nacbar"   className='opacity-0 nav-wrapper fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 sm:hidden flex z-10  w-[100vw]  justify-between '>
+                <span id='hamburger' onClick={handleButtonClick} className='absolute top-4 left-3 z-10'>  <MenuIcon  className='text-main-w hover:text-main-w cursor-pointer'/></span> 
+                
+                <span className="w-[60%] bg-dprimary h-screen flex flex-col pt-5">
+                  <span className='main w-full text-white  p-4 flex flex-col gap-4 h-screen justify-between'>
+                      {/* top */}
+                      <span className="flex flex-col gap-4">
+                  
+                        <span className="jk">
+                          <span className="flex py-4 justify-between gap-4  place-items-center  justify-between text-main-w hover:text-main-w   w-full">
+                            <span className="w-[60%] truncate">{userdata?.email}</span>
+                            {/* {userauth != null && (
+                              <> */}
+                                <span ><UserButton /></span>
+                              {/* </>
+                            )} */}
                           </span>
+                        </span>
+                        {/* home */}
+                        <Link className="p-1 w-full py-2  flex justify-between gap-4" href='/dashboard'>
+                              <p className='truncate'>Home</p>
+                              <span className=''><FaHome/></span>
                         </Link>
-              </span>
-              
-                  <Link href='/mydocs'>
-                  <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className='70%] truncate'>My docs</p>
-                        <span className=''><IoDocumentTextOutline  className=''/>
+                        {/* features */}
+                        <span className="flex flex-col gap-4 my-4">
+                  
+                          <span className="font-bold py-4 ">Features</span>
+                  
+                          <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
+                                <p className=' truncate'>Cover Letter</p>
+                                <span className=''><FaRegNewspaper className=''/></span>
+                          </Link>
+                          <span className="p-1 w-full cursor-pointer  flex justify-between gap-4">
+                                <p className=' truncate'>Introduction</p>
+                                <span className=''><FaRegMessage className=''/></span>
+                          </span>
+                  
+                          <Link className="w-full  flex justify-between gap-4" href='/mydocs'>
+                              <p className=' truncate'>My docs</p>
+                              <span className=''><IoDocumentTextOutline  className=''/></span>
+                          </Link>
                         </span>
-                    </span>
-                  </Link>
+                      </span>
+                      <span className="flex flex-col gap-4 py-8">
+                        <Link className="w-full  flex justify-between gap-4" href='/profile'>
+                            <p className=' truncate'>Profile</p>
+                            <span className=''><IoSettingsOutline  className=''/></span>
+                        </Link>
+                  
+                        <Link className="w-full  flex justify-between gap-4" href='/billing'>
+                            <p className=' truncate'>Settings</p>
+                            <span className=''><IoSettingsOutline  className=''/></span>
+                        </Link>
 
-                  <Link href='/billing'>
-                  <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                            <p className='70%] truncate'>Settings</p>
-                        <span className=''><IoSettingsOutline  className=''/>
+                        <span className='gap-2 w-full cursor-pointer flex flex-col'>
+                        
+                              <span className='flex w-full pt-5  text-main-w   select-none hover:text-main-w  place-items-center  justify-between '>
+                                      <p className=' truncate'>Cover Letters</p>
+                                  <span className=''>{coverLetterData.length} <span>/ 3</span>
+                                  </span>
+                              </span>
+                              <span className='flex w-full  text-main-w   select-none hover:text-main-w  place-items-center  justify-between  gap-2  '>
+                                      <p className=' truncate'>Introductions</p>
+                                  <span className=''>{introData.length} <span>/ 3</span>
+                                  </span>
+                              </span>
+                              <span className='flex w-full  text-main-w   select-none hover:text-main-w  place-items-center  justify-between  '>
+                                      <p className=' truncate'>Tracked Jobs</p>
+                                  <span className=''>{jobData.length} <span>/ 3</span>
+                                  </span>
+                              </span>
                         </span>
-                    </span>
-                  </Link>
 
-                      {/* subscribe */}
-              <Link href='/billing' className="p-5">
-                <span className=" pb-3 w-[20vw] flex place-content-center">
-                <span className="w-[30vw] text-main-w  place-content-center bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
-                    <span>Subscribe</span>
+                          <Link href='/billing'>
+                            <span className="rounded-lg py-4 w-full bg-gradient-to-r from-blue-600 to-blue-100 flex justify-center place-items-center place-content-center gap-4">
+                              <span className="text-center text-white">
+                                Subscribe
+                              </span>
+                            </span>
+                          </Link>
+                  
+                        </span>
                   </span>
                 </span>
-              </Link>
 
-              <span className='count absolute bottom-10   gap-2 cursor-pointer flex flex-col '>
-                    
-                    <span className='flex  p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                            <p className='70%] truncate'>Cover Letters</p>
-                        <span className=''>{coverLetterData.length} <span>/ 3</span>
-                        </span>
-                    </span>
-
-                    <span className='flex  p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6 gap-2  '>
-                            <p className='70%] truncate'>Introductions</p>
-                        <span className=''>{introData.length} <span>/ 3</span>
-                        </span>
-                    </span>
-
-                    <span className='flex   p-2 text-main-w/60  hover:bg-mprimary/70 select-none hover:text-main-w  place-items-center  justify-between px-6  '>
-                            <p className='70%] truncate'>Tracked Jobs</p>
-                        <span className=''>{jobData.length} <span>/ 3</span>
-                        </span>
-                    </span>
-              </span> 
-
+                <span className="w-[40%] bg-dprimary/70 h-screen"></span>
 
             </span>
 
@@ -319,144 +332,179 @@ export default function Secondheader() {
   return (
     <>
     
-    <span className="bg-dprimary">
-
-
-    <span className=''>
-      <span  className='hidden md:flex nav-wrapper pt-8 pb-8 bg-dprimary md:flex flex-col justify-between w-full h-screen '>
-      
-      <nav className='  flex-col place-items-start place-content-start hidden md:flex  min-w-[20vw]    fixed justify-start  relative text-main-w'>
+    <span  className='hidden sm:flex nav-wrapper  bg-dprimary md:flex flex-col justify-between w-full h-screen '>
+        
+          <nav className='  flex-col  hidden sm:flex  w-full    fixed  relative text-main-w'>
+        
      
-        {/* Pro */}
-        <Link href='/billing'>
-          <span className=" pb-3 w-[20vw] flex place-content-center">
-          <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
-              <span>Pro</span>
-            </span>
-          </span>
-        </Link>
-        
-        {/* <span className='pt-3 p-5 px-6 bg-primary rounded-[0.5em] pb-3'><FaRegCompass/></span>   */}
-        
-        <span className='main  flex flex-col gap-4  min-h-[15vh]'>
+            
+            <span className='main w-full  p-4 flex flex-col gap-4 h-screen justify-between'>
 
-        <span className='dashb text-[0.8em] '>
-              
-                  <Link href='/dashboard'>
-                      <span className='flex  justify-between gap-4 hover:bg-mprimary/70 p-5 px-6 justify-between text-main-w/60 hover:text-main-w   w-[20vw] '>
-                            <p className='truncate'>Dashoard</p>
-                            <span className=''><MdOutlineLibraryAdd/></span>
-                      </span>     
-                  </Link>
-        </span>
-
-        <span className='coverl text-[0.8em] flex justify-between  '>
-                  <Link href='/coverletter'>
-                  <span className='flex  w-[20vw]  justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                          <p className=' truncate'>Cover Letter</p>
-                        <span className=''><LuNewspaper className=''/></span>
+                {/* top */}
+                <span className="flex flex-col gap-4">
+                  
+                  <span className="jk">
+                    <span className="flex py-4 justify-between gap-4  place-items-center  justify-between text-main-w hover:text-main-w   w-full">
+                      <span className="w-[60%] truncate">{userdata?.email}</span>
+                      {/* {userauth != null && (
+                        <> */}
+                          <span ><UserButton /></span>
+                        {/* </> 
+                      )} */}
                     </span>
+                  </span>
+
+                  {/* home */}
+                  <Link className="p-1 w-full py-2  flex justify-between gap-4" href='/dashboard'>
+                        <p className='truncate'>Home</p>
+                        <span className=''><FaHome/></span>
                   </Link>
-        </span>
 
-        
-        <span className='mydoc text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
-            <Link href='/mydocs'>
-              <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                      <p className='70%] truncate'>My docs</p>
-                  <span className=''><IoDocumentTextOutline  className=''/>
+                  {/* features */}
+                  <span className="flex flex-col gap-4 my-4">
+                  
+                    <span className="font-bold py-4 ">Features</span>
+                  
+                    <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
+                          <p className=' truncate'>Cover Letter</p>
+                          <span className=''><FaRegNewspaper className=''/></span>
+                    </Link>
+                    <span className="p-1 w-full cursor-pointer  flex justify-between gap-4">
+                          <p className=' truncate'>Introduction</p>
+                          <span className=''><FaRegMessage className=''/></span>
+                    </span>
+                  
+                    <Link className="p-1 w-full  flex justify-between gap-4" href='/mydocs'>
+                        <p className=' truncate'>My docs</p>
+                        <span className=''><IoDocumentTextOutline  className=''/></span>
+                    </Link>
                   </span>
-              </span>
-            </Link>
-        </span>
+                </span>
 
-        <span className='settings text-[0.8em]  gap-4 hover:bg-mprimary/70 cursor-pointer flex gap-4'>
-            <Link href='/billing'>
-              <span className='flex w-[20vw]  p-5 text-main-w/60 hover:text-main-w  place-items-center  justify-between px-6  '>
-                      <p className='70%] truncate'>Settings</p>
-                  <span className=''><IoSettingsOutline  className=''/>
+                <span className="flex flex-col gap-4 py-8">
+                  <Link className="w-full  flex justify-between gap-4" href='/profile'>
+                      <p className=' truncate'>Profile</p>
+                      <span className=''><IoSettingsOutline  className=''/></span>
+                  </Link>
+                  
+                  <Link className="w-full  flex justify-between gap-4" href='/billing'>
+                      <p className=' truncate'>Settings</p>
+                      <span className=''><IoSettingsOutline  className=''/></span>
+                  </Link>
+
+                  <span className=" py-4 w-full select-none flex justify-center place-items-center place-content-center gap-4">
+                    <span className="bg-gradient-to-r text-center from-blue-600 to-blue-100 text-transparent bg-clip-text">
+                      JobKompass Pro
+                    </span>
                   </span>
-              </span>
-            </Link>
-        </span>
+                </span>
+
+            </span>
+
+
+
+          </nav>
 
         </span>
-
-
-
-      </nav>
-
-
-      </span>
-
-    </span>
-
-    </span>
 
       {/* mobile */}
-    <span id='hamburger' onClick={handleButtonClick} className='fixed md:hidden bottom-6 left-5 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
+      <span id='hamburger' onClick={handleButtonClick} className='fixed sm:hidden top-[1.5%] left-4 z-10'>  <MenuIcon  className=' cursor-pointer'/></span> 
 
-      <span className="">
+        <span className="">
 
-        <span className=''>
-          <span id="nacbar"   className='opacity-0 nav-wrapper  bg-gradient-to-b from-dprimary to-blue-500 flex-col fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 md:hidden flex z-10  w-[100vw]  '>
-          <span id='hamburger' onClick={handleButtonClick} className='absolute bottom-6 left-10 z-10'>  <MenuIcon  className='text-main-w/60 hover:text-main-w cursor-pointer'/></span> 
-          <span className="w-[100vw] h-[10vh] fixed top-0 flex place-items-center z-10 place-content-center text-main-w">JobKompass</span>
-
-            <Link href='/dashboard'>
-              <span className='dashb  '>
-                    
-              <span  className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                                  <p    className=''>Dashoard</p>
-                                  <button   className=''><MdOutlineLibraryAdd/></button>
-                            </span>     
-              </span>
-            </Link> 
-
-            <span className='coverl  flex justify-between  '>
-                      <Link href='/coverletter'>
-                      <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                              <p className=' truncate'>Cover Letter</p>
-                            <span className=''><LuNewspaper className=''/></span>
+          <span className=''>
+            <span id="nacbar"   className='opacity-0 nav-wrapper fixed top-0 z-[100] place-items-center place-content-center h-screen pt-8 pb-8 sm:hidden flex z-10  w-[100vw]  justify-between '>
+                <span id='hamburger' onClick={handleButtonClick} className='absolute top-4 left-3 z-10'>  <MenuIcon  className='text-main-w hover:text-main-w cursor-pointer'/></span> 
+                
+                <span className="w-[60%] bg-dprimary h-screen flex flex-col pt-5">
+                  <span className='main w-full text-white  p-4 flex flex-col gap-4 h-screen justify-between'>
+                      {/* top */}
+                      <span className="flex flex-col gap-4">
+                  
+                        <span className="jk">
+                          <span className="flex py-4 justify-between gap-4  place-items-center  justify-between text-main-w hover:text-main-w   w-full">
+                            <span className="w-[60%] truncate">{userdata?.email}</span>
+                            {/* {userauth != null && (
+                              <> */}
+                                <span ><UserButton /></span>
+                              {/* </>
+                            )} */}
+                          </span>
                         </span>
-                      </Link>
-            </span>
-            
-                <Link href='/mydocs'>
-                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                          <p className='70%] truncate'>My docs</p>
-                      <span className=''><IoDocumentTextOutline  className=''/>
+                        {/* home */}
+                        <Link className="p-1 w-full py-2  flex justify-between gap-4" href='/dashboard'>
+                              <p className='truncate'>Home</p>
+                              <span className=''><FaHome/></span>
+                        </Link>
+                        {/* features */}
+                        <span className="flex flex-col gap-4 my-4">
+                  
+                          <span className="font-bold py-4 ">Features</span>
+                  
+                          <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
+                                <p className=' truncate'>Cover Letter</p>
+                                <span className=''><FaRegNewspaper className=''/></span>
+                          </Link>
+                          <span className="p-1 w-full cursor-pointer  flex justify-between gap-4">
+                                <p className=' truncate'>Introduction</p>
+                                <span className=''><FaRegMessage className=''/></span>
+                          </span>
+                  
+                          <Link className="w-full  flex justify-between gap-4" href='/mydocs'>
+                              <p className=' truncate'>My docs</p>
+                              <span className=''><IoDocumentTextOutline  className=''/></span>
+                          </Link>
+                        </span>
                       </span>
-                  </span>
-                </Link>
+                      <span className="flex flex-col gap-4 py-8">
+                        <Link className="w-full  flex justify-between gap-4" href='/profile'>
+                            <p className=' truncate'>Profile</p>
+                            <span className=''><IoSettingsOutline  className=''/></span>
+                        </Link>
+                  
+                        <Link className="w-full  flex justify-between gap-4" href='/billing'>
+                            <p className=' truncate'>Settings</p>
+                            <span className=''><IoSettingsOutline  className=''/></span>
+                        </Link>
 
-                <Link href='/billing'>
-                <span className='flex justify-between gap-4 hover:bg-mprimary/70 p-5 justify-between text-main-w/60 hover:text-main-w  px-6 '>
-                          <p className='70%] truncate'>Settings</p>
-                      <span className=''><IoSettingsOutline  className=''/>
-                      </span>
-                  </span>
-                </Link>
+                        <span className='gap-2 w-full cursor-pointer flex flex-col'>
+                        
+                              <span className='flex w-full pt-5  text-main-w   select-none hover:text-main-w  place-items-center  justify-between '>
+                                      <p className=' truncate'>Cover Letters</p>
+                                  <span className=''>{coverLetterData.length} <span>/ 3</span>
+                                  </span>
+                              </span>
+                              <span className='flex w-full  text-main-w   select-none hover:text-main-w  place-items-center  justify-between  gap-2  '>
+                                      <p className=' truncate'>Introductions</p>
+                                  <span className=''>{introData.length} <span>/ 3</span>
+                                  </span>
+                              </span>
+                              <span className='flex w-full  text-main-w   select-none hover:text-main-w  place-items-center  justify-between  '>
+                                      <p className=' truncate'>Tracked Jobs</p>
+                                  <span className=''>{jobData.length} <span>/ 3</span>
+                                  </span>
+                              </span>
+                        </span>
 
-                    {/* pro */}
-            <Link href='/billing' className="p-5">
-              <span className=" pb-3 w-[20vw] flex place-content-center">
-              <span className="w-[15vw] text-main-w place-content-center bg-gradient-to-l from-lprimary to-dprimary outline outline-[1px] outline-transparent text-[0.8em] hover:outline-main-w/80 px-4 rounded-full p-2 select-none flex gap-2 place-items-center">
-                  <span>Pro</span>
+                          <Link href='/billing'>
+                            <span className="rounded-lg py-4 w-full  flex justify-center place-items-center place-content-center gap-4">
+                              <span className="text-center text-transparent font-bold bg-gradient-to-r from-blue-600 to-blue-100 bg-clip-text">
+                                JobKompass Pro
+                              </span>
+                            </span>
+                          </Link>
+                  
+                        </span>
+                  </span>
                 </span>
-              </span>
-            </Link>
 
-            
+                <span className="w-[40%] bg-dprimary/70 h-screen"></span>
 
+            </span>
 
           </span>
 
         </span>
-
-      </span>
-
-   
   
     
     </>

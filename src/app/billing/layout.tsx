@@ -1,12 +1,14 @@
 import { ReactNode, Suspense } from 'react';
 import spin from '../assets/system-solid-18-autorenew.gif'
+import Billing from './page';
+import SecondHeaderS from '../components/S_secondHeader';
 
 
 export default async function BillingLayout({ children}: { children: ReactNode }) {
     
     return (
         <>
-                           <Suspense fallback={
+                           {/* <Suspense fallback={
         
         <div className='w-screen h-screen bg-gradient-to-b from-dprimary to-mprimary flex-col flex place-content-center place-items-center'>
           <span className="w-full text-main-w pb-5 flex place-items-center place-content-center">
@@ -18,16 +20,22 @@ export default async function BillingLayout({ children}: { children: ReactNode }
           </span>
         </div>
       
-      }>
+      }> */}
 
 
             <div className="flex">
-                <div className="flex">
-                    <main>{children}</main>
+                <div className="w-screen">
+                    
+                    <main className='w-full flex'>
+                      <div className='sm:w-[20%]'>
+                        <SecondHeaderS/>
+                      </div>
+                      <div className='sm:w-[80%]  w-[100%]'><Billing/></div>
+                    </main>
                 </div>
             </div>
 
-            </Suspense>
+            {/* </Suspense> */}
         </>
     )
 }
