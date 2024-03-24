@@ -40,7 +40,7 @@ export default async function Home() {
       <div className="flex min-h-screen w-[100vw]  flex-col place-content-center  place-items-start w-[100vw]">
           {/* mobile header */}
           <span className="md:hidden">
-          <SecondHeaderS/>
+          {/* <SecondHeaderS/> */}
           </span>
 
 {/* header */}
