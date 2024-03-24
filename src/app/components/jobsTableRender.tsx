@@ -6,8 +6,6 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { File } from "lucide-react";
@@ -142,51 +140,53 @@ type JobDataProps = {
                   <div className="rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
                 </div>
 
-                <Table className="w-full">
-                  <TableHeader className="flex  justify-evenly gap-1 w-full">
-                
-                    <TableHead className="flex place-content-center place-items-center w-[5em] /70 truncate hover:text-clip">
-                      Edit
-                    </TableHead>
-                    <TableHead className=" flex place-content-center place-items-center w-[2em] truncate hover:text-clip">
-                      #
-                    </TableHead>
-                    <TableHead className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                      Job Tttle
-                    </TableHead>
-                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                      Company
-                    </TableHead>
-                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                      Date Applied
-                    </TableHead>
-                    <TableHead className="flex place-content-center place-items-center w-[7em]">
-                      Status
-                    </TableHead>
-                    <TableHead className="flex place-content-center place-items-center w-[7em]">
-                      Link
-                    </TableHead>
+                {/* header */}
+                <div className="flex my-4 justify-evenly gap-1 w-full">
+              
+                  <div className="flex place-content-center place-items-center w-[5em] /70 truncate hover:text-clip">
+                    Edit
+                  </div>
+                  <div className=" flex place-content-center place-items-center w-[2em] truncate hover:text-clip">
+                    #
+                  </div>
+                  <div className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Job Tttle
+                  </div>
+                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Company
+                  </div>
+                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Date Applied
+                  </div>
+                  <div className="flex place-content-center place-items-center w-[7em]">
+                    Status
+                  </div>
+                  <div className="flex place-content-center place-items-center w-[7em]">
+                    Link
+                  </div>
 
-                      <TableHead className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                        Referral?
-                      </TableHead>
-                      <TableHead className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                        Ref'd By
-                      </TableHead>
-                      <TableHead className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                        Contact
-                      </TableHead>
-                      
-                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                      Resume Used
-                    </TableHead>
-                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                      Keywords
-                    </TableHead>
-                    <TableHead className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                      Cover letter
-                    </TableHead>
-                  </TableHeader>
+                    <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
+                      Referral?
+                    </div>
+                    <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
+                      Ref'd By
+                    </div>
+                    <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
+                      Contact
+                    </div>
+                    
+                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Resume Used
+                  </div>
+                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Keywords
+                  </div>
+                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                    Cover letter
+                  </div>
+                </div> 
+
+                <Table className="w-full">
                   <TableBody>
                     {/* pop up */}
                     {currentJobs.map((job: JobData, index: number) => (
