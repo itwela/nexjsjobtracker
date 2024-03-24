@@ -12,7 +12,7 @@ import { getSubscriptionData } from "@/actions/databaseAc";
     noStore();  
     auth();
     const user = await currentUser()
-    const subscription = await getSubscriptionData(user?.id as string)
+    const subscription = await getSubscriptionData()
     // const jobdata = await getJobData(user?.id as string)
    
     const sub = await prisma.user.findUnique({

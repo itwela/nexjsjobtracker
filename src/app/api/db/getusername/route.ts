@@ -7,11 +7,11 @@ export async function POST(request: any){
     noStore();
     auth();
     const user = await currentUser()
-    const data = await getUsername(user?.id as string)
-    const subscriptiondata = await getSubscriptionData(user?.id as string)
-    const introdata = await getIntroductionData(user?.id as string)
-    const coverletterdata = await getCoverLetterData(user?.id as string)
-    const jobdata = await getJobData(user?.id as string)
+    const data = await getUsername()
+    const subscriptiondata = await getSubscriptionData()
+    const introdata = await getIntroductionData()
+    const coverletterdata = await getCoverLetterData()
+    const jobdata = await getJobData()
   
 
     return Response.json(

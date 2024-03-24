@@ -13,8 +13,8 @@ export async function POST(request: any) {
     noStore();  
     auth();
     const user = await currentUser()
-    const userdata = await getUserData(user?.id as string)
-    const cldata = await getJobWithCl(user?.id as string)
+    const userdata = await getUserData()
+    const cldata = await getJobWithCl()
     
     return Response.json({ cldata })
   }

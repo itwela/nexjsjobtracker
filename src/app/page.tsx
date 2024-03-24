@@ -17,6 +17,7 @@ import NLoginHeader from "./homenav";
 import HeroSectionThree from "./section3";
 import HeroSectionFive from "./section5";
 import Footer from "./footer";
+import SecondHeaderS from "./components/S_secondHeader";
 
 
 export default async function Home() {
@@ -39,7 +40,7 @@ export default async function Home() {
       <div className="flex min-h-screen w-[100vw]  flex-col place-content-center  place-items-start w-[100vw]">
           {/* mobile header */}
           <span className="md:hidden">
-          <Secondheader/>
+          <SecondHeaderS/>
           </span>
 
 {/* header */}

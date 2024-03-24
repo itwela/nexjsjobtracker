@@ -16,10 +16,10 @@ export async function POST(request: any) {
       apiKey: process.env.OPEN_AI_K,
   });
     const user = await currentUser()
-    const userdata = await getUserData(user?.id as string)
-    const jobdata = await getJobData(user?.id as string)
-    const sub = await getSubscriptionData(user?.id as string)
-    const introduction = await getIntroductionData(user?.id as string)
+    const userdata = await getUserData()
+    const jobdata = await getJobData()
+    const sub = await getSubscriptionData()
+    const introduction = await getIntroductionData()
 
     const firstName = userdata?.firstName;
     const lastName = userdata?.lastName;

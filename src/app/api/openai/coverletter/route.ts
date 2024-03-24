@@ -21,10 +21,10 @@ export async function POST(request: any) {
     noStore();  
     auth();
     const user = await currentUser()
-    const userdata = await getUserData(user?.id as string)
-    const jobdata = await getClByJobId(user?.id as string, requestBody.id)
-    const sub = await getSubscriptionData(user?.id as string)
-    const coverletter = await getCoverLetterData(user?.id as string)
+    const userdata = await getUserData()
+    const jobdata = await getClByJobId(requestBody.id)
+    const sub = await getSubscriptionData()
+    const coverletter = await getCoverLetterData()
     const firstName = userdata?.firstName;
     const lastName = userdata?.lastName;
     const myname = `${firstName} ${lastName}`

@@ -18,7 +18,7 @@ export async function POST(request: any) {
   console.log(requestBody)
 
   const user = await currentUser()
-  const data = await getJobData(user?.id as string)
+  const data = await getJobData()
   
   
   if(!user) {

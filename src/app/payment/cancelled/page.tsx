@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Header } from "../../components/header";
 import SecondHeader from "../../components/secondHeader";
+import SecondHeaderS from "@/app/components/S_secondHeader";
 
 
 const Cancelled = () => {
@@ -8,7 +9,7 @@ const Cancelled = () => {
   return (
       <>
       <div className="flex bg-backback-col text-main-w/60 ">
-        <SecondHeader/>
+        <SecondHeaderS/>
 
         <div className="flex w-[100vw] md:w-[80vw] flex-col place-items-center">
           <Header/>

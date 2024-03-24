@@ -16,42 +16,42 @@ import { FaPlus, FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
 import router from "next/router";
+import { JobData } from "../types/JobTypes";
+
+// interface JobData {
+//   Company: string;
+//   coverLetters?: Array<{
+//     id: string;
+//     text: string;
+//     createdAt: Date;
+//     updatedAt: Date;
+//     userId: string;
+//     jobId: string;
+//   }>;
+//   DateApplied: string | null; // Update the type to string | null
+//   JobTitle: string;
+//   Keywords: string | null;
+//   Link: string;
+//   Referral: string;
+//   ReferralContact: string | null;
+//   ReferralName: string | null;
+//   ResumeUsed: string | null;
+//   Status: string | null;
+//   createdAt: Date;
+//   id: string;
+//   updatedAt: Date;
+//   userId: string;
+// }
+
+// type JobDataProps = {
+//   jobdata: JobData[];
+// }
 
 
-interface JobData {
-  Company: string;
-  coverLetters?: Array<{
-    id: string;
-    text: string;
-    createdAt: Date;
-    updatedAt: Date;
-    userId: string;
-    jobId: string;
-  }>;
-  DateApplied: string | null; // Update the type to string | null
-  JobTitle: string;
-  Keywords: string | null;
-  Link: string;
-  Referral: string;
-  ReferralContact: string | null;
-  ReferralName: string | null;
-  ResumeUsed: string | null;
-  Status: string | null;
-  createdAt: Date;
-  id: string;
-  updatedAt: Date;
-  userId: string;
-}
-
-type JobDataProps = {
-  jobdata: JobData[];
-}
 
 
 
-
-
- export default function JobsTable({jobdata}: any) {
+ export default function JobsTable({jobdata}: {jobdata: JobData[]}) {
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -140,8 +140,10 @@ type JobDataProps = {
                   <div className="rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
                 </div>
 
+
+                <Table className="w-full">
                 {/* header */}
-                <div className="flex my-4 justify-evenly gap-1 w-full">
+                <span className="flex my-4 justify-evenly gap-1 w-full">
               
                   <div className="flex place-content-center place-items-center w-[5em] /70 truncate hover:text-clip">
                     Edit
@@ -184,9 +186,7 @@ type JobDataProps = {
                   <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Cover letter
                   </div>
-                </div> 
-
-                <Table className="w-full">
+                </span> 
                   <TableBody>
                     {/* pop up */}
                     {currentJobs.map((job: JobData, index: number) => (

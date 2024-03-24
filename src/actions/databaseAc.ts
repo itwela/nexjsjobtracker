@@ -87,7 +87,7 @@ export async function getJobData() {
 
 
 // this gets a unique job for a user
-export async function getUniqueJobData() {
+export async function getUniqueJobData(id: any) {
   noStore();
   await getTheUser();
   const data = prisma.job.findUnique({

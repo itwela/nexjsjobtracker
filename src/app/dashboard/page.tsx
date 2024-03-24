@@ -23,6 +23,7 @@ import spin from '../assets/system-solid-18-autorenew.gif'
 import AddJobForm from "../components/addJobForm";
 import React from "react";
 import SecondHeaderS from "../components/S_secondHeader";
+import { JobData } from "../types/JobTypes";
 
 // async function getUserData(userId: string) {
 //   noStore();
@@ -73,7 +74,7 @@ import SecondHeaderS from "../components/S_secondHeader";
 
 
 
-export default function Dashboard({jobdata, userdata}: {jobdata: any, userdata: any}) {
+export default function Dashboard( jobdata: any, userdata : any ) {
   const [formOpen, setFormOpen] = React.useState(false);
   const handleFormOpen = () => setFormOpen(!formOpen);
   const handleFormClose = () => setFormOpen(false);
