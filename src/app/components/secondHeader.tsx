@@ -489,17 +489,17 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
 
                     <span className='flex w-full pt-5  text-main-w   select-none hover:text-main-w  place-items-center  justify-between '>
                       <p className=' truncate'>Cover Letters</p>
-                      <span className=''>{coverLetterData.length} <span>/ 3</span>
+                      <span className=''>{coverLetterData.length} <span></span>
                       </span>
                     </span>
                     <span className='flex w-full  text-main-w   select-none hover:text-main-w  place-items-center  justify-between  gap-2  '>
                       <p className=' truncate'>Introductions</p>
-                      <span className=''>{introData.length} <span>/ 3</span>
+                      <span className=''>{introData.length} <span></span>
                       </span>
                     </span>
                     <span className='flex w-full  text-main-w   select-none hover:text-main-w  place-items-center  justify-between  '>
                       <p className=' truncate'>Tracked Jobs</p>
-                      <span className=''>{jobData.length} <span>/ 3</span>
+                      <span className=''>{jobData.length} <span></span>
                       </span>
                     </span>
                   </span>
