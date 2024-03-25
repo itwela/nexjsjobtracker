@@ -102,6 +102,21 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
         }));
     };
 
+    const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        
+        // Remove "https://" from the beginning of the value
+        const cleanedValue = value.replace(/^https:\/\//, '');
+    
+        setFormData(prevState => ({
+            ...prevState,
+            text: {
+                ...prevState.jobdata,
+                [name]: cleanedValue
+            }
+        }));
+    };
+
     // Handle changes in status fields
     const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -230,7 +245,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
                             <CarouselItem>
                                 <div className='flex flex-col gap-2'>
                                     <label className='font-bold' htmlFor="Link">Link</label>
-                                    <Input autoComplete="off" className='bg-white' onChange={handleInputChange} type="text" id="Link" name="Link" placeholder="Link" required />
+                                    <Input autoComplete="off" className='bg-white' onChange={handleLinkChange} type="text" id="Link" name="Link" placeholder="Link" required />
                                 </div>
                             </CarouselItem>
 

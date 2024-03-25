@@ -44,6 +44,7 @@ export default function EditJob({ jobdata }: any) {
 
     const [statusValue, setStatusValue] = useState('');
     const [referralValue, setReferralValue] = useState('');
+    const [linkValue, setLinkValue] = useState('');
 
     const fullPath = window.location.pathname;
     // Split the path by '/' to get an array of path segments
@@ -80,6 +81,22 @@ export default function EditJob({ jobdata }: any) {
             text: {
                 ...prevState.jobdata,
                 [name]: value
+            }
+        }));
+    };
+
+    const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        
+        // Remove "https://" from the beginning of the value, if present
+        const cleanedValue = value.replace(/^https:\/\//i, '');
+        setLinkValue(cleanedValue);
+
+        setFormData(prevState => ({
+            ...prevState,
+            text: {
+                ...prevState.jobdata,
+                [name]: linkValue
             }
         }));
     };
@@ -205,8 +222,8 @@ export default function EditJob({ jobdata }: any) {
 
                                         <div>
                                             <label className='font-bold' htmlFor="Link">Edit Link</label>
-                                            <Input type="text" className="border-transparent bg-white" onChange={handleInputChange} id="Link" name="Link" defaultValue={job.Link ? job.Link : ''} />
-                                        </div>
+                                            <Input type="text" className="border-transparent bg-white" onChange={handleLinkChange} id="Link" name="Link" defaultValue={job.Link ? job.Link : ''} />
+                                        </div> 
 
                                         <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
                                             <label className='font-bold' htmlFor="referral">Referral?</label>

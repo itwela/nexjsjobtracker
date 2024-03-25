@@ -185,6 +185,7 @@ export default function CoverLetterCard({jobdata}: {jobdata: any}) {
                         </Textarea>
                     <Button className='bg-gradient-to-l from-blue-900 to-blue-400 text-white'>Submit</Button>
                 </form>
+                
 
                 
                 <div className='relative my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-[1em]'>

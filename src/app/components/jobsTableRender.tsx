@@ -229,7 +229,7 @@ import { JobData } from "../types/JobTypes";
                       </div>
                     </TableCell>
                         <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                          {job.Link}
+                            <a href={`https://${job.Link}`}>{job.Link}</a>
                         </TableCell>
                         <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
                           {job.Referral}

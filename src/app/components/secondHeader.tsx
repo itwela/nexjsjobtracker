@@ -128,6 +128,7 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
   }, [isOpen]);
 
   if (
+    // ""
     subscriptionData?.status != 'active'
   ) {
 
@@ -337,13 +338,13 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
   return (
     <>
 
-      <span className='hidden sm:flex nav-wrapper  bg-dprimary md:flex flex-col justify-between w-full h-screen '>
+      <span className='hidden sm:flex nav-wrapper  bg-dprimary md:flex flex-col justify-between w-full h-full '>
 
-        <nav className='  flex-col  hidden sm:flex  w-full    fixed  relative text-main-w'>
+        <nav className='  flex-col  hidden sm:flex  w-full justify-between h-full   fixed  relative text-main-w'>
 
 
 
-          <span className='main w-full  p-4 flex flex-col gap-4 h-screen justify-between'>
+          <span className='main w-full  p-4 flex flex-col gap-4 h-full justify-between'>
 
             {/* top */}
             <span className="flex flex-col gap-4">
