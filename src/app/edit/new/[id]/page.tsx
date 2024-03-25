@@ -212,6 +212,7 @@ export default function EditJob({ jobdata }: any) {
                                         <div className='mb-2  py-2 px-3 rounded-[0.6em] bg-white flex justify-start gap-3 place-items-center'>
                                             <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2 bg-white w-full' name="status" defaultValue={job.Status as string} >
                                                 <option value="">Select a Status</option>
+                                                <option value="Interested">Interested</option>
                                                 <option value="Applied">Applied</option>
                                                 <option value="Interviewing">Interviewing</option>
                                                 <option value="Offer">Offer</option>
