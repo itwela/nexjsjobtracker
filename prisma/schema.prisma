@@ -6,88 +6,97 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl         = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id                      String     @id @unique
-  firstName               String?
-  lastName                String?
-  username                String?
-  email                   String     @unique
-  stripeCustomerId        String?    @unique
-  profileImg              String?
-  Subscription            Subscription?
-  Jobs                    Job[]
-  CoverLetters            CoverLetter[]
-  Introductions           Introduction[]
+  id               String         @id @unique
+  firstName        String?
+  lastName         String?
+  username         String?
+  email            String         @unique
+  stripeCustomerId String?        @unique
+  profileImg       String?
+  Subscription     Subscription?
+  Jobs             Job[]
+  Resumes          Resume[] // Define a one-to-many relationship with Resume
+  CoverLetters     CoverLetter[]
+  Introductions    Introduction[]
 }
 
 model Subscription {
-  stripeSubscriptionId String        @id @unique
-  interval            String
+  stripeSubscriptionId String   @id @unique
+  interval             String
   status               String
   planId               String
   currentPeriodStart   Int
   currentPeriodEnd     Int
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
-  user                 User          @relation(fields: [userId], references: [id])
-  userId               String        @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  user                 User     @relation(fields: [userId], references: [id])
+  userId               String   @unique
 }
 
 model CoverLetter {
-  id                   String        @id @default(uuid())
-  text                 String  
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
+  id        String   @id @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  User                 User?          @relation(fields: [userId], references: [id])
-  userId               String  
+  User   User?  @relation(fields: [userId], references: [id])
+  userId String
 
-  job         Job      @relation(fields: [jobId], references: [id])
-  jobId       String     
+  job   Job    @relation(fields: [jobId], references: [id])
+  jobId String
 }
 
 model Introduction {
-  id                   String        @id @default(uuid())
-  text                 String  
-  
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
+  id   String @id @default(uuid())
+  text String
 
-  User                 User?          @relation(fields: [userId], references: [id])
-  userId               String 
-  
-  job         Job      @relation(fields: [jobId], references: [id])
-  jobId       String     
- 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User   User?  @relation(fields: [userId], references: [id])
+  userId String
+
+  job   Job    @relation(fields: [jobId], references: [id])
+  jobId String
 }
 
-
 model Job {
-  id                   String        @id @default(uuid())
-  JobTitle             String
-  Company              String
-  DateApplied          String?
-  Status               String?
-  Link                 String
-  Referral             String
-  ReferralName         String?
-  ReferralContact      String?
-  ResumeUsed           String?       
-  Keywords             String?
-         
+  id              String   @id @default(uuid())
+  JobTitle        String
+  Company         String
+  DateApplied     String?
+  Status          String?
+  Link            String
+  Referral        String
+  ReferralName    String?
+  ReferralContact String?
+  Resumes         Resume[] // Define a one-to-many relationship with Resume
+  ResumeUsed      String?
+  Keywords        String?
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
+  User   User?  @relation(fields: [userId], references: [id])
+  userId String
 
-  User                 User?          @relation(fields: [userId], references: [id])
-  userId               String        
+  coverLetters  CoverLetter[] // Change from CoverLetter? to CoverLetter[]
+  introductions Introduction[]
+}
 
-  coverLetters         CoverLetter[]  // Change from CoverLetter? to CoverLetter[]
-  introductions        Introduction[]
-  }
+model Resume {
+  id        String   @id @default(uuid())
+  fileUrl   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  Job       Job?     @relation(fields: [jobId], references: [id])
+  jobId     String?
+}
