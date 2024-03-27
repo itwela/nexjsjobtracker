@@ -59,15 +59,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
   const jobsPerPage = 5; // Adjust this value as needed
   const indexOfLastJob = currentPage * jobsPerPage;
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = jobdata.slice(indexOfFirstJob, indexOfLastJob);
 
-  const handleNextPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => prev - 1);
-  };
   
   const handleReload  = async  () => {
     router.reload();
@@ -95,7 +87,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
       setSearchQuery(event.target.value);
   };
 
-  const filteredJobs = currentJobs.filter((job: JobData) => {
+  const filteredJobs = jobdata.filter((job: JobData) => {
       const lcSearchQuery = searchQuery.toLowerCase();
       return (
           job.JobTitle.toLowerCase().includes(lcSearchQuery) ||
@@ -104,6 +96,18 @@ import { IoCloseCircleOutline } from "react-icons/io5";
           job.Status?.toLowerCase().includes(lcSearchQuery)
       );
   });
+
+  // Paginate the filtered jobs
+  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
+
+  const handleNextPage = () => {
+      setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+      setCurrentPage((prev) => prev - 1);
+  };
+
   return (
     <>
       <div className=" w-[100%] flex flex-col rounded-[0.5em] ">
@@ -149,7 +153,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
                   </button>
                   <button
                     onClick={handleNextPage}
-                    disabled={indexOfLastJob >= jobdata.length}
+                    disabled={indexOfLastJob >= filteredJobs.length}
                     className=" py-2 px-4 rounded-l"
                   >
                     Next
@@ -218,7 +222,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
                 </span> 
                   <TableBody>
                     {/* pop up */}
-                    {filteredJobs.map((job: JobData, index: number) => (
+                    {currentJobs.map((job: JobData, index: number) => (
                       <TableRow key={job.id} className="flex rounded-lg bg-white my-2  nosb items-center gap-1 justify-evenly hover:bg-gray-100/30  border-transparent">
                 
                         <TableCell className="w-[5em]">
