@@ -95,7 +95,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
       setSearchQuery(event.target.value);
   };
 
-  const filteredJobs = jobdata.filter((job: JobData) => {
+  const filteredJobs = currentJobs.filter((job: JobData) => {
       const lcSearchQuery = searchQuery.toLowerCase();
       return (
           job.JobTitle.toLowerCase().includes(lcSearchQuery) ||
