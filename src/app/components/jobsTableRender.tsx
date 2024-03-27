@@ -138,7 +138,9 @@ import { IoCloseCircleOutline } from "react-icons/io5";
                     className="rounded-lg w-full outline-none px-3 py-2 my-4"
                 />
 
-                <span onClick={() => setSearchQuery('')}><IoCloseCircleOutline className="w-8 h-8"/></span>
+                {searchQuery !== '' && (
+                  <span onClick={() => setSearchQuery('')}><IoCloseCircleOutline className="cursor-pointer w-8 h-8"/></span>
+                )}
               </span>
 
               <span className="flex justify-between w-full">
@@ -165,12 +167,12 @@ import { IoCloseCircleOutline } from "react-icons/io5";
                     
                   {/* job counts */}
                   <div className=" flex w-max place-content-center place-self-end h-max gap-2 select-none">
-                    <div onClick={() => setSearchQuery("Interested")} className="rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
-                    <div onClick={() => setSearchQuery("Applied")} className="rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
-                    <div onClick={() => setSearchQuery("Interviewing")} className="rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
-                    <div onClick={() => setSearchQuery("Offer")} className="rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{offerJobsCount}</div>
-                    <div onClick={() => setSearchQuery("Rejected")} className="rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
-                    <div onClick={() => setSearchQuery("Ghosted")} className="rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Interested")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Applied")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Interviewing")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Offer")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{offerJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Rejected")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Ghosted")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
                 </div>
 
 

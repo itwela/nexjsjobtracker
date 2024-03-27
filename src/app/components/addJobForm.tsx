@@ -168,7 +168,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
                     >
                         <CarouselPrevious className="bg-white" />
                         <form action={addJob} className=''>
-                            <CarouselContent className=" w-[40vw] flex  place-items-center place-content-start  z-5">
+                            <CarouselContent className="w-[70vw]  sm:w-[40vw] flex  place-items-center place-content-start  z-5">
                                 <CarouselItem className='w-full'>
                                     <div className='flex flex-col gap-2'>
                                         <label htmlFor="JobTitle" className='font-bold'>Add Job Title</label>
