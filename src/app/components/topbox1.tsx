@@ -188,12 +188,12 @@ export default function TopboxOne( {jobdata}: any) {
 
 
       <>
-              <span onClick={handleModalOpen} className=' px-1 w-[10em] sm:w-[20em] h-full cursor-pointer'>
-                <span  className="bg-blue-400 relative justify-evenly flex  text-white rounded-[0.5em] w-full h-full place-content-center place-items-center  mx-auto ">
+              <span onClick={handleModalOpen} className=' px-1 w-[15em] sm:w-[20em] h-full cursor-pointer'>
+                <span  className="bg-blue-400 relative justify-evenly flex  text-white rounded-[0.5em] w-full h-full place-content-center place-items-center   mx-auto ">
                     <span className="w-[40%] h-[70%]  rounded-lg  flex place-items-center place-content-center">
                         <FaRegMessage className="w-[80%] h-[80%] bg-blue-300/50 rounded-lg p-3 "/>
                     </span>
-                    <span className="flex flex-col gap-2 text-[0.6em] sm:text-[1em]  ">
+                    <span className="flex flex-col gap-2 text-[1em]  ">
                         <span>
                             Generate <br /> Introduction
                         </span>

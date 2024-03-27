@@ -3,8 +3,8 @@ export default function ComingSoon() {
 
 
         <>
-          <span  className="bg-white w-[10em] sm:w-[20em] px-1  flex flex-col place-content-center place-items-center  mx-auto rounded-[0.5em] relative h-full ">
-                <span className="flex flex-col gap-1 text-[0.6em] sm:text-[1em]  ">
+          <span  className="bg-white w-[15em] sm:w-[20em] px-1  flex flex-col place-content-center place-items-center  mx-auto rounded-[0.5em] relative h-full ">
+                <span className="flex h-full w-max flex-col gap-1 text-[1em] place-content-center ">
                     <span>
                         Interview Prep
                     </span>

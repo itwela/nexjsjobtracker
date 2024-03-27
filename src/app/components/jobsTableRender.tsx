@@ -17,6 +17,7 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
 import router from "next/router";
 import { JobData } from "../types/JobTypes";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 // interface JobData {
 //   Company: string;
@@ -88,7 +89,21 @@ import { JobData } from "../types/JobTypes";
     const rejectedJobsCount = rejectedJobs.length;
     const ghostedJobsCount = ghostedJobs.length;
 
+    const [searchQuery, setSearchQuery] = useState('');
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(event.target.value);
+  };
+
+  const filteredJobs = jobdata.filter((job: JobData) => {
+      const lcSearchQuery = searchQuery.toLowerCase();
+      return (
+          job.JobTitle.toLowerCase().includes(lcSearchQuery) ||
+          job.Company.toLowerCase().includes(lcSearchQuery) ||
+          job.DateApplied?.includes(searchQuery) || // assuming DateApplied is a string
+          job.Status?.toLowerCase().includes(lcSearchQuery)
+      );
+  });
   return (
     <>
       <div className=" w-[100%] flex flex-col rounded-[0.5em] ">
@@ -108,7 +123,20 @@ import { JobData } from "../types/JobTypes";
             </div>
           </div>
         ) : (
-          <div className="jtable mt-4  w-full text-[0.6em] sm:text-[1em]   min-h-[30vh] flex flex-col rounded-[0.5em] place-items-center place-content-center">
+          <div className="jtable mt-4  w-full text-[1em]   min-h-[30vh] flex flex-col rounded-[0.5em] place-items-center place-content-center">
+                                
+              <span className="flex w-full gap-4 place-items-center">
+                <input
+                    type="text"
+                    placeholder="Search jobs by title, company, date or status"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="rounded-lg w-full outline-none px-3 py-2 my-4"
+                />
+
+                <span onClick={() => setSearchQuery('')}><IoCloseCircleOutline className="w-8 h-8"/></span>
+              </span>
+
               <span className="flex justify-between w-full">
                 <span className="py-2 font-bold">All Jobs</span>
                 <div className="flex justify-center my-2">
@@ -128,16 +156,17 @@ import { JobData } from "../types/JobTypes";
                   </button>
                 </div>
               </span>
-            <div className="w-full  flex flex-col  place-content-center ">
-                
-                {/* job counts */}
-                <div className=" flex w-full h-max place-content-end gap-2 select-none">
-                  <div className="rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
-                  <div className="rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
-                  <div className="rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
-                  <div className="rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{offerJobsCount}</div>
-                  <div className="rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
-                  <div className="rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
+
+            <div className="w-full  flex flex-col  place-items-center ">
+                    
+                  {/* job counts */}
+                  <div className=" flex w-max place-content-center place-self-end h-max gap-2 select-none">
+                    <div onClick={() => setSearchQuery("Interested")} className="rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Applied")} className="rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Interviewing")} className="rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Offer")} className="rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{offerJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Rejected")} className="rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
+                    <div onClick={() => setSearchQuery("Ghosted")} className="rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
                 </div>
 
 
@@ -189,7 +218,7 @@ import { JobData } from "../types/JobTypes";
                 </span> 
                   <TableBody>
                     {/* pop up */}
-                    {currentJobs.map((job: JobData, index: number) => (
+                    {filteredJobs.map((job: JobData, index: number) => (
                       <TableRow key={job.id} className="flex rounded-lg bg-white my-2  nosb items-center gap-1 justify-evenly hover:bg-gray-100/30  border-transparent">
                 
                         <TableCell className="w-[5em]">

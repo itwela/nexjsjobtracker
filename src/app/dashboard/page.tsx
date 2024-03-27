@@ -104,7 +104,7 @@ export default function Dashboard( {jobdata, userdata}: any ) {
                               <AddJobs formopen={formOpen} handleFormOpen={handleFormOpen} handleFormClose={handleFormClose} />
                             </span>
                             {/* generate stuff */}  
-                            <span className="h-[10vh] my-5 overflow-x-scroll w-full ">
+                            <span className="h-[15vh] my-5 overflow-x-scroll w-full ">
                               <span className="w-max flex gap-2 h-full">
                                   <YourCoverLetter/>
                                     <TopboxOne jobdata={jobdata} />
