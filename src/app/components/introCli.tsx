@@ -11,6 +11,7 @@ import React from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { WiStars } from "react-icons/wi";
+import AiBadge from './aibadge';
 
 // import { error } from 'console';
 
@@ -169,9 +170,7 @@ export default function MenuIntroModalC({jobdata, menuModalOpen, handleMenuModal
               <span className='flex flex-col w-full h-full gap-2 justify-between py-6'>
                   <span className='w-full flex flex-col gap-2'>
                     <span className='w-full flex place-items-end place-content-end '>
-                      <span className='w-max px-2 flex font-bold text-white outline outline-[1px] outline-blue-500 bg-blue-300 rounded-full'>
-                        Ai <WiStars/>
-                      </span>
+                      <AiBadge/>
                     </span>
                   </span>
                       

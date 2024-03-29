@@ -10,7 +10,6 @@ import MyResume from './page';
 export default async function MyResumeLayoutWithData() {
     
     const userdata = await getUserData()
-    console.log(userdata)
     const jobdata = await getJobData()  
 
     return (
