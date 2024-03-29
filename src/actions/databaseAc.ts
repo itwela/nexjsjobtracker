@@ -248,8 +248,10 @@ export async function updateJobData(formData: FormData) {
   let formLink = formData.get('Link') as string;
   const formReferral = formData.get('referral') as string;
   const formKeywords = formData.get('Keywords') as string;    //   const formCompany = requestBody.Company as string
+  const resumeFile = formData.get('ResumeUsed') as File;
   const formReferralName = formData.get('ReferralName') as string;    //   const formCompany = requestBody.Company as string
   const formReferralContact = formData.get('ReferralContact') as string;    //   const formCompany = requestBody.Company as string
+  const resumeFileName = resumeFile.name;        //   const formattedDate = requestBody.DateApplied as string
   formLink = formLink.replace(/^https:\/\//i, '');
 
   let taskData: any = {
@@ -268,6 +270,12 @@ export async function updateJobData(formData: FormData) {
     Keywords: formKeywords,    
 
   };
+
+  console.log('the resume file:', resumeFile)
+
+  if (resumeFile.size > 0) {
+    taskData.ResumeUsed = resumeFileName;
+  }
 
 
   const apiAdd = await prisma?.job.update({

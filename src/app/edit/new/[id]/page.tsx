@@ -56,6 +56,7 @@ export default function EditJob({ jobdata }: any) {
     const filteredJob = jobdata.filter((job: JobData) => job.id === endOfUrl);
     const initialDate = filteredJob.find((job: JobData) => job.id === endOfUrl)?.DateApplied;
     const [datevalue, setdateValue] = React.useState<Dayjs | null>(initialDate);
+    const [resumevalue, setresumeValue] = React.useState(jobdata.find((job: JobData) => job.id === endOfUrl)?.ResumeUsed);
     // const [datevalue, setdateValue] = React.useState<Dayjs | null>(dayjs(Date.now()));
 
 
@@ -249,6 +250,10 @@ export default function EditJob({ jobdata }: any) {
                                             <Input className="border-transparent bg-white" type="text" onChange={handleInputChange} id="ReferralContact" name="ReferralContact" defaultValue={job.ReferralContact ? job.ReferralContact : ''} />
                                         </div>
 
+                                        <div className='flex flex-col gap-2'>
+                                            <label className='font-bold ' htmlFor="ResumeUsed">Add Resume</label>
+                                            <Input autoComplete="off" className='bg-white cursor-pointer ' onChange={handleInputChange} type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
+                                        </div>
 
                                         <div className='mb-2'>
                                             <label className='font-bold' htmlFor="Keywords">Edit Keywords</label>
