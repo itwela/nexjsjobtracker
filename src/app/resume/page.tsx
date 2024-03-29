@@ -18,7 +18,7 @@ import { FaPlus } from 'react-icons/fa';
 import { JobData } from '../types/JobTypes';
 import { toast } from "sonner";
 import { FaSquareCheck } from 'react-icons/fa6';
-import { IoClose } from 'react-icons/io5';
+import { IoCheckmarkDone, IoClose } from 'react-icons/io5';
 
 
 const MyResume = ({jobdata, userdata}: any) => {
@@ -90,6 +90,8 @@ const MyResume = ({jobdata, userdata}: any) => {
 ### Skills
 `;
 
+
+
   const [jobId, setJobId] = useState('')
   const [selectedJobId, setSelectedJobId] = useState('');
 
@@ -100,6 +102,13 @@ const MyResume = ({jobdata, userdata}: any) => {
     setJobId(newJobId); // Update the jobId state with the new value
     setSelectedJobId(value);
   };
+
+  const handleAllFieldsSubmit = async () => {
+      handleSummarySubmit()
+      handleExperienceSubmit()
+      handleEducationSubmit()
+      handleSkillsSubmit()
+  }
 
   const handleSummarySubmit = async () => {
 
@@ -323,10 +332,18 @@ const MyResume = ({jobdata, userdata}: any) => {
               {/* add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
                     <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
                       <Popover>
-                        <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center '><span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span></span> </PopoverTrigger>
+                        <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'>
+                          <span className='flex gap-2 place-items-center justify-between '>
+                            <span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span>
+                            {jobDescription !== "" && (                              
+                              <IoCheckmarkDone className="bg-green-500 text-white p-1 rounded-full"/>
+                            )}
+                          </span> 
+                        </PopoverTrigger>
                         <PopoverContent className='bg-white'>
                           <span className='flex flex-col gap-2'>
                             <p>Paste or type your job description below:</p>
+                            <p className="text-slate-400">click the green checkmark when done.</p>
                             <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
                           </span>
                         </PopoverContent>
@@ -337,10 +354,19 @@ const MyResume = ({jobdata, userdata}: any) => {
               {/* add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
                     <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
                         <Popover>
-                          <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center bg-white  rounded-lg w-full'><span className='cursor-pointer flex gap-2 place-items-center w-full'><FaPlus /> Resume</span></span> </PopoverTrigger>
+                          <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'>
+                            <span className='flex gap-2 place-items-center bg-white  rounded-lg w-full justify-between'>
+                              <span className='cursor-pointer flex gap-2 place-items-center w-full '>
+                                <FaPlus /> Resume</span>
+                                {resumeText !== "" && (                              
+                                  <IoCheckmarkDone className="bg-green-500 text-white p-1 rounded-full"/>
+                                 )}
+                              </span> 
+                          </PopoverTrigger>
                           <PopoverContent className='bg-white'>
                             <span className='flex flex-col gap-2'>
                               <p>Paste or type your resume below:</p>
+                              <p className="text-slate-400">click the green checkmark when done.</p>
                               <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={resumeText} onChange={(e) => setResumeText(e.target.value)} name="" id=""/>
                             </span>
                           </PopoverContent>
@@ -354,9 +380,8 @@ const MyResume = ({jobdata, userdata}: any) => {
             <div id="" className='w-full flex gap-8 bg-white rounded-lg p-6 my-6'>
 
               <div id='' className="prose w-full">
-
 {/* start download button --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-                {resSummary !== '' && (
+                {/* {resSummary !== '' && (
                   <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
                   )}
 
@@ -370,11 +395,20 @@ const MyResume = ({jobdata, userdata}: any) => {
 
                   {educationContent !== '' && (
                     <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
-                  )}
+                  )} */}
 
 {/* end download button --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
-                {/* name  and intro section */}
+{/* generate all ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+            {resumeText !== '' && jobDescription !== '' && (    
+                <p onClick={handleAllFieldsSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%] w-max h-max'>
+                  <span className='absolute top-[-5%] right-[-15%]'><AiBadge /></span>
+                  Generate All Fields
+                </p>
+            )}
+{/* end generate all ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+
+{/* name  and intro section ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
                 <div className='w-full flex flex-col place-items-center'>
                   <ReactMarkdown rehypePlugins={[rehypeRaw]}>{nameMarkdown}</ReactMarkdown>
                   <ReactMarkdown rehypePlugins={[rehypeRaw]}>{emailMarkdown}</ReactMarkdown>
@@ -382,12 +416,16 @@ const MyResume = ({jobdata, userdata}: any) => {
 
                 {/* summary */}
                 <div className='w-full h-max flex flex-col'>
+                  
+                  
                   <div className='w-full flex justify-between'> 
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{summaryMarkdownHeader}</ReactMarkdown>
-                    <p onClick={handleSummarySubmit} className='py-3 cursor-pointer relative mr-[5%]'>
-                      <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
-                        Generate
-                    </p>
+                    {resumeText !== '' && jobDescription !== '' && (    
+                      <p onClick={handleSummarySubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                        <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
+                          Generate
+                      </p>
+                    )}
                   </div>
 
                   {resSummary === '' && summaryIsActive != true && (
@@ -402,7 +440,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                     <>
 
                       <textarea defaultValue={resSummary} className='w-full outline-none min-h-[100px] bg-slate-100 rounded-lg p-3' onChange={(e) => setResSummary(e.target.value)} name="" id="" />
-                      <span className='py-3 cursor-pointer' onClick={() => setSummaryIsActive(false)}>Looks good</span>
+                      <span className='py-1 px-3 my-2 cursor-pointer bg-green-500 text-white rounded-lg w-max h-max ' onClick={() => setSummaryIsActive(false)}>Looks good</span>
 
                     </>
                   )}
@@ -419,10 +457,12 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{skillsMarkdownHeader}</ReactMarkdown>
-                    <p onClick={handleSkillsSubmit} className='py-3 cursor-pointer relative mr-[5%]'>
-                      <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
-                        Generate
-                    </p>
+                    {resumeText !== '' && jobDescription !== '' && (    
+                      <p onClick={handleSkillsSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                        <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
+                          Generate
+                      </p>
+                    )}
                   </div>
                   
                   {skillsContent === '' && skillsIsActive !== true && (
@@ -439,7 +479,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                         className="w-full outline-none min-h-[100px] bg-slate-100 rounded-lg p-3"
                         onChange={(e) => setSkillsContent(e.target.value)}
                       />
-                      <span className="py-3 cursor-pointer" onClick={() => setSkillsIsActive(false)}>
+                      <span className="py-1 px-3 my-2 cursor-pointer bg-green-500 text-white rounded-lg w-max h-max " onClick={() => setSkillsIsActive(false)}>
                         Looks good
                       </span>
                     </>
@@ -455,10 +495,12 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{experienceMarkdownHeader}</ReactMarkdown>
-                    <p onClick={handleExperienceSubmit} className='py-3 cursor-pointer relative mr-[5%]'>
-                      <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
-                        Generate
-                    </p>
+                    {resumeText !== '' && jobDescription !== '' && (    
+                      <p onClick={handleExperienceSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                        <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
+                          Generate
+                      </p>
+                    )}
                   </div>
 
                   {experienceContent === '' && experienceIsActive !== true && (
@@ -476,7 +518,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                         className="w-full outline-none min-h-[100px] bg-slate-100 rounded-lg p-3"
                         onChange={(e) => setExperienceContent(e.target.value)}
                       />
-                      <span className="py-3 cursor-pointer" onClick={() => setExperienceIsActive(false)}>
+                      <span className="py-1 px-3 my-2 cursor-pointer bg-green-500 text-white rounded-lg w-max h-max " onClick={() => setExperienceIsActive(false)}>
                         Looks good
                       </span>
                     </>
@@ -494,10 +536,12 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{educationMarkdownHeader}</ReactMarkdown>
-                    <p onClick={handleEducationSubmit} className='py-3 cursor-pointer relative mr-[5%]'>
-                      <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
-                        Generate
-                    </p>
+                    {resumeText !== '' && jobDescription !== '' && (    
+                        <p onClick={handleEducationSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                          <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
+                            Generate
+                        </p>
+                    )}
                   </div>
                   
                   {educationContent === '' && educationIsActive !== true && (
@@ -514,7 +558,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                         className="w-full outline-none min-h-[100px] bg-slate-100 rounded-lg p-3"
                         onChange={(e) => setEducationContent(e.target.value)}
                       />
-                      <span className="py-3 cursor-pointer" onClick={() => setEducationIsActive(false)}>
+                      <span className="py-1 px-3 my-2 cursor-pointer bg-green-500 text-white rounded-lg w-max h-max " onClick={() => setEducationIsActive(false)}>
                         Looks good
                       </span>
                     </>

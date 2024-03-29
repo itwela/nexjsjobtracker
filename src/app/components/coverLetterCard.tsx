@@ -229,7 +229,7 @@ export default function CoverLetterCard({ jobdata }: { jobdata: any }) {
       )}
 
       {isLoading != true && (     
-        <div className='relative min-h-[50vh] my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-[1em]'>
+        <div className='relative min-h-[50vh] my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-lg'>
           <FaRegCopy size={36} onClick={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer font-black p-2" />
 
           <h1 className='text-[1.5em] font-semibold  leading-none tracking-tight my-4'>
