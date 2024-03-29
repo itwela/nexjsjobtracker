@@ -33,7 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       <html lang="en">
-      <Toaster position="bottom-left" toastOptions={{ duration: 5000 }} />
+      <Toaster position="bottom-left" toastOptions={{ duration: 5000, style: { color: 'white', backgroundColor: '#3b82f6', border: 'none' } }} />
         {/* <body className={inter.className}> */}
         <body className={`bg-main-w text-slate-800 font-main tracking-[0.9px]`}>
           <main className="container mx-auto">

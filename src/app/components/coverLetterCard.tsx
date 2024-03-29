@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { FaPlus, FaRegCopy } from "react-icons/fa";
 import { toast } from "sonner";
+import { IoCheckmarkDone } from "react-icons/io5";
 
 
 
@@ -66,6 +67,7 @@ export default function CoverLetterCard({ jobdata }: { jobdata: any }) {
 
   const handleSubmit = async () => {
 
+    setIsLoading(true)
     const jobDescription = inputText // Assuming your textarea has the name 'input'
 
     try {
@@ -103,13 +105,23 @@ export default function CoverLetterCard({ jobdata }: { jobdata: any }) {
       }
       setCoverText(formattedText); // Set the formatted text in your state variable
 
+      setIsLoading(false)
       toast("Success!: Cover Letter Generated", {
         description: "Congragulations, you're one steop closer to your next job!",
+        id: "coversuccess",
+        style: {
+          backgroundColor: '#22c55e',
+        }
       })
 
     } catch (error) {
-      // Handle error
-    }
+      toast("Error.", {
+        description: "There was an error generating your cover letter, Please try again later",
+        id: "covererror",
+        style: {
+          backgroundColor: '#ef4444',
+        }
+      })    }
 
 
   };
@@ -186,10 +198,18 @@ export default function CoverLetterCard({ jobdata }: { jobdata: any }) {
           ))}
         </select>
         <Popover>
-          <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center '><span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span></span> </PopoverTrigger>
+          <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'>
+            <span className='flex gap-2 place-items-center justify-between '>
+              <span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span>
+              {inputText !== '' && (
+                <IoCheckmarkDone className="bg-green-500 text-white p-1 rounded-full"/>
+              )}
+            </span> 
+          </PopoverTrigger>
           <PopoverContent className='bg-white w-full'>
             <span className='w-full flex flex-col gap-2'>
               <p>Paste or type your job description below:</p>
+              <p className="text-slate-400">click the green checkmark when done.</p>
               <textarea defaultValue={inputText} className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' onChange={handleInputChange} name="" id="" />
             </span>
           </PopoverContent>
@@ -197,17 +217,37 @@ export default function CoverLetterCard({ jobdata }: { jobdata: any }) {
       </div>
 
       {inputText !== '' && (
+        <>
+        {isLoading != true && (
           <div className='w-full flex place-content-end'><Button className='bg-blue-500 text-white my-4 ' onClick={handleSubmit}>Submit</Button></div>
+        )}
+
+        {isLoading != false && (
+          <div className='w-full flex place-content-end'><Button className='bg-blue-500 text-white my-4 animate-pulse '>Loading..</Button></div>
+        )}
+        </>
       )}
 
-      <div className='relative min-h-[50vh] my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-[1em]'>
+      {isLoading != true && (     
+        <div className='relative min-h-[50vh] my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-[1em]'>
+          <FaRegCopy size={36} onClick={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer font-black p-2" />
+
+          <h1 className='text-[1.5em] font-semibold  leading-none tracking-tight my-4'>
+            Your cover letter:
+          </h1>
+          <span id='cov-text'>{coverText}</span>
+        </div>
+      )}
+
+      {isLoading != false && (
+        <div className='relative min-h-[50vh] my-8 w-[100%] nosb border-main-w/40 hover:border-main-w/70   text-left  bg-white p-5 rounded-[1em]'>
         <FaRegCopy size={36} onClick={copyText} className="absolute cursor-pointer top-2 right-3 cursor-pointer font-black p-2" />
 
-        <h1 className='text-[1.5em] font-semibold  leading-none tracking-tight my-4'>
-          Your cover letter:
+        <h1 className='animate-pulse text-[1.5em] font-semibold  leading-none tracking-tight my-4'>
+          Loading...
         </h1>
-        <span id='cov-text'>{coverText}</span>
       </div>
+      )}
 
     </>
   )

@@ -16,6 +16,10 @@ import {
 import AiBadge from '../components/aibadge';
 import { FaPlus } from 'react-icons/fa';
 import { JobData } from '../types/JobTypes';
+import { toast } from "sonner";
+import { FaSquareCheck } from 'react-icons/fa6';
+import { IoClose } from 'react-icons/io5';
+
 
 const MyResume = ({jobdata, userdata}: any) => {
 
@@ -56,37 +60,38 @@ const MyResume = ({jobdata, userdata}: any) => {
 
   const userName = `${userdata.firstName} ${userdata.lastName}`
   const userEmail = `${userdata.email}`
-
   const nameMarkdown = `### ${userName}`
   const emailMarkdown = `${userEmail}`
 
   const [summaryIsActive, setSummaryIsActive] = useState(false);
   const [resSummary, setResSummary] = useState('');
+  const [summaryApi, setSummaryApi] = useState(false);
   const summaryMarkdownHeader = `
 ### Summary
 `
-  const summaryMarkdown = `${resSummary}`
 
   const [experienceIsActive, setExperienceIsActive] = useState(false);
   const [experienceContent, setExperienceContent] = useState('');
+  const [experienceApi, setExperienceApi] = useState(false);
   const experienceMarkdownHeader = `
 ### Experience
 `
   const [educationIsActive, setEducationIsActive] = useState(false);
   const [educationContent, setEducationContent] = useState('');
-
+  const [educationApi, setEducationApi] = useState(false);
   const educationMarkdownHeader = `
 ### Education
 `
 
   const [skillsIsActive, setSkillsIsActive] = useState(false);
   const [skillsContent, setSkillsContent] = useState('');
+  const [skillsApi, setSkillsApi] = useState(false);
   const skillsMarkdownHeader = `
 ### Skills
 `;
 
   const [jobId, setJobId] = useState('')
-  const [selectedJobId, setSelectedJobId] = useState<string>('');
+  const [selectedJobId, setSelectedJobId] = useState('');
 
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -96,6 +101,197 @@ const MyResume = ({jobdata, userdata}: any) => {
     setSelectedJobId(value);
   };
 
+  const handleSummarySubmit = async () => {
+
+    setSummaryApi(true)
+
+    try {
+      const response = await fetch('/api/resume/skills', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          theJobDesc: jobDescription,
+          theJobId: selectedJobId,
+          theResu: resumeText
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      const { text } = data;
+      console.log(text)
+      setResSummary(text); // Set the formatted text in your state variable
+      setSummaryApi(false)
+
+      toast.success("Success!: Resume Summary Generated", {
+        description: "Congragulations, you're one step closer to your next job!",
+        id: "resumesummarysuccess",
+        style: {
+          backgroundColor: '#22c55e',
+        }
+      })
+
+    } catch (error) {
+      toast.error("Error.", {
+        description: "There was an error generating your summary, Please try again later.",
+        id: "resumesummaryerror",
+        style: {
+          backgroundColor: '#ef4444',
+        }
+      })
+    }
+
+
+  };
+
+  const handleSkillsSubmit = async () => {
+
+    setSkillsApi(true)
+
+    try {
+      const response = await fetch('/api/resume/summary', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          theJobDesc: jobDescription,
+          theJobId: selectedJobId,
+          theResu: resumeText
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      const { text } = data;
+      console.log(text)
+      setSkillsContent(text); // Set the formatted text in your state variable
+      setSkillsApi(false)
+
+      toast.success("Success!: Resume Skills Generated", {
+        description: "Congragulations, you're one step closer to your next job!",
+        id: "resumeskillsuccess",
+        style: {
+          backgroundColor: '#22c55e',
+        }
+      })
+
+    } catch (error) {
+      toast.error("Error.", {
+        description: "There was an error generating your skills, Please try again later.",
+        id: "resumeskillerror",
+        style: {
+          backgroundColor: '#ef4444',
+        }
+      })
+    }
+
+
+  };
+
+  const handleExperienceSubmit = async () => {
+
+    setExperienceApi(true)
+
+    try {
+      const response = await fetch('/api/resume/experience', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          theJobDesc: jobDescription,
+          theJobId: selectedJobId,
+          theResu: resumeText
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      const { text } = data;
+      console.log(text)
+      setExperienceContent(text); // Set the formatted text in your state variable
+      setExperienceApi(false)
+
+      toast.success("Success!: Resume Experience Generated", {
+        description: "Congragulations, you're one step closer to your next job!",
+        id: "resumexpsuccess",
+        style: {
+          backgroundColor: '#22c55e',
+        }
+      })
+
+    } catch (error) {
+      toast.error("Error.", {
+        description: "There was an error generating your experience, Please try again later.",
+        id: "resumexperror",
+        style: {
+          backgroundColor: '#ef4444',
+        }
+      })
+    }
+
+
+  };
+
+  const handleEducationSubmit = async () => {
+
+    setEducationApi(true)
+
+    try {
+      const response = await fetch('/api/resume/education', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          theJobDesc: jobDescription,
+          theJobId: selectedJobId,
+          theResu: resumeText
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      const { text } = data;
+      console.log(text)
+      setEducationContent(text); // Set the formatted text in your state variable
+      setEducationApi(false)
+
+      toast.success("Success!: Resume Education Generated", {
+        description: "Congratulations, you're one step closer to your next job!",
+        id: "resumexpsuccess",
+        style: {
+          backgroundColor: '#22c55e',
+        }
+      })
+
+    } catch (error) {
+      toast.error("Error.", {
+        description: "There was an error generating your experience, Please try again later.",
+        id: "resumexperror",
+        style: {
+          backgroundColor: '#ef4444',
+        }
+      })
+    }
+
+
+  };
 
   return (
     <>
@@ -107,6 +303,7 @@ const MyResume = ({jobdata, userdata}: any) => {
           </div>
           <div className=" w-[100%]">
 
+{/* select job ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className='w-full flex flex-col gap-3'>
               <p className='font-bold'>Choose a job:</p>
               <select id="status" onChange={handleStatusChange} className='outline-none rounded-[0.2em] p-2 bg-white w-full' name="status" required>
@@ -119,36 +316,41 @@ const MyResume = ({jobdata, userdata}: any) => {
                 ))}
               </select>
             </div>
+{/* end select job ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
+{/* add job description and resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className='w-full flex gap-[10%]'>
-  {/* add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-              <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
-                <Popover>
-                  <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center '><span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span></span> </PopoverTrigger>
-                  <PopoverContent className='bg-white'>
-                    <span className='flex flex-col gap-2'>
-                      <p>Paste or type your job description below:</p>
-                      <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
-                    </span>
-                  </PopoverContent>
-                </Popover>
-              </div>
-  {/* end add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-  
-  {/* add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-              <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
-                  <Popover>
-                    <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center bg-white  rounded-lg w-full'><span className='cursor-pointer flex gap-2 place-items-center w-full'><FaPlus /> Resume</span></span> </PopoverTrigger>
-                    <PopoverContent className='bg-white'>
-                      <span className='flex flex-col gap-2'>
-                        <p>Paste or type your resume below:</p>
-                        <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
-                      </span>
-                    </PopoverContent>
-                  </Popover>
-              </div>
-  {/* end add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
-          </div>
+              {/* add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+                    <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
+                      <Popover>
+                        <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center '><span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span></span> </PopoverTrigger>
+                        <PopoverContent className='bg-white'>
+                          <span className='flex flex-col gap-2'>
+                            <p>Paste or type your job description below:</p>
+                            <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
+                          </span>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+              { /* end add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+        
+              {/* add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+                    <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
+                        <Popover>
+                          <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center bg-white  rounded-lg w-full'><span className='cursor-pointer flex gap-2 place-items-center w-full'><FaPlus /> Resume</span></span> </PopoverTrigger>
+                          <PopoverContent className='bg-white'>
+                            <span className='flex flex-col gap-2'>
+                              <p>Paste or type your resume below:</p>
+                              <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={resumeText} onChange={(e) => setResumeText(e.target.value)} name="" id=""/>
+                            </span>
+                          </PopoverContent>
+                        </Popover>
+                    </div>
+              {/* end add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+            </div>
+{/* end of job description and resume --------------------------------------- */}
+
+{/* start of resume ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div id="" className='w-full flex gap-8 bg-white rounded-lg p-6 my-6'>
 
               <div id='' className="prose w-full">
@@ -182,7 +384,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className='w-full h-max flex flex-col'>
                   <div className='w-full flex justify-between'> 
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{summaryMarkdownHeader}</ReactMarkdown>
-                    <p onClick={() => setSummaryIsActive(true)} className='py-3 cursor-pointer relative mr-[5%]'>
+                    <p onClick={handleSummarySubmit} className='py-3 cursor-pointer relative mr-[5%]'>
                       <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                         Generate
                     </p>
@@ -217,7 +419,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{skillsMarkdownHeader}</ReactMarkdown>
-                    <p onClick={() => setSkillsIsActive(true)} className='py-3 cursor-pointer relative mr-[5%]'>
+                    <p onClick={handleSkillsSubmit} className='py-3 cursor-pointer relative mr-[5%]'>
                       <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                         Generate
                     </p>
@@ -253,7 +455,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{experienceMarkdownHeader}</ReactMarkdown>
-                    <p onClick={() => setExperienceIsActive(true)} className='py-3 cursor-pointer relative mr-[5%]'>
+                    <p onClick={handleExperienceSubmit} className='py-3 cursor-pointer relative mr-[5%]'>
                       <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                         Generate
                     </p>
@@ -292,7 +494,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{educationMarkdownHeader}</ReactMarkdown>
-                    <p onClick={() => setEducationIsActive(true)} className='py-3 cursor-pointer relative mr-[5%]'>
+                    <p onClick={handleEducationSubmit} className='py-3 cursor-pointer relative mr-[5%]'>
                       <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                         Generate
                     </p>
@@ -327,7 +529,7 @@ const MyResume = ({jobdata, userdata}: any) => {
 
               </div>
             </div>
-
+{/* end of resume --------------------------- */}
           </div>
         </div>
       </div>
