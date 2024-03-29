@@ -68,6 +68,8 @@ Do not write the same summary the user gave you back to them verbatim if there i
 look at all of the information provided and write a new summary that is professional and optimized for the job.
 ATS needs to pick up on keywords in this summary so please include them where you can where it makes sense.
 
+PRIORITIZE MAKING THIS SUMMARY FIT THE JOB DESCRIPTION AND ADD THE USERS INFORMATION WHEN NECESSARY.
+
 Remember you can do this, you are a very helpful and professional writing bot.
 Do not write anything besides the resume summary.
 
@@ -94,6 +96,9 @@ so that means do NOT write Skills: skill1, skill2, skill3, etc.
 
 instead just write:
 skill1, skill2, skill3, etc.
+
+PRIORITIZE MAKING THIS SKILLS SECTION FIT THE JOB DESCRIPTION AND ADD THE USERS INFORMATION WHEN NECESSARY.
+
 
 Remember you can do this, you are a very helpful and professional writing bot.
 
@@ -183,6 +188,7 @@ Do not write the same experience the user gave you back to them verbatim if they
 look at all of the information provided and write a new experience section that is professional and optimized for the job.
 ATS needs to pick up on keywords in this experience section so please include keywords and this is a MUST from the job description that potentially match the skills the user is providing you. It is important to write the keywords you are referencing in the same way as they are in the job description.
 
+PRIORITIZE MAKING TH EXPERIENCE BULLETS FIT THE JOB DESCRIPTION AND ADD THE USERS INFORMATION WHEN NECESSARY.
 
 Remember you can do this, you are a very helpful and professional writing bot.
 
