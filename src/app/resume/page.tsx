@@ -309,6 +309,7 @@ const MyResume = ({jobdata, userdata}: any) => {
           <div className=" flex flex-col w-[100%] py-5">
             <h1 className="text-4xl font-bold ">Create a resume</h1>
             <h2 className="text-[0.6em] sm:text-[0.8em]">Start generating your resume</h2>
+            <h2 className="my-2 text-[0.6em] sm:text-[0.8em] font-bold">*You must add add a Job Description and Resume before using the Ai Features.*</h2>
           </div>
           <div className=" w-[100%]">
 
@@ -419,7 +420,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   
                   
                   <div className='w-full flex justify-between'> 
-                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>{summaryMarkdownHeader}</ReactMarkdown>
+                    <ReactMarkdown className='' rehypePlugins={[rehypeRaw]}>{summaryMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
                       <p onClick={handleSummarySubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
@@ -430,8 +431,8 @@ const MyResume = ({jobdata, userdata}: any) => {
 
                   {resSummary === '' && summaryIsActive != true && (
                     <>
-                      <div className='w-full flex gap-3'>
-                        <p onClick={() => setSummaryIsActive(true)} className='py-3 cursor-pointer'> Edit</p>
+                      <div className='w-full h-max flex gap-3 place-items-start'>
+                        <p onClick={() => setSummaryIsActive(true)} className='py-1 w-full cursor-pointer'> Edit</p>
                       </div>
                     </>
                   )}
@@ -458,7 +459,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{skillsMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
-                      <p onClick={handleSkillsSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                      <p onClick={handleSkillsSubmit} className='py-1 w-full cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                           Generate
                       </p>
@@ -496,7 +497,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{experienceMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
-                      <p onClick={handleExperienceSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                      <p onClick={handleExperienceSubmit} className='py-1 w-full cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                           Generate
                       </p>
@@ -537,7 +538,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{educationMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
-                        <p onClick={handleEducationSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
+                        <p onClick={handleEducationSubmit} className='py-1 w-full cursor-pointer text-blue-500 relative mr-[5%]'>
                           <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                             Generate
                         </p>
