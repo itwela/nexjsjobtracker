@@ -260,6 +260,11 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
 
                       <span className="font-bold py-4 ">Features</span>
 
+                      <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/resume'>
+                        <p className=' truncate'>Resume</p>
+                        <span className=''><FaRegNewspaper className='' /></span>
+                      </Link>
+
                       <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
                         <p className=' truncate'>Cover Letter</p>
                         <span className=''><FaRegNewspaper className='' /></span>
@@ -463,6 +468,11 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
                   <span className="flex flex-col gap-4 my-4">
 
                     <span className="font-bold py-4 ">Features</span>
+
+                    <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/resume'>
+                      <p className=' truncate'>Resume</p>
+                      <span className=''><FaRegNewspaper className='' /></span>
+                    </Link>
 
                     <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
                       <p className=' truncate'>Cover Letter</p>
