@@ -24,6 +24,7 @@ import AddJobForm from "../components/addJobForm";
 import React from "react";
 import SecondHeaderS from "../components/S_secondHeader";
 import { JobData } from "../types/JobTypes";
+import GenResume from "../components/genresume";
 
 // async function getUserData(userId: string) {
 //   noStore();
@@ -106,9 +107,9 @@ export default function Dashboard( {jobdata, userdata}: any ) {
                             {/* generate stuff */}  
                             <span className="h-[15vh] my-5 overflow-x-scroll w-full ">
                               <span className="w-max flex gap-2 h-full">
+                                  <GenResume/>
                                   <YourCoverLetter/>
                                     <TopboxOne jobdata={jobdata} />
-                                  {/* <YourJobs/> */}
                                   <ComingSoon/>
                               </span>
                             </span>

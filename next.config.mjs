@@ -1,49 +1,39 @@
-import {withSentryConfig} from '@sentry/nextjs';
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import { withSentryConfig } from '@sentry/nextjs';
 
-export default withSentryConfig(nextConfig, {
-// For all available options, see:
-// https://github.com/getsentry/sentry-webpack-plugin#options
+const nextConfig = {
+  webpack: (
+    config,
+    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+  ) => {
+    // Add externals configuration for canvas
+    config.externals.push({ canvas: 'commonjs canvas' });
+    return config;
+  },
+};
 
-// Suppresses source map uploading logs during build
-silent: true,
-org: "myjobkompass",
-project: "javascript-nextjs",
-}, {
-// For all available options, see:
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+// Sentry configuration
+const sentryConfig = {
+  silent: true,
+  org: "myjobkompass",
+  project: "javascript-nextjs",
+  widenClientFileUpload: true,
+  transpileClientSDK: true,
+  tunnelRoute: "/monitoring",
+  hideSourceMaps: true,
+  disableLogger: true,
+  automaticVercelMonitors: true,
+};
 
-// Upload a larger set of source maps for prettier stack traces (increases build time)
-widenClientFileUpload: true,
-
-// Transpiles SDK to be compatible with IE11 (increases bundle size)
-transpileClientSDK: true,
-
-// Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-tunnelRoute: "/monitoring",
-
-// Hides source maps from generated client bundles
-hideSourceMaps: true,
-
-// Automatically tree-shake Sentry logger statements to reduce bundle size
-disableLogger: true,
-
-// Enables automatic instrumentation of Vercel Cron Monitors.
-// See the following for more information:
-// https://docs.sentry.io/product/crons/
-// https://vercel.com/docs/cron-jobs
-automaticVercelMonitors: true,
-});
+export default withSentryConfig(nextConfig, {}, sentryConfig);
 
 // Babel configuration to disable the throwing of JSX Namespace error
 export const babel = {
-    plugins: [
-      [
-        'transform-react-jsx',
-        {
-          throwIfNamespace: false,
-        },
-      ],
+  plugins: [
+    [
+      'transform-react-jsx',
+      {
+        throwIfNamespace: false,
+      },
     ],
-  };
+  ],
+};
