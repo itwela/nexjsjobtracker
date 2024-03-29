@@ -15,8 +15,9 @@ import {
 } from "@/components/ui/popover"
 import AiBadge from '../components/aibadge';
 import { FaPlus } from 'react-icons/fa';
+import { JobData } from '../types/JobTypes';
 
-const MyResume = ({ jobdata, userdata }: { jobdata: any; userdata: any }) => {
+const MyResume = ({jobdata, userdata}: any) => {
 
   let [resumeText, setResumeText] = useState('');
   function exportHTML() {
