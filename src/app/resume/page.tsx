@@ -459,7 +459,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{skillsMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
-                      <p onClick={handleSkillsSubmit} className='py-1 w-full cursor-pointer text-blue-500 relative mr-[5%]'>
+                      <p onClick={handleSkillsSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                           Generate
                       </p>
@@ -497,7 +497,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{experienceMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
-                      <p onClick={handleExperienceSubmit} className='py-1 w-full cursor-pointer text-blue-500 relative mr-[5%]'>
+                      <p onClick={handleExperienceSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                           Generate
                       </p>
@@ -538,7 +538,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   <div className="w-full flex justify-between">
                     <ReactMarkdown rehypePlugins={[rehypeRaw]}>{educationMarkdownHeader}</ReactMarkdown>
                     {resumeText !== '' && jobDescription !== '' && (    
-                        <p onClick={handleEducationSubmit} className='py-1 w-full cursor-pointer text-blue-500 relative mr-[5%]'>
+                        <p onClick={handleEducationSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                           <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
                             Generate
                         </p>
