@@ -33,7 +33,6 @@ const MyResume = ({jobdata, userdata}: any) => {
     ${resSummary || ''}\n\n
     ${skillsContent || ''}\n\n
     ${experienceContent || ''}\n\n
-    ${educationContent || ''}
     `;
 
     // Create Blob with resume text
@@ -76,12 +75,6 @@ const MyResume = ({jobdata, userdata}: any) => {
   const experienceMarkdownHeader = `
 ### Experience
 `
-  const [educationIsActive, setEducationIsActive] = useState(false);
-  const [educationContent, setEducationContent] = useState('');
-  const [educationApi, setEducationApi] = useState(false);
-  const educationMarkdownHeader = `
-### Education
-`
 
   const [skillsIsActive, setSkillsIsActive] = useState(false);
   const [skillsContent, setSkillsContent] = useState('');
@@ -106,7 +99,6 @@ const MyResume = ({jobdata, userdata}: any) => {
   const handleAllFieldsSubmit = async () => {
       handleSummarySubmit()
       handleExperienceSubmit()
-      handleEducationSubmit()
       handleSkillsSubmit()
   }
 
@@ -115,7 +107,7 @@ const MyResume = ({jobdata, userdata}: any) => {
     setSummaryApi(true)
 
     try {
-      const response = await fetch('/api/resume/skills', {
+      const response = await fetch('/api/openai/resume/summary', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -163,7 +155,7 @@ const MyResume = ({jobdata, userdata}: any) => {
     setSkillsApi(true)
 
     try {
-      const response = await fetch('/api/resume/summary', {
+      const response = await fetch('/api/openai/resume/skills', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -211,7 +203,7 @@ const MyResume = ({jobdata, userdata}: any) => {
     setExperienceApi(true)
 
     try {
-      const response = await fetch('/api/resume/experience', {
+      const response = await fetch('/api/openai/resume/experience', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -254,53 +246,7 @@ const MyResume = ({jobdata, userdata}: any) => {
 
   };
 
-  const handleEducationSubmit = async () => {
 
-    setEducationApi(true)
-
-    try {
-      const response = await fetch('/api/resume/education', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          theJobDesc: jobDescription,
-          theJobId: selectedJobId,
-          theResu: resumeText
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
-
-      const data = await response.json();
-      const { text } = data;
-      console.log(text)
-      setEducationContent(text); // Set the formatted text in your state variable
-      setEducationApi(false)
-
-      toast.success("Success!: Resume Education Generated", {
-        description: "Congratulations, you're one step closer to your next job!",
-        id: "resumexpsuccess",
-        style: {
-          backgroundColor: '#22c55e',
-        }
-      })
-
-    } catch (error) {
-      toast.error("Error.", {
-        description: "There was an error generating your experience, Please try again later.",
-        id: "resumexperror",
-        style: {
-          backgroundColor: '#ef4444',
-        }
-      })
-    }
-
-
-  };
 
   return (
     <>
@@ -393,10 +339,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                   {experienceContent !== '' && (
                     <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
                   )}
-
-                  {educationContent !== '' && (
-                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
-                  )} */}
+                 */}
 
 {/* end download button --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
 
@@ -419,8 +362,15 @@ const MyResume = ({jobdata, userdata}: any) => {
                 <div className='w-full h-max flex flex-col'>
                   
                   
-                  <div className='w-full flex justify-between'> 
-                    <ReactMarkdown className='' rehypePlugins={[rehypeRaw]}>{summaryMarkdownHeader}</ReactMarkdown>
+                  <div className='w-full flex place-items-center justify-between'> 
+                    {summaryApi != false && (
+                      <h2 className='animate-pulse'>Loading...</h2>
+                    )}
+
+                    {summaryApi != true && (  
+                    <h2>Summary</h2>
+                    )}
+
                     {resumeText !== '' && jobDescription !== '' && (    
                       <p onClick={handleSummarySubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
@@ -448,7 +398,7 @@ const MyResume = ({jobdata, userdata}: any) => {
 
                   {summaryIsActive != true && resSummary !== '' && (
                     <>
-                      <p className='py-3 cursor-pointer w-full break-words h-max' onClick={() => setSummaryIsActive(true)}>{resSummary}</p>
+                      <p className=' cursor-pointer w-full break-words' onClick={() => setSummaryIsActive(true)}>{resSummary}</p>
                     </>
                   )}
 
@@ -457,7 +407,13 @@ const MyResume = ({jobdata, userdata}: any) => {
                 {/* Skills section */}
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
-                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>{skillsMarkdownHeader}</ReactMarkdown>
+                  {skillsApi != false && (
+                      <h2 className='animate-pulse'>Loading...</h2>
+                    )}
+
+                    {skillsApi != true && (  
+                    <h2>Skills</h2>
+                    )}                    
                     {resumeText !== '' && jobDescription !== '' && (    
                       <p onClick={handleSkillsSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
@@ -495,7 +451,14 @@ const MyResume = ({jobdata, userdata}: any) => {
                 {/* Experience section */}
                 <div className="w-full h-max flex flex-col">
                   <div className="w-full flex justify-between">
-                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>{experienceMarkdownHeader}</ReactMarkdown>
+                  {experienceApi != false && (
+                      <h2 className='animate-pulse'>Loading...</h2>
+                    )}
+
+                    {experienceApi != true && (  
+                    <h2>Experience</h2>
+                    )}
+                    
                     {resumeText !== '' && jobDescription !== '' && (    
                       <p onClick={handleExperienceSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
                         <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
@@ -516,7 +479,7 @@ const MyResume = ({jobdata, userdata}: any) => {
                     <>
                       <textarea
                         defaultValue={experienceContent}
-                        className="w-full outline-none min-h-[100px] bg-slate-100 rounded-lg p-3"
+                        className="w-full outline-none min-h-[300px] bg-slate-100 rounded-lg p-3"
                         onChange={(e) => setExperienceContent(e.target.value)}
                       />
                       <span className="py-1 px-3 my-2 cursor-pointer bg-green-500 text-white rounded-lg w-max h-max " onClick={() => setExperienceIsActive(false)}>
@@ -527,50 +490,13 @@ const MyResume = ({jobdata, userdata}: any) => {
 
                   {experienceIsActive !== true && experienceContent !== '' && (
                     <>
-                      <p className="py-3 cursor-pointer w-full break-words h-max" onClick={() => setExperienceIsActive(true)}>{experienceContent}</p>
+                      <p className="py-3 cursor-pointer w-full break-words h-max whitespace-pre-line" onClick={() => setExperienceIsActive(true)}>
+                        {experienceContent}
+                      </p>
                     </>
                   )}
 
                 </div>
-
-                {/* Education section */}
-                <div className="w-full h-max flex flex-col">
-                  <div className="w-full flex justify-between">
-                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>{educationMarkdownHeader}</ReactMarkdown>
-                    {resumeText !== '' && jobDescription !== '' && (    
-                        <p onClick={handleEducationSubmit} className='py-3 cursor-pointer text-blue-500 relative mr-[5%]'>
-                          <span className='absolute top-[-5%] right-[-35%]'><AiBadge/></span>              
-                            Generate
-                        </p>
-                    )}
-                  </div>
-                  
-                  {educationContent === '' && educationIsActive !== true && (
-                    <>
-                      <div className='w-full flex gap-3'>
-                        <p onClick={() => setEducationIsActive(true)} className='py-3 cursor-pointer'> Edit</p>                    
-                        </div>
-                    </>
-                  )}
-                  {educationIsActive !== false && (
-                    <>
-                      <textarea
-                        defaultValue={educationContent}
-                        className="w-full outline-none min-h-[100px] bg-slate-100 rounded-lg p-3"
-                        onChange={(e) => setEducationContent(e.target.value)}
-                      />
-                      <span className="py-1 px-3 my-2 cursor-pointer bg-green-500 text-white rounded-lg w-max h-max " onClick={() => setEducationIsActive(false)}>
-                        Looks good
-                      </span>
-                    </>
-                  )}
-                  {educationIsActive !== true && educationContent !== '' && (
-                    <>
-                      <p className="py-3 cursor-pointer w-full break-words h-max" onClick={() => setEducationIsActive(true)}>{educationContent}</p>
-                    </>
-                  )}
-                </div>
-
 
               </div>
             </div>
