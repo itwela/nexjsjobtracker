@@ -91,9 +91,14 @@ html {
   /* src: url('./fonts/gramatika/GramatikaTrial-Light-BF65dea4c59cf23.otf'); */
 }
 
-.coverletter-card {
+.resume-card {
   background-color: #93c5fd;
 }
+
+.coverletter-card {
+  background-color: #60a5fa;
+}
+
 
 *:focus{
   box-shadow: none !important;
