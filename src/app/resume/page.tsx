@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import AiBadge from '../components/aibadge';
+import { FaPlus } from 'react-icons/fa';
 
 const MyResume = ({ jobdata, userdata }: { jobdata: any; userdata: any }) => {
 
@@ -106,7 +107,7 @@ const MyResume = ({ jobdata, userdata }: { jobdata: any; userdata: any }) => {
           <div className=" w-[100%]">
 
             <div className='w-full flex flex-col gap-3'>
-              <p>Make a resume for:</p>
+              <p className='font-bold'>Choose a job:</p>
               <select id="status" onChange={handleStatusChange} className='outline-none rounded-[0.2em] p-2 bg-white w-full' name="status" required>
                 <option  value="">Select a Job</option>
                 {/* Populate options with job data */}
@@ -118,38 +119,54 @@ const MyResume = ({ jobdata, userdata }: { jobdata: any; userdata: any }) => {
               </select>
             </div>
 
-            <div className='w-max relative flex flex-col  my-6 place-items-end'>
-              <span className='absolute top-[-30%] right-[-15%]'><AiBadge/></span>
-              <Popover>
-                <PopoverTrigger><span className='flex gap-2 place-items-center bg-white p-2 rounded-lg'><span className='cursor-pointer'>Add Job Description</span></span> </PopoverTrigger>
-                <PopoverContent className='bg-white'>
-                  <span className='flex flex-col gap-2'>
-                    <p>Paste or type your job description below:</p>
-                    <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
-                  </span>
-                </PopoverContent>
-              </Popover>
-            </div>
-
+            <div className='w-full flex gap-[10%]'>
+  {/* add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+              <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
+                <Popover>
+                  <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center '><span className='cursor-pointer flex gap-2 place-items-center text-left'><FaPlus />  Job Description</span></span> </PopoverTrigger>
+                  <PopoverContent className='bg-white'>
+                    <span className='flex flex-col gap-2'>
+                      <p>Paste or type your job description below:</p>
+                      <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
+                    </span>
+                  </PopoverContent>
+                </Popover>
+              </div>
+  {/* end add job description --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+  
+  {/* add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+              <div className='w-[50%] relative flex flex-col  my-6 place-items-end'>
+                  <Popover>
+                    <PopoverTrigger className='w-full truncate p-2 bg-white  rounded-lg'><span className='flex gap-2 place-items-center bg-white  rounded-lg w-full'><span className='cursor-pointer flex gap-2 place-items-center w-full'><FaPlus /> Resume</span></span> </PopoverTrigger>
+                    <PopoverContent className='bg-white'>
+                      <span className='flex flex-col gap-2'>
+                        <p>Paste or type your resume below:</p>
+                        <textarea className='w-full outline-none h-[10em] bg-slate-100 rounded-lg p-2' defaultValue={jobDescription} onChange={(e) => setJobDescription(e.target.value)} name="" id=""/>
+                      </span>
+                    </PopoverContent>
+                  </Popover>
+              </div>
+  {/* end add resume --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
+          </div>
             <div id="" className='w-full flex gap-8 bg-white rounded-lg p-6 my-6'>
 
               <div id='' className="prose w-full">
 
 {/* start download button --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
                 {resSummary !== '' && (
-                  <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg'>Download</button></span>
+                  <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
                   )}
 
                   {skillsContent !== '' && (
-                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg'>Download</button></span>
+                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
                   )}
 
                   {experienceContent !== '' && (
-                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg'>Download</button></span>
+                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
                   )}
 
                   {educationContent !== '' && (
-                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg'>Download</button></span>
+                    <span className='w-full flex place-content-end'><button onClick={() => exportHTML()} className='bg-blue-500 text-white p-2 rounded-lg text-[0.8em]'>Download</button></span>
                   )}
 
 {/* end download button --------------------------------------------------------------------------------------------------------------------------------------------------------------------- */}
