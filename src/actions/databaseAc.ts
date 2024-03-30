@@ -250,6 +250,7 @@ export async function updateJobData(formData: FormData) {
   const formReferralContact = formData.get('ReferralContact') as string;    //   const formCompany = requestBody.Company as string
   const resumeFileName = resumeFile.name;        //   const formattedDate = requestBody.DateApplied as string
   formLink = formLink.replace(/^https:\/\//i, '');
+  console.log('the date applied:', formDateApplied)
 
   let taskData: any = {
     // userId: theId,

@@ -4,9 +4,17 @@ import { Suspense } from "react";
 
 
 export default async function EditSWithData() {
-    const jobdata = await getJobData();
+    
+    try {
+        const jobdata = await getJobData();
 
-    if (!jobdata) {
+        return (
+            <>
+                <EditJob jobdata={jobdata} />
+            </>
+        );
+    } catch (error) {
+        
         return  (
             <div className="w-screen h-screen flex flex-col gap-4 place-items-center place-content-center bg-gray-200">
                 <span>We're sorry, but something went wrong. Please try refreshing the page in a few seconds..</span>
@@ -15,9 +23,4 @@ export default async function EditSWithData() {
         )
     }
 
-    return (
-        <>
-            <EditJob jobdata={jobdata} />
-        </>
-    );
 }

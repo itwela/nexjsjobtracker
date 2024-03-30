@@ -18,7 +18,10 @@ import { FaRegEnvelope } from "react-icons/fa";
 import router from "next/router";
 import { JobData } from "../types/JobTypes";
 import { IoAtCircle, IoCheckmarkCircle, IoCloseCircleOutline } from "react-icons/io5";
-
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import React from "react";
+import EditJob from "../edit/new/[id]/page";
 
  export default function JobsTable({jobdata}: {jobdata: JobData[]}) {
 
@@ -77,7 +80,28 @@ import { IoAtCircle, IoCheckmarkCircle, IoCloseCircleOutline } from "react-icons
   };
 
 
+  const [formOpen, setFormOpen] = React.useState(false);
+  const handleFormOpen = () => setFormOpen(!formOpen);
+  const handleFormClose = () => setFormOpen(false);
+
   
+  const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: "80%",
+    maxWidth: 400,
+    height: "80%",
+    maxHeight: 600,
+    overflow: 'y-scroll',
+    bgcolor: 'background.paper',
+    borderRadius: '10px',
+    border: "none",
+    outline: "none",
+    p: 2,
+  };
+
   
   return (
     <>
@@ -199,10 +223,39 @@ import { IoAtCircle, IoCheckmarkCircle, IoCloseCircleOutline } from "react-icons
                               <input type="hidden" name="jobId" value={job.id} />
                               <button  className="text-red-600 hover:text-red-700"><FaRegTrashCan size={18} type="submit" /></button>
                             </form>
-                            <Link href={`/edit/new/${job.id}`}>
-                              <input type="hidden" name="jobId" value={job.id} />
-                              <button className="text-blue-700"><FaRegEdit size={18} type="submit" /></button>
-                            </Link>
+                            
+                            <input type="hidden" name="jobId" value={job.id} />
+                            <span onClick={handleFormOpen} className="cursor-pointer text-blue-700"><FaRegEdit size={18} type="submit" /></span>
+
+                            <Modal
+                              open={formOpen}
+                              onClose={handleFormClose}
+                              aria-labelledby="modal-modal-title"
+                              aria-describedby="modal-modal-description"
+                              className=''
+                            >
+                              <Box sx={style}>
+
+                                  <span className="bg-white  w-full h-full  px-1  flex flex-col place-content-center place-items-center mx-auto rounded-lg relative  ">
+
+                                    <span className='flex flex-col w-full h-full gap-2 justify-between py-6'>
+
+
+                                      <span className='w-full h-[550px] overflow-scroll'>
+                                        <EditJob jobdata={job} jobId={job.id} />
+                                      </span>
+
+                                      <span className='w-full flex place-items-center place-content-end'>JobKompass</span>
+                                    </span>
+
+                                  </span>
+
+                               
+
+                              </Box>
+                            </Modal>
+                            
+                          
                           </div>
                         </TableCell>
 

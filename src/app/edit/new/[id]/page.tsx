@@ -25,6 +25,8 @@ import dayjs, { Dayjs } from "dayjs";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs/AdapterDayjs';
+import Popover from "@mui/material/Popover";
+import { IoArrowBack } from "react-icons/io5";
 
 // Define the type for formData
 interface FormData {
@@ -34,10 +36,12 @@ interface FormData {
 
 
 
-export default function EditJob({ jobdata }: any) {
-    const router = useRouter();
-    const refr = router.refresh();
-    
+export default function EditJob({ jobdata, jId }: any) {
+
+
+
+    // Split the path by '/' to get an array of path segments
+
     const [formData, setFormData] = useState<FormData>({
         jobdata: jobdata
     });
@@ -46,32 +50,12 @@ export default function EditJob({ jobdata }: any) {
     const [referralValue, setReferralValue] = useState('');
     const [linkValue, setLinkValue] = useState('');
 
-    const fullPath = window.location.pathname;
-    // Split the path by '/' to get an array of path segments
-    const pathSegments = fullPath.split('/');
-
     // Get the last segment of the path, which represents the end of the URL
-    const endOfUrl = pathSegments[pathSegments.length - 1];
 
-    const filteredJob = jobdata.filter((job: JobData) => job.id === endOfUrl);
-    const initialDate = filteredJob.find((job: JobData) => job.id === endOfUrl)?.DateApplied;
-    const [datevalue, setdateValue] = React.useState<Dayjs | null>(initialDate);
-    const [resumevalue, setresumeValue] = React.useState(jobdata.find((job: JobData) => job.id === endOfUrl)?.ResumeUsed);
+    const initialDate = jobdata.DateApplied
+    const [datevalue, setdateValue] = useState(initialDate);
     // const [datevalue, setdateValue] = React.useState<Dayjs | null>(dayjs(Date.now()));
-
-
-    const handleSubmit = async () => {
-
-        toast("Success!: Job Update Complete!", {
-            description: "Congragulations, you're one steop closer to your next job!",
-        })
-
-        // Delay the navigation by 2 seconds (2000 milliseconds)
-        setTimeout(() => {
-            router.push('/dashboard');
-        }, 1000); // Adjust the delay time as needed
-
-    }
+    console.log(datevalue);
 
     // Handle changes in the input fields
     // Handle changes in input fields
@@ -88,7 +72,7 @@ export default function EditJob({ jobdata }: any) {
 
     const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        
+
         // Remove "https://" from the beginning of the value, if present
         const cleanedValue = value.replace(/^https:\/\//i, '');
         setLinkValue(cleanedValue);
@@ -102,15 +86,30 @@ export default function EditJob({ jobdata }: any) {
         }));
     };
 
+    // Hndle date
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+    const handleDateClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleDateClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
+    
+
     const handleDateChange = (duedate: any) => {
-        duedate = dayjs(duedate).format('YYYY-MM-DD');
-        setdateValue(duedate)
-        console.log(duedate);
+        const theduedate = dayjs(duedate).format('YYYY-MM-DD');
+        setdateValue(theduedate)
+        console.log(datevalue);
         setFormData(prevState => ({
             ...prevState,
             jobdata: {
                 ...prevState.jobdata,
-                DateApplied: duedate
+                DateApplied: datevalue
             }
         }))
     };
@@ -143,121 +142,128 @@ export default function EditJob({ jobdata }: any) {
         }));
     };
 
+    const successUpdate = () => {
+        
+        setTimeout(() => {           
+            toast.success('Job updated successfully', {
+                description: "Congragulations, you're one step closer to your next job!",
+                id: "jobupdatesuccess",
+                style: {
+                  backgroundColor: '#22c55e',
+                }
+                });
+            }, 1618);
+            
+    };
+    
 
     return (
         <>
 
-            {filteredJob.map((job: JobData) => (
-                <div  className="flex">
+            <h2 className="text-2xl font-bold mb-5">{jobdata.JobTitle}</h2>
 
-                    <div className="flex  bg-gray-200 min-h-screen flex-col place-items-center    justify-items-start">
+            <form key={jId} action={updateJobData} className='w-[100%] h-[100%] flex flex-col gap-2'>
 
-                        <div className='flex   w-[100%] py-5 place-items-start place-content-start absolute justify-items-start justify-content-start px-5'>
-                            <Link href='/dashboard'>
-                                <h1 className='text-3xl hover:text-main-w/80'>JobKompass</h1>
-                            </Link>
-                            <div className='flex px-5 pt-2'>
-                            </div>
-                        </div>
+                {/* jobid */}
+                <input type="hidden" name="jobId" value={jobdata.id} />
 
-
-                        <div className="pagewrapper flex place-content-center w-[100vw] pt-[6em]">
-
-                            <Card className="mb-7 w-[70%] ">
-                                <CardHeader>
-                                    <div className="flex py-3 justify-between place-items-start ">
-                                        <div>
-                                            <CardTitle>Edit Job</CardTitle>
-                                            <CardDescription className="w-[70%] pt-2 ">Customize job status, keywords, company details, and more to suit your needs.</CardDescription>
-                                        </div>
-                                        <Link href="/dashboard">
-                                            <FaRightLong size={25} className='scale-x-[-100%]' />
-                                        </Link>
-                                    </div>
-                                </CardHeader>
-
-                                <CardContent>
-
-                                    <form key={endOfUrl} action={updateJobData} className='w-[100%] flex flex-col gap-2'>
-
-                                        {/* jobid */}
-                                        <input type="hidden" name="jobId" value={job.id} />
-
-                                        {/* job title */}
-                                        <div className=''>
-                                            <label htmlFor="JobTitle" className='font-bold'>Edit Job Title</label>
-                                            <Input className="border-transparent bg-white " type="text" id="JobTitle" onChange={handleInputChange} name="JobTitle" defaultValue={job.JobTitle as string ? job.JobTitle : ''} />
-                                        </div>
-
-                                        {/* company */}
-                                        <div className='mb-2'>
-                                            <label className='font-bold' htmlFor="Company">Edit Company</label>
-                                            <Input className="border-transparent bg-white" type="text" id="Company" onChange={handleInputChange} name="Company" defaultValue={job.Company as string ? job.Company : ''} />
-                                        </div>
-
-                                        {/* Date Applied */}
-                                        <label className='font-bold' htmlFor="DateApplied">Date Applied - {initialDate}</label>
-                                        <div className='mb-2   py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center bg-white'>
-                                            <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
-                                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                                <DateCalendar
-                                                    className=""
-                                                    onChange={(datevalue) => handleDateChange(datevalue)}
-                                                >
-                                                </DateCalendar>
-
-                                            </LocalizationProvider> 
-                                        </div>
-
-                                        <label className='font-bold' htmlFor="status">Status</label>
-                                        <div className='mb-2  py-2 px-3 rounded-[0.6em] bg-white flex justify-start gap-3 place-items-center'>
-                                            <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2 bg-white w-full' name="status" defaultValue={job.Status as string} >
-                                                <option value="">Select a Status</option>
-                                                <option value="Interested">Interested</option>
-                                                <option value="Applied">Applied</option>
-                                                <option value="Interviewing">Interviewing</option>
-                                                <option value="Offer">Offer</option>
-                                                <option value="Rejected">Rejected</option>
-                                                <option value="Ghosted">Ghosted</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label className='font-bold' htmlFor="Link">Edit Link</label>
-                                            <Input type="text" className="border-transparent bg-white" onChange={handleLinkChange} id="Link" name="Link" defaultValue={job.Link ? job.Link : ''} />
-                                        </div> 
-
-                                        <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
-                                            <label className='font-bold' htmlFor="referral">Referral?</label>
-                                        </div>
-
-
-                                        <div className='flex flex-col gap-2'>
-                                            <label className='font-bold ' htmlFor="ResumeUsed">Add Resume</label>
-                                            <Input autoComplete="off" className='bg-white cursor-pointer ' onChange={handleInputChange} type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
-                                        </div>
-
-                                        <div className='mb-2'>
-                                            <label className='font-bold' htmlFor="Keywords">Edit Keywords</label>
-                                            <Input className="border-transparent bg-white" type="text" id="Keywords" name="Keywords" onChange={handleInputChange} defaultValue={job.Keywords ? job.Keywords : ''} />
-                                        </div>
-
-                                        <div className='w-[100%] pt-2 flex place-items-center place-content-center justify-between'>
-                                            <Link href="/dashboard">
-                                                <Button className='bg-[#fd3330] hover:bg-[#fd3330]/80 text-white'>Back</Button>
-                                            </Link>
-                                            <Button className='bg-main-w hover:bg-main-w/80 text-dprimary' type="submit">Update</Button>
-                                        </div>
-                                    </form>
-
-                                </CardContent>
-
-                            </Card>
-                        </div>
-
-                    </div>
+                {/* job title */}
+                <div className=''>
+                    <label htmlFor="JobTitle" className='font-bold'>Edit {jobdata.JobTitle}</label>
+                    <Input className="border-transparent bg-white " type="text" id="JobTitle" onChange={handleInputChange} name="JobTitle" defaultValue={jobdata.JobTitle as string ? jobdata.JobTitle : ''} />
                 </div>
-            ))}
+
+                {/* company */}
+                <div className='mb-2'>
+                    <label className='font-bold' htmlFor="Company">Edit Company</label>
+                    <Input className="border-transparent bg-white" type="text" id="Company" onChange={handleInputChange} name="Company" defaultValue={jobdata.Company as string ? jobdata.Company : ''} />
+                </div>
+
+                <div className="mb-2">
+                    {/* Date Applied */}
+                    <label className='font-bold' htmlFor="DateApplied">Edit Date Applied</label>
+                    <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
+                                                <button onClick={handleDateClick} className='rounded-lg bg-white px-2 py-2 flex place-items-start  w-[100%]  '>{dayjs(datevalue).format('DD/MM/YYYY')}</button>
+                    <Popover
+                        id={id}
+                        open={open}
+                        onClose={handleDateClose}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                        }}
+                    >
+                        <span className="flex flex-col pb-5 place-items-center">
+                            {/* date */}
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DateCalendar
+                                    onChange={(datevalue) => handleDateChange(datevalue)}
+                                >
+                                </DateCalendar>
+                            </LocalizationProvider>
+                            <span className="flex gap-4">
+                                <span className="bg-slate-100 hover:bg-slate-200 p-2 py-2 rounded-lg cursor-pointer" onClick={handleDateClose}>Cancel</span>
+                                <span className="min-w-[5em] bg-blue-500 place-content-center place-items-center cursor-pointer flex p-2 py-2 text-white rounded-lg" onClick={handleDateClose}>Ok</span>
+                            </span>
+                        </span>
+                    </Popover>
+                </div>
+
+                {/* <div className='mb-2   py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center bg-white'>
+                    <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DateCalendar
+                            className=""
+                            onChange={(datevalue) => handleDateChange(datevalue)}
+                        >
+                        </DateCalendar>
+
+                    </LocalizationProvider>
+                </div> */}
+
+                <label className='font-bold' htmlFor="status">Status</label>
+                <div className='mb-2  py-2 px-3 rounded-[0.6em] bg-white flex justify-start gap-3 place-items-center'>
+                    <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2 bg-white w-full' name="status" defaultValue={jobdata.Status as string} >
+                        <option value="">Select a Status</option>
+                        <option value="Interested">Interested</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Interviewing">Interviewing</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Ghosted">Ghosted</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label className='font-bold' htmlFor="Link">Edit Link</label>
+                    <Input type="text" className="border-transparent bg-white" onChange={handleLinkChange} id="Link" name="Link" defaultValue={jobdata.Link ? jobdata.Link : ''} />
+                </div>
+
+                <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
+                    <label className='font-bold' htmlFor="referral">Referral?</label>
+                </div>
+
+
+                <div className='flex flex-col gap-2'>
+                    <label className='font-bold ' htmlFor="ResumeUsed">Add Resume</label>
+                    <Input autoComplete="off" className='bg-white cursor-pointer ' onChange={handleInputChange} type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
+                </div>
+
+                <div className='mb-2'>
+                    <label className='font-bold' htmlFor="Keywords">Edit Keywords</label>
+                    <Input className="border-transparent bg-white" type="text" id="Keywords" name="Keywords" onChange={handleInputChange} defaultValue={jobdata.Keywords ? jobdata.Keywords : ''} />
+                </div>
+
+                <div className='w-[100%] pt-2 flex place-items-end place-content-end '>
+                    <Button className='bg-blue-500/80 hover:bg-blue-500 text-white' type="submit">Update</Button>
+                </div>
+
+            </form>
         </>
     );
 };

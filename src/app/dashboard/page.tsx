@@ -27,54 +27,6 @@ import { JobData } from "../types/JobTypes";
 import GenResume from "../components/genresume";
 import InterviewRate from "../components/interviewRate";
 
-// async function getUserData(userId: string) {
-//   noStore();
-//   const data = prisma.user.findUnique({
-//     where: {
-//       id: userId
-//     },
-//   });
-
-//   return data;
-// }
-
-// async function getJobData(userId: string) {
-//   noStore();
-//   const data = prisma.job.findMany({
-//     where: {
-//       userId: userId
-//     },
-//     include: {
-//       CoverLetter: true
-//     },
-//     orderBy: {
-//       createdAt: 'desc'
-//     }
-//   });
-
-//   return data;
-// }
-
-// async function getSubscriptionData(userId: string) {
-//   noStore();
-//   const data = await prisma.subscription.findUnique({
-//     where: {
-//       userId: userId
-//     },
-//     select: {
-//       status: true,
-//       user: {
-//         select: {
-//           stripeCustomerId: true,
-//         }
-//       }
-//     }
-
-//   })
-//   return data;
-// }
-
-
 
 export default function Dashboard( {jobdata, userdata}: any ) {
   const [formOpen, setFormOpen] = React.useState(false);
