@@ -90,8 +90,11 @@ export default function InterviewRate({ jobdata }: any) {
                     <>
                     <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
                         <div className="font-bold">
-                            <span className='text-2xl'>{interviewSuccessrate}%</span>
-                            <em><span className='text-slate-400 text-[0.8em]'>ITA</span></em></div>
+                            <span className='flex gap-2'>
+                                <span className='text-2xl'>{interviewSuccessrate}%</span>
+                                <em><span className='text-slate-400 text-[0.8em]'>ITA</span></em>
+                            </span>
+                        </div>
                         <div className='text-[0.8em]'>Interview to Application Ratio</div>
                     </div>
                     </>
@@ -99,7 +102,10 @@ export default function InterviewRate({ jobdata }: any) {
                
                {interviewSuccessrate === '0' && (                   
                     <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
-                        <div>{totalJobs} Jobs</div>
+                        <div className='flex gap-2 place-items-end'>
+                            <span className='text-2xl font-bold'>{totalJobs}</span>
+                            <span>Jobs</span>
+                        </div>
                         <div>Tracked </div>
                     </div>
                )}
