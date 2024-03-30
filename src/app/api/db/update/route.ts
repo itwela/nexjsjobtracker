@@ -57,7 +57,11 @@ async function postUserData() {
     
 }
 
-postUserData();
+try {
+    postUserData();
+} catch (error) {
+    revalidatePath('/')
+}
 
 revalidatePath('/')
 
