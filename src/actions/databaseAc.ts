@@ -286,27 +286,31 @@ export async function updateJobData(formData: FormData) {
 export async function toggleInterviewStatus(formData: FormData) {
   noStore();
 
-  const formJobId = formData.get('jobId') as string;
-  const formInterviewStatus = formData.get('interviewStatus') as string;
-  let taskData: any = {
-    userId: theId,
-  };
-
-  if (formInterviewStatus === 'yes') {
-    taskData.Interviewed = true;
-  } else {
-    taskData.Interviewed = false;
+  try {  
+    const formJobId = formData.get('jobId') as string;
+    const formInterviewStatus = formData.get('interviewStatus') as string;
+    let taskData: any = {
+      userId: theId,
+    };
+  
+    if (formInterviewStatus === 'yes') {
+      taskData.Interviewed = true;
+    } else {
+      taskData.Interviewed = false;
+    }
+  
+    const apiAdd = await prisma?.job.update({
+  
+      where: {
+          id: formJobId,
+      },
+      data: taskData
+  })
+  
+    revalidatePath("/")
+  } catch (error) {
+    revalidatePath("/")
   }
-
-  const apiAdd = await prisma?.job.update({
-
-    where: {
-        id: formJobId,
-    },
-    data: taskData
-})
-
-  revalidatePath("/")
 
 }
 
