@@ -231,24 +231,6 @@ export default function EditJob({ jobdata }: any) {
                                             <label className='font-bold' htmlFor="referral">Referral?</label>
                                         </div>
 
-                                        <div className='mb-2  bg-white py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
-                                            <select onChange={handleRefStatusChange} className='rounded-[0.2em] bg-white px-2 w-full' id="referral" name="referral" defaultValue={job.Referral as string ? job.Referral : ''}>
-                                                <option value="">Yes or No?</option>
-                                                <option value="Yes" >Yes</option>
-                                                <option value="No">No</option>
-                                            </select>
-                                        </div>
-
-
-                                        <div>
-                                            <label className='font-bold' htmlFor="ReferralName">Edit Referral Name</label>
-                                            <Input className="border-transparent bg-white" type="text" onChange={handleInputChange} id="ReferralName" name="ReferralName" defaultValue={job.ReferralName ? job.ReferralName : ''} />
-                                        </div>
-
-                                        <div>
-                                            <label className='font-bold' htmlFor="ReferralContact">Edit Referral Contact</label>
-                                            <Input className="border-transparent bg-white" type="text" onChange={handleInputChange} id="ReferralContact" name="ReferralContact" defaultValue={job.ReferralContact ? job.ReferralContact : ''} />
-                                        </div>
 
                                         <div className='flex flex-col gap-2'>
                                             <label className='font-bold ' htmlFor="ResumeUsed">Add Resume</label>
