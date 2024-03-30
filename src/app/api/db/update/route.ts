@@ -47,9 +47,6 @@ async function postUserData() {
         DateApplied: formattedDate,
         Status: formStatus,
         Link: formLink,
-        Referral: formReferral,
-        ReferralName: formReferralName,
-        ReferralContact: formReferralContact,
         ResumeUsed: resumeFileName,
         Keywords: formKeywords,    
         }
