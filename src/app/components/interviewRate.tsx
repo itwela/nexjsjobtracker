@@ -76,7 +76,7 @@ export default function InterviewRate({ jobdata }: any) {
     };
 
     return (
-        <span className="px-4 gap-2 min-w-[5em] interview-rate-card bg-white relative justify-evenly flex rounded-[0.5em] h-full place-content-center place-items-start flex-col  mx-auto ">
+        <span className="px-4 gap-2 w-[15em] sm:w-[20em] sm:min-w-[5em] interview-rate-card bg-white relative justify-evenly flex rounded-[0.5em] h-full place-content-center place-items-start flex-col  mx-auto ">
             <span className="flex justify-evenly place-items-center place-content-center  gap-5 text-[1em] h-[70%] w-full">
                 <div className="w-1/2 h-full">
                     <div className="chart-container pb-2 " style={{ position: 'relative', height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
