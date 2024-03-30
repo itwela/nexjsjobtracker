@@ -1,6 +1,7 @@
 import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 import { JobData, JobDataProps, JobsTableProps } from '../types/JobTypes';
+import { useState } from 'react';
 
 
 export default function InterviewRate({ jobdata }: any) {
@@ -8,28 +9,35 @@ export default function InterviewRate({ jobdata }: any) {
     const interestedJobs = jobdata.filter((job: JobData) => job.Status === "Interested")
     const appliedJobs = jobdata.filter((job: JobData) => job.Status === "Applied")
     const interviewingJobs = jobdata.filter((job: JobData) => job.Status === "Interviewing");
-    const successfulInterviews = jobdata.filter((job: JobData) => job.Interviewed === true);
     const offeredJobs = jobdata.filter((job: JobData) => job.Status === "Offer");
     const rejectedJobs = jobdata.filter((job: JobData) => job.Status === "Rejected");
     const ghostedJobs = jobdata.filter((job: JobData) => job.Status === "Ghosted");
+    const successfulInterviews = jobdata.filter((job: JobData) => job.Interviewed === true);
+    
+    const successfulInterviewsInteresed = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Interested");
+    const successfulInterviewsApplied = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Applied");
+    const successfulInterviewsInterviewing = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Interviewing");
+    const successfulInterviewsOffered = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Offer");
+    const successfulInterviewsRejected = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Rejected");
+    const successfulInterviewsGhosted = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Ghosted");
 
     const totalJobs = jobdata.length
-    const interested = interestedJobs.length
-    const applied = appliedJobs.length
-    const interviewing = interviewingJobs.length
     const success = successfulInterviews.length
-    const offered = offeredJobs.length
-    const rejected = rejectedJobs.length
-    const ghosted = ghostedJobs.length
 
+    function successAlgo(a: number, b: number): number {
+        return a - b;
+    }
+
+    const interested = successAlgo(interestedJobs.length, successfulInterviewsInteresed.length);
+    const applied = successAlgo(appliedJobs.length, successfulInterviewsApplied.length);    
+    const interviewing = successAlgo(interviewingJobs.length, successfulInterviewsInterviewing.length);
+    const offered = successAlgo(offeredJobs.length, successfulInterviewsOffered.length);
+    const rejected = successAlgo(rejectedJobs.length, successfulInterviewsRejected.length);
+    const ghosted = successAlgo(ghostedJobs.length, successfulInterviewsGhosted.length);
+    
     const interviewSuccessrate = ((success / totalJobs) * 100).toFixed(0)
 
     const data = {
-        // labels: [
-        //     'Red',
-        //     'Green',
-        //     'Yellow'
-        // ],
         datasets: [{
             data: [interested, applied, interviewing, success, offered, rejected, ghosted],
             backgroundColor: [
@@ -64,7 +72,7 @@ export default function InterviewRate({ jobdata }: any) {
                 // gray
                 'rgba(120, 113, 108, 0.9)',
             ],
-        }]
+        }],
     };
 
     return (

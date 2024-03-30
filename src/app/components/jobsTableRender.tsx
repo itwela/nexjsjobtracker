@@ -35,7 +35,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
   const handleReload = async () => {
     router.reload();
   }
-
+ 
   // Filter jobs
   const appliedJobs = jobdata.filter((job: any) => job.Status === "Applied");
   const interestedJobs = jobdata.filter((job: any) => job.Status === "Interested");
@@ -45,12 +45,12 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
   const ghostedJobs = jobdata.filter((job: any) => job.Status === "Ghosted");
 
   // Get the count of applied jobs
-  const appliedJobsCount = appliedJobs.length;
-  const interestedJobsCount = interestedJobs.length;
-  const interviewingJobsCount = interviewingJobs.length;
-  const offerJobsCount = offerJobs.length;
-  const rejectedJobsCount = rejectedJobs.length;
-  const ghostedJobsCount = ghostedJobs.length;
+  const appliedJobsCount = appliedJobs.length ;
+  const interestedJobsCount = interestedJobs.length ;
+  const interviewingJobsCount = interviewingJobs.length ;
+  const offerJobsCount = offerJobs.length ;
+  const rejectedJobsCount = rejectedJobs.length ;
+  const ghostedJobsCount = ghostedJobs.length ;
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -198,7 +198,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                 <div onClick={() => setSearchQuery("Interested")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
                 <div onClick={() => setSearchQuery("Applied")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
                 <div onClick={() => setSearchQuery("Interviewing")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
-                <div onClick={() => setSearchQuery("Offer")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{offerJobsCount}</div>
+                <div onClick={() => setSearchQuery("Offer")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{offerJobsCount + interviewingJobsCount}</div>
                 <div onClick={() => setSearchQuery("Rejected")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
                 <div onClick={() => setSearchQuery("Ghosted")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
               </div>
