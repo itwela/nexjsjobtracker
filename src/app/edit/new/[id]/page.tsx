@@ -33,14 +33,14 @@ interface FormData {
     jobdata: JobData
 }
 
+interface EditJobProps {
+    jobdata: JobData[];
+    jobId: string;
+}
 
 
+export default function EditJob({ jobdata }: any, { jobId }: any) {
 
-export default function EditJob({ jobdata, jId }: any) {
-
-
-
-    // Split the path by '/' to get an array of path segments
 
     const [formData, setFormData] = useState<FormData>({
         jobdata: jobdata
@@ -155,115 +155,116 @@ export default function EditJob({ jobdata, jId }: any) {
             }, 1618);
             
     };
+
+    const test = () => {
+        console.log(jobdata);
+    }
     
-
     return (
-        <>
+        <>   
+                <h2 className="text-2xl font-bold mb-5">{jobdata.JobTitle}</h2>
+                <form  action={updateJobData} className='w-[100%] h-[100%] flex flex-col gap-2'>
 
-            <h2 className="text-2xl font-bold mb-5">{jobdata.JobTitle}</h2>
+                    {/* jobid */}
+                    <input type="hidden" name="jobId" value={jobdata.id} />
 
-            <form key={jId} action={updateJobData} className='w-[100%] h-[100%] flex flex-col gap-2'>
+                    {/* job title */}
+                    <div className=''>
+                        <label htmlFor="JobTitle" className='font-bold'>Edit {jobdata.JobTitle}</label>
+                        <Input className="border-transparent bg-white " type="text" id="JobTitle" onChange={handleInputChange} name="JobTitle" defaultValue={jobdata.JobTitle as string ? jobdata.JobTitle : ''} />
+                    </div>
 
-                {/* jobid */}
-                <input type="hidden" name="jobId" value={jobdata.id} />
+                    {/* company */}
+                    <div className='mb-2'>
+                        <label className='font-bold' htmlFor="Company">Edit Company</label>
+                        <Input className="border-transparent bg-white" type="text" id="Company" onChange={handleInputChange} name="Company" defaultValue={jobdata.Company as string ? jobdata.Company : ''} />
+                    </div>
 
-                {/* job title */}
-                <div className=''>
-                    <label htmlFor="JobTitle" className='font-bold'>Edit {jobdata.JobTitle}</label>
-                    <Input className="border-transparent bg-white " type="text" id="JobTitle" onChange={handleInputChange} name="JobTitle" defaultValue={jobdata.JobTitle as string ? jobdata.JobTitle : ''} />
-                </div>
-
-                {/* company */}
-                <div className='mb-2'>
-                    <label className='font-bold' htmlFor="Company">Edit Company</label>
-                    <Input className="border-transparent bg-white" type="text" id="Company" onChange={handleInputChange} name="Company" defaultValue={jobdata.Company as string ? jobdata.Company : ''} />
-                </div>
-
-                <div className="mb-2">
-                    {/* Date Applied */}
-                    <label className='font-bold' htmlFor="DateApplied">Edit Date Applied</label>
-                    <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
-                                                <button onClick={handleDateClick} className='rounded-lg bg-white px-2 py-2 flex place-items-start  w-[100%]  '>{dayjs(datevalue).format('DD/MM/YYYY')}</button>
-                    <Popover
-                        id={id}
-                        open={open}
-                        onClose={handleDateClose}
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-                        <span className="flex flex-col pb-5 place-items-center">
-                            {/* date */}
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DateCalendar
-                                    onChange={(datevalue) => handleDateChange(datevalue)}
-                                >
-                                </DateCalendar>
-                            </LocalizationProvider>
-                            <span className="flex gap-4">
-                                <span className="bg-slate-100 hover:bg-slate-200 p-2 py-2 rounded-lg cursor-pointer" onClick={handleDateClose}>Cancel</span>
-                                <span className="min-w-[5em] bg-blue-500 place-content-center place-items-center cursor-pointer flex p-2 py-2 text-white rounded-lg" onClick={handleDateClose}>Ok</span>
-                            </span>
-                        </span>
-                    </Popover>
-                </div>
-
-                {/* <div className='mb-2   py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center bg-white'>
-                    <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateCalendar
-                            className=""
-                            onChange={(datevalue) => handleDateChange(datevalue)}
+                    <div className="mb-2">
+                        {/* Date Applied */}
+                        <label className='font-bold' htmlFor="DateApplied">Edit Date Applied</label>
+                        <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
+                                                    <button onClick={handleDateClick} className='rounded-lg bg-white px-2 py-2 flex place-items-start  w-[100%]  '>{dayjs(datevalue).format('DD/MM/YYYY')}</button>
+                        <Popover
+                            id={id}
+                            open={open}
+                            onClose={handleDateClose}
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                            }}
                         >
-                        </DateCalendar>
+                            <span className="flex flex-col pb-5 place-items-center">
+                                {/* date */}
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DateCalendar
+                                        onChange={(datevalue) => handleDateChange(datevalue)}
+                                    >
+                                    </DateCalendar>
+                                </LocalizationProvider>
+                                <span className="flex gap-4">
+                                    <span className="bg-slate-100 hover:bg-slate-200 p-2 py-2 rounded-lg cursor-pointer" onClick={handleDateClose}>Cancel</span>
+                                    <span className="min-w-[5em] bg-blue-500 place-content-center place-items-center cursor-pointer flex p-2 py-2 text-white rounded-lg" onClick={handleDateClose}>Ok</span>
+                                </span>
+                            </span>
+                        </Popover>
+                    </div>
 
-                    </LocalizationProvider>
-                </div> */}
+                    {/* <div className='mb-2   py-2 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center bg-white'>
+                        <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DateCalendar
+                                className=""
+                                onChange={(datevalue) => handleDateChange(datevalue)}
+                            >
+                            </DateCalendar>
 
-                <label className='font-bold' htmlFor="status">Status</label>
-                <div className='mb-2  py-2 px-3 rounded-[0.6em] bg-white flex justify-start gap-3 place-items-center'>
-                    <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2 bg-white w-full' name="status" defaultValue={jobdata.Status as string} >
-                        <option value="">Select a Status</option>
-                        <option value="Interested">Interested</option>
-                        <option value="Applied">Applied</option>
-                        <option value="Interviewing">Interviewing</option>
-                        <option value="Offer">Offer</option>
-                        <option value="Rejected">Rejected</option>
-                        <option value="Ghosted">Ghosted</option>
-                    </select>
-                </div>
+                        </LocalizationProvider>
+                    </div> */}
 
-                <div>
-                    <label className='font-bold' htmlFor="Link">Edit Link</label>
-                    <Input type="text" className="border-transparent bg-white" onChange={handleLinkChange} id="Link" name="Link" defaultValue={jobdata.Link ? jobdata.Link : ''} />
-                </div>
+                    <label className='font-bold' htmlFor="status">Status</label>
+                    <div className='mb-2  py-2 px-3 rounded-[0.6em] bg-white flex justify-start gap-3 place-items-center'>
+                        <select id="status" onChange={handleStatusChange} className='rounded-[0.2em] px-2 bg-white w-full' name="status" defaultValue={jobdata.Status as string} >
+                            <option value="">Select a Status</option>
+                            <option value="Interested">Interested</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Interviewing">Interviewing</option>
+                            <option value="Offer">Offer</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Ghosted">Ghosted</option>
+                        </select>
+                    </div>
 
-                <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
-                    <label className='font-bold' htmlFor="referral">Referral?</label>
-                </div>
+                    <div>
+                        <label className='font-bold' htmlFor="Link">Edit Link</label>
+                        <Input type="text" className="border-transparent bg-white" onChange={handleLinkChange} id="Link" name="Link" defaultValue={jobdata.Link ? jobdata.Link : ''} />
+                    </div>
+
+                    <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
+                        <label className='font-bold' htmlFor="referral">Referral?</label>
+                    </div>
 
 
-                <div className='flex flex-col gap-2'>
-                    <label className='font-bold ' htmlFor="ResumeUsed">Add Resume</label>
-                    <Input autoComplete="off" className='bg-white cursor-pointer ' onChange={handleInputChange} type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
-                </div>
+                    <div className='flex flex-col gap-2'>
+                        <label className='font-bold ' htmlFor="ResumeUsed">Add Resume</label>
+                        <Input autoComplete="off" className='bg-white cursor-pointer ' onChange={handleInputChange} type="file" id="ResumeUsed" name="ResumeUsed" placeholder='Resume Used?' />
+                    </div>
 
-                <div className='mb-2'>
-                    <label className='font-bold' htmlFor="Keywords">Edit Keywords</label>
-                    <Input className="border-transparent bg-white" type="text" id="Keywords" name="Keywords" onChange={handleInputChange} defaultValue={jobdata.Keywords ? jobdata.Keywords : ''} />
-                </div>
+                    <div className='mb-2'>
+                        <label className='font-bold' htmlFor="Keywords">Edit Keywords</label>
+                        <Input className="border-transparent bg-white" type="text" id="Keywords" name="Keywords" onChange={handleInputChange} defaultValue={jobdata.Keywords ? jobdata.Keywords : ''} />
+                    </div>
 
-                <div className='w-[100%] pt-2 flex place-items-end place-content-end '>
-                    <Button className='bg-blue-500/80 hover:bg-blue-500 text-white' type="submit">Update</Button>
-                </div>
+                    <div className='w-[100%] pt-2 flex place-items-end place-content-end '>
+                        <Button className='bg-blue-500/80 hover:bg-blue-500 text-white' type="submit">Update</Button>
+                    </div>
 
-            </form>
+                </form>
         </>
     );
 };
