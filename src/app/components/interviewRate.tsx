@@ -89,7 +89,9 @@ export default function InterviewRate({ jobdata }: any) {
                 {interviewSuccessrate  != '0' && (
                     <>
                     <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
-                        <div className="font-bold">{interviewSuccessrate}% <em><span className='text-slate-400 text-[0.8em]'>ITA</span></em></div>
+                        <div className="font-bold">
+                            <span className='text-2xl'>{interviewSuccessrate}%</span>
+                            <em><span className='text-slate-400 text-[0.8em]'>ITA</span></em></div>
                         <div className='text-[0.8em]'>Interview to Application Ratio</div>
                     </div>
                     </>
