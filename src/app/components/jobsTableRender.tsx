@@ -64,7 +64,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
       job.JobTitle.toLowerCase().includes(lcSearchQuery) ||
       job.Company.toLowerCase().includes(lcSearchQuery) ||
       job.DateApplied?.includes(searchQuery) || // assuming DateApplied is a string
-      job.Status?.includes(lcSearchQuery)
+      job.Status?.toLowerCase().includes(lcSearchQuery)
     );
   });
 
