@@ -148,20 +148,46 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
             <span className="flex justify-between w-full">
               <span className="py-2 font-bold">All Jobs </span>
               <div className="flex justify-center my-2">
-                <button
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 1}
-                  className=" py-2 px-4 rounded-l"
-                >
-                  Prev
-                </button>
+                
+                {currentPage === 1 && (
+                    <button
+                      onClick={handlePrevPage}
+                      disabled
+                      className="text-gray-500 py-2 px-4 rounded-l"
+                    >
+                      Prev
+                    </button>
+                )} 
+
+                {currentPage > 1 && (
+                    <button
+                      onClick={handlePrevPage}
+                      className=" py-2 px-4 rounded-l"
+                    >
+                      Prev
+                    </button>
+                  )}
+
+                {indexOfFirstJob >= filteredJobs.length && (                
+                    <button
+                      onClick={handleNextPage}
+                      className="text-gray-500 py-2 px-4 rounded-l"
+                      disabled
+                    >
+                      Next
+                    </button>
+                )}
+
+                  
+                {indexOfFirstJob < filteredJobs.length && (    
                 <button
                   onClick={handleNextPage}
-                  disabled={indexOfLastJob >= filteredJobs.length}
                   className=" py-2 px-4 rounded-l"
                 >
                   Next
                 </button>
+                )}
+
               </div>
             </span>
 
