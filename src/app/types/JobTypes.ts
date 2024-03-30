@@ -12,11 +12,9 @@ export interface JobData {
   JobTitle: string;
   Keywords: string | null;
   Link: string;
-  Referral: string;
-  ReferralContact: string | null;
-  ReferralName: string | null;
   ResumeUsed: string | number | readonly string[] | undefined
   Status: string | null;
+  Interviewed: boolean | undefined
   createdAt: Date;
   id: string;
   updatedAt: Date;
@@ -25,6 +23,6 @@ export interface JobData {
   
 export type JobDataProps = JobData[];
 
-interface JobsTableProps {
+export interface JobsTableProps {
   jobdata: JobDataProps;
 }

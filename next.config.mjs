@@ -24,7 +24,7 @@ const sentryConfig = {
   automaticVercelMonitors: true,
 };
 
-export default withSentryConfig(nextConfig, {}, sentryConfig);
+const nextConfigWithSentry = withSentryConfig(nextConfig, {}, sentryConfig);
 
 // Babel configuration to disable the throwing of JSX Namespace error
 export const babel = {
@@ -37,3 +37,8 @@ export const babel = {
     ],
   ],
 };
+
+export default nextConfigWithSentry;
+
+export const reactStrictMode = true;
+export const transpilePackages = ['@mui/x-charts'];

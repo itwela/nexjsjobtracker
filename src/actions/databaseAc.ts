@@ -212,9 +212,6 @@ export const addJob = async (formData: FormData) => {
                 DateApplied: formDateApplied,
                 Status: formStatus,
                 Link: formLink,
-                Referral: formReferral,
-                ReferralName: formReferralName,
-                ReferralContact: formReferralContact,
                 ResumeUsed: resumeFileName,
                 Keywords: formKeywords,    
             }
@@ -264,9 +261,6 @@ export async function updateJobData(formData: FormData) {
     DateApplied: formDateApplied,
     Status: formStatus,
     Link: formLink,
-    Referral: formReferral,
-    ReferralName: formReferralName,
-    ReferralContact: formReferralContact,
     Keywords: formKeywords,    
 
   };
@@ -287,6 +281,33 @@ export async function updateJobData(formData: FormData) {
 })
 
     revalidatePath("/")
+}
+
+export async function toggleInterviewStatus(formData: FormData) {
+  noStore();
+
+  const formJobId = formData.get('jobId') as string;
+  const formInterviewStatus = formData.get('interviewStatus') as string;
+  let taskData: any = {
+    userId: theId,
+  };
+
+  if (formInterviewStatus === 'yes') {
+    taskData.Interviewed = true;
+  } else {
+    taskData.Interviewed = false;
+  }
+
+  const apiAdd = await prisma?.job.update({
+
+    where: {
+        id: formJobId,
+    },
+    data: taskData
+})
+
+  revalidatePath("/")
+
 }
 
 //  this is the function to delete jobs

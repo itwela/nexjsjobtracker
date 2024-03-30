@@ -73,12 +73,10 @@ model Job {
   DateApplied     String?
   Status          String?
   Link            String
-  Referral        String
-  ReferralName    String?
-  ReferralContact String?
   Resumes         Resume[] // Define a one-to-many relationship with Resume
   ResumeUsed      String?
   Keywords        String?
+  Interviewed     Boolean      @default(false) // Defaulting to false
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

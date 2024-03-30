@@ -1,6 +1,6 @@
 'use client'
 
-import { deleteJobData } from "@/actions/databaseAc";
+import { deleteJobData, toggleInterviewStatus } from "@/actions/databaseAc";
 import {
   Table,
   TableBody,
@@ -17,39 +17,7 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
 import router from "next/router";
 import { JobData } from "../types/JobTypes";
-import { IoCloseCircleOutline } from "react-icons/io5";
-
-// interface JobData {
-//   Company: string;
-//   coverLetters?: Array<{
-//     id: string;
-//     text: string;
-//     createdAt: Date;
-//     updatedAt: Date;
-//     userId: string;
-//     jobId: string;
-//   }>;
-//   DateApplied: string | null; // Update the type to string | null
-//   JobTitle: string;
-//   Keywords: string | null;
-//   Link: string;
-//   Referral: string;
-//   ReferralContact: string | null;
-//   ReferralName: string | null;
-//   ResumeUsed: string | null;
-//   Status: string | null;
-//   createdAt: Date;
-//   id: string;
-//   updatedAt: Date;
-//   userId: string;
-// }
-
-// type JobDataProps = {
-//   jobdata: JobData[];
-// }
-
-
-
+import { IoAtCircle, IoCheckmarkCircle, IoCloseCircleOutline } from "react-icons/io5";
 
 
  export default function JobsTable({jobdata}: {jobdata: JobData[]}) {
@@ -108,6 +76,9 @@ import { IoCloseCircleOutline } from "react-icons/io5";
       setCurrentPage((prev) => prev - 1);
   };
 
+
+  
+  
   return (
     <>
       <div className=" w-[100%] flex flex-col rounded-[0.5em] ">
@@ -144,7 +115,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
               </span>
 
               <span className="flex justify-between w-full">
-                <span className="py-2 font-bold">All Jobs</span>
+                <span className="py-2 font-bold">All Jobs </span>
                 <div className="flex justify-center my-2">
                   <button
                     onClick={handlePrevPage}
@@ -203,14 +174,9 @@ import { IoCloseCircleOutline } from "react-icons/io5";
                   </div>
 
                     <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                      Referral?
+                      Interviewed?
                     </div>
-                    <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                      Ref'd By
-                    </div>
-                    <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                      Contact
-                    </div>
+
                     
                   <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
                     Resume Used
@@ -267,13 +233,20 @@ import { IoCloseCircleOutline } from "react-icons/io5";
                             <a href={`https://${job.Link}`} target="_blank">{job.Link}</a>
                         </TableCell>
                         <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                          {job.Referral}
-                        </TableCell>
-                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                          {job.ReferralName}
-                        </TableCell>
-                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                          {job.ReferralContact}
+                          {job.Interviewed != true && (
+                            <form  className="flex w-full h-full place-items-center place-content-center" action={toggleInterviewStatus}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <input type="hidden" name="interviewStatus" value={'yes'} />
+                              <button className=""><IoAtCircle className="text-white outline outline-[1px] outline-black rounded-full"  size={11} type="submit" /></button>
+                            </form>
+                          )}
+                          {job.Interviewed != false && (
+                            <form className="flex w-full h-full place-items-center place-content-center" action={toggleInterviewStatus}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <input type="hidden" name="interviewStatus" value={'no'} />
+                              <button className="text-green-500"><IoCheckmarkCircle  size={18} type="submit" /></button>
+                            </form>
+                          )}
                         </TableCell>
                         <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
                           {job.ResumeUsed}
