@@ -188,7 +188,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
                                         <label className='font-bold' htmlFor="DateApplied">Date Applied - {datevalue ? dayjs(datevalue).format('DD/MM/YYYY') : ""}</label>
                                         <div className='  py-1 px-3  rounded-[0.6em] flex justify-start gap-3 place-items-center'>
                                             <input type="hidden" name="DateApplied" value={dayjs(datevalue).format('YYYY-MM-DD')} />
-                                            <button onClick={handleDateClick} className='rounded-lg bg-white px-2 py-2 flex place-items-start  w-[100%]  '>Pick a Date</button>
+                                            <button onClick={handleDateClick} className='rounded-lg bg-white px-2 py-2 flex place-items-start  w-[100%]  '>{dayjs(datevalue).format('DD/MM/YYYY')}</button>
                                             <Popover
                                                 id={id}
                                                 open={open}

@@ -81,7 +81,7 @@ export async function getJobData() {
       userId: theId as string
   },
   orderBy: {
-      createdAt: 'desc'
+      DateApplied: 'desc'
   },
 });
   
