@@ -245,9 +245,9 @@ export default function EditJob({ jobdata }: any, { jobId }: any) {
                         <Input type="text" className="border-transparent bg-white" onChange={handleLinkChange} id="Link" name="Link" defaultValue={jobdata.Link ? jobdata.Link : ''} />
                     </div>
 
-                    <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
+                    {/* <div className='cursor-pointer flex place-items-center gap-3 justify-between'>
                         <label className='font-bold' htmlFor="referral">Referral?</label>
-                    </div>
+                    </div> */}
 
 
                     <div className='flex flex-col gap-2'>
