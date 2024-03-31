@@ -249,7 +249,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
                                 </div>
                             </CarouselItem>
 
-                            <CarouselItem>
+                            {/* <CarouselItem>
                                 <div className='cursor-pointer flex flex-col gap-2 justify-between'>
                                     <label onMouseUp={handleReferralCheckboxChange} className='font-bold ' htmlFor="Referral">Referral?</label>
                                     <div className='  w-full py-1 px-3 rounded-[0.6em] flex justify-start gap-3 place-items-center'>
@@ -274,7 +274,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
                                     <label className='font-bold' htmlFor="ReferralContact">Referral Contact</label>
                                     <Input autoComplete="off" className='bg-white' onChange={handleInputChange} type="text" id="ReferralContact" name="ReferralContact" placeholder="Referral Contact" />
                                 </div>
-                            </CarouselItem>
+                            </CarouselItem> */}
 
                             <CarouselItem>
                                 <div className='flex flex-col gap-2'>
