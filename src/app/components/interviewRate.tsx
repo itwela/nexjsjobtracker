@@ -22,6 +22,7 @@ export default function InterviewRate({ jobdata }: any) {
     const successfulInterviewsGhosted = jobdata.filter((job: JobData) => job.Interviewed === true && job.Status === "Ghosted");
 
     const totalJobs = jobdata.length
+    const jobtotalforcalc =  jobdata.length - interestedJobs.length
     const success = successfulInterviews.length
 
     function successAlgo(a: number, b: number): number {
@@ -35,7 +36,7 @@ export default function InterviewRate({ jobdata }: any) {
     const rejected = successAlgo(rejectedJobs.length, successfulInterviewsRejected.length);
     const ghosted = successAlgo(ghostedJobs.length, successfulInterviewsGhosted.length);
     
-    const interviewSuccessrate = ((success / totalJobs) * 100).toFixed(0)
+    const interviewSuccessrate = ((success / jobtotalforcalc) * 100).toFixed(0)
 
     const data = {
         datasets: [{
