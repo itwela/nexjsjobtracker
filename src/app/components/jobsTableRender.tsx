@@ -156,7 +156,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
             </span>
 
             <span className="flex justify-between w-full">
-              <span className="py-2 font-bold">All Jobs </span>
+              <span className="py-2 font-bold">All Jobs - {jobdata.length} </span>
               <div className="flex justify-center my-2">
                 
                 {currentPage === 1 && (
