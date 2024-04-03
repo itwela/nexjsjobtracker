@@ -4,22 +4,62 @@ import { getJobData } from '@/actions/databaseAc'; // Assuming `getUserData` is 
 import Dashboard from './page';
 import spin from '../assets/system-solid-18-autorenew.gif';
 import SecondHeaderS from '../components/S_secondHeader';
+import { unstable_noStore as noStore, revalidatePath } from "next/cache";
+import prisma from "@/app/libs/db";
+import { stripe } from "../libs/stripe";
 
-export default function DashboardLayout() {
-  return (
-    <Suspense fallback={<div className="flex w-screen h-screen place-items-center place-content-center bg-gray-200 justify-center">
-      <div className='flex flex-col gap-4 place-items-center place-content-center'>
-        <span className='font-bold'>JobKompass</span>
-        <span>Loading.....</span>
-      </div>
-      </div>}>
-      <DashboardWithData />
-    </Suspense>
-  );
+
+async function fetchData() {
+  noStore();
+
+  const clerkuser = await currentUser();
+
+  // find user in database
+  const user = await prisma.user.findUnique({
+    where: {
+      id: clerkuser?.id,
+    },
+    select: {
+      id: true,
+      stripeCustomerId: true,
+    },
+  });
+
+  // create user in database
+  if (!user) {
+    await prisma.user.create({
+      data: {
+        id: clerkuser?.id as string,
+        email: clerkuser?.emailAddresses[0].emailAddress as string,
+        firstName: clerkuser?.firstName as string,
+        lastName: clerkuser?.lastName as string,
+      },
+    });
+  }
+
+  // crete stip customer in database
+  if (!user?.stripeCustomerId) {
+    const data = await stripe.customers.create({
+      email: clerkuser?.emailAddresses[0].emailAddress as string,
+    });
+
+    await prisma.user.update({
+      where: {
+        id: clerkuser?.id,
+      },
+      data: {
+        stripeCustomerId: data.id,
+      },
+    });
+  }
+
+
 }
 
-async function DashboardWithData() {
+export default async function DashboardWithData() {
+
   try {
+    await fetchData();
     const userdata = await currentUser();
     const jobdata = await getJobData();
 
