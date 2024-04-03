@@ -122,14 +122,14 @@ export default function InterviewRate({ jobdata }: any) {
                         <div>Tracked </div>
                     </div>
                )}
-
+{/* 
                 <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
                     <div className='flex gap-2 place-items-end'>
                         <span className='text-2xl font-bold'>{totalJobs}</span>
                         <span>Jobs</span>
                     </div>
                     <div>Tracked </div>
-                </div>
+                </div> */}
 
             </span>
         </span>
