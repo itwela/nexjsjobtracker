@@ -104,7 +104,7 @@ export default function InterviewRate({ jobdata }: any) {
                     <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
                         <div className="font-bold">
                             <span className='flex gap-2 place-items-end'>
-                                <span className='text-2xl'>{interviewSuccessrate}%</span>
+                                <span className='text-2xl'>{interviewSuccessrate.toFixed(2)}%</span>
                                 <em><span className='text-slate-400 text-[0.8em]'>ITA</span></em>
                             </span>
                         </div>
