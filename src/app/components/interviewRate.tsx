@@ -2,6 +2,8 @@ import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 import { JobData, JobDataProps, JobsTableProps } from '../types/JobTypes';
 import { useState } from 'react';
+import { MdOutlineAddchart } from "react-icons/md";
+
 
 
 export default function InterviewRate({ jobdata }: any) {
@@ -36,7 +38,8 @@ export default function InterviewRate({ jobdata }: any) {
     const rejected = successAlgo(rejectedJobs.length, successfulInterviewsRejected.length);
     const ghosted = successAlgo(ghostedJobs.length, successfulInterviewsGhosted.length);
     
-    const interviewSuccessrate = ((success / jobtotalforcalc) * 100).toFixed(0)
+    // const interviewSuccessrate = ((success / jobtotalforcalc) * 100).toFixed(0)
+    const interviewSuccessrate = ((success / jobtotalforcalc) * 100)
 
     const data = {
         datasets: [{
@@ -80,14 +83,23 @@ export default function InterviewRate({ jobdata }: any) {
         <span className="px-4 gap-2 w-[15em] sm:w-[20em] sm:min-w-[5em] interview-rate-card bg-white relative justify-evenly flex rounded-[0.5em] h-full place-content-center place-items-start flex-col  mx-auto ">
             <span className="flex justify-evenly place-items-center place-content-center  gap-5 text-[1em] h-[70%] w-full">
                 <div className="w-1/2 h-full">
+                    
+
+                    {totalJobs === 0 && (
+                        <div className="chart-container pb-2 " style={{ position: 'relative', height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                            <MdOutlineAddchart className='w-[80%] h-[80%] text-slate-800'/>
+                       </div>
+                    )}
+
                     <div className="chart-container pb-2 " style={{ position: 'relative', height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
                         <Doughnut
                             data={data}
                         />
                     </div>
+
                 </div>
                 
-                {interviewSuccessrate  != '0' && (
+                {interviewSuccessrate > 0 && (
                     <>
                     <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
                         <div className="font-bold">
@@ -101,7 +113,7 @@ export default function InterviewRate({ jobdata }: any) {
                     </>
                 )}
                
-               {interviewSuccessrate === '0' && (                   
+               {interviewSuccessrate === 0 && (                   
                     <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
                         <div className='flex gap-2 place-items-end'>
                             <span className='text-2xl font-bold'>{totalJobs}</span>
@@ -110,6 +122,15 @@ export default function InterviewRate({ jobdata }: any) {
                         <div>Tracked </div>
                     </div>
                )}
+
+                <div className="w-1/2 text-left h-full flex flex-col place-items-start place-content-center">
+                    <div className='flex gap-2 place-items-end'>
+                        <span className='text-2xl font-bold'>{totalJobs}</span>
+                        <span>Jobs</span>
+                    </div>
+                    <div>Tracked </div>
+                </div>
+
             </span>
         </span>
     );
