@@ -41,32 +41,46 @@ interface SubscriptionData {
     status: string | null | undefined;
   }
 
-function JobButton({jobdata, subscriptiondata}: any) {
+function JobButton({ jobdata, subscriptiondata }: any) {
     const status = useFormStatus();
+
+    // free tier
+    if (subscriptiondata?.status != 'active') {
+        return (
+            <>
+
+                {/* free tier */}
+                {status.pending != true && jobdata.length < 3 && (
+                    <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4">Submit</button>
+                )}
+
+                {status.pending != false && (
+                    <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4 animate-pulse" disabled >Loading..</button>
+                )}
+                
+                {status.pending != true && jobdata.length > 2 &&  (
+                    <Link href='/billing'><span className="cursor-pointer bg-main-w text-mprimary p-2 rounded-lg px-4">Please Subscribe</span></Link>
+                )}
+
+
+            </>
+        )
+    }
+
     return (
         <>
 
-        {status.pending != true && subscriptiondata?.status === 'active' && (
-            <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4">Submit</button>
-        )}
+            {status.pending != true && (
+                <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4">Submit</button>
+            )}
 
-        {status.pending != false &&  (
-            <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4 animate-pulse" disabled >Loading..</button>     
-        )}
+            {status.pending != false && (
+                <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4 animate-pulse" disabled >Loading..</button>
+            )}
 
-
-{/* free tier */}
-        {status.pending != true && jobdata.length < 3 && subscriptiondata?.status != 'active' &&  (    
-            <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4">Submit</button>
-        )}
-
-        {status.pending != true && jobdata.length > 2 && subscriptiondata?.status != 'active' &&  (    
-            <Link href='/billing'><span className="cursor-pointer bg-main-w text-mprimary p-2 rounded-lg px-4">Please Subscribe</span></Link>
-        )} 
-        
         </>
     )
-  }
+}
 
 
 export default function AddJobForm({ formopen, handleClose, jobdata }: { formopen: any; handleClose: any; jobdata: any}) {
