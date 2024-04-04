@@ -57,7 +57,7 @@ function JobButton({ jobdata, subscriptiondata }: any) {
                 {status.pending != false && (
                     <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4 animate-pulse" disabled >Loading..</button>
                 )}
-                
+
                 {status.pending != true && jobdata.length > 2 &&  (
                     <Link href='/billing'><span className="cursor-pointer bg-main-w text-mprimary p-2 rounded-lg px-4">Please Subscribe</span></Link>
                 )}
@@ -87,6 +87,10 @@ export default function AddJobForm({ formopen, handleClose, jobdata }: { formope
     
     const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null>(null);
 
+    useEffect(() => {
+       getTheUser(); 
+    }, [subscriptionData]);
+    
     const getTheUser = async () => {
         const hello = 'hi api for header'
     
