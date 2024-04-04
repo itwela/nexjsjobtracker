@@ -28,7 +28,7 @@ import GenResume from "../components/genresume";
 import InterviewRate from "../components/interviewRate";
 
 
-export default function Dashboard( {jobdata, userdata}: any ) {
+export default function Dashboard( {jobdata, userdata, subscriptiondata}: any ) {
   const [formOpen, setFormOpen] = React.useState(false);
   const handleFormOpen = () => setFormOpen(!formOpen);
   const handleFormClose = () => setFormOpen(false);
@@ -69,7 +69,7 @@ export default function Dashboard( {jobdata, userdata}: any ) {
                             </span>
                           </div>
                           {/* add job form */}
-                          <AddJobForm formopen={formOpen} handleClose={handleFormClose}/>
+                          <AddJobForm jobdata={jobdata}  formopen={formOpen} handleClose={handleFormClose}/>
                         </div>
 
                         {/* job table */}

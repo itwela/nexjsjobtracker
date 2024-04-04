@@ -10,6 +10,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs/AdapterDayjs';
 import Popover from "@mui/material/Popover";
+import { toast } from "sonner";
+import { useFormStatus } from "react-dom";
+import Link from "next/link";
 
 
 // Define the type for formData
@@ -34,9 +37,70 @@ interface FormData {
 }
 
 
-export default function AddJobForm({ formopen, handleClose }: { formopen: any; handleClose: any }) {
-    // indexin form fields:
+interface SubscriptionData {
+    status: string | null | undefined;
+  }
 
+function JobButton({jobdata, subscriptiondata}: any) {
+    const status = useFormStatus();
+    return (
+        <>
+
+        {status.pending != true && subscriptiondata?.status === 'active' && (
+            <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4">Submit</button>
+        )}
+
+        {status.pending != false &&  (
+            <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4 animate-pulse" disabled >Loading..</button>     
+        )}
+
+
+{/* free tier */}
+        {status.pending != true && jobdata.length < 3 && subscriptiondata?.status != 'active' &&  (    
+            <button type="submit" className="bg-main-w hover:bg-main-w/80 text-mprimary p-2 rounded-lg px-4">Submit</button>
+        )}
+
+        {status.pending != true && jobdata.length > 2 && subscriptiondata?.status != 'active' &&  (    
+            <Link href='/billing'><span className="cursor-pointer bg-main-w text-mprimary p-2 rounded-lg px-4">Please Subscribe</span></Link>
+        )} 
+        
+        </>
+    )
+  }
+
+
+export default function AddJobForm({ formopen, handleClose, jobdata }: { formopen: any; handleClose: any; jobdata: any}) {
+    
+    const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null>(null);
+
+    const getTheUser = async () => {
+        const hello = 'hi api for header'
+    
+        try {
+          const response = await fetch('/api/db/getusername', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              input: hello
+            })
+          });
+    
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+    
+          const data = await response.json();
+          setSubscriptionData(data.subscriptiondata)
+    
+        } catch {
+    
+        }
+    
+      }
+
+    // index in form fields:
     const [currentFieldIndex, setCurrentFieldIndex] = useState(0);
     const fields = [
         { label: "Job Title", name: "JobTitle", type: "text" },
@@ -110,7 +174,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
     
         setFormData(prevState => ({
             ...prevState,
-            text: {
+            jobdata: {
                 ...prevState.jobdata,
                 [name]: cleanedValue
             }
@@ -167,7 +231,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
                         className="w-[70%] flex pt-2  place-items-center place-content-center"
                     >
                         <CarouselPrevious className="bg-white" />
-                        <form action={addJob} className=''>
+                        <form  action={addJob} className=''>
                             <CarouselContent className="w-[70vw]  sm:w-[40vw] flex  place-items-center place-content-start  z-5">
                                 <CarouselItem className='w-full'>
                                     <div className='flex flex-col gap-2'>
@@ -292,7 +356,7 @@ export default function AddJobForm({ formopen, handleClose }: { formopen: any; h
 
                             <CarouselItem>
                                 <div className='w-[100%] flex flex-col place-items-center place-content-center justify-between'>
-                                    <Button className='bg-main-w hover:bg-main-w/80 text-mprimary' type="submit">Submit</Button>
+                                    <JobButton  jobdata={jobdata} subscriptiondata={subscriptionData} />
                                 </div>
                             </CarouselItem>
                         </CarouselContent>

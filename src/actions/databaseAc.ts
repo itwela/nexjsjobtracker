@@ -224,7 +224,6 @@ export const addJob = async (formData: FormData) => {
 
         if(data.length > 2 && sub?.status != 'active') {  
           revalidatePath("/")
-          console.log('please subscribe')
         }
         
 

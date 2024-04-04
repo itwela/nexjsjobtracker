@@ -1,6 +1,6 @@
 import { ReactNode, Suspense } from 'react';
 import { currentUser } from '@clerk/nextjs';
-import { getJobData } from '@/actions/databaseAc'; // Assuming `getUserData` is not used
+import { getJobData, getSubscriptionData } from '@/actions/databaseAc'; // Assuming `getUserData` is not used
 import Dashboard from './page';
 import spin from '../assets/system-solid-18-autorenew.gif';
 import SecondHeaderS from '../components/S_secondHeader';
@@ -75,7 +75,7 @@ export default async function DashboardWithData() {
                 <SecondHeaderS  />
             </div>
             <div className="flex sm:w-[80%] w-[100%]">
-              <Dashboard userdata={plainUserData} jobdata={plainJobData} />
+              <Dashboard userdata={plainUserData} jobdata={plainJobData}  />
             </div>
           </main>
           <h1></h1> {/* Make sure to add content */}

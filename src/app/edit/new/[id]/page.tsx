@@ -27,6 +27,7 @@ import { DateCalendar } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs/AdapterDayjs';
 import Popover from "@mui/material/Popover";
 import { IoArrowBack } from "react-icons/io5";
+import { useFormStatus } from "react-dom";
 
 // Define the type for formData
 interface FormData {
@@ -37,6 +38,25 @@ interface EditJobProps {
     jobdata: JobData[];
     jobId: string;
 }
+
+function UpdateButton() {
+    const status = useFormStatus();
+    return (
+        <>
+
+        {status.pending != true && (
+            <button  className='rounded-lg p-2 px-4 bg-blue-500/80 hover:bg-blue-500 text-white' type="submit">Update</button>
+        )}
+
+        {status.pending != false &&  (
+            <button  className='rounded-lg p-2 px-4 bg-blue-500/80 hover:bg-blue-500 text-white' type="submit" disabled >Loading..</button>     
+        )}
+        
+        </>
+    )
+  }
+
+
 
 
 export default function EditJob({ jobdata }: any, { jobId }: any) {
@@ -260,8 +280,8 @@ export default function EditJob({ jobdata }: any, { jobId }: any) {
                         <Input className="border-transparent bg-white" type="text" id="Keywords" name="Keywords" onChange={handleInputChange} defaultValue={jobdata.Keywords ? jobdata.Keywords : ''} />
                     </div>
 
-                    <div className='w-[100%] pt-2 flex place-items-end place-content-end '>
-                        <Button className='bg-blue-500/80 hover:bg-blue-500 text-white' type="submit">Update</Button>
+                    <div className='w-[100%] pb-2 flex place-items-end place-content-end '>
+                        <UpdateButton />
                     </div>
 
                 </form>
