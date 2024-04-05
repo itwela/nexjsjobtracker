@@ -58,8 +58,8 @@ export default function Dashboard( {jobdata, userdata, subscriptiondata}: any ) 
                               <AddJobs formopen={formOpen} handleFormOpen={handleFormOpen} handleFormClose={handleFormClose} />
                             </span>
                             {/* generate stuff */}  
-                            <span className="h-[15vh] my-5 overflow-x-scroll w-full ">
-                              <span className="w-max flex gap-2 h-full">
+                            <span className="h-[15vh] my-5 overflow-x-scroll overflow-y-hidden w-full ">
+                              <span className="w-max flex gap-2 h-full overflow-y-hidden">
                                   <InterviewRate jobdata={jobdata} />
                                   <GenResume/>
                                   <YourCoverLetter/>

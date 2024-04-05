@@ -326,6 +326,12 @@ export const deleteJobData = async (formData: FormData) => {
     },
   });
 
+  await prisma.introduction.deleteMany({
+    where: {
+      jobId: jobId,
+    },
+  });
+
 
   await prisma.job.delete({
     where: {

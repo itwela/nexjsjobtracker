@@ -77,6 +77,7 @@
     "react-markdown": "^9.0.1",
     "react-pdf": "^7.7.1",
     "react-pdfobject": "^1.2.0",
+    "react-query": "^3.39.3",
     "react-resizable-panels": "^2.0.9",
     "react-text-transition": "^3.1.0",
     "recharts": "^2.12.3",
