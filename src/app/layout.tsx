@@ -29,6 +29,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <ClerkProvider
       signInUrl="/sign-in"
       signUpUrl="/sign-up"
+      afterSignInUrl="/dashboard"
+      afterSignUpUrl="/dashboard"
       // signOutUrl="/sign-out"
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >

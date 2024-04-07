@@ -68,6 +68,10 @@
     --ring: 0 0% 83.1%;
   }
 }
+
+.cl-internal-b3fm6y {
+  display: none;
+}
  
 @layer base {
   * {

@@ -4,10 +4,11 @@ import CoverLetter from './page';
 import { currentUser } from '@clerk/nextjs';
 import { getJobData, getUserData } from '@/actions/databaseAc';
 import SecondHeaderS from '../components/S_secondHeader';
-import MyResume from './page';
+import GenerateStuff from './page';
+import { G } from '@react-pdf/renderer';
 
 
-export default async function MyResumeLayoutWithData() {
+export default async function GenerateLayoutWithData() {
     
     const userdata = await getUserData()
     const jobdata = await getJobData()  
@@ -22,7 +23,7 @@ export default async function MyResumeLayoutWithData() {
                         <SecondHeaderS />
                       </div>
                       <div className='w-[100%] sm:w-[80%]'>
-                        <MyResume jobdata={jobdata} userdata={userdata} />
+                        <GenerateStuff jobdata={jobdata} userdata={userdata} />
                       </div>
                     </main>
                 </div>

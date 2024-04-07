@@ -87,9 +87,9 @@ export default async function DashboardWithData() {
     console.error('Error fetching data:', error);
     return (
       <div className="flex flex-col gap-4 w-screen h-screen place-items-center place-content-center bg-gray-200 justify-center">
-        
+        <h1 className='text-4xl font-bold'>JobKompass</h1>
         <span>We're sorry, but something went wrong. Please try refreshing the page in a few seconds..</span>
-        <button className='bg-blue-500 px-4 py-2 rounded-lg text-white'>Try Again</button>
+        <button onClick={() => revalidatePath('/dashboard')} className='bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded-lg text-white'>Try Again</button>
 
       </div> 
 

@@ -47,7 +47,7 @@ export function AddJobs({formopen, handleFormOpen, handleFormClose}: {formopen: 
 
                 {formopen === false && (
                   <>
-                  <button className='bg-gradient-to-r from-blue-500 to-blue-300  p-4 px-6 rounded-lg h-full w-full flex text-white gap-2 place-items-center' 
+                  <button className='bg-gradient-to-r from-blue-300 to-blue-300 p-4 px-6 rounded-lg h-full w-full flex text-white gap-2 place-items-center' 
                     >
                     <h2><FaPlus className=' font-black' size={18}/></h2>
                     <h2 className='font-black '>Add Job</h2>

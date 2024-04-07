@@ -14,6 +14,7 @@ import { FaRegMessage } from "react-icons/fa6";
 import { UserButton } from "@clerk/nextjs";
 import React from "react";
 import MenuIntroModalC from "./introCli";
+import { BsStars } from "react-icons/bs";
 
 interface UserData {
   username: string;
@@ -168,15 +169,15 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
 
                   <span className="font-bold py-4 ">Features</span>
 
-                  <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/resume'>
-                    <p className=' truncate'>Resume</p>
-                    <span className=''><FaRegNewspaper className='' /></span>
+                  <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/generate'>
+                    <p className=' truncate'>Generate</p>
+                    <span className=''><BsStars className='' /></span>
                   </Link>
 
-                  <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/coverletter'>
+                  {/* <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/coverletter'>
                     <p className=' truncate'>Cover Letter</p>
                     <span className=''><FaRegNewspaper className='' /></span>
-                  </Link>
+                  </Link> */}
 
                   <span onClick={handleMenuModalOpen} className="p-1 w-full cursor-pointer  flex justify-between gap-4">
                     <p className=' truncate'>Introduction</p>
@@ -260,15 +261,16 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
 
                       <span className="font-bold py-4 ">Features</span>
 
-                      <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/resume'>
-                        <p className=' truncate'>Resume</p>
-                        <span className=''><FaRegNewspaper className='' /></span>
+                      <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/generate'>
+                        <p className=' truncate'>Generate Resume</p>
+                        <span className=''><BsStars className='' /></span>
                       </Link>
 
-                      <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
+                      {/* <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
                         <p className=' truncate'>Cover Letter</p>
                         <span className=''><FaRegNewspaper className='' /></span>
-                      </Link>
+                      </Link> */}
+
                       <span onClick={handleMenuModalOpen} className="p-1 w-full cursor-pointer  flex justify-between gap-4">
                         <p className=' truncate'>Introduction</p>
                         <span className=''><FaRegMessage className='' /></span>
@@ -381,16 +383,16 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
 
                 <span className="font-bold py-4 ">Features</span>
 
-                <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/resume'>
-                    <p className=' truncate'>Resume</p>
-                    <span className=''><FaRegNewspaper className='' /></span>
+                <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/generate'>
+                    <p className=' truncate'>Generate</p>
+                    <span className=''><BsStars className='' /></span>
                   </Link>
 
                   
-                <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
+                {/* <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
                   <p className=' truncate'>Cover Letter</p>
                   <span className=''><FaRegNewspaper className='' /></span>
-                </Link>
+                </Link> */}
 
                 <span onClick={handleMenuModalOpen} className="p-1 w-full cursor-pointer  flex justify-between gap-4">
                   <p className=' truncate'>Introduction</p>
@@ -469,15 +471,15 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
 
                     <span className="font-bold py-4 ">Features</span>
 
-                    <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/resume'>
-                      <p className=' truncate'>Resume</p>
-                      <span className=''><FaRegNewspaper className='' /></span>
+                    <Link className="p-1 w-full cursor-pointer  flex justify-between gap-4" href='/generate'>
+                      <p className=' truncate'>Generate</p>
+                      <span className=''><BsStars className='' /></span>
                     </Link>
 
-                    <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
+                    {/* <Link className="p-1 w-full  flex justify-between gap-4" href='/coverletter'>
                       <p className=' truncate'>Cover Letter</p>
                       <span className=''><FaRegNewspaper className='' /></span>
-                    </Link>
+                    </Link> */}
 
                     <span onClick={handleMenuModalOpen} className="p-1 w-full cursor-pointer  flex justify-between gap-4">
                       <p className=' truncate'>Introduction</p>

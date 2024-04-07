@@ -49,7 +49,8 @@ export async function POST(request: any) {
     January 1, 2024.
     I want the date at the top in this format.
 
-    Here is the job description. '${requestBody.input}'
+    Here is the job description. '${requestBody.jobDescription}'
+    Here is my resume. '${requestBody.resume}'
 
     `
 
