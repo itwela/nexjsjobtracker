@@ -252,7 +252,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                     Keywords
                   </div>
                   <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Cover letter
+                    Docs
                   </div>
                 </span>
                 <TableBody>
@@ -348,7 +348,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                           <input type="hidden" name="jobId" value={job.id} />
                           <button className="hover: text-blue-500"><FaRegEnvelope size={18} type="submit" /></button>
                         </Link>
-                        <Link href={`/coverletter/`}>
+                        <Link href={`/generate`}>
                           <input type="hidden" name="jobId" value={job.id} />
                           <button className="hover: text-blue-500"><FaPlus size={18} type="submit" /></button>
                         </Link>
