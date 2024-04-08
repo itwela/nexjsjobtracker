@@ -1,35 +1,20 @@
 'use client'
 
-import prisma from "@/app/libs/db";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import { currentUser } from "@clerk/nextjs";
-import { unstable_noStore as noStore } from "next/cache";
+import { useState } from "react";
+import AddJobForm from "../components/addJobForm";
 import { AddJobs } from "../components/addJobs";
-import { Header } from "../components/header";
+import Clock from "../components/clock";
+import ComingSoon from "../components/comingsoon";
+import GenResume from "../components/genresume";
+import InterviewRate from "../components/interviewRate";
 import JobsTable from "../components/jobsTableRender";
 import TopboxOne from "../components/topbox1";
 import TopboxTwo from "../components/topbox2";
-import Clock from "../components/clock";
-import { getJobData } from "@/actions/databaseAc";
-import { Suspense } from "react";
-import YourJobs from "../components/yourjobs";
 import YourCoverLetter from "../components/yourcoverletter";
-import ComingSoon from "../components/comingsoon";
-import spin from '../assets/system-solid-18-autorenew.gif'
-import AddJobForm from "../components/addJobForm";
-import React from "react";
-import SecondHeaderS from "../components/S_secondHeader";
-import { JobData } from "../types/JobTypes";
-import GenResume from "../components/genresume";
-import InterviewRate from "../components/interviewRate";
 
 
-export default function Dashboard( {jobdata, userdata, subscriptiondata}: any ) {
-  const [formOpen, setFormOpen] = React.useState(false);
+export default function Dashboard( {jobdata, userdata}: any ) {
+  const [formOpen, setFormOpen] = useState(false);
   const handleFormOpen = () => setFormOpen(!formOpen);
   const handleFormClose = () => setFormOpen(false);
 
@@ -69,7 +54,7 @@ export default function Dashboard( {jobdata, userdata, subscriptiondata}: any ) 
                             </span>
                           </div>
                           {/* add job form */}
-                          <AddJobForm jobdata={jobdata}  formopen={formOpen} handleClose={handleFormClose}/>
+                          <AddJobForm formopen={formOpen} handleClose={handleFormClose} jobdata={jobdata} />
                         </div>
 
                         {/* job table */}

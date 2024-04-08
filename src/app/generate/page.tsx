@@ -1,5 +1,5 @@
-
 'use client'
+
 import React, { useEffect, useState } from 'react';
 import { saveAs } from 'file-saver';
 import { Document, Page, pdfjs, } from 'react-pdf';
