@@ -129,8 +129,9 @@ export default function Secondheader({ userdata, userauth, jobdata }: { userdata
   }, [isOpen]);
 
   if (
-    // ""
-    subscriptionData?.status != 'active'
+    // 
+    subscriptionData?.status != 'active' &&
+    userdata?.username != 'Oudane'
   ) {
 
     return (

@@ -58,6 +58,7 @@ export async function POST(request: any) {
         sub?.status === 'active'
         || coverletter.length < 3
         || user?.firstName === 'Itwela'
+        || user?.firstName === 'Oudane'
         ) {  
 
         const completion = await openai.chat.completions.create({

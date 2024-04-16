@@ -22,6 +22,15 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import React from "react";
 import EditJob from "../edit/new/[id]/page";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useFormStatus } from "react-dom";
 
 export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
 
@@ -118,6 +127,22 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
     outline: "none",
     p: 2,
   };
+
+  const DeleteButton = () => {
+    const status = useFormStatus();
+    
+    if (status.pending != true) {
+      return (
+        <button className="text-red-600 hover:text-red-700"><FaRegTrashCan size={18} type="submit" /></button>
+      )
+    }
+
+    if (status.pending === true) {
+      return (
+        <button className="text-gray-600 animate-pulse" disabled><FaRegTrashCan size={18} type="submit" /></button>
+      )
+    }
+  }
 
 
   return (
@@ -262,9 +287,11 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
 
                       <TableCell className="w-[5em]">
                         <div className="flex gap-2">
-                          <form action={deleteJobData}>
+
+                          
+                          <form action={deleteJobData} className="w-full">
                             <input type="hidden" name="jobId" value={job.id} />
-                            <button className="text-red-600 hover:text-red-700"><FaRegTrashCan size={18} type="submit" /></button>
+                            <DeleteButton />
                           </form>
 
                           <div>

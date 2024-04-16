@@ -54,7 +54,7 @@ export default function Dashboard( {jobdata, userdata}: any ) {
                             </span>
                           </div>
                           {/* add job form */}
-                          <AddJobForm formopen={formOpen} handleClose={handleFormClose} jobdata={jobdata} />
+                          <AddJobForm formopen={formOpen} handleClose={handleFormClose} jobdata={jobdata} userdata={userdata} />
                         </div>
 
                         {/* job table */}

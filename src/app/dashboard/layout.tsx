@@ -79,7 +79,7 @@ export default async function DashboardWithData() {
                     <SecondHeaderS  />
                 </div>
                 <div className="flex sm:w-[80%] w-[100%]">
-                  <Dashboard userdata={plainUserData} jobdata={plainJobData}  />
+                  <Dashboard jobdata={plainJobData} userdata={plainUserData}   />
                 </div>
               </main>
               <h1></h1> {/* Make sure to add content */}

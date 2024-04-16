@@ -202,6 +202,7 @@ export const addJob = async (formData: FormData) => {
           sub?.status === 'active' 
           || data.length < 3
           || user?.firstName === 'Itwela'
+          || user?.firstName === 'Oudane'
           ) {  
         const apiAdd = await prisma?.job.create({
             data: {

@@ -41,11 +41,14 @@ interface SubscriptionData {
     status: string | null | undefined;
   }
 
-function JobButton({ jobdata, subscriptiondata }: any) {
+function JobButton({ jobdata, subscriptiondata, userdata }: any) {
     const status = useFormStatus();
 
     // free tier
-    if (subscriptiondata?.status != 'active') {
+    if (subscriptiondata?.status != 'active' 
+    && userdata?.username != 'demo'
+    && userdata?.firstName != 'Oudane'
+    ) {
         return (
             <>
 
@@ -83,7 +86,7 @@ function JobButton({ jobdata, subscriptiondata }: any) {
 }
 
 
-export default function AddJobForm({ formopen, handleClose, jobdata }: { formopen: any; handleClose: any; jobdata: any}) {
+export default function AddJobForm({ formopen, handleClose, jobdata, userdata }: { formopen: any; handleClose: any; jobdata: any; userdata: any}) {
     
     const [subscriptionData, setSubscriptionData] = useState<SubscriptionData | null>(null);
 
@@ -374,7 +377,7 @@ export default function AddJobForm({ formopen, handleClose, jobdata }: { formope
 
                             <CarouselItem>
                                 <div className='w-[100%] flex flex-col place-items-center place-content-center justify-between'>
-                                    <JobButton  jobdata={jobdata} subscriptiondata={subscriptionData} />
+                                    <JobButton  jobdata={jobdata} subscriptiondata={subscriptionData} userdata={userdata} />
                                 </div>
                             </CarouselItem>
                         </CarouselContent>
