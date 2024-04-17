@@ -45,7 +45,13 @@ export default function FirstComponent() {
             </span>
           </span>
           
-          <span className="text-slate-400">Gain insights into your job application performance, including application success rates, interview conversion rates, and areas for improvement.</span>
+          <span className="text-slate-400">Gain insights into your job application performance, including application 
+          success rates
+          ,
+          interview conversion rates
+          , and 
+          areas for improvement
+          .</span>
           <Link className="my-3" href="/sign-up"><button className="bg-gradient-to-r from-blue-500 to-blue-200 px-5 py-2 rounded-lg text-white">Get Started</button></Link>
         </span>
 

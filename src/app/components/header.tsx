@@ -56,7 +56,7 @@ export const Header = () => {
                     <Link
                     id='signin'
                       href='/sign-in'
-                      className=' text-sm  p-2 px-3 outline outline-[1px]   rounded-lg  mr-4'
+                      className=' text-sm  p-2 px-3 outline outline-[1px] outline-gray-300 bg-white  rounded-lg  mr-4'
                     >
                       Sign In
                     </Link>

@@ -9,7 +9,7 @@ export default function NLoginHeader() {
 
                 <span className="flex gap-2">
                     <Link href='/sign-in'>
-                        <button className="px-5 py-2 outline outline-1 rounded-lg">Sign in</button>
+                        <button className="px-5 py-2 outline outline-1 rounded-lg ">Sign in</button>
                     </Link>
                     <Link href='/sign-up'>
                         <button className="rounded-lg text-white bg-gradient-to-r from-blue-500 to-blue-200 px-5 py-2">Sign up</button>
