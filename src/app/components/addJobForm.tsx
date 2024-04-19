@@ -45,10 +45,7 @@ function JobButton({ jobdata, subscriptiondata, userdata }: any) {
     const status = useFormStatus();
 
     // free tier
-    if (subscriptiondata?.status != 'active' 
-    && userdata?.username != 'demo'
-    && userdata?.firstName != 'Oudane'
-    ) {
+    if (subscriptiondata?.status != 'active') {
         return (
             <>
 

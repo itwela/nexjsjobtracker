@@ -37,7 +37,7 @@ export function AddJobs({formopen, handleFormOpen, handleFormClose}: {formopen: 
 
                 {formopen === true && (
                   <>
-                  <button className='p-4 px-6 text-red-500 rounded-lg h-full w-full flex  gap-2 place-items-center' 
+                  <button className='p-4 px-6 text-red-300 hover:text-red-400 rounded-lg h-full w-full flex  gap-2 place-items-center' 
                     >
                     <h2><IoCloseCircle className=' font-black font-bold' size={18}/></h2>
                     <h2 className='font-black '>Close Form</h2>                  
@@ -47,7 +47,7 @@ export function AddJobs({formopen, handleFormOpen, handleFormClose}: {formopen: 
 
                 {formopen === false && (
                   <>
-                  <button className='bg-gradient-to-r from-blue-300 to-blue-300 p-4 px-6 rounded-lg h-full w-full flex text-white gap-2 place-items-center' 
+                  <button className='bg-blue-300 hover:bg-blue-400 p-4 px-6 rounded-lg h-full w-full flex text-white gap-2 place-items-center' 
                     >
                     <h2><FaPlus className=' font-black' size={18}/></h2>
                     <h2 className='font-black '>Add Job</h2>

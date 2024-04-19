@@ -31,6 +31,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useFormStatus } from "react-dom";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
 
@@ -144,6 +150,23 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
     }
   }
 
+  const notInterviewedButton = () => {
+    const status = useFormStatus();
+
+    if (status.pending != true) {
+      return (
+        <button className=""><IoAtCircle className="text-white outline outline-[1px] outline-black rounded-full" size={11} type="submit" /></button>
+      )
+    }
+
+    if (status.pending === true) {
+      return (
+        <button className="text-gray-500"><IoCheckmarkCircle size={18} type="submit" /></button>
+      )
+    }
+
+  }
+
 
   return (
     <>
@@ -175,9 +198,20 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                 className="rounded-lg w-full outline-none px-3 py-2 my-4"
               />
 
+              {/* close button */}
               {searchQuery !== '' && (
-                <span onClick={() => setSearchQuery('')}><IoCloseCircleOutline className="cursor-pointer w-8 h-8" /></span>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <span onClick={() => setSearchQuery('')}><IoCloseCircleOutline className="cursor-pointer w-8 h-8 text-red-500" /></span>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Reset/ Show All Jobs</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
+
             </span>
 
             <span className="flex justify-between w-full">
@@ -201,7 +235,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                     >
                       Prev
                     </button>
-                  )}
+                )}
 
                 {indexOfFirstJob >= filteredJobs.length && (                
                     <button
@@ -212,8 +246,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                       Next
                     </button>
                 )}
-
-                  
+      
                 {indexOfFirstJob < filteredJobs.length && (    
                 <button
                   onClick={handleNextPage}
@@ -229,76 +262,137 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
             <div className="w-full  flex flex-col  place-items-center ">
 
               {/* job counts */}
-              <div className=" flex w-max place-content-center place-self-end h-max gap-2 select-none">
-                <div onClick={() => setSearchQuery("Interested")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
-                <div onClick={() => setSearchQuery("Applied")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
-                <div onClick={() => setSearchQuery("Interviewing")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
-                <div onClick={() => setSearchQuery("Interviewed")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{greeensuccesscount}</div>
-                <div onClick={() => setSearchQuery("Rejected")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
-                <div onClick={() => setSearchQuery("Ghosted")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
+              <div className=" flex w-max place-content-center place-self-end h-max gap-3 select-none">
+                <TooltipProvider>
+
+                  {/* Interested */}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div onClick={() => setSearchQuery("Interested")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-white flex place-content-center place-items-center">{interestedJobsCount}</div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Show Interested Jobs Only</p>
+                    </TooltipContent>
+                  </Tooltip>
+               
+                  {/* Applied */}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div onClick={() => setSearchQuery("Applied")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-blue-500/50 flex place-content-center place-items-center">{appliedJobsCount}</div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Show Applied Jobs Only</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  {/* Interviewing */}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div onClick={() => setSearchQuery("Interviewing")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-yellow-500/50 flex place-content-center place-items-center">{interviewingJobsCount}</div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Show Interviewing Jobs Only</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  {/* Successes */}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div onClick={() => setSearchQuery("Interviewed")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-green-500/50 flex place-content-center place-items-center">{greeensuccesscount}</div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Show Offered & Interviewed Jobs Only</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  {/* Rejected */}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div onClick={() => setSearchQuery("Rejected")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-red-500/50 flex place-content-center place-items-center">{rejectedJobsCount}</div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Show Rejected Jobs Only</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  {/* Ghosted */}
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div onClick={() => setSearchQuery("Ghosted")} className="cursor-pointer rounded-full w-[2em] h-[2em] bg-gray-500/50 flex place-content-center place-items-center">{ghostedJobsCount}</div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-white">
+                      <p>Show Ghosted Jobs Only</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                </TooltipProvider>
               </div>
 
+              {filteredJobs.length > 0 && (
+                <Table className="w-full">
 
-              <Table className="w-full">
-                {/* header */}
-                <span className="flex my-4 justify-evenly gap-1 w-full">
+                  {/* header */}
+                  <span className="flex my-4 justify-evenly gap-1 w-full">
 
-                  <div className="flex place-content-center place-items-center w-[5em] /70 truncate hover:text-clip">
-                    Edit
-                  </div>
-                  <div className=" flex place-content-center place-items-center w-[2em] truncate hover:text-clip">
-                    #
-                  </div>
-                  <div className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Job Tttle
-                  </div>
-                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Company
-                  </div>
-                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Date Applied
-                  </div>
-                  <div className="flex place-content-center place-items-center w-[7em]">
-                    Status
-                  </div>
-                  <div className="flex place-content-center place-items-center w-[7em]">
-                    Link
-                  </div>
+                    <div className="flex place-content-center place-items-center w-[5em] /70 truncate hover:text-clip">
+                      Edit
+                    </div>
+                    <div className=" flex place-content-center place-items-center w-[2em] truncate hover:text-clip">
+                      #
+                    </div>
+                    <div className=" flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Job Tittle
+                    </div>
+                    <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Company
+                    </div>
+                    <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Date Applied
+                    </div>
+                    <div className="flex place-content-center place-items-center w-[7em]">
+                      Status
+                    </div>
+                    <div className="flex place-content-center place-items-center w-[7em]">
+                      Link
+                    </div>
 
-                  <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
-                    Interviewed?
-                  </div>
+                    <div className="flex place-content-center place-items-center  w-[7em] truncate hover:text-clip">
+                      Interviewed?
+                    </div>
+
+                    <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Resume Used
+                    </div>
+
+                    <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Keywords
+                    </div>
+
+                    <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
+                      Docs
+                    </div>
+
+                  </span>
+
+                  <TableBody>
+                    {/* pop up */}
+                    {currentJobs.map((job: JobData, index: number) => (
+                      <TableRow key={job.id} className="flex rounded-lg bg-white my-2  nosb items-center gap-1 justify-evenly hover:bg-[#f5f5f5]  border-transparent">
+
+                        <TableCell className="w-[5em]">
+                          <div className="flex gap-2">
 
 
-                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Resume Used
-                  </div>
-                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Keywords
-                  </div>
-                  <div className="flex place-content-center place-items-center w-[7em] truncate hover:text-clip">
-                    Docs
-                  </div>
-                </span>
-                <TableBody>
-                  {/* pop up */}
-                  {currentJobs.map((job: JobData, index: number) => (
-                    <TableRow key={job.id} className="flex rounded-lg bg-white my-2  nosb items-center gap-1 justify-evenly hover:bg-gray-100/30  border-transparent">
+                            <form action={deleteJobData} className="w-full">
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <DeleteButton />
+                            </form>
 
-                      <TableCell className="w-[5em]">
-                        <div className="flex gap-2">
+                            <div>
+                              <span onClick={() => handleFormOpen(job)} className="cursor-pointer text-blue-700"><FaRegEdit size={18} type="submit" /></span>
+                            </div>
 
-                          
-                          <form action={deleteJobData} className="w-full">
-                            <input type="hidden" name="jobId" value={job.id} />
-                            <DeleteButton />
-                          </form>
-
-                          <div>
-                            <span onClick={() => handleFormOpen(job)} className="cursor-pointer text-blue-700"><FaRegEdit size={18} type="submit" /></span>
-                          </div>
-
-                          {/* Render the modal with EditJob component */}
+                            {/* Render the modal with EditJob component */}
                             <Modal
                               open={formOpen}
                               onClose={handleFormClose}
@@ -320,71 +414,88 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
 
 
 
-                        </div>
-                      </TableCell>
+                          </div>
+                        </TableCell>
 
-                      <TableCell className="w-[2em] hover:  font-medium  whitespace-nowrap overflow-auto ">
-                        {indexOfFirstJob + index + 1}
-                      </TableCell>
-                      <TableCell className="w-[7em] hover:  font-medium  whitespace-nowrap overflow-auto ">
-                        {job.JobTitle}
-                      </TableCell>
-                      <TableCell className="w-[7em] hover:  font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Company}
-                      </TableCell>
-                      <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                        {job.DateApplied}
-                      </TableCell>
-                      <TableCell className={`w-[7em] hover: font-medium whitespace-nowrap overflow-auto ${job?.Status?.includes("Applied") ? "bg-blue-500/50" :
+                        <TableCell className="w-[2em] hover:  font-medium  whitespace-nowrap overflow-auto ">
+                          {indexOfFirstJob + index + 1}
+                        </TableCell>
+                        <TableCell className="w-[7em] hover:  font-medium  whitespace-nowrap overflow-auto ">
+                          {job.JobTitle}
+                        </TableCell>
+                        <TableCell className="w-[7em] hover:  font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Company}
+                        </TableCell>
+                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
+                          {job.DateApplied}
+                        </TableCell>
+                        <TableCell className={`w-[7em] hover: font-medium whitespace-nowrap overflow-auto ${job?.Status?.includes("Applied") ? "bg-blue-500/50" :
                           job?.Status?.includes("Interviewing") ? "bg-yellow-500/50" :
                             job?.Status?.includes("Offer") ? "bg-green-500/50" :
                               job?.Status?.includes("Rej") ? "bg-red-500/50" :
                                 job?.Status?.includes("Ghosted") ? "bg-gray-500/50 text-muted-foreground" : ""
-                        }`}>
-                        <div className="">
-                          {job?.Status}
-                        </div>
-                      </TableCell>
-                      <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                        <a href={`https://${job.Link}`} target="_blank">{job.Link}</a>
-                      </TableCell>
-                      <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Interviewed != true && (
-                          <form className="flex w-full h-full place-items-center place-content-center" action={toggleInterviewStatus}>
+                          }`}>
+                          <div className="">
+                            {job?.Status}
+                          </div>
+                        </TableCell>
+                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
+                          <a href={`https://${job.Link}`} target="_blank">{job.Link}</a>
+                        </TableCell>
+                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Interviewed != true && (
+                            <form className="flex w-full h-full place-items-center place-content-center" action={toggleInterviewStatus}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <input type="hidden" name="interviewStatus" value={'yes'} />
+                              <button className=""><IoAtCircle className="text-white outline outline-[1px] outline-black rounded-full" size={11} type="submit" /></button>
+                            </form>
+                          )}
+                          {job.Interviewed != false && (
+                            <form className="flex w-full h-full place-items-center place-content-center" action={toggleInterviewStatus}>
+                              <input type="hidden" name="jobId" value={job.id} />
+                              <input type="hidden" name="interviewStatus" value={'no'} />
+                              <button className="text-green-500"><IoCheckmarkCircle size={18} type="submit" /></button>
+                            </form>
+                          )}
+                        </TableCell>
+                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
+                          {job.ResumeUsed}
+                        </TableCell>
+                        <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
+                          {job.Keywords}
+                        </TableCell>
+                        <TableCell className="w-[7em] hover: font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
+                          <Link href={`/mydocs`}>
                             <input type="hidden" name="jobId" value={job.id} />
-                            <input type="hidden" name="interviewStatus" value={'yes'} />
-                            <button className=""><IoAtCircle className="text-white outline outline-[1px] outline-black rounded-full" size={11} type="submit" /></button>
-                          </form>
-                        )}
-                        {job.Interviewed != false && (
-                          <form className="flex w-full h-full place-items-center place-content-center" action={toggleInterviewStatus}>
+                            <button className="hover: text-blue-500"><FaRegEnvelope size={18} type="submit" /></button>
+                          </Link>
+                          <Link href={`/generate`}>
                             <input type="hidden" name="jobId" value={job.id} />
-                            <input type="hidden" name="interviewStatus" value={'no'} />
-                            <button className="text-green-500"><IoCheckmarkCircle size={18} type="submit" /></button>
-                          </form>
-                        )}
-                      </TableCell>
-                      <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                        {job.ResumeUsed}
-                      </TableCell>
-                      <TableCell className="w-[7em] hover: font-medium  whitespace-nowrap overflow-auto ">
-                        {job.Keywords}
-                      </TableCell>
-                      <TableCell className="w-[7em] hover: font-medium flex place-items-center place-content-center gap-2 whitespace-nowrap overflow-auto">
-                        <Link href={`/mydocs`}>
-                          <input type="hidden" name="jobId" value={job.id} />
-                          <button className="hover: text-blue-500"><FaRegEnvelope size={18} type="submit" /></button>
-                        </Link>
-                        <Link href={`/generate`}>
-                          <input type="hidden" name="jobId" value={job.id} />
-                          <button className="hover: text-blue-500"><FaPlus size={18} type="submit" /></button>
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                            <button className="hover: text-blue-500"><FaPlus size={18} type="submit" /></button>
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+
+                </Table>
+              )}
+
+              {indexOfFirstJob >= filteredJobs.length && filteredJobs.length == 0 && (                
+                <div className="flex w-max py-9 place-items-center place-content-center h-[10m]">
+                  <div className="flex place-items-center flex-col gap-2">
+                    <h2 className="cursor-pointer py-3 px-4 bg-white rounded-lg " onClick={() => { 
+                      setCurrentPage(1); 
+                      setSearchQuery(''); 
+                    }}>Go Back
+                    </h2>
+                    <h2 className="select-none">You've reached the end of the list.</h2>
+                  </div>
+                </div>
+              )}
+
             </div>
+
           </div>
         )}
       </div>

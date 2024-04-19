@@ -5,7 +5,7 @@ export default function NLoginHeader() {
     return (
         <>
             <div className="w-full text-[1em]  z-[3] flex place-items-center justify-between max-h-max ">
-                <span>JobKompass</span>
+                <span className="select-none">JobKompass</span>
 
                 <span className="flex gap-2">
                     <Link href='/sign-in'>
