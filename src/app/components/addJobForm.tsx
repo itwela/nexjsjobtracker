@@ -326,7 +326,7 @@ export default function AddJobForm({ formopen, handleClose, jobdata, userdata }:
 
                             <CarouselItem>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold' htmlFor="Link">Link</label>
+                                    <label className='font-bold' htmlFor="Link">Job Link</label>
                                     <Input autoComplete="off" className='bg-white' onChange={handleLinkChange} type="text" id="Link" name="Link" placeholder="Link" required />
                                 </div>
                             </CarouselItem>
@@ -367,7 +367,7 @@ export default function AddJobForm({ formopen, handleClose, jobdata, userdata }:
 
                             <CarouselItem>
                                 <div className=' flex flex-col gap-2'>
-                                    <label className='font-bold' htmlFor="Keywords">Add Keywords</label>
+                                    <label className='font-bold' htmlFor="Keywords">Job Keywords</label>
                                     <Input autoComplete="off" className='bg-white' onChange={handleInputChange} type="text" id="Keywords" name="Keywords" placeholder="Keywords" />
                                 </div>
                             </CarouselItem>
