@@ -56,16 +56,34 @@ export default function FirstComponent() {
         </span>
 
       </div>
-      <div className="w-full h-[60vh] p-5">
+      <div className="w-full h-[60vh] sm:p-5 overflow-hidden">
         {/* fast marquee */}
-        <div className="w-full h-full">
+        <div className="w-full h-full scale-[138%]">
           <Marquee className="h-full overflow-hidden">
-            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/9800033/pexels-photo-9800033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            {/* <img className="h-full w-full px-2" src="https://images.pexels.com/photos/9800033/pexels-photo-9800033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
             <img className="h-full w-full px-2" src={jk2.src} alt="" />
             <img className="h-full w-full px-2" src="https://images.pexels.com/photos/5992553/pexels-photo-5992553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
             <img className="h-full w-full px-2" src={jk1.src} alt="" />
             <img className="h-full w-full px-2" src="https://images.pexels.com/photos/17428121/pexels-photo-17428121/free-photo-of-cup-of-milk-by-airpods-case-on-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/1376696/pexels-photo-1376696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            <img className="h-full w-full px-2" src="https://images.pexels.com/photos/1376696/pexels-photo-1376696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /> */}
+            <div className="w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-blue-500  rounded-lg mx-1 overflow-hidden">
+              <img className="h-full w-full object-cover" src="https://images.pexels.com/photos/9800033/pexels-photo-9800033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            </div>
+            <div className="hover:scale-105 transition-all duration-300 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-blue-500 rounded-lg mx-1 overflow-hidden">
+              <img className="h-full w-full object-cover" src={jk2.src} alt="" />
+            </div>
+            <div className="w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-blue-500  rounded-lg mx-1 overflow-hidden">
+              <img className="h-full w-full object-cover" src="https://images.pexels.com/photos/5992553/pexels-photo-5992553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            </div>
+            <div className="hover:scale-105 transition-all duration-300 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-blue-500  rounded-lg mx-1 overflow-hidden">
+              <img className="h-full w-full object-cover" src={jk1.src} alt="" />
+            </div>
+            <div className="w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-blue-500  rounded-lg mx-1 overflow-hidden">
+              <img className="h-full w-full object-cover" src="https://images.pexels.com/photos/17428121/pexels-photo-17428121/free-photo-of-cup-of-milk-by-airpods-case-on-book.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            </div>
+            <div className="w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-blue-500  rounded-lg mx-1 overflow-hidden">
+              <img className="h-full w-full object-cover" src="https://images.pexels.com/photos/1376696/pexels-photo-1376696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+            </div>
           </Marquee>
         </div>
       </div>

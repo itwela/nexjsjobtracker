@@ -377,7 +377,7 @@ export default function JobsTable({ jobdata }: { jobdata: JobData[] }) {
                   <TableBody>
                     {/* pop up */}
                     {currentJobs.map((job: JobData, index: number) => (
-                      <TableRow key={job.id} className="flex rounded-lg bg-white my-2  nosb items-center gap-1 justify-evenly hover:bg-[#f5f5f5]  border-transparent">
+                      <TableRow key={job.id} className="flex rounded-lg bg-white bg-opacity-70 hover:bg-opacity-100 my-2  nosb items-center gap-1 justify-evenly border-transparent">
 
                         <TableCell className="w-[5em]">
                           <div className="flex gap-2">

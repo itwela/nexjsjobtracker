@@ -105,7 +105,7 @@ const dbUser = await prisma.user.findUnique({
             </CardHeader>
             <CardContent>
               <form action={createCustomerPortal}>
-                <Button className='text-white bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent hover:outline-main-w/80'>Launch portal</Button>
+                <Button className='text-white bg-gradient-to-r from-blue-600 to-blue-100 outline outline-[1px] outline-transparent hover:outline-main-w/80'>Launch portal</Button>
               </form>
             </CardContent>
             {/* <CardFooter>
@@ -145,7 +145,7 @@ const dbUser = await prisma.user.findUnique({
                               </div> 
 
                               <form action={createSubscription}>
-                                <Button className="text-white bg-gradient-to-l from-blue-900 to-blue-400 outline outline-[1px] outline-transparent hover:outline-main-w/80"> Create Subscription</Button>
+                                <Button className="text-white bg-gradient-to-r from-blue-600 to-blue-100 outline outline-[1px] outline-transparent hover:outline-main-w/80"> Create Subscription</Button>
                               </form>
                             </div>
 
