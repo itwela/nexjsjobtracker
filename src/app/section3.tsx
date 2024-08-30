@@ -1,107 +1,97 @@
 'use client'
 
-import { CardContent } from "@/components/ui/card";
+import { CardContent, CardTitle } from "@/components/ui/card";
 import { useGSAP } from "@gsap/react";
-import { Card } from "@nextui-org/react";
+import { Card } from "../components/ui/card";
 import { useEffect, useRef, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { LuMessagesSquare } from "react-icons/lu";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Badge } from "@mui/material";
+import Link from "next/link";
+import { FaCheck } from "react-icons/fa6";
+import pricingimg from '../app/assets/pricingimg.png'
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSectionThree() {
 
-  // Hovering -----------------
-
-
-
-  // ScrollTrigger ---------
-  const triggerRef = useRef(null);
-
-  useGSAP(() => {
-
-    const trigger = triggerRef.current;
-
-    let tl2 = gsap.timeline({
-      defaults: {ease: 'power2.out', duration: 0.5},
-      scrollTrigger: {
-        trigger: trigger,
-        start: "top 60%",
-        end: "top 5%",
-        // scrub: true,
-        // markers: true,
-        toggleActions: 'restart none none reverse'
-      },
-    })
-
-
-
-  })
-
-
-  const [isHovered, setIsHovered] = useState(null);
-
-  const handleHover = (id: any) => {
-    setIsHovered(id);
-  };
-
-  
+  const styles = { 
+    "display": 'flex', 
+    "padding": '2em', 
+    "flexDirection": 'column', 
+    "": '', 
+    "": '', 
+    "": '', 
+  } as React.CSSProperties;
   
     return(
         <>
-           {/* section 2 made by for */}
-           <section ref={triggerRef} className="second-wrapper w-[100vw] overflow-hidden bg-dprimary  h-[100vh] ">
-
-            <div className="h-[100vh] hidden w-[100%] px-[2em] pt-[2em] pb-[3em] overflow-hidden  justify-start lg:flex flex-col text-center">
-                
-                <div className="flex flex-col gap-2  place-items-start text-main-w">
-                    <h1  id='madeby' className="text-center text-7xl ">
-                    Become a Success Story   
-                    </h1>
-
-                </div>
-
-                  <div className="h-[95%]  flex">
+           <div className="w-full flex flex-col gap-8 place-items-center min-h-[100vh]">
+            <Badge className="select-none  outline outline-[1px] outline-blue-500 text-blue-500 px-5 py-2 rounded-lg font-black">Pricing</Badge>
+            <h1 className="text-[4em] font-black ">Start for free, today!</h1>
+            <div className="flex flex-col sm:flex-row place-content-center w-full sm:h-[70vh]">
+              <Card style={styles} className="outline outline-[#3b82f6] gap-[1em] outline-[1px] h-full overflow-y-scroll text-[#3b82f6] w-[100%] md:w-[30%]">
+                <CardTitle>Starter</CardTitle>
+                <CardContent className="p-0 m-0 flex flex-col gap-2">
                   
-
-                    <div className="h-full w-[100%] flex gap-2 nosb overflow-x-auto nosb   ">
-                      
-                      <div className="flex w-full pt-9 place-content-center gap-9 ">
-                        
-                          <div className="flex flex-col gap-9 w-[45%] place-items-start text-left">
-                            <div
-                              onMouseEnter={() => handleHover("bluesmall")}
-                              onMouseLeave={() => handleHover(null)}
-                              id="appliedcard" className="flex overflow-hidden rounded-[2em] flex-col w-full float  h-[80%]">
-                                  <img className="scale-[400%] " src="https://images.unsplash.com/photo-1507207908229-c59ddb730e40?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-
-                            </div>
-                            <h2 className="text-main-w ">OAcjAMcrLFbCd7vYhSUXhh8 </h2>
-                          </div>
-
-                          <div className="flex flex-col gap-9 w-[45%] place-items-start text-left">
-                            <div
-                            onMouseEnter={() => handleHover("bluesmall")}
-                            onMouseLeave={() => handleHover(null)}
-                            id="appliedcard" className="flex blur-md  overflow-hidden flex-col float2 rounded-[2em] w-full  h-[80%]">
-                                <img className="scale-[400%]" src="https://images.unsplash.com/photo-1485217988980-11786ced9454?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-                            </div>
-                            <h2 className="text-main-w 	 w-[80%]">OAcjAMcrLFbCd7vYhSUXh </h2>
-                          </div>
-
-                      </div>
-                      
-                    
-                    </div>
-
+                  <h1 className="text-[2em] font-black">$0</h1>
+                  <h1 className="text-[1em]">Pay nothing, start tracking jobs today.</h1>
+                  <Link className="my-3" href="/sign-up"><button className="outline outline-[#3b82f6] outline-[1px] px-5 py-2 rounded-lg hover:bg-blue-100">Get Started</button></Link>
+                  
+                  <div className="w-full h-[0.5px] bg-[#3b82f6]"></div>
+                  
+                  <div className="flex flex-col gap-4 my-4">
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Track up to three jobs</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Generate and optimize resumes</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Generate and optimize resumes</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Email Support</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> AI document optimization</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Job search performance metrics</div>
                   </div>
 
-            </div>
+                </CardContent>
+              </Card>
+     
+              <Card style={styles} className="outline outline-[#3b82f6] gap-[1em] outline-[1px] h-full overflow-y-scroll text-[#3b82f6] w-[100%] md:w-[30%]">
+                <CardTitle>Pro</CardTitle>
+                <CardContent className="p-0 m-0 flex flex-col gap-2">
+                  
+                  <span className="flex gap-2 place-items-center"><h1 className="text-[2em] font-black">$15 /</h1> <span className="text-[1em]">month</span></span>
+                  <h1 className="text-[1em]">For the serial job hunter.</h1>
+                  <Link className="my-3" href="/sign-up"><button className="outline outline-[#3b82f6] outline-[1px] px-5 py-2 rounded-lg hover:bg-blue-100">Get Started</button></Link>
+                  
+                  <div className="w-full h-[0.5px] bg-[#3b82f6]"></div>
 
-          </section>
+                  <div className="flex flex-col gap-4 my-4">
+                  <div className="w-full flex place-items-center gap-4"><FaCheck/> Track unlimited jobs</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Generate and optimize resumes</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Generate and optimize resumes</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Priority Support</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> AI document optimization</div>
+                    <div className="w-full flex place-items-center gap-4"><FaCheck/> Job search performance metrics</div>
+                  </div>
+
+                </CardContent>
+              </Card>
+
+              <Card style={styles} className="outline  outline-white gap-[4em] sm:gap-[1em] outline-[1px] h-full overflow-y-scroll bg-blue-500 w-[100%] md:w-[30%]">
+                <CardTitle className="text-white">Need even more features and capabilities for your specific needs?</CardTitle>
+                <CardContent className="p-0 m-0 flex h-full flex-col relative gap-2">
+                  
+                  <Link className="my-3" href="/sign-up"><button className="bg-white px-5 py-2 rounded-lg">Contact Sales</button></Link>
+                  
+                  <div className="w-[300px] hidden sm:flex h-2/3 bg-white rounded-lg absolute bottom-10 left-0">
+                    <img src={pricingimg.src} className="w-full h-full object-cover rounded-lg" alt="" />
+                  </div>
+
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </>
     )
 }

@@ -49,6 +49,14 @@ export default async function Home() {
             <FirstComponent/>
 
           </div>
+{/* features */}
+          <div className="w-full px-4 py-6 h-full gap-9 flex flex-col place-content-center place-items-center">
+            <HeroSectionTwo/>
+          </div>
+{/* pricing */}
+          <div className="w-full px-4 py-6 min-h-full gap-9 flex flex-col place-content-center place-items-center">
+            <HeroSectionThree/>
+          </div>
 
       </div>
     </div>
